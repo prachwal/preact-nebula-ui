@@ -33,42 +33,42 @@ describe('Spinner', () => {
       render(<Spinner size="xs" data-testid="spinner" />)
       
       const spinner = screen.getByTestId('spinner')
-      expect(spinner).toHaveClass('h-2.5', 'w-2.5')
+      expect(spinner).toHaveClass('w-2', 'h-2')
     })
 
     it('renders small size correctly', () => {
       render(<Spinner size="sm" data-testid="spinner" />)
       
       const spinner = screen.getByTestId('spinner')
-      expect(spinner).toHaveClass('h-3', 'w-3')
+      expect(spinner).toHaveClass('w-4', 'h-4')
     })
 
     it('renders medium size correctly (default)', () => {
       render(<Spinner size="md" data-testid="spinner" />)
       
       const spinner = screen.getByTestId('spinner')
-      expect(spinner).toHaveClass('h-4', 'w-4')
+      expect(spinner).toHaveClass('w-6', 'h-6')
     })
 
     it('renders large size correctly', () => {
       render(<Spinner size="lg" data-testid="spinner" />)
       
       const spinner = screen.getByTestId('spinner')
-      expect(spinner).toHaveClass('h-5', 'w-5')
+      expect(spinner).toHaveClass('w-8', 'h-8')
     })
 
     it('renders extra large size correctly', () => {
       render(<Spinner size="xl" data-testid="spinner" />)
       
       const spinner = screen.getByTestId('spinner')
-      expect(spinner).toHaveClass('h-6', 'w-6')
+      expect(spinner).toHaveClass('w-10', 'h-10')
     })
 
     it('renders 2xl size correctly', () => {
       render(<Spinner size="2xl" data-testid="spinner" />)
       
       const spinner = screen.getByTestId('spinner')
-      expect(spinner).toHaveClass('h-8', 'w-8')
+      expect(spinner).toHaveClass('w-12', 'h-12')
     })
   })
 

@@ -6,7 +6,8 @@ import type { InputProps } from './Input.types'
 const inputVariants = {
   default: 'border-gray-300 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white',
   error: 'border-red-500 focus:border-red-500 focus:ring-red-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white',
-  success: 'border-green-500 focus:border-green-500 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white'
+  success: 'border-green-500 focus:border-green-500 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white',
+  filled: 'border-gray-300 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500 bg-gray-50 dark:bg-gray-600 text-gray-900 dark:text-white'
 }
 
 // Use standardized input sizes with better contrast
@@ -29,6 +30,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       variant = 'default',
       size = 'md',
       type = 'text',
+      state,
       disabled = false,
       required = false,
       leftIcon,
@@ -46,8 +48,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     },
     ref: Ref<HTMLInputElement>
   ) => {
-    // Determine actual variant based on props
-    const actualVariant = error || isInvalid ? 'error' : isValid ? 'success' : variant
+    // Determine actual variant based on props and state
+    let actualVariant = variant
+    if (state === 'error' || error || isInvalid) {
+      actualVariant = 'error'
+    } else if (state === 'success' || isValid) {
+      actualVariant = 'success'
+    }
 
     const baseClasses = cn(
       // Base input styles

@@ -9,8 +9,12 @@ export interface CardProps extends Omit<ComponentProps<'div'>, 'size'> {
   variant?: CardVariant
   /** Card size */
   size?: CardSize
+  /** Card padding size */
+  padding?: 'none' | 'sm' | 'md' | 'lg'
   /** Whether card is interactive (hoverable) */
   interactive?: boolean
+  /** Enable hover effects */
+  hover?: boolean
   /** Card content */
   children?: ComponentChildren
   /** Test ID for testing */

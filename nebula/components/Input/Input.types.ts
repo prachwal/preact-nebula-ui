@@ -8,6 +8,8 @@ export interface InputProps extends Omit<ComponentProps<'input'>, 'size' | 'type
   size?: FormSize
   /** Input type */
   type?: InputType
+  /** Input state for validation feedback */
+  state?: 'success' | 'error' | 'warning'
   /** Whether the input is disabled */
   disabled?: boolean
   /** Whether the input is required */

@@ -143,7 +143,7 @@ describe('Input', () => {
       )
       
       const input = screen.getByTestId('input')
-      expect(input).toHaveClass('pl-9', 'pr-9')
+      expect(input).toHaveClass('pl-10', 'pr-10')
     })
 
     it('adjusts padding for large size with icons', () => {
@@ -243,7 +243,7 @@ describe('Input', () => {
       render(<Input onFocus={handleFocus} data-testid="input" />)
       
       const input = screen.getByTestId('input')
-      fireEvent.focus(input)
+      input.focus()
       
       expect(handleFocus).toHaveBeenCalledTimes(1)
     })
@@ -253,7 +253,8 @@ describe('Input', () => {
       render(<Input onBlur={handleBlur} data-testid="input" />)
       
       const input = screen.getByTestId('input')
-      fireEvent.blur(input)
+      input.focus()
+      input.blur()
       
       expect(handleBlur).toHaveBeenCalledTimes(1)
     })

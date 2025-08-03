@@ -1,21 +1,42 @@
 import { render } from 'preact'
 import './index.css'
 import { App } from './app.tsx'
+import { ThemeProvider } from './contexts/ThemeContext'
 
-// Initialize dark mode based on system preference
-if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  document.documentElement.classList.add('dark')
-} else {
-  document.documentElement.classList.remove('dark')
+// Universal localStorage functions for theme management
+export const themeStorage = {
+  getTheme: (): 'light' | 'dark' | null => {
+    try {
+      const stored = localStorage.getItem('nebula-theme')
+      return stored === 'light' || stored === 'dark' ? stored : null
+    } catch {
+      return null
+    }
+  },
+  
+  setTheme: (theme: 'light' | 'dark'): void => {
+    try {
+      localStorage.setItem('nebula-theme', theme)
+    } catch {
+      // Silently fail if localStorage is not available
+    }
+  },
+  
+  removeTheme: (): void => {
+    try {
+      localStorage.removeItem('nebula-theme')
+    } catch {
+      // Silently fail if localStorage is not available
+    }
+  }
 }
 
-// Listen for system theme changes
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-  if (e.matches) {
-    document.documentElement.classList.add('dark')
-  } else {
-    document.documentElement.classList.remove('dark')
-  }
-})
-
-render(<App />, document.getElementById('app')!)
+render(
+  <ThemeProvider
+    onThemeChange={themeStorage.setTheme}
+    getStoredTheme={themeStorage.getTheme}
+  >
+    <App />
+  </ThemeProvider>, 
+  document.getElementById('app')!
+)

@@ -36,14 +36,14 @@ describe('Divider', () => {
       render(<Divider data-testid="divider" />)
       
       const divider = screen.getByTestId('divider')
-      expect(divider).toHaveClass('border-solid')
+      expect(divider).toHaveClass('bg-gray-500')
     })
 
     it('renders solid variant correctly', () => {
       render(<Divider variant="solid" data-testid="divider" />)
       
       const divider = screen.getByTestId('divider')
-      expect(divider).toHaveClass('border-solid')
+      expect(divider).toHaveClass('bg-gray-500')
     })
 
     it('renders dashed variant correctly', () => {
@@ -66,21 +66,21 @@ describe('Divider', () => {
       render(<Divider data-testid="divider" />)
       
       const divider = screen.getByTestId('divider')
-      expect(divider).toHaveClass('w-full', 'border-t-2')
+      expect(divider).toHaveClass('w-full', 'h-0.5')
     })
 
     it('renders horizontal orientation correctly', () => {
       render(<Divider orientation="horizontal" data-testid="divider" />)
       
       const divider = screen.getByTestId('divider')
-      expect(divider).toHaveClass('w-full', 'border-t-2')
+      expect(divider).toHaveClass('w-full', 'h-0.5')
     })
 
     it('renders vertical orientation correctly', () => {
       render(<Divider orientation="vertical" data-testid="divider" />)
       
       const divider = screen.getByTestId('divider')
-      expect(divider).toHaveClass('h-full', 'border-l-2')
+      expect(divider).toHaveClass('h-full', 'w-0.5')
     })
   })
 
@@ -89,49 +89,49 @@ describe('Divider', () => {
       render(<Divider data-testid="divider" />)
       
       const divider = screen.getByTestId('divider')
-      expect(divider).toHaveClass('border-t-2')
+      expect(divider).toHaveClass('h-0.5')
     })
 
     it('renders small size correctly (horizontal)', () => {
       render(<Divider size="sm" data-testid="divider" />)
       
       const divider = screen.getByTestId('divider')
-      expect(divider).toHaveClass('border-t')
+      expect(divider).toHaveClass('h-px')
     })
 
     it('renders medium size correctly (horizontal)', () => {
       render(<Divider size="md" data-testid="divider" />)
       
       const divider = screen.getByTestId('divider')
-      expect(divider).toHaveClass('border-t-2')
+      expect(divider).toHaveClass('h-0.5')
     })
 
     it('renders large size correctly (horizontal)', () => {
       render(<Divider size="lg" data-testid="divider" />)
       
       const divider = screen.getByTestId('divider')
-      expect(divider).toHaveClass('border-t-4')
+      expect(divider).toHaveClass('h-1')
     })
 
     it('renders small size correctly (vertical)', () => {
       render(<Divider orientation="vertical" size="sm" data-testid="divider" />)
       
       const divider = screen.getByTestId('divider')
-      expect(divider).toHaveClass('border-l')
+      expect(divider).toHaveClass('w-px')
     })
 
     it('renders medium size correctly (vertical)', () => {
       render(<Divider orientation="vertical" size="md" data-testid="divider" />)
       
       const divider = screen.getByTestId('divider')
-      expect(divider).toHaveClass('border-l-2')
+      expect(divider).toHaveClass('w-0.5')
     })
 
     it('renders large size correctly (vertical)', () => {
       render(<Divider orientation="vertical" size="lg" data-testid="divider" />)
       
       const divider = screen.getByTestId('divider')
-      expect(divider).toHaveClass('border-l-4')
+      expect(divider).toHaveClass('w-1')
     })
   })
 
@@ -156,7 +156,7 @@ describe('Divider', () => {
       render(<Divider text="" data-testid="divider" />)
       
       const divider = screen.getByTestId('divider')
-      expect(divider).toHaveClass('w-full', 'border-t-2')
+      expect(divider).toHaveClass('w-full', 'h-0.5')
       expect(divider).not.toHaveClass('flex')
     })
 
@@ -164,7 +164,7 @@ describe('Divider', () => {
       render(<Divider text="   " data-testid="divider" />)
       
       const divider = screen.getByTestId('divider')
-      expect(divider).toHaveClass('w-full', 'border-t-2')
+      expect(divider).toHaveClass('w-full', 'h-0.5')
       expect(divider).not.toHaveClass('flex')
     })
 
@@ -173,7 +173,7 @@ describe('Divider', () => {
       
       const divider = screen.getByTestId('divider')
       const textElement = divider.querySelector('span')
-      expect(textElement).toHaveClass('text-sm', 'text-gray-500', 'bg-white', 'px-3')
+      expect(textElement).toHaveClass('text-sm', 'font-medium', 'text-gray-700', 'bg-white', 'px-3')
     })
 
     it('renders text with proper styling (vertical)', () => {
@@ -181,7 +181,7 @@ describe('Divider', () => {
       
       const divider = screen.getByTestId('divider')
       const textElement = divider.querySelector('span')
-      expect(textElement).toHaveClass('text-sm', 'text-gray-500', 'bg-white', 'py-3')
+      expect(textElement).toHaveClass('text-sm', 'font-medium', 'text-gray-700', 'bg-white', 'py-3')
     })
   })
 
@@ -200,8 +200,8 @@ describe('Divider', () => {
       expect(divider).toHaveClass(
         'h-full',
         'border-dashed',
-        'border-gray-300',
-        'border-l-4'
+        'border-gray-500',
+        'w-1'
       )
     })
 
@@ -222,7 +222,7 @@ describe('Divider', () => {
       
       const borderElements = divider.querySelectorAll('div')
       borderElements.forEach(element => {
-        expect(element).toHaveClass('border-dotted', 'border-gray-300', 'border-t')
+        expect(element).toHaveClass('border-dotted', 'border-gray-500', 'h-px')
       })
     })
   })

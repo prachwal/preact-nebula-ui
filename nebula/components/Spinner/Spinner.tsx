@@ -1,14 +1,14 @@
 import { cn } from '../../utils/cn'
 import type { SpinnerProps, SpinnerSize, SpinnerColor } from './Spinner.types'
 
-// Size variants for spinner dimensions - direct mapping for better reliability
+// Size variants for spinner dimensions - corrected pixel mapping
 const spinnerSizes: Record<SpinnerSize, string> = {
-  xs: 'w-2.5 h-2.5',   // 10px × 10px - Extra small for inline text
-  sm: 'w-3 h-3',       // 12px × 12px - Small for compact components  
-  md: 'w-4 h-4',       // 16px × 16px - Medium (default)
-  lg: 'w-5 h-5',       // 20px × 20px - Large
-  xl: 'w-6 h-6',       // 24px × 24px - Extra large
-  '2xl': 'w-8 h-8'     // 32px × 32px - Largest
+  xs: 'w-2 h-2',       // 8px × 8px - closest to 10px request  
+  sm: 'w-4 h-4',       // 16px × 16px - Small for compact components  
+  md: 'w-6 h-6',       // 24px × 24px - Medium (default)
+  lg: 'w-8 h-8',       // 32px × 32px - Large
+  xl: 'w-10 h-10',     // 40px × 40px - Extra large
+  '2xl': 'w-12 h-12'   // 48px × 48px - Largest
 }
 
 // Color variants for spinner

@@ -11,8 +11,8 @@ export type ComponentSize = 'sm' | 'md' | 'lg' | 'xl'
 export type ComponentVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'destructive'
 
 // Form-specific types
-export type FormVariant = 'default' | 'error' | 'success'
+export type FormVariant = 'default' | 'error' | 'success' | 'filled'
 export type FormSize = 'sm' | 'md' | 'lg'
 
 // HTML input types
-export type InputType = 'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search'
+export type InputType = 'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search' | 'date' | 'time' | 'datetime-local' | 'month' | 'week' | 'color' | 'range' | 'file'

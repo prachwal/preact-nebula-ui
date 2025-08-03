@@ -29,3 +29,15 @@ export type { StackProps, StackDirection, StackSpacing, StackAlign, StackJustify
 
 export { Divider } from './Divider'
 export type { DividerProps, DividerVariant, DividerOrientation, DividerSize } from './Divider/Divider.types'
+
+// Advanced Interactions Components
+export { Avatar, AvatarGroup, AvatarBadge } from './Avatar'
+export type { AvatarProps, AvatarGroupProps, AvatarBadgeProps, AvatarSize, AvatarShape, AvatarBadgePlacement } from './Avatar/Avatar.types'
+
+// Navigation Components
+export { Tabs, TabList, Tab, TabPanels, TabPanel } from './Tabs'
+export type { TabsProps, TabListProps, TabProps, TabPanelsProps, TabPanelProps, TabsOrientation, TabsVariant, TabsSize, TabsColorScheme } from './Tabs/Tabs.types'
+
+// Layout Components
+export { PageLayout, Section } from './Layout'
+export type { PageLayoutProps, SectionProps, PageType } from './Layout/PageLayout.types'

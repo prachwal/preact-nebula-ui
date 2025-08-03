@@ -13,15 +13,27 @@ const cardSizes = {
   lg: 'p-8'
 }
 
+const cardPaddings = {
+  none: '',
+  sm: 'p-4',
+  md: 'p-6', 
+  lg: 'p-8'
+}
+
 export const Card = ({
   variant = 'default',
   size = 'md',
+  padding,
+  hover = false,
   interactive = false,
   className,
   children,
   'data-testid': testId,
   ...props
 }: CardProps) => {
+  // Use padding prop if provided, otherwise fallback to size-based padding
+  const paddingClass = padding !== undefined ? cardPaddings[padding] : cardSizes[size]
+  
   const baseClasses = cn(
     // Base card styles
     'rounded-lg transition-all duration-200',
@@ -29,13 +41,17 @@ export const Card = ({
     // Variant styles
     cardVariants[variant],
     
-    // Size styles
-    cardSizes[size],
+    // Padding styles
+    paddingClass,
+    
+    // Hover effects
+    (hover || interactive) && [
+      'cursor-pointer',
+      'hover:shadow-lg hover:scale-[1.02]',
+    ],
     
     // Interactive styles
     interactive && [
-      'cursor-pointer',
-      'hover:shadow-lg hover:scale-[1.02]',
       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2'
     ],
     

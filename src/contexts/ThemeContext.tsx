@@ -23,11 +23,24 @@ export function useTheme() {
 interface ThemeProviderProps {
   children: ComponentChildren
   defaultTheme?: Theme
+  onThemeChange?: (theme: Theme) => void
+  getStoredTheme?: () => Theme | null
 }
 
-export function ThemeProvider({ children, defaultTheme = 'light' }: ThemeProviderProps) {
+export function ThemeProvider({ 
+  children, 
+  defaultTheme = 'light',
+  onThemeChange,
+  getStoredTheme
+}: ThemeProviderProps) {
   const [theme, setThemeState] = useState<Theme>(() => {
-    // Check localStorage first
+    // Check for provided storage function first
+    if (getStoredTheme) {
+      const stored = getStoredTheme()
+      if (stored) return stored
+    }
+    
+    // Check localStorage as fallback
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('nebula-theme') as Theme
       if (saved && (saved === 'light' || saved === 'dark')) {
@@ -50,9 +63,14 @@ export function ThemeProvider({ children, defaultTheme = 'light' }: ThemeProvide
     // Add current theme class
     root.classList.add(theme)
     
-    // Save to localStorage
-    localStorage.setItem('nebula-theme', theme)
-  }, [theme])
+    // Call external callback if provided
+    if (onThemeChange) {
+      onThemeChange(theme)
+    } else {
+      // Fallback to localStorage
+      localStorage.setItem('nebula-theme', theme)
+    }
+  }, [theme, onThemeChange])
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme)

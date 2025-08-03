@@ -1,25 +1,28 @@
 import { useState } from 'preact/hooks'
+import { FieldErrorPage } from './pages/field-error'
 import Router, { route } from 'preact-router'
 import preactLogo from './assets/preact.svg'
 import viteLogo from '/vite.svg'
 import './app.css'
 import { Button } from '@/components'
+import { Avatar, AvatarGroup } from '@/components'
 import { FormsShowcase } from './examples/FormsShowcase'
 import { LayoutShowcase } from './LayoutShowcase'
-import { ThemeProvider, useTheme } from './contexts/ThemeContext'
+import { useTheme } from './contexts/ThemeContext'
+import { Layout } from './components/layout/Layout'
 
 // Import pages
 import { HomePage } from './pages/HomePage'
-import { ButtonPage } from './pages/ButtonPage'
-import { ContainerPage } from './pages/ContainerPage'
-import { DividerPage } from './pages/DividerPage'
-import { SpinnerPage } from './pages/SpinnerPage'
-import { InputPage } from './pages/InputPage'
-import { TextareaPage } from './pages/TextareaPage'
-import { LabelPage } from './pages/LabelPage'
-import { FieldErrorPage } from './pages/FieldErrorPage'
-import { CardPage } from './pages/CardPage'
+import { ButtonPage } from './pages/button'
+import { ContainerPage } from './pages/container'
+import { DividerPage } from './pages/divider'
+import { SpinnerPage } from './pages/spinner'
+import { InputPage } from './pages/input'
+import { TextareaPage } from './pages/textarea'
+import { LabelPage } from './pages/label'
+import { CardPage } from './pages/card'
 import { StackPage } from './pages/StackPage'
+import { AvatarPage } from './pages/avatar'
 
 function ThemeToggle() {
   const { theme, toggleTheme } = useTheme()
@@ -44,7 +47,7 @@ function ThemeToggle() {
 }
 
 function LegacyShowcase(_props: { path?: string }) {
-  const [activeDemo, setActiveDemo] = useState<'buttons' | 'forms' | 'layout'>('forms')
+  const [activeDemo, setActiveDemo] = useState<'buttons' | 'forms' | 'layout' | 'avatars'>('forms')
 
   return (
     <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -96,6 +99,16 @@ function LegacyShowcase(_props: { path?: string }) {
                   }`}
                 >
                   Buttons
+                </button>
+                <button
+                  onClick={() => setActiveDemo('avatars')}
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                    activeDemo === 'avatars'
+                      ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300'
+                      : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+                  }`}
+                >
+                  Avatars
                 </button>
               </div>
               <ThemeToggle />
@@ -154,6 +167,51 @@ function LegacyShowcase(_props: { path?: string }) {
             </div>
           </div>
         )}
+        
+        {activeDemo === 'avatars' && (
+          <div class="max-w-4xl mx-auto px-8">
+            <div class="text-center mb-8">
+              <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                👤 Avatar Showcase
+              </h1>
+              <p class="text-xl text-gray-600 dark:text-gray-300">
+                User profile components with status and grouping
+              </p>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 border border-gray-200 dark:border-gray-700">
+              <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-6">Avatar Sizes</h2>
+              
+              <div class="flex items-center gap-4 mb-8">
+                <Avatar size="xs" name="John Doe" />
+                <Avatar size="sm" name="Jane Smith" />
+                <Avatar size="md" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" alt="User" />
+                <Avatar size="lg" src="https://images.unsplash.com/photo-1494790108755-2616b612b5bc?w=150&h=150&fit=crop&crop=face" alt="User" />
+                <Avatar size="xl" name="Alex Johnson" />
+                <Avatar size="2xl" name="Sarah Wilson" />
+              </div>
+
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Avatar Groups</h3>
+              <div class="space-y-4">
+                <AvatarGroup>
+                  <Avatar src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" alt="User 1" />
+                  <Avatar src="https://images.unsplash.com/photo-1494790108755-2616b612b5bc?w=150&h=150&fit=crop&crop=face" alt="User 2" />
+                  <Avatar name="Alex Johnson" />
+                  <Avatar name="Sarah Wilson" />
+                </AvatarGroup>
+                
+                <AvatarGroup max={3}>
+                  <Avatar src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" alt="User 1" />
+                  <Avatar src="https://images.unsplash.com/photo-1494790108755-2616b612b5bc?w=150&h=150&fit=crop&crop=face" alt="User 2" />
+                  <Avatar name="Alex Johnson" />
+                  <Avatar name="Sarah Wilson" />
+                  <Avatar name="Mike Brown" />
+                  <Avatar name="Emma Davis" />
+                </AvatarGroup>
+              </div>
+            </div>
+          </div>
+        )}
       </main>
     </div>
   )
@@ -161,27 +219,26 @@ function LegacyShowcase(_props: { path?: string }) {
 
 function AppContent() {
   return (
-    <Router>
-      <HomePage path="/" />
-      <ButtonPage path="/button" />
-      <ContainerPage path="/container" />
-      <DividerPage path="/divider" />
-      <SpinnerPage path="/spinner" />
-      <InputPage path="/input" />
-      <TextareaPage path="/textarea" />
-      <LabelPage path="/label" />
-      <FieldErrorPage path="/field-error" />
-      <CardPage path="/card" />
-      <StackPage path="/stack" />
-      <LegacyShowcase path="/legacy" />
-    </Router>
+    <Layout>
+      <Router>
+        <HomePage path="/" />
+        <ButtonPage path="/button" />
+        <ContainerPage path="/container" />
+        <DividerPage path="/divider" />
+        <SpinnerPage path="/spinner" />
+        <InputPage path="/input" />
+        <TextareaPage path="/textarea" />
+        <LabelPage path="/label" />
+        <FieldErrorPage path="/field-error" />
+        <CardPage path="/card" />
+        <StackPage path="/stack" />
+        <AvatarPage path="/avatar" />
+        <LegacyShowcase path="/legacy" />
+      </Router>
+    </Layout>
   )
 }
 
 export function App() {
-  return (
-    <ThemeProvider>
-      <AppContent />
-    </ThemeProvider>
-  )
+  return <AppContent />
 }

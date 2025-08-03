@@ -24,7 +24,7 @@ export const Label = ({
     labelSizes[size],
     
     // State styles
-    disabled ? 'text-gray-400 cursor-not-allowed' : 'text-gray-900',
+    disabled ? 'text-gray-400 dark:text-gray-500 cursor-not-allowed' : 'text-gray-900 dark:text-gray-100',
     
     className
   )

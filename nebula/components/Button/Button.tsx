@@ -5,8 +5,8 @@ import type { ButtonProps } from './Button.types'
 const buttonVariants = {
   primary: 'bg-blue-600 hover:bg-blue-700 text-white',
   secondary: 'bg-gray-600 hover:bg-gray-700 text-white',
-  outline: 'border-2 border-gray-300 hover:border-gray-400 bg-transparent hover:bg-gray-50 dark:hover:bg-gray-800',
-  ghost: 'hover:bg-gray-100 dark:hover:bg-gray-800 bg-transparent',
+  outline: 'border-2 border-gray-300 hover:border-gray-400 bg-transparent hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-900 dark:text-gray-100 dark:border-gray-600 dark:hover:border-gray-500',
+  ghost: 'hover:bg-gray-100 dark:hover:bg-gray-800 bg-transparent text-gray-900 dark:text-gray-100',
   destructive: 'bg-red-600 hover:bg-red-700 text-white'
 }
 

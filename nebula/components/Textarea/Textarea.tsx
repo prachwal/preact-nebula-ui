@@ -4,9 +4,10 @@ import { cn } from '@/utils/cn'
 import type { TextareaProps } from './Textarea.types'
 
 const textareaVariants = {
-  default: 'border-gray-300 focus:border-blue-500 focus:ring-blue-500',
-  error: 'border-red-500 focus:border-red-500 focus:ring-red-500',
-  success: 'border-green-500 focus:border-green-500 focus:ring-green-500'
+  default: 'border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-blue-500 dark:focus:ring-blue-400',
+  error: 'border-red-500 dark:border-red-400 focus:border-red-500 dark:focus:border-red-400 focus:ring-red-500 dark:focus:ring-red-400',
+  success: 'border-green-500 dark:border-green-400 focus:border-green-500 dark:focus:border-green-400 focus:ring-green-500 dark:focus:ring-green-400',
+  filled: 'border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-blue-500 dark:focus:ring-blue-400 bg-gray-50 dark:bg-gray-700'
 }
 
 const textareaSizes = {
@@ -92,8 +93,9 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       // Base textarea styles
       'block w-full rounded-md border shadow-sm transition-colors duration-200 resize-none',
       'focus:outline-none focus:ring-1',
-      'disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500',
-      'placeholder:text-gray-400',
+      'disabled:cursor-not-allowed disabled:bg-gray-50 dark:disabled:bg-gray-800 disabled:text-gray-500 dark:disabled:text-gray-400',
+      'placeholder:text-gray-400 dark:placeholder:text-gray-500',
+      'bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100',
       
       // Size styles
       textareaSizes[size],
@@ -142,7 +144,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
                 id={`${restProps.id || 'textarea'}-description`}
                 className={cn(
                   'text-sm',
-                  error ? 'text-red-600' : 'text-gray-600'
+                  error ? 'text-red-600 dark:text-red-400' : 'text-gray-600 dark:text-gray-400'
                 )}
                 role={error ? 'alert' : undefined}
                 aria-live={error ? 'polite' : undefined}
@@ -156,8 +158,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
                 className={cn(
                   'text-sm tabular-nums',
                   maxLength != null && currentLength > maxLength
-                    ? 'text-red-600'
-                    : 'text-gray-500'
+                    ? 'text-red-600 dark:text-red-400'
+                    : 'text-gray-500 dark:text-gray-400'
                 )}
                 aria-label={`Character count: ${currentLength}${maxLength != null ? ` of ${maxLength}` : ''}`}
               >

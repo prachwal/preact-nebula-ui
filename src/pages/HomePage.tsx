@@ -15,7 +15,8 @@ export function HomePage(_props: PageProps) {
     { name: 'Card', path: '/card', description: 'Content container with header, body, and footer' },
     { name: 'Container', path: '/container', description: 'Responsive layout wrapper with max-width constraints' },
     { name: 'Stack', path: '/stack', description: 'Vertical/horizontal layout with spacing control' },
-    { name: 'Divider', path: '/divider', description: 'Visual separator with text support' }
+    { name: 'Divider', path: '/divider', description: 'Visual separator with text support' },
+    { name: 'Avatar', path: '/avatar', description: 'User profile picture with fallbacks and status indicators' }
   ]
 
   const navigateTo = (path: string) => {

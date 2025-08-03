@@ -280,7 +280,7 @@ describe('Textarea', () => {
       render(<Textarea onFocus={handleFocus} data-testid="textarea" />)
       
       const textarea = screen.getByTestId('textarea')
-      fireEvent.focus(textarea)
+      textarea.focus()
       
       expect(handleFocus).toHaveBeenCalledTimes(1)
     })
@@ -290,7 +290,8 @@ describe('Textarea', () => {
       render(<Textarea onBlur={handleBlur} data-testid="textarea" />)
       
       const textarea = screen.getByTestId('textarea')
-      fireEvent.blur(textarea)
+      textarea.focus()
+      textarea.blur()
       
       expect(handleBlur).toHaveBeenCalledTimes(1)
     })
