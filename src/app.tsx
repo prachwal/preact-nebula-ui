@@ -3,87 +3,115 @@ import preactLogo from './assets/preact.svg'
 import viteLogo from '/vite.svg'
 import './app.css'
 import { Button } from '@/components'
+import { FormsShowcase } from './examples/FormsShowcase'
+import { LayoutShowcase } from './LayoutShowcase'
 
 export function App() {
-  const [count, setCount] = useState(0)
+  const [activeDemo, setActiveDemo] = useState<'buttons' | 'forms' | 'layout'>('forms')
 
   return (
-    <div class="app-container">
-      <div class="flex justify-center items-center gap-8 mb-8">
-        <a href="https://vite.dev" target="_blank" class="block">
-          <img src={viteLogo} class="logo hover:animate-spin" alt="Vite logo" />
-        </a>
-        <a href="https://preactjs.com" target="_blank" class="block">
-          <img src={preactLogo} class="logo preact hover:animate-pulse" alt="Preact logo" />
-        </a>
-      </div>
-      
-      <h1 class="hero-title">Nebula UI Components</h1>
-      
-      <div class="card max-w-md mx-auto mb-8">
-        <div class="space-y-4 mb-6">
-          <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Button Examples</h2>
-          
-          <div class="grid grid-cols-2 gap-3">
-            <Button variant="primary" size="sm">Primary SM</Button>
-            <Button variant="secondary" size="sm">Secondary SM</Button>
-            <Button variant="outline" size="md">Outline MD</Button>
-            <Button variant="ghost" size="md">Ghost MD</Button>
-          </div>
-          
-          <div class="space-y-3">
-            <Button 
-              variant="primary" 
-              size="lg" 
-              fullWidth
-              onClick={() => setCount((count) => count + 1)}
-            >
-              Count is {count}
-            </Button>
+    <div class="min-h-screen bg-gray-50">
+      {/* Navigation */}
+      <nav class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex justify-between items-center h-16">
+            {/* Logo */}
+            <div class="flex items-center gap-4">
+              <div class="flex items-center gap-2">
+                <img src={viteLogo} class="h-8 w-8" alt="Vite logo" />
+                <img src={preactLogo} class="h-8 w-8" alt="Preact logo" />
+              </div>
+              <h1 class="text-xl font-bold text-gray-900">Nebula UI</h1>
+            </div>
             
-            <Button variant="destructive" fullWidth loading>
-              Loading Button
-            </Button>
-            
-            <Button 
-              variant="outline" 
-              fullWidth
-              leftIcon="🚀"
-              rightIcon="✨"
-            >
-              With Icons
-            </Button>
+            {/* Navigation Tabs */}
+            <div class="flex space-x-4">
+              <button
+                onClick={() => setActiveDemo('forms')}
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                  activeDemo === 'forms'
+                    ? 'bg-blue-100 text-blue-700'
+                    : 'text-gray-500 hover:text-gray-700'
+                }`}
+              >
+                Forms Foundation
+              </button>
+              <button
+                onClick={() => setActiveDemo('layout')}
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                  activeDemo === 'layout'
+                    ? 'bg-blue-100 text-blue-700'
+                    : 'text-gray-500 hover:text-gray-700'
+                }`}
+              >
+                Layout System
+              </button>
+              <button
+                onClick={() => setActiveDemo('buttons')}
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                  activeDemo === 'buttons'
+                    ? 'bg-blue-100 text-blue-700'
+                    : 'text-gray-500 hover:text-gray-700'
+                }`}
+              >
+                Buttons
+              </button>
+            </div>
           </div>
         </div>
+      </nav>
+
+      {/* Content */}
+      <main class="py-8">
+        {activeDemo === 'forms' && <FormsShowcase />}
         
-        <p class="text-gray-600 dark:text-gray-300 text-sm">
-          Edit <code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm font-mono">nebula/components/Button</code> to customize
-        </p>
-      </div>
-      
-      <div class="space-y-4 max-w-2xl mx-auto">
-        <p class="text-lg">
-          🎉 <strong>Nebula UI</strong> - A modern component library built with{' '}
-          <a
-            href="https://preactjs.com"
-            target="_blank"
-            class="feature-link"
-          >
-            Preact
-          </a>
-          {' '} and{' '}
-          <a
-            href="https://tailwindcss.com" 
-            target="_blank"
-            class="feature-link"
-          >
-            Tailwind CSS
-          </a>
-        </p>
-        <p class="read-the-docs">
-          Ready for NPM deployment and production use
-        </p>
-      </div>
+        {activeDemo === 'layout' && (
+          <div class="max-w-7xl mx-auto px-8">
+            <LayoutShowcase />
+          </div>
+        )}
+        
+        {activeDemo === 'buttons' && (
+          <div class="max-w-4xl mx-auto px-8">
+            <div class="text-center mb-8">
+              <h1 class="text-4xl font-bold text-gray-900 mb-4">
+                🎨 Button Showcase
+              </h1>
+              <p class="text-xl text-gray-600">
+                Comprehensive button component demonstration
+              </p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-8">
+              <h2 class="text-2xl font-semibold text-gray-900 mb-6">Button Variants</h2>
+              
+              <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
+                <Button variant="primary">Primary</Button>
+                <Button variant="secondary">Secondary</Button>
+                <Button variant="outline">Outline</Button>
+                <Button variant="ghost">Ghost</Button>
+                <Button variant="destructive">Destructive</Button>
+              </div>
+
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Sizes</h3>
+              <div class="flex flex-wrap gap-4 mb-8">
+                <Button size="sm">Small</Button>
+                <Button size="md">Medium</Button>
+                <Button size="lg">Large</Button>
+                <Button size="xl">Extra Large</Button>
+              </div>
+
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">States</h3>
+              <div class="flex flex-wrap gap-4">
+                <Button>Normal</Button>
+                <Button disabled>Disabled</Button>
+                <Button loading>Loading</Button>
+                <Button fullWidth>Full Width</Button>
+              </div>
+            </div>
+          </div>
+        )}
+      </main>
     </div>
   )
 }

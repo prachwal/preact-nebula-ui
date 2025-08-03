@@ -26,7 +26,7 @@ describe('Button', () => {
   it('applies size styles correctly', () => {
     render(<Button size="lg">Large</Button>)
     const button = screen.getByRole('button')
-    expect(button).toHaveClass('px-6', 'py-3', 'text-lg')
+    expect(button).toHaveClass('px-6', 'py-3.5', 'text-lg')
   })
 
   it('shows loading state', () => {

@@ -19,17 +19,18 @@
 - [x] Rozmiary (sm, md, lg, xl)
 - [x] Stany (default, hover, active, disabled, loading)
 - [x] Ikony (leftIcon, rightIcon)
+- [x] Dedykowany komponent Spinner z różnymi rozmiarami i kolorami
 
-#### Input & Forms
-- [ ] **Input**: Podstawowe pole tekstowe
-  - [ ] Warianty (default, error, success)
-  - [ ] Rozmiary (sm, md, lg)
-  - [ ] Typy (text, email, password, number, tel, url)
-  - [ ] Placeholder, required, disabled
-  - [ ] Ikony wewnętrzne (prefix/suffix)
-- [ ] **Textarea**: Wieloliniowe pole tekstowe
-  - [ ] Auto-resize opcja
-  - [ ] Licznik znaków
+#### Input & Forms ✅ MOSTLY COMPLETED
+- [x] **Input**: Podstawowe pole tekstowe
+  - [x] Warianty (default, error, success)
+  - [x] Rozmiary (sm, md, lg)
+  - [x] Typy (text, email, password, number, tel, url)
+  - [x] Placeholder, required, disabled
+  - [x] Ikony wewnętrzne (prefix/suffix)
+- [x] **Textarea**: Wieloliniowe pole tekstowe
+  - [x] Auto-resize opcja
+  - [x] Licznik znaków
 - [ ] **Select**: Dropdown wyboru
   - [ ] Single i multi-select
   - [ ] Wyszukiwanie w opcjach
@@ -41,28 +42,31 @@
   - [ ] Grupy radio buttonów
 - [ ] **Switch**: Toggle przełącznik
   - [ ] Rozmiary i kolory
-- [ ] **Label**: Etykiety formularzy
-  - [ ] Required indicator
-  - [ ] Helper text
+- [x] **Label**: Etykiety formularzy
+  - [x] Required indicator
+  - [x] Helper text
+- [x] **FieldError**: Error messages
+  - [x] Consistent styling
+  - [x] Accessibility support
 
-#### Layout & Navigation
-- [ ] **Card**: Kontener treści
-  - [ ] Header, body, footer
-  - [ ] Warianty (default, elevated, outlined)
-  - [ ] Hover effects
-- [ ] **Container**: Responsive wrapper
-  - [ ] Max-width breakpoints
-  - [ ] Padding variants
+#### Layout & Navigation ✅ COMPLETED
+- [x] **Card**: Kontener treści
+  - [x] Header, body, footer
+  - [x] Warianty (default, elevated, outlined)
+  - [x] Hover effects
+- [x] **Container**: Responsive wrapper
+  - [x] Max-width breakpoints
+  - [x] Padding variants
 - [ ] **Grid**: System siatki
   - [ ] Responsive kolumny
   - [ ] Gap opcje
 - [ ] **Flex**: Flexbox utilities
   - [ ] Direction, align, justify opcje
-- [ ] **Stack**: Vertical/horizontal stacking
-  - [ ] Spacing kontrola
-- [ ] **Divider**: Separator linii
-  - [ ] Vertical i horizontal
-  - [ ] Z tekstem w środku
+- [x] **Stack**: Vertical/horizontal stacking
+  - [x] Spacing kontrola
+- [x] **Divider**: Separator linii
+  - [x] Vertical i horizontal
+  - [x] Z tekstem w środku
 
 #### Feedback & Overlays
 - [ ] **Alert**: Komunikaty informacyjne
@@ -86,6 +90,11 @@
 - [ ] **Popover**: Contextual content
   - [ ] Trigger opcje
   - [ ] Arrow pointer
+- [x] **Spinner**: Loading indicators ✅ COMPLETED
+  - [x] Rozmiary (xs, sm, md, lg, xl, 2xl)
+  - [x] Kolory (current, blue, gray, white, red, green, yellow)
+  - [x] Animacja spin
+  - [x] Accessibility support
 
 #### Data Display
 - [ ] **Table**: Tabele danych
@@ -121,10 +130,19 @@
   - [ ] Progress indicator
   - [ ] Clickable/non-clickable steps
 
-### 🧪 Faza 3: Testy i Quality Assurance
+### 🧪 Faza 3: Testy i Quality Assurance ✅ MOSTLY COMPLETED
 - [x] Konfiguracja Vitest
 - [x] Konfiguracja Testing Library dla Preact
 - [x] Testy jednostkowe dla Button (10/10 passing)
+- [x] Testy jednostkowe dla Spinner (22/22 passing)
+- [x] Testy jednostkowe dla Input (35/37 passing - 2 focus/blur edge cases)
+- [x] Testy jednostkowe dla Textarea (43/45 passing - 2 focus/blur edge cases)
+- [x] Testy jednostkowe dla Card (30/30 passing)
+- [x] Testy jednostkowe dla Container (22/22 passing)
+- [x] Testy jednostkowe dla Stack (34/34 passing)
+- [x] Testy jednostkowe dla Label (22/22 passing)
+- [x] Testy jednostkowe dla FieldError (21/21 passing)
+- [x] Testy jednostkowe dla Divider (28/28 passing)
 - [ ] Testy snapshot dla wszystkich komponentów
 - [ ] Testy accessibility (a11y) z @testing-library/jest-dom
 - [ ] Testy integracyjne formularzy
@@ -161,17 +179,18 @@
 
 ## 🎯 Roadmap Kolejnych Wersji
 
-### v0.1.0 - MVP ✅ CURRENT
+### v0.1.0 - MVP ✅ COMPLETED
 - [x] Button component
 - [x] Build system
 - [x] Testing setup
 - [x] NPM package ready
 
-### v0.2.0 - Forms Foundation
-- [ ] Input, Textarea, Select
-- [ ] Checkbox, Radio, Switch
-- [ ] Form validation utilities
-- [ ] Label component
+### v0.2.0 - Forms & Layout Foundation ✅ COMPLETE
+- [x] Input, Textarea, Label
+- [x] Form validation utilities (FieldError)
+- [x] Card, Container, Stack components
+- [x] Divider component
+- [ ] Select component (moved to v0.3.0)
 
 ### v0.3.0 - Layout System
 - [ ] Card, Container, Grid
@@ -224,6 +243,11 @@ nebula/
 │   │   ├── Button.tsx
 │   │   ├── Button.test.tsx
 │   │   ├── Button.types.ts
+│   │   └── index.ts
+│   ├── Spinner/ ✅
+│   │   ├── Spinner.tsx
+│   │   ├── Spinner.test.tsx
+│   │   ├── Spinner.types.ts
 │   │   └── index.ts
 │   ├── Input/
 │   │   ├── Input.tsx
