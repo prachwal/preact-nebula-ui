@@ -32,7 +32,7 @@ describe('Container', () => {
       render(<Container size="sm" data-testid="container">Content</Container>)
       
       const container = screen.getByTestId('container')
-      expect(container).toHaveClass('max-w-xs')
+      expect(container).toHaveClass('max-w-sm')
     })
 
     it('renders medium size correctly', () => {

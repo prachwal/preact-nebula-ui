@@ -2,9 +2,9 @@ import { cn } from '@/utils/cn'
 import type { CardProps, CardHeaderProps, CardBodyProps, CardFooterProps } from './Card.types'
 
 const cardVariants = {
-  default: 'bg-white border border-gray-200 shadow-sm',
-  elevated: 'bg-white shadow-md border-0',
-  outlined: 'bg-white border-2 border-gray-300 shadow-none'
+  default: 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm',
+  elevated: 'bg-white dark:bg-gray-800 shadow-md border-0',
+  outlined: 'bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 shadow-none'
 }
 
 const cardSizes = {

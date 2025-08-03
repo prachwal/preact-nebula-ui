@@ -1,28 +1,12 @@
 import { forwardRef } from 'preact/compat'
 import { cn } from '../../utils/cn'
-import type { DividerProps, DividerVariant, DividerOrientation, DividerSize } from './Divider.types'
+import type { DividerProps, DividerOrientation, DividerSize } from './Divider.types'
 
-// Divider variant styles
-const dividerVariants: Record<DividerVariant, string> = {
-  solid: 'border-solid',
-  dashed: 'border-dashed',
-  dotted: 'border-dotted'
-}
-
-// Divider size variants
+// Divider size styles for thickness
 const dividerSizes: Record<DividerSize, { horizontal: string; vertical: string }> = {
-  sm: {
-    horizontal: 'border-t',
-    vertical: 'border-l'
-  },
-  md: {
-    horizontal: 'border-t-2',
-    vertical: 'border-l-2'
-  },
-  lg: {
-    horizontal: 'border-t-4',
-    vertical: 'border-l-4'
-  }
+  sm: { horizontal: 'h-px', vertical: 'w-px' },
+  md: { horizontal: 'h-0.5', vertical: 'w-0.5' },
+  lg: { horizontal: 'h-1', vertical: 'w-1' }
 }
 
 // Divider orientation styles
@@ -49,6 +33,7 @@ export const Divider = forwardRef<HTMLDivElement, DividerProps>(
   }, ref) => {
     const isHorizontal = orientation === 'horizontal'
     const hasText = text && text.trim().length > 0
+    const sizeClasses = dividerSizes[size]
     
     if (hasText) {
       return (
@@ -65,14 +50,17 @@ export const Divider = forwardRef<HTMLDivElement, DividerProps>(
           <div
             className={cn(
               'flex-1',
-              dividerVariants[variant],
-              'border-gray-300',
-              isHorizontal ? dividerSizes[size].horizontal : dividerSizes[size].vertical
+              variant === 'solid' 
+                ? 'bg-gray-500 dark:bg-gray-400'
+                : variant === 'dashed'
+                  ? 'border-t border-dashed border-gray-500 dark:border-gray-400'
+                  : 'border-t border-dotted border-gray-500 dark:border-gray-400',
+              isHorizontal ? sizeClasses.horizontal : sizeClasses.vertical
             )}
           />
           <span
             className={cn(
-              'text-sm text-gray-500 bg-white',
+              'text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800',
               isHorizontal ? 'px-3' : 'py-3'
             )}
           >
@@ -81,9 +69,12 @@ export const Divider = forwardRef<HTMLDivElement, DividerProps>(
           <div
             className={cn(
               'flex-1',
-              dividerVariants[variant],
-              'border-gray-300',
-              isHorizontal ? dividerSizes[size].horizontal : dividerSizes[size].vertical
+              variant === 'solid' 
+                ? 'bg-gray-500 dark:bg-gray-400'
+                : variant === 'dashed'
+                  ? 'border-t border-dashed border-gray-500 dark:border-gray-400'
+                  : 'border-t border-dotted border-gray-500 dark:border-gray-400',
+              isHorizontal ? sizeClasses.horizontal : sizeClasses.vertical
             )}
           />
         </div>
@@ -94,10 +85,12 @@ export const Divider = forwardRef<HTMLDivElement, DividerProps>(
       <div
         ref={ref}
         className={cn(
-          dividerOrientations[orientation].base,
-          dividerVariants[variant],
-          'border-gray-300',
-          isHorizontal ? dividerSizes[size].horizontal : dividerSizes[size].vertical,
+          // Base styling for divider with better contrast
+          variant === 'solid' 
+            ? (isHorizontal ? `w-full ${sizeClasses.horizontal} bg-gray-500 dark:bg-gray-400` : `${sizeClasses.vertical} h-full bg-gray-500 dark:bg-gray-400`)
+            : variant === 'dashed'
+              ? (isHorizontal ? `w-full ${sizeClasses.horizontal} border-t border-dashed border-gray-500 dark:border-gray-400` : `${sizeClasses.vertical} h-full border-l border-dashed border-gray-500 dark:border-gray-400`)
+              : (isHorizontal ? `w-full ${sizeClasses.horizontal} border-t border-dotted border-gray-500 dark:border-gray-400` : `${sizeClasses.vertical} h-full border-l border-dotted border-gray-500 dark:border-gray-400`),
           className
         )}
         role="separator"

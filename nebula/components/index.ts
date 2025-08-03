@@ -22,7 +22,7 @@ export { Card, CardHeader, CardBody, CardFooter } from './Card'
 export type { CardProps, CardHeaderProps, CardBodyProps, CardFooterProps } from './Card/Card.types'
 
 export { Container } from './Container'
-export type { ContainerProps, ContainerSize, ContainerPadding } from './Container/Container.types'
+export type { ContainerProps, ContainerSize, ContainerPadding, ContainerBackground } from './Container/Container.types'
 
 export { Stack } from './Stack'
 export type { StackProps, StackDirection, StackSpacing, StackAlign, StackJustify } from './Stack/Stack.types'

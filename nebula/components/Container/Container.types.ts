@@ -4,6 +4,8 @@ export type ContainerSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full'
 
 export type ContainerPadding = 'none' | 'sm' | 'md' | 'lg'
 
+export type ContainerBackground = 'none' | 'white' | 'gray-50' | 'gray-100'
+
 export interface ContainerProps extends ComponentProps<'div'> {
   /**
    * Maximum width of the container
@@ -22,6 +24,12 @@ export interface ContainerProps extends ComponentProps<'div'> {
    * @default true
    */
   centered?: boolean
+
+  /**
+   * Background color of the container
+   * @default 'none'
+   */
+  background?: ContainerBackground
   
   /**
    * Custom className to extend the container styles
