@@ -65,11 +65,11 @@ export function HomePage(_props: PageProps) {
             </h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
               <div>
-                <div class="text-3xl font-bold text-green-600 dark:text-green-400">267</div>
+                <div class="text-3xl font-bold text-green-600 dark:text-green-400">281</div>
                 <div class="text-sm text-gray-600 dark:text-gray-300">Tests Passing</div>
               </div>
               <div>
-                <div class="text-3xl font-bold text-red-600 dark:text-red-400">4</div>
+                <div class="text-3xl font-bold text-red-600 dark:text-red-400">0</div>
                 <div class="text-sm text-gray-600 dark:text-gray-300">Tests Failing</div>
               </div>
               <div>
@@ -77,7 +77,7 @@ export function HomePage(_props: PageProps) {
                 <div class="text-sm text-gray-600 dark:text-gray-300">Components</div>
               </div>
               <div>
-                <div class="text-3xl font-bold text-purple-600 dark:text-purple-400">98.5%</div>
+                <div class="text-3xl font-bold text-purple-600 dark:text-purple-400">100%</div>
                 <div class="text-sm text-gray-600 dark:text-gray-300">Coverage</div>
               </div>
             </div>
