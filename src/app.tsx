@@ -23,6 +23,14 @@ import { LabelPage } from './pages/label'
 import { CardPage } from './pages/card'
 import { StackPage } from './pages/StackPage'
 import { AvatarPage } from './pages/avatar'
+import {AlertPage} from './pages/alert'
+import {BadgePage} from './pages/badge'
+import {ProgressPage} from './pages/progress'
+import {SkeletonPage} from './pages/skeleton'
+import {CheckboxPage} from './pages/checkbox'
+import {RadioPage} from './pages/RadioPage'
+import {SwitchPage} from './pages/SwitchPage'
+import {SelectPage} from './pages/select'
 
 function ThemeToggle() {
   const { theme, toggleTheme } = useTheme()
@@ -233,6 +241,14 @@ function AppContent() {
         <CardPage path="/card" />
         <StackPage path="/stack" />
         <AvatarPage path="/avatar" />
+        <AlertPage path="/alert" />
+        <BadgePage path="/badge" />
+        <ProgressPage path="/progress" />
+        <SkeletonPage path="/skeleton" />
+        <CheckboxPage path="/checkbox" />
+        <RadioPage path="/radio" />
+        <SwitchPage path="/switch" />
+        <SelectPage path="/select" />
         <LegacyShowcase path="/legacy" />
       </Router>
     </Layout>

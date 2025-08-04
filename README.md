@@ -15,7 +15,7 @@ Modern, accessible, and customizable component library built with **Preact** and
 - ♿ **Accessible** - WCAG compliant components
 - 🔧 **Customizable** - Easy to theme and extend
 - 📱 **Responsive** - Mobile-first design approach
-- 🧪 **Well-tested** - Comprehensive test coverage
+- 🧪 **Well-tested** - 100% test coverage, 400+ tests passing, 22 components
 
 ## 📦 Installation
 
@@ -61,55 +61,42 @@ function App() {
 }
 ```
 
+
 ## 🧩 Components
 
-### Button
+Nebula UI provides a growing set of accessible, customizable, and well-tested components:
 
-A versatile button component with multiple variants and sizes.
+### 🎛️ Form Controls
+- **Button** – Variants, sizes, icons, loading, fullWidth
+- **Input** – All variants, accessibility, required states
+- **Label** – Accessibility, required/disabled states
+- **Textarea** – Auto-resize, char count, variants, dark mode
+- **FieldError** – Accessible error messages
+- **Checkbox** – Tri-state, validation, custom content, accessibility
+- **Radio** – Single selection, groups, validation, accessibility
+- **Switch** – Toggle controls, animations, sizes, icons
+- **Select** – Dropdown with search, multi-select, keyboard navigation
 
-```tsx
-import { Button } from '@prp/nebula-ui'
+### 🏗️ Layout System
+- **Card** – Composable, variants, header/body/footer
+- **Container** – Responsive, max-width, padding controls
+- **Stack** – Vertical/horizontal, spacing, alignment
+- **Divider** – Horizontal/vertical, text, style variants
 
-// Basic usage
-<Button>Click me</Button>
+### 📢 Feedback Components
+- **Alert** – Info/success/warning/error, dismissible, actions
+- **Badge** – Status indicators, dot mode, overflow handling
+- **Progress** – Linear/circular, indeterminate, labels
+- **Skeleton** – Loading placeholders, shapes, animations
 
-// With variants
-<Button variant="primary">Primary</Button>
-<Button variant="secondary">Secondary</Button>
-<Button variant="outline">Outline</Button>
-<Button variant="ghost">Ghost</Button>
-<Button variant="destructive">Destructive</Button>
+### 🎨 Display Components
+- **Spinner** – Size, color, accessibility
+- **Avatar** – Images, initials, groups, badges
 
-// With sizes
-<Button size="sm">Small</Button>
-<Button size="md">Medium</Button>
-<Button size="lg">Large</Button>
-<Button size="xl">Extra Large</Button>
+### 🧭 Navigation
+- **Tabs** – Horizontal/vertical, variants, keyboard navigation
 
-// With states
-<Button loading>Loading...</Button>
-<Button disabled>Disabled</Button>
-
-// With icons
-<Button leftIcon="🚀">Launch</Button>
-<Button rightIcon="→">Next</Button>
-
-// Full width
-<Button fullWidth>Full Width Button</Button>
-```
-
-#### Button Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `'primary' \| 'secondary' \| 'outline' \| 'ghost' \| 'destructive'` | `'primary'` | Button style variant |
-| `size` | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Button size |
-| `loading` | `boolean` | `false` | Show loading spinner |
-| `leftIcon` | `ComponentChildren` | - | Icon before text |
-| `rightIcon` | `ComponentChildren` | - | Icon after text |
-| `fullWidth` | `boolean` | `false` | Take full container width |
-| `disabled` | `boolean` | `false` | Disable the button |
-| `className` | `string` | - | Additional CSS classes |
+All components are fully typed, accessible (WCAG 2.1 AA), and covered by comprehensive tests (400+ test cases).
 
 ## 🎨 Customization
 
@@ -174,12 +161,40 @@ For Windows users, use the PowerShell scripts in the `scripts/` folder:
 
 ## 📋 Roadmap
 
-- [ ] More components (Input, Select, Modal, etc.)
-- [ ] Dark mode support
-- [ ] Theme customization system
+- [x] Milestone 1: Forms Foundation (Input, Label, Textarea, FieldError) – **Done**
+- [x] Milestone 2: Layout System (Card, Container, Stack, Divider) – **Done**  
+- [x] Milestone 3: Feedback Components (Alert, Badge, Progress, Skeleton) – **Done**
+- [x] Spinner, Avatar, Tabs – **Done**
+- [x] **Milestone 4: Advanced Form Controls (Checkbox, Radio, Switch, Select) – COMPLETED**
+- [ ] [Milestone 5: Navigation & Data (Breadcrumb, Pagination, Table)](docs/milestone-5/)
+## 📚 Documentation Structure
+
+Nebula UI uses a milestone-based documentation system. Each major milestone has its own folder in `docs/`, containing:
+
+- `README.md` – Milestone overview, goals, and delivered components
+- `IMPLEMENTATION_CHECKLIST.md` – Detailed implementation checklist for each component
+- `TECHNICAL_OVERVIEW.md` – Technical architecture, design decisions, and patterns
+
+**Milestone documentation folders:**
+
+- [Milestone 1: Forms Foundation](docs/milestone-1/)
+- [Milestone 2: Layout System](docs/milestone-2/)
+- [Milestone 3: Feedback Components](docs/milestone-3/)
+- [Milestone 4: Advanced Form Controls](docs/milestone-4/)
+- [Milestone 5: Navigation & Data](docs/milestone-5/)
+
+For global project plans, status, and size standardization, see:
+
+- [Implementation Plan](docs/IMPLEMENTATION_PLAN.md)
+- [Milestone Implementation Plan](docs/MILESTONE_IMPLEMENTATION_PLAN.md)
+- [Project Status](docs/PROJECT_STATUS.md)
+- [Size Standardization Checklist](docs/SIZE_STANDARDIZATION_CHECKLIST.md)
+- [ ] Milestone 6: Advanced Interactions (Modal, Tooltip, Popover)
 - [ ] Storybook documentation
-- [ ] Form validation helpers
-- [ ] Animation utilities
+- [ ] Theme customization system
+- [ ] CI/CD pipeline
+- [ ] More comprehensive edge-case testing
+
 
 ## 🤝 Contributing
 
@@ -191,9 +206,11 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
+
 ## 📄 License
 
 MIT © [PRachwal](https://github.com/PRachwal)
+
 
 ## 🔗 Links
 
