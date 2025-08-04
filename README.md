@@ -15,7 +15,7 @@ Modern, accessible, and customizable component library built with **Preact** and
 - ♿ **Accessible** - WCAG compliant components
 - 🔧 **Customizable** - Easy to theme and extend
 - 📱 **Responsive** - Mobile-first design approach
-- 🧪 **Well-tested** - 100% test coverage, 400+ tests passing, 22 components
+- 🧪 **Well-tested** - 100% test coverage, 485+ tests passing, 26 components
 
 ## 📦 Installation
 
@@ -94,9 +94,12 @@ Nebula UI provides a growing set of accessible, customizable, and well-tested co
 - **Avatar** – Images, initials, groups, badges
 
 ### 🧭 Navigation
+- **Breadcrumb** – Hierarchical navigation, responsive collapse, custom separators
+- **Pagination** – Page navigation, sizes, quick jump, accessibility
+- **Table** – Data tables with sorting, selection, responsive design
 - **Tabs** – Horizontal/vertical, variants, keyboard navigation
 
-All components are fully typed, accessible (WCAG 2.1 AA), and covered by comprehensive tests (400+ test cases).
+All components are fully typed, accessible (WCAG 2.1 AA), and covered by comprehensive tests (485+ test cases).
 
 ## 🎨 Customization
 
@@ -159,17 +162,141 @@ For Windows users, use the PowerShell scripts in the `scripts/` folder:
 .\scripts\publish.ps1
 ```
 
+### Component Development Guide
+
+When creating a new component, follow this standardized structure based on our `Checkbox` component example:
+
+#### 📁 Component Library Structure (`nebula/components/ComponentName/`)
+
+```
+ComponentName/
+├── ComponentName.tsx      # Main component implementation
+├── ComponentName.types.ts # TypeScript interfaces and types
+├── ComponentName.test.tsx # Unit tests with comprehensive coverage
+└── index.ts              # Export barrel file
+```
+
+**Example component files:**
+
+1. **`ComponentName.tsx`** - Main component with:
+   - `forwardRef` implementation for ref forwarding
+   - Comprehensive styling system with variants, sizes, states
+   - Full accessibility support (ARIA attributes, keyboard navigation)
+   - Dark mode support
+   - Error handling and validation states
+
+2. **`ComponentName.types.ts`** - Type definitions:
+   ```tsx
+   export interface ComponentNameProps extends HTMLAttributes<HTMLElement> {
+     variant?: 'default' | 'outlined'
+     size?: 'sm' | 'md' | 'lg'
+     disabled?: boolean
+     error?: boolean
+     // ... other component-specific props
+   }
+   ```
+
+3. **`ComponentName.test.tsx`** - Comprehensive tests covering:
+   - Basic rendering and props
+   - All variants and sizes
+   - Accessibility features
+   - User interactions
+   - Error states
+   - Edge cases
+
+4. **`index.ts`** - Clean exports:
+   ```tsx
+   export { ComponentName } from './ComponentName'
+   export type { ComponentNameProps } from './ComponentName.types'
+   ```
+
+#### 📁 Documentation Pages Structure (`src/pages/componentname/`)
+
+```
+componentname/
+├── ComponentNamePage.tsx  # Main page component
+├── index.ts              # Page exports
+└── sections/             # Interactive examples and docs
+    ├── BasicUsageSection.tsx    # Basic usage examples
+    ├── VariantsSection.tsx      # All variants showcase
+    ├── InteractiveSection.tsx   # Interactive playground
+    ├── AccessibilitySection.tsx # Accessibility features demo
+    └── index.ts                # Section exports
+```
+
+**Page structure guidelines:**
+
+1. **`ComponentNamePage.tsx`** - Main documentation page with:
+   - Component overview and description
+   - Navigation tabs for different sections
+   - Imports from `./sections`
+
+2. **`sections/`** - Individual documentation sections:
+   - **BasicUsageSection** - Simple usage examples with code
+   - **VariantsSection** - All visual variants and sizes
+   - **InteractiveSection** - Live playground with controls
+   - **AccessibilitySection** - Accessibility features demonstration
+
+#### 🔗 Integration Steps
+
+1. **Add to main exports** in `nebula/components/index.ts`:
+   ```tsx
+   export { ComponentName } from './ComponentName'
+   export type { ComponentNameProps } from './ComponentName/ComponentName.types'
+   ```
+
+2. **Add page route** in `src/app.tsx`:
+   ```tsx
+   // Import
+   import { ComponentNamePage } from './pages/componentname'
+   
+   // Add route
+   <ComponentNamePage path="/componentname" />
+   ```
+
+3. **Add to documentation** in relevant milestone docs
+4. **Update test data** in `src/data/testResults.ts`:
+   ```tsx
+   // Add component to componentTestData array
+   { componentName: 'ComponentName', testCount: XX, coverage: 100, status: 'passing', lastUpdated: '2025-08-04' }
+   
+   // Update mockTestResults.totalTests with new count
+   totalTests: XXX, // Add your component's test count to total
+   ```
+5. **Update component status** in `src/data/components.ts`:
+   ```tsx
+   // Change component status from 'planned' to 'completed' and update coverage
+   { 
+     name: 'ComponentName',
+     status: 'completed',
+     testCoverage: 100
+   }
+   ```
+6. **Update component count** in README.md and milestone status
+
+This structure ensures consistency, maintainability, and comprehensive documentation across all components.
+
 ## 📋 Roadmap
 
-- [x] Milestone 1: Forms Foundation (Input, Label, Textarea, FieldError) – **Done**
-- [x] Milestone 2: Layout System (Card, Container, Stack, Divider) – **Done**  
-- [x] Milestone 3: Feedback Components (Alert, Badge, Progress, Skeleton) – **Done**
-- [x] Spinner, Avatar, Tabs – **Done**
-- [x] **Milestone 4: Advanced Form Controls (Checkbox, Radio, Switch, Select) – COMPLETED**
-- [ ] [Milestone 5: Navigation & Data (Breadcrumb, Pagination, Table)](docs/milestone-5/)
+## 📋 Roadmap
+
+- [x] [Milestone 1: Forms Foundation](docs/milestone-1/) (Input, Label, Textarea, FieldError, Button) – **Done**
+- [x] [Milestone 2: Layout System](docs/milestone-2/) (Card, Container, Stack, Divider) – **Done**  
+- [x] [Milestone 3: Feedback Components](docs/milestone-3/) (Alert, Badge, Progress, Skeleton) – **Done**
+- [x] [Milestone 4: Advanced Form Controls](docs/milestone-4/) (Checkbox, Radio, Switch, Select) – **COMPLETED**
+- [x] [Milestone 5: Navigation & Data](docs/milestone-5/) (Breadcrumb, Pagination, Table) – **COMPLETED**
+- [ ] [Milestone 6: Advanced Interactions](docs/milestone-6/) (Modal, Tooltip, Drawer, Popover) – **PLANNED**
+- [ ] Storybook documentation
+- [ ] Theme customization system
+- [ ] CI/CD pipeline
+- [ ] More comprehensive edge-case testing
 ## 📚 Documentation Structure
 
-Nebula UI uses a milestone-based documentation system. Each major milestone has its own folder in `docs/`, containing:
+Nebula UI uses a comprehensive milestone-based documentation system. For complete documentation including project status, implementation plans, and detailed component guides, visit:
+
+**[📚 Unified Documentation Index](docs/README.md)**
+
+Each major milestone has its own folder in `docs/`, containing:
 
 - `README.md` – Milestone overview, goals, and delivered components
 - `IMPLEMENTATION_CHECKLIST.md` – Detailed implementation checklist for each component
@@ -182,6 +309,7 @@ Nebula UI uses a milestone-based documentation system. Each major milestone has 
 - [Milestone 3: Feedback Components](docs/milestone-3/)
 - [Milestone 4: Advanced Form Controls](docs/milestone-4/)
 - [Milestone 5: Navigation & Data](docs/milestone-5/)
+- [Milestone 6: Advanced Interactions](docs/milestone-6/) (Planned)
 
 For global project plans, status, and size standardization, see:
 

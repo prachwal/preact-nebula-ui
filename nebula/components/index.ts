@@ -48,6 +48,12 @@ export { Avatar, AvatarGroup, AvatarBadge } from './Avatar'
 export type { AvatarProps, AvatarGroupProps, AvatarBadgeProps, AvatarSize, AvatarShape, AvatarBadgePlacement } from './Avatar/Avatar.types'
 
 // Navigation Components
+export { Breadcrumb } from './Breadcrumb'
+export type { BreadcrumbProps, BreadcrumbItem, BreadcrumbSeparatorType } from './Breadcrumb/Breadcrumb.types'
+
+export { Pagination } from './Pagination'
+export type { PaginationProps, PaginationInfo, PaginationCallbacks, PaginationButtonProps, PaginationSize } from './Pagination/Pagination.types'
+
 export { Tabs, TabList, Tab, TabPanels, TabPanel } from './Tabs'
 export type { TabsProps, TabListProps, TabProps, TabPanelsProps, TabPanelProps, TabsOrientation, TabsVariant, TabsSize, TabsColorScheme } from './Tabs/Tabs.types'
 
@@ -64,6 +70,63 @@ export type { ProgressProps, ProgressVariant, ProgressSize, ProgressColor } from
 export { Skeleton } from './Skeleton'
 export type { SkeletonProps, SkeletonVariant, SkeletonAnimation } from './Skeleton/Skeleton.types'
 
+// Navigation & Data Components
+export { Table } from './Table'
+export {
+  TableContainer,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableCell,
+  TableHeaderCell,
+  TableCaption,
+  TableFooter,
+} from './Table'
+export type {
+  TableProps,
+  TableContainerProps,
+  TableHeaderProps,
+  TableBodyProps,
+  TableRowProps,
+  TableCellProps,
+  TableHeaderCellProps,
+  TableCaptionProps,
+  TableFooterProps,
+} from './Table/Table.types'
+
 // Layout Components
 export { PageLayout, Section } from './Layout'
 export type { PageLayoutProps, SectionProps, PageType } from './Layout/PageLayout.types'
+
+// Advanced Interactions
+export { Modal, ModalHeader, ModalBody, ModalFooter } from './Modal'
+export type { ModalProps, ModalHeaderProps, ModalBodyProps, ModalFooterProps, ModalSize, ModalCloseReason } from './Modal/Modal.types'
+
+export { Tooltip } from './Tooltip'
+export type { TooltipProps, TooltipPosition, TooltipTrigger, TooltipSize, TooltipColorScheme } from './Tooltip/Tooltip.types'
+
+export { Drawer } from './Drawer'
+export type { DrawerProps, DrawerPosition, DrawerSize } from './Drawer/Drawer.types'
+
+export { Popover } from './Popover'
+export type { PopoverProps, PopoverPosition, PopoverTrigger, PopoverState, PopoverContext } from './Popover/Popover.types'
+
+export { Toast, ToastManager, ToastProvider, useToast, createToast, createSuccessToast, createWarningToast, createErrorToast, createInfoToast } from './Toast'
+export type { 
+  ToastProps, 
+  ToastManagerProps, 
+  ToastData, 
+  ToastContextValue, 
+  ToastPosition, 
+  ToastVariant, 
+  ToastSize,
+  CreateToastOptions,
+  CreateSuccessToastOptions,
+  CreateWarningToastOptions,
+  CreateErrorToastOptions,
+  CreateInfoToastOptions
+} from './Toast'
+
+// Supporting components
+export { Portal } from './Portal'
+export type { PortalProps } from './Portal'

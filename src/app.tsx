@@ -12,7 +12,7 @@ import { useTheme } from './contexts/ThemeContext'
 import { Layout } from './components/layout/Layout'
 
 // Import pages
-import { HomePage } from './pages/HomePage'
+import { HomePage } from './pages/home'
 import { ButtonPage } from './pages/button'
 import { ContainerPage } from './pages/container'
 import { DividerPage } from './pages/divider'
@@ -21,16 +21,25 @@ import { InputPage } from './pages/input'
 import { TextareaPage } from './pages/textarea'
 import { LabelPage } from './pages/label'
 import { CardPage } from './pages/card'
-import { StackPage } from './pages/StackPage'
+import { StackPage } from './pages/stack'
 import { AvatarPage } from './pages/avatar'
-import {AlertPage} from './pages/alert'
-import {BadgePage} from './pages/badge'
-import {ProgressPage} from './pages/progress'
-import {SkeletonPage} from './pages/skeleton'
-import {CheckboxPage} from './pages/checkbox'
-import {RadioPage} from './pages/RadioPage'
-import {SwitchPage} from './pages/SwitchPage'
-import {SelectPage} from './pages/select'
+import { AlertPage } from './pages/alert'
+import { BadgePage } from './pages/badge'
+import { ProgressPage } from './pages/progress'
+import { SkeletonPage } from './pages/skeleton'
+import { CheckboxPage } from './pages/checkbox'
+import { RadioPage } from './pages/RadioPage'
+import { SwitchPage } from './pages/SwitchPage'
+import { SelectPage } from './pages/select'
+import { BreadcrumbPage } from './pages/breadcrumb'
+import { PaginationPage } from './pages/pagination'
+import { TablePage } from './pages/table'
+import { TabsPage } from './pages/tabs'
+import { ModalPage } from './pages/modal'
+import { TooltipPage } from './pages/tooltip'
+import { DrawerPage } from './pages/drawer/DrawerPage'
+import { PopoverPage } from './pages/popover/PopoverPage'
+import { ToastPage } from './pages/ToastPage'
 
 function ThemeToggle() {
   const { theme, toggleTheme } = useTheme()
@@ -249,6 +258,15 @@ function AppContent() {
         <RadioPage path="/radio" />
         <SwitchPage path="/switch" />
         <SelectPage path="/select" />
+        <BreadcrumbPage path="/breadcrumb" />
+        <PaginationPage path="/pagination" />
+        <TablePage path="/table" />
+        <TabsPage path="/tabs" />
+        <ModalPage path="/modal" />
+        <TooltipPage path="/tooltip" />
+        <DrawerPage path="/drawer" />
+        <PopoverPage path="/popover" />
+        <ToastPage path="/toast" />
         <LegacyShowcase path="/legacy" />
       </Router>
     </Layout>

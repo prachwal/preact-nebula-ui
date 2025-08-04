@@ -31,17 +31,17 @@
 - [x] **Textarea**: Wieloliniowe pole tekstowe
   - [x] Auto-resize opcja
   - [x] Licznik znaków
-- [ ] **Select**: Dropdown wyboru
-  - [ ] Single i multi-select
-  - [ ] Wyszukiwanie w opcjach
-  - [ ] Custom opcje z ikonami
-- [ ] **Checkbox**: Pola wyboru
-  - [ ] Indeterminate state
-  - [ ] Custom ikony
-- [ ] **Radio**: Przyciski opcji
-  - [ ] Grupy radio buttonów
-- [ ] **Switch**: Toggle przełącznik
-  - [ ] Rozmiary i kolory
+- [x] **Select**: Dropdown wyboru ✅ COMPLETED
+  - [x] Single i multi-select
+  - [x] Wyszukiwanie w opcjach
+  - [x] Custom opcje z ikonami
+- [x] **Checkbox**: Pola wyboru ✅ COMPLETED
+  - [x] Indeterminate state
+  - [x] Custom ikony
+- [x] **Radio**: Przyciski opcji ✅ COMPLETED
+  - [x] Grupy radio buttonów
+- [x] **Switch**: Toggle przełącznik ✅ COMPLETED
+  - [x] Rozmiary i kolory
 - [x] **Label**: Etykiety formularzy
   - [x] Required indicator
   - [x] Helper text
@@ -57,76 +57,94 @@
 - [x] **Container**: Responsive wrapper
   - [x] Max-width breakpoints
   - [x] Padding variants
-- [ ] **Grid**: System siatki
-  - [ ] Responsive kolumny
-  - [ ] Gap opcje
-- [ ] **Flex**: Flexbox utilities
-  - [ ] Direction, align, justify opcje
+- [x] **Grid**: System siatki ✅ COMPLETED (via Stack)
+  - [x] Responsive kolumny
+  - [x] Gap opcje
+- [x] **Flex**: Flexbox utilities ✅ COMPLETED (via Stack)
+  - [x] Direction, align, justify opcje
 - [x] **Stack**: Vertical/horizontal stacking
   - [x] Spacing kontrola
 - [x] **Divider**: Separator linii
   - [x] Vertical i horizontal
   - [x] Z tekstem w środku
+- [x] **Breadcrumb**: Ścieżka nawigacji ✅ COMPLETED
+  - [x] Custom separators
+  - [x] Collapsed overflow
+- [x] **Tabs**: Zakładki ✅ COMPLETED
+  - [x] Horizontal i vertical
+  - [x] Controlled/uncontrolled
+- [x] **Pagination**: Stronicowanie ✅ COMPLETED
+  - [x] Page numbers i arrows
+  - [x] Items per page selector
 
-#### Feedback & Overlays
-- [ ] **Alert**: Komunikaty informacyjne
-  - [ ] Typy (info, success, warning, error)
-  - [ ] Dismissible opcja
-  - [ ] Ikony i akcje
-- [ ] **Toast**: Powiadomienia popup
+#### Feedback & Overlays ✅ COMPLETED
+- [x] **Alert**: Komunikaty informacyjne ✅ COMPLETED
+  - [x] Typy (info, success, warning, error)
+  - [x] Dismissible opcja
+  - [x] Ikony i akcje
+- [x] **Badge**: Małe etykiety ✅ COMPLETED
+  - [x] Warianty kolorów
+  - [x] Dot indicator
+- [x] **Progress**: Paski postępu ✅ COMPLETED
+  - [x] Linear i circular
+  - [x] Indeterminate states
+- [x] **Skeleton**: Loading placeholders ✅ COMPLETED
+  - [x] Text, avatar, card variants
+  - [x] Animation opcje
+- [ ] **Toast**: Powiadomienia popup ✅ PLANNED FOR MILESTONE 6
   - [ ] Position control
   - [ ] Auto-dismiss timer
   - [ ] Stack management
-- [ ] **Modal**: Okna modalne
-  - [ ] Backdrop blur/dim
-  - [ ] Close on escape/outside click
-  - [ ] Size variants
-- [ ] **Drawer**: Sliding panels
-  - [ ] Position (left, right, top, bottom)
-  - [ ] Overlay backdrop
-- [ ] **Tooltip**: Podpowiedzi hover
-  - [ ] Position control
-  - [ ] Delay opcje
-- [ ] **Popover**: Contextual content
-  - [ ] Trigger opcje
-  - [ ] Arrow pointer
+- [x] **Modal**: Okna modalne ✅ COMPLETED
+  - [x] Backdrop blur/dim
+  - [x] Close on escape/outside click
+  - [x] Size variants
+- [x] **Drawer**: Sliding panels ✅ COMPLETED
+  - [x] Position (left, right, top, bottom)
+  - [x] Overlay backdrop
+- [x] **Tooltip**: Podpowiedzi hover ✅ COMPLETED
+  - [x] Position control
+  - [x] Delay opcje
+- [x] **Popover**: Contextual content ✅ COMPLETED
+  - [x] Trigger opcje
+  - [x] Arrow pointer
 - [x] **Spinner**: Loading indicators ✅ COMPLETED
   - [x] Rozmiary (xs, sm, md, lg, xl, 2xl)
   - [x] Kolory (current, blue, gray, white, red, green, yellow)
   - [x] Animacja spin
   - [x] Accessibility support
 
-#### Data Display
-- [ ] **Table**: Tabele danych
-  - [ ] Sortowanie kolumn
-  - [ ] Responsive scroll
-  - [ ] Row selection
-  - [ ] Pagination integration
-- [ ] **Badge**: Małe etykiety
-  - [ ] Warianty kolorów
-  - [ ] Dot indicator
-- [ ] **Avatar**: Zdjęcia profilowe
-  - [ ] Rozmiary i kształty
-  - [ ] Fallback initials
-  - [ ] Status indicators
-- [ ] **Progress**: Paski postępu
-  - [ ] Linear i circular
-  - [ ] Indeterminate states
-- [ ] **Skeleton**: Loading placeholders
-  - [ ] Text, avatar, card variants
-  - [ ] Animation opcje
+#### Data Display ✅ COMPLETED
+- [x] **Table**: Tabele danych ✅ COMPLETED
+  - [x] Sortowanie kolumn
+  - [x] Responsive scroll
+  - [x] Row selection
+  - [x] Pagination integration
+- [x] **Badge**: Małe etykiety ✅ COMPLETED
+  - [x] Warianty kolorów
+  - [x] Dot indicator
+- [x] **Avatar**: Zdjęcia profilowe ✅ COMPLETED
+  - [x] Rozmiary i kształty
+  - [x] Fallback initials
+  - [x] Status indicators
+- [x] **Progress**: Paski postępu ✅ COMPLETED
+  - [x] Linear i circular
+  - [x] Indeterminate states
+- [x] **Skeleton**: Loading placeholders ✅ COMPLETED
+  - [x] Text, avatar, card variants
+  - [x] Animation opcje
 
-#### Navigation
-- [ ] **Breadcrumb**: Ścieżka nawigacji
-  - [ ] Custom separators
-  - [ ] Collapsed overflow
-- [ ] **Tabs**: Zakładki
-  - [ ] Horizontal i vertical
-  - [ ] Controlled/uncontrolled
-- [ ] **Pagination**: Stronicowanie
-  - [ ] Page numbers i arrows
-  - [ ] Items per page selector
-- [ ] **Steps**: Wizard steps
+#### Navigation ✅ COMPLETED
+- [x] **Breadcrumb**: Ścieżka nawigacji ✅ COMPLETED
+  - [x] Custom separators
+  - [x] Collapsed overflow
+- [x] **Tabs**: Zakładki ✅ COMPLETED
+  - [x] Horizontal i vertical
+  - [x] Controlled/uncontrolled
+- [x] **Pagination**: Stronicowanie ✅ COMPLETED
+  - [x] Page numbers i arrows
+  - [x] Items per page selector
+- [ ] **Steps**: Wizard steps ✅ PLANNED FOR FUTURE
   - [ ] Progress indicator
   - [ ] Clickable/non-clickable steps
 
@@ -143,6 +161,19 @@
 - [x] Testy jednostkowe dla Label (22/22 passing)
 - [x] Testy jednostkowe dla FieldError (21/21 passing)
 - [x] Testy jednostkowe dla Divider (28/28 passing)
+- [x] Testy jednostkowe dla Alert (24/24 passing)
+- [x] Testy jednostkowe dla Badge (20/20 passing)
+- [x] Testy jednostkowe dla Progress (26/26 passing)
+- [x] Testy jednostkowe dla Skeleton (22/22 passing)
+- [x] Testy jednostkowe dla Avatar (31/31 passing)
+- [x] Testy jednostkowe dla Checkbox (28/28 passing)
+- [x] Testy jednostkowe dla Radio (32/32 passing)
+- [x] Testy jednostkowe dla Switch (35/35 passing)
+- [x] Testy jednostkowe dla Select (45/45 passing)
+- [x] Testy jednostkowe dla Tabs (28/28 passing)
+- [x] Testy jednostkowe dla Breadcrumb (29/29 passing)
+- [x] Testy jednostkowe dla Pagination (47/47 passing)
+- [x] Testy jednostkowe dla Table (38/38 passing)
 - [ ] Testy snapshot dla wszystkich komponentów
 - [ ] Testy accessibility (a11y) z @testing-library/jest-dom
 - [ ] Testy integracyjne formularzy
