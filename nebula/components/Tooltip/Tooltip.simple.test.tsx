@@ -40,7 +40,9 @@ describe('Tooltip Simple Test', () => {
     )
     
     const trigger = screen.getByRole('button')
-    fireEvent.mouseEnter(trigger)
+    // Mouse enter should be on the wrapper span, not the button
+    const wrapper = trigger.parentElement!
+    fireEvent.mouseEnter(wrapper)
     
     // No delay, advance timers by 0
     vi.advanceTimersByTime(0)
@@ -58,7 +60,9 @@ describe('Tooltip Simple Test', () => {
       </Tooltip>
     )
     
-    fireEvent.mouseEnter(screen.getByRole('button'))
+    const trigger = screen.getByRole('button')
+    const wrapper = trigger.parentElement!
+    fireEvent.mouseEnter(wrapper)
     vi.advanceTimersByTime(0)
     
     expect(screen.queryByText('Disabled tooltip')).not.toBeInTheDocument()

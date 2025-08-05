@@ -37,11 +37,12 @@ export const ToastManager = ({
     <Portal>
       <div
         className={cn(
-          'fixed z-50 pointer-events-none',
+          'fixed z-[9999] pointer-events-none',
           positionClasses[actualPosition],
           className
         )}
         data-testid={dataTestId}
+        style={{ zIndex: 9999 }}
       >
         <div 
           className="flex flex-col space-y-2"

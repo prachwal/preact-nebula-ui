@@ -207,6 +207,8 @@ describe('Popover', () => {
       )
 
       const trigger = screen.getByRole('button', { name: 'Bottom Popover' })
+      
+      // Mock getBoundingClientRect on the trigger button
       trigger.getBoundingClientRect = vi.fn(() => mockGetBoundingClientRect({
         top: 100,
         left: 100,
@@ -216,14 +218,38 @@ describe('Popover', () => {
         right: 180
       }))
 
+      // We also need to mock the wrapper div (trigger's parent)
+      const triggerWrapper = trigger.parentElement
+      if (triggerWrapper) {
+        triggerWrapper.getBoundingClientRect = vi.fn(() => mockGetBoundingClientRect({
+          top: 100,
+          left: 100,
+          width: 80,
+          height: 32,
+          bottom: 132,
+          right: 180
+        }))
+      }
+
       fireEvent.click(trigger)
 
       await waitFor(() => {
         const popover = screen.getByTestId('popover')
         expect(popover).toBeInTheDocument()
+        
+        // Mock popover getBoundingClientRect for content dimensions
+        popover.getBoundingClientRect = vi.fn(() => mockGetBoundingClientRect({
+          top: 0,
+          left: 0,
+          width: 200,
+          height: 50
+        }))
+        
         // Should be positioned below trigger (top > 132)
+        // Expected position should be trigger.bottom + offset = 132 + 8 = 140
         const style = window.getComputedStyle(popover)
-        expect(parseFloat(style.top.replace('px', ''))).toBeGreaterThan(132)
+        const topValue = parseFloat(style.top.replace('px', ''))
+        expect(topValue).toBeCloseTo(140, 0) // Allow for small rounding differences
       })
     })
 

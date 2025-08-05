@@ -11,6 +11,17 @@ vi.mock('preact/compat', async () => {
   }
 })
 
+// Helper function to trigger hover events on the tooltip wrapper
+const triggerTooltipHover = (button: HTMLElement) => {
+  const wrapper = button.parentElement!
+  fireEvent.mouseEnter(wrapper)
+}
+
+const triggerTooltipLeave = (button: HTMLElement) => {
+  const wrapper = button.parentElement!
+  fireEvent.mouseLeave(wrapper)
+}
+
 describe('Tooltip', () => {
   beforeEach(() => {
     vi.clearAllTimers()
@@ -40,7 +51,7 @@ describe('Tooltip', () => {
       )
       
       const trigger = screen.getByRole('button')
-      fireEvent.mouseEnter(trigger)
+      triggerTooltipHover(trigger)
       
       // Tooltip should not be visible immediately
       expect(screen.queryByText('Test tooltip')).not.toBeInTheDocument()
@@ -63,7 +74,7 @@ describe('Tooltip', () => {
       const trigger = screen.getByRole('button')
       
       // Show tooltip
-      fireEvent.mouseEnter(trigger)
+      triggerTooltipHover(trigger)
       vi.runAllTimers()
       
       await waitFor(() => {
@@ -71,7 +82,7 @@ describe('Tooltip', () => {
       })
       
       // Hide tooltip
-      fireEvent.mouseLeave(trigger)
+      triggerTooltipLeave(trigger)
       vi.runAllTimers()
       
       await waitFor(() => {
@@ -88,7 +99,8 @@ describe('Tooltip', () => {
         </Tooltip>
       )
       
-      fireEvent.mouseEnter(screen.getByRole('button'))
+      const trigger = screen.getByRole('button')
+      triggerTooltipHover(trigger)
       vi.runAllTimers()
       
       await waitFor(() => {
@@ -103,7 +115,12 @@ describe('Tooltip', () => {
         </Tooltip>
       )
       
-      fireEvent.focus(screen.getByRole('button'))
+      const button = screen.getByRole('button')
+      const wrapper = button.parentElement!
+      
+      // Focus the wrapper element
+      wrapper.focus()
+      fireEvent.focus(wrapper)
       vi.runAllTimers()
       
       await waitFor(() => {
@@ -161,7 +178,8 @@ describe('Tooltip', () => {
         </Tooltip>
       )
       
-      fireEvent.mouseEnter(screen.getByRole('button'))
+      const trigger = screen.getByRole('button')
+      triggerTooltipHover(trigger)
       vi.advanceTimersByTime(0)
       
       await waitFor(() => {
@@ -198,7 +216,8 @@ describe('Tooltip', () => {
         </Tooltip>
       )
       
-      fireEvent.mouseEnter(screen.getByRole('button'))
+      const trigger = screen.getByRole('button')
+      triggerTooltipHover(trigger)
       vi.advanceTimersByTime(0)
       
       await waitFor(() => {
@@ -214,7 +233,8 @@ describe('Tooltip', () => {
         </Tooltip>
       )
       
-      fireEvent.mouseEnter(screen.getByRole('button'))
+      const trigger = screen.getByRole('button')
+      triggerTooltipHover(trigger)
       vi.advanceTimersByTime(0)
       
       await waitFor(() => {
@@ -230,7 +250,8 @@ describe('Tooltip', () => {
         </Tooltip>
       )
       
-      fireEvent.mouseEnter(screen.getByRole('button'))
+      const trigger = screen.getByRole('button')
+      triggerTooltipHover(trigger)
       vi.advanceTimersByTime(0)
       
       await waitFor(() => {
@@ -248,7 +269,8 @@ describe('Tooltip', () => {
         </Tooltip>
       )
       
-      fireEvent.mouseEnter(screen.getByRole('button'))
+      const trigger = screen.getByRole('button')
+      triggerTooltipHover(trigger)
       vi.advanceTimersByTime(0)
       
       await waitFor(() => {
@@ -264,7 +286,8 @@ describe('Tooltip', () => {
         </Tooltip>
       )
       
-      fireEvent.mouseEnter(screen.getByRole('button'))
+      const trigger = screen.getByRole('button')
+      triggerTooltipHover(trigger)
       vi.advanceTimersByTime(0)
       
       await waitFor(() => {
@@ -280,7 +303,8 @@ describe('Tooltip', () => {
         </Tooltip>
       )
       
-      fireEvent.mouseEnter(screen.getByRole('button'))
+      const trigger = screen.getByRole('button')
+      triggerTooltipHover(trigger)
       vi.advanceTimersByTime(0)
       
       await waitFor(() => {
@@ -298,7 +322,8 @@ describe('Tooltip', () => {
         </Tooltip>
       )
       
-      fireEvent.mouseEnter(screen.getByRole('button'))
+      const trigger = screen.getByRole('button')
+      triggerTooltipHover(trigger)
       vi.advanceTimersByTime(0)
       
       await waitFor(() => {
@@ -316,7 +341,8 @@ describe('Tooltip', () => {
         </Tooltip>
       )
       
-      fireEvent.mouseEnter(screen.getByRole('button'))
+      const trigger = screen.getByRole('button')
+      triggerTooltipHover(trigger)
       vi.advanceTimersByTime(0)
       
       await waitFor(() => {
@@ -336,7 +362,8 @@ describe('Tooltip', () => {
         </Tooltip>
       )
       
-      fireEvent.mouseEnter(screen.getByRole('button'))
+      const trigger = screen.getByRole('button')
+      triggerTooltipHover(trigger)
       vi.advanceTimersByTime(0)
       
       expect(screen.queryByRole('tooltip')).not.toBeInTheDocument()
@@ -354,15 +381,16 @@ describe('Tooltip', () => {
       const button = screen.getByRole('button')
       
       // Show tooltip
-      fireEvent.mouseEnter(button)
+      triggerTooltipHover(button)
       vi.advanceTimersByTime(0)
       
       await waitFor(() => {
         expect(screen.getByRole('tooltip')).toBeInTheDocument()
       })
       
-      // Press Escape
-      fireEvent.keyDown(button, { key: 'Escape' })
+      // Press Escape - this should be on the wrapper, not the button
+      const wrapper = button.parentElement!
+      fireEvent.keyDown(wrapper, { key: 'Escape' })
       vi.advanceTimersByTime(0)
       
       await waitFor(() => {
@@ -380,19 +408,20 @@ describe('Tooltip', () => {
       )
       
       const button = screen.getByRole('button')
+      const wrapper = button.parentElement!
       
       // Initially no aria-describedby
-      expect(button).not.toHaveAttribute('aria-describedby')
+      expect(wrapper).not.toHaveAttribute('aria-describedby')
       
       // Show tooltip
-      fireEvent.mouseEnter(button)
+      triggerTooltipHover(button)
       vi.runAllTimers()
       
       await waitFor(() => {
         const tooltip = screen.getByText('Accessible tooltip')
         expect(tooltip).toBeInTheDocument()
         expect(tooltip).toHaveAttribute('role', 'tooltip')
-        expect(button).toHaveAttribute('aria-describedby')
+        expect(wrapper).toHaveAttribute('aria-describedby')
       }, { timeout: 1000 })
     })
 
@@ -427,7 +456,8 @@ describe('Tooltip', () => {
         </Tooltip>
       )
       
-      fireEvent.mouseEnter(screen.getByRole('button'))
+      const trigger = screen.getByRole('button')
+      triggerTooltipHover(trigger)
       vi.advanceTimersByTime(0)
       
       await waitFor(() => {
@@ -443,7 +473,8 @@ describe('Tooltip', () => {
         </Tooltip>
       )
       
-      fireEvent.mouseEnter(screen.getByRole('button'))
+      const trigger = screen.getByRole('button')
+      triggerTooltipHover(trigger)
       vi.advanceTimersByTime(0)
       
       await waitFor(() => {
@@ -458,7 +489,8 @@ describe('Tooltip', () => {
         </Tooltip>
       )
       
-      fireEvent.mouseEnter(screen.getByRole('button'))
+      const trigger = screen.getByRole('button')
+      triggerTooltipHover(trigger)
       vi.advanceTimersByTime(0)
       
       await waitFor(() => {
@@ -484,7 +516,8 @@ describe('Tooltip', () => {
         </Tooltip>
       )
       
-      fireEvent.mouseEnter(screen.getByRole('button'))
+      const trigger = screen.getByRole('button')
+      triggerTooltipHover(trigger)
       vi.advanceTimersByTime(0)
       
       await waitFor(() => {
@@ -505,9 +538,9 @@ describe('Tooltip', () => {
       const button = screen.getByRole('button')
       
       // Rapid mouse enter/leave
-      fireEvent.mouseEnter(button)
-      fireEvent.mouseLeave(button)
-      fireEvent.mouseEnter(button)
+      triggerTooltipHover(button)
+      triggerTooltipLeave(button)
+      triggerTooltipHover(button)
       
       vi.advanceTimersByTime(100)
       
@@ -523,7 +556,8 @@ describe('Tooltip', () => {
         </Tooltip>
       )
       
-      fireEvent.mouseEnter(screen.getByRole('button'))
+      const trigger = screen.getByRole('button')
+      triggerTooltipHover(trigger)
       unmount()
       
       // Should not throw errors

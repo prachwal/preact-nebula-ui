@@ -1,5 +1,6 @@
 import type { ComponentChildren } from 'preact'
 import { Header } from './Header'
+import { ToastContainer } from '../../../nebula/components'
 
 interface LayoutProps {
   children: ComponentChildren
@@ -12,6 +13,7 @@ export function Layout({ children }: LayoutProps) {
       <main>
         {children}
       </main>
+      <ToastContainer position="top-right" />
     </div>
   )
 }

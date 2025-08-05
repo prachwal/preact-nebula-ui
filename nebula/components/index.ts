@@ -111,7 +111,7 @@ export type { DrawerProps, DrawerPosition, DrawerSize } from './Drawer/Drawer.ty
 export { Popover } from './Popover'
 export type { PopoverProps, PopoverPosition, PopoverTrigger, PopoverState, PopoverContext } from './Popover/Popover.types'
 
-export { Toast, ToastManager, ToastProvider, useToast, createToast, createSuccessToast, createWarningToast, createErrorToast, createInfoToast } from './Toast'
+export { Toast, ToastManager, ToastContainer, toast, ToastProvider, useToast, createToast, createSuccessToast, createWarningToast, createErrorToast, createInfoToast } from './Toast'
 export type { 
   ToastProps, 
   ToastManagerProps, 

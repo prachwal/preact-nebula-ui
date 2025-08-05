@@ -1,10 +1,7 @@
-import { useState } from 'preact/hooks'
-import { Button, Toast } from '../../../../nebula/components'
+import { Button, toast } from '../../../../nebula/components'
 import { Section } from './Section'
 
 export function BasicUsageSection() {
-  const [showToast, setShowToast] = useState(false)
-
   return (
     <Section
       title="Basic Usage"
@@ -12,17 +9,12 @@ export function BasicUsageSection() {
     >
       <div className="space-y-4">
         <div className="flex gap-4">
-          <Button onClick={() => setShowToast(true)}>
+          <Button onClick={() => toast.show({
+            title: "Basic Toast",
+            children: "This is a basic toast notification."
+          })}>
             Show Toast
           </Button>
-          {showToast && (
-            <Toast
-              title="Basic Toast"
-              onDismiss={() => setShowToast(false)}
-            >
-              This is a basic toast notification.
-            </Toast>
-          )}
         </div>
         
         <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">

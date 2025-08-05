@@ -1,6 +1,6 @@
 import { route } from 'preact-router'
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@/components'
-import { BasicSection, TypesSection, IntegrationSection, ExamplesSection } from './sections'
+import { BasicSection, TypesSection, IntegrationSection, ExamplesSection, PropsDocumentation } from './sections'
 
 interface PageProps {
   path?: string
@@ -40,6 +40,7 @@ export function FieldErrorPage(_props: PageProps) {
             <Tab value="types">Error Types</Tab>
             <Tab value="integration">Form Integration</Tab>
             <Tab value="examples">Real Examples</Tab>
+            <Tab value="props">Props</Tab>
           </TabList>
 
           <TabPanels>
@@ -54,6 +55,9 @@ export function FieldErrorPage(_props: PageProps) {
             </TabPanel>
             <TabPanel value="examples">
               <ExamplesSection />
+            </TabPanel>
+            <TabPanel value="props">
+              <PropsDocumentation />
             </TabPanel>
           </TabPanels>
         </Tabs>

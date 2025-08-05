@@ -6,6 +6,7 @@ import {
   VariantsSection,
   InteractiveSection,
   AccessibilitySection,
+  PropsDocumentation,
   type DemoType
 } from './sections'
 
@@ -25,7 +26,8 @@ export function PaginationPage(_props: PageProps) {
     { key: 'basic', label: 'Basic Usage' },
     { key: 'variants', label: 'Variants' },
     { key: 'interactive', label: 'Interactive' },
-    { key: 'accessibility', label: 'Accessibility' }
+    { key: 'accessibility', label: 'Accessibility' },
+    { key: 'props', label: 'Props' }
   ]
 
   return (
@@ -47,6 +49,7 @@ export function PaginationPage(_props: PageProps) {
           {activeDemo === 'variants' && <VariantsSection />}
           {activeDemo === 'interactive' && <InteractiveSection />}
           {activeDemo === 'accessibility' && <AccessibilitySection />}
+          {activeDemo === 'props' && <PropsDocumentation />}
         </div>
       </div>
     </div>

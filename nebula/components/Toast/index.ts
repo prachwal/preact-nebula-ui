@@ -1,5 +1,6 @@
 export { Toast } from './Toast'
 export { ToastManager } from './ToastManager'
+export { ToastContainer, toast } from './ToastContainer'
 export { ToastProvider, useToast, createToast, createSuccessToast, createWarningToast, createErrorToast, createInfoToast } from './ToastContext'
 export type { 
   ToastProps, 
