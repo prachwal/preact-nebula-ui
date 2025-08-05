@@ -1,1 +1,1 @@
-export { default as ModalPage } from './ModalPage'
+export { ModalPage } from './ModalPage.tsx'

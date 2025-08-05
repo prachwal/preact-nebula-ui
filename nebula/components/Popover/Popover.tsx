@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'preact/hooks'
-import { createPortal } from 'preact/compat'
+import { createPortal, cloneElement } from 'preact/compat'
 import { cn } from '../../utils/cn'
 import type { PopoverProps, PopoverPosition, PopoverState } from './Popover.types'
 
@@ -30,52 +30,52 @@ function calculatePosition(
   // Calculate initial position using fallback dimensions
   switch (position) {
     case 'top':
-      top = triggerRect.top - contentHeight - offset
-      left = triggerRect.left + (triggerWidth - contentWidth) / 2
+      top = triggerRect.top + scrollY - contentHeight - offset
+      left = triggerRect.left + scrollX + (triggerWidth - contentWidth) / 2
       break
     case 'top-start':
-      top = triggerRect.top - contentHeight - offset
-      left = triggerRect.left
+      top = triggerRect.top + scrollY - contentHeight - offset
+      left = triggerRect.left + scrollX
       break
     case 'top-end':
-      top = triggerRect.top - contentHeight - offset
-      left = triggerRect.left + triggerWidth - contentWidth
+      top = triggerRect.top + scrollY - contentHeight - offset
+      left = triggerRect.left + scrollX + triggerWidth - contentWidth
       break
     case 'bottom':
-      top = triggerRect.top + triggerHeight + offset
-      left = triggerRect.left + (triggerWidth - contentWidth) / 2
+      top = triggerRect.top + scrollY + triggerHeight + offset
+      left = triggerRect.left + scrollX + (triggerWidth - contentWidth) / 2
       break
     case 'bottom-start':
-      top = triggerRect.top + triggerHeight + offset
-      left = triggerRect.left
+      top = triggerRect.top + scrollY + triggerHeight + offset
+      left = triggerRect.left + scrollX
       break
     case 'bottom-end':
-      top = triggerRect.top + triggerHeight + offset
-      left = triggerRect.left + triggerWidth - contentWidth
+      top = triggerRect.top + scrollY + triggerHeight + offset
+      left = triggerRect.left + scrollX + triggerWidth - contentWidth
       break
     case 'left':
-      top = triggerRect.top + (triggerHeight - contentHeight) / 2
-      left = triggerRect.left - contentWidth - offset
+      top = triggerRect.top + scrollY + (triggerHeight - contentHeight) / 2
+      left = triggerRect.left + scrollX - contentWidth - offset
       break
     case 'left-start':
-      top = triggerRect.top
-      left = triggerRect.left - contentWidth - offset
+      top = triggerRect.top + scrollY
+      left = triggerRect.left + scrollX - contentWidth - offset
       break
     case 'left-end':
-      top = triggerRect.top + triggerHeight - contentHeight
-      left = triggerRect.left - contentWidth - offset
+      top = triggerRect.top + scrollY + triggerHeight - contentHeight
+      left = triggerRect.left + scrollX - contentWidth - offset
       break
     case 'right':
-      top = triggerRect.top + (triggerHeight - contentHeight) / 2
-      left = triggerRect.left + triggerWidth + offset
+      top = triggerRect.top + scrollY + (triggerHeight - contentHeight) / 2
+      left = triggerRect.left + scrollX + triggerWidth + offset
       break
     case 'right-start':
-      top = triggerRect.top
-      left = triggerRect.left + triggerWidth + offset
+      top = triggerRect.top + scrollY
+      left = triggerRect.left + scrollX + triggerWidth + offset
       break
     case 'right-end':
-      top = triggerRect.top + triggerHeight - contentHeight
-      left = triggerRect.left + triggerWidth + offset
+      top = triggerRect.top + scrollY + triggerHeight - contentHeight
+      left = triggerRect.left + scrollX + triggerWidth + offset
       break
   }
 
@@ -227,7 +227,7 @@ export function Popover({
   const isOpen = isControlled ? controlledIsOpen : internalIsOpen
 
   const updatePosition = useCallback(() => {
-    if (!triggerRef.current || !contentRef.current || !isOpen) return
+    if (!triggerRef.current || !contentRef.current) return
 
     // Get fresh references
     const triggerEl = triggerRef.current
@@ -248,13 +248,13 @@ export function Popover({
       position: pos,
       arrowPosition: arrowPos
     })
-  }, [isOpen, position, offset, withArrow])
+  }, [position, offset, withArrow])
 
   const open = useCallback(() => {
     if (disabled) return
     
     if (closeTimeoutRef.current) {
-      clearTimeout(closeTimeoutRef.current)
+      window.clearTimeout(closeTimeoutRef.current)
       closeTimeoutRef.current = undefined
     }
 
@@ -273,7 +273,7 @@ export function Popover({
 
   const close = useCallback(() => {
     if (openTimeoutRef.current) {
-      clearTimeout(openTimeoutRef.current)
+      window.clearTimeout(openTimeoutRef.current)
       openTimeoutRef.current = undefined
     }
 
@@ -353,13 +353,25 @@ export function Popover({
     return () => document.removeEventListener('keydown', handleEscape)
   }, [isOpen, closeOnEscape, close])
 
-  // Cleanup timeouts
+  // Cleanup timeouts and event listeners
+    useEffect(() => {
+      return () => {
+        if (openTimeoutRef.current) window.clearTimeout(openTimeoutRef.current)
+        if (closeTimeoutRef.current) window.clearTimeout(closeTimeoutRef.current)
+        
+        // Cleanup direct event listeners
+        if (triggerRef.current && (triggerRef.current as any).__popoverCleanup) {
+          ;(triggerRef.current as any).__popoverCleanup()
+        }
+      }
+    }, [])
+
+  // Update position when isOpen changes
   useEffect(() => {
-    return () => {
-      if (openTimeoutRef.current) clearTimeout(openTimeoutRef.current)
-      if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current)
+    if (isOpen && triggerRef.current && contentRef.current) {
+      updatePosition()
     }
-  }, [])
+  }, [isOpen, updatePosition])
 
   const triggerEvents = {
     ...(triggerOn === 'click' && {
@@ -391,15 +403,76 @@ export function Popover({
     ? document.querySelector(portalContainer) || document.body
     : portalContainer || document.body
 
-  const triggerElement = (
-    <span
-      ref={triggerRef}
-      className="inline-block"
-      {...triggerEvents}
-    >
-      {trigger}
-    </span>
-  )
+  // Always wrap trigger in a div to ensure consistent event handling
+  let triggerElement
+  if (trigger && typeof trigger === 'object' && 'type' in trigger) {
+    // For React elements, we need special handling
+    const originalProps = (trigger as any).props || {}
+    
+    triggerElement = (
+      <div className="inline-block">
+        {cloneElement(trigger as any, {
+          ref: (el: HTMLElement) => {
+            // Set the triggerRef to the actual trigger element
+            ;(triggerRef as any).current = el;
+            if (originalProps.ref && typeof originalProps.ref === 'function') {
+              originalProps.ref(el);
+            }
+            
+            // Add event listeners directly to handle focus/blur
+            if (el && triggerOn === 'focus') {
+              const handleFocus = () => {
+                open()
+              }
+              const handleBlur = () => {
+                close()
+              }
+              
+              el.addEventListener('focus', handleFocus)
+              el.addEventListener('blur', handleBlur)
+              
+              // Store cleanup function
+              ;(el as any).__popoverCleanup = () => {
+                el.removeEventListener('focus', handleFocus)
+                el.removeEventListener('blur', handleBlur)
+              }
+            }
+          },
+          // Merge original props
+          ...originalProps,
+          // Override with our event handlers for click and hover
+          onClick: (e: any) => {
+            originalProps.onClick?.(e)
+            if (triggerOn === 'click') {
+              toggle()
+            }
+          },
+          onMouseEnter: (e: any) => {
+            originalProps.onMouseEnter?.(e)
+            if (triggerOn === 'hover') {
+              open()
+            }
+          },
+          onMouseLeave: (e: any) => {
+            originalProps.onMouseLeave?.(e)
+            if (triggerOn === 'hover') {
+              close()
+            }
+          }
+        })}
+      </div>
+    )
+  } else {
+    triggerElement = (
+      <div
+        ref={triggerRef as any}
+        className="inline-block"
+        {...triggerEvents}
+      >
+        {trigger}
+      </div>
+    )
+  }
 
   const popoverContent = isOpen && (
     <div

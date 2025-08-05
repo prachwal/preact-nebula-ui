@@ -1,86 +1,54 @@
-import { useState } from 'preact/hooks'
-import { route } from 'preact-router'
-import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@/components'
-import { BasicUsageSection, VariantsSection, InteractiveSection, AccessibilitySection } from './sections'
+﻿import { useState } from 'preact/hooks'
+import { PageHeader } from '../../components/layout/PageHeader'
+import { DemoTabs } from '../../components/layout/DemoTabs'
+import { BasicUsageSection, VariantsSection, InteractiveSection, AccessibilitySection, PropsDocumentation } from './sections'
+
+type DemoType = 'basic' | 'variants' | 'interactive' | 'accessibility' | 'props'
+
+interface Tab {
+  key: DemoType
+  label: string
+}
 
 interface PageProps {
   path?: string
 }
 
 export function RadioPage(_props: PageProps) {
-  const [activeTab, setActiveTab] = useState('basic')
+  const [activeDemo, setActiveDemo] = useState<DemoType>('basic')
 
-  const tabs = [
-    { id: 'basic', label: 'Basic Usage', component: BasicUsageSection },
-    { id: 'variants', label: 'Variants & Styles', component: VariantsSection },
-    { id: 'interactive', label: 'Interactive Examples', component: InteractiveSection },
-    { id: 'accessibility', label: 'Accessibility', component: AccessibilitySection }
+  const tabs: Tab[] = [
+    { key: 'basic', label: 'Basic Usage' },
+    { key: 'variants', label: 'Variants' },
+    { key: 'interactive', label: 'Interactive' },
+    { key: 'accessibility', label: 'Accessibility' },
+    { key: 'props', label: 'Props' }
   ]
 
   return (
-    <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
-      {/* Header */}
-      <div class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div class="flex items-center justify-between">
-            <div>
-              <button 
-                onClick={() => route('/')}
-                class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 mb-2 inline-flex items-center"
-              >
-                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-                Back to Components
-              </button>
-              <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Radio & RadioGroup</h1>
-              <p class="text-gray-600 dark:text-gray-300 mt-2">
-                Radio buttons for mutually exclusive selections with advanced group management and accessibility features
-              </p>
-            </div>
-            <div class="hidden lg:block">
-              <div class="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
-                <div class="flex items-center">
-                  <div class="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
-                  Controlled & Uncontrolled
-                </div>
-                <div class="flex items-center">
-                  <div class="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
-                  Keyboard Navigation
-                </div>
-                <div class="flex items-center">
-                  <div class="w-2 h-2 bg-purple-400 rounded-full mr-2"></div>
-                  WCAG 2.1 AA
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <PageHeader
+          title=" Radio Component"
+          description="Radio button component with grouping and multiple selection options"
+        />
+        
+        <DemoTabs
+          tabs={tabs} 
+          activeTab={activeDemo} 
+          onTabChange={(tab) => setActiveDemo(tab as DemoType)} 
+        />
 
-      {/* Content */}
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <Tabs value={activeTab} onChange={setActiveTab}>
-          <TabList className="mb-8">
-            {tabs.map(tab => (
-              <Tab key={tab.id} value={tab.id}>
-                {tab.label}
-              </Tab>
-            ))}
-          </TabList>
-          
-          <TabPanels>
-            {tabs.map(tab => {
-              const Component = tab.component
-              return (
-                <TabPanel key={tab.id} value={tab.id}>
-                  <Component />
-                </TabPanel>
-              )
-            })}
-          </TabPanels>
-        </Tabs>
+        <div className="mt-8">
+          {activeDemo === 'basic' && <BasicUsageSection />}
+          {activeDemo === 'variants' && <VariantsSection />}
+          {activeDemo === 'interactive' && <InteractiveSection />}
+          {activeDemo === 'accessibility' && <AccessibilitySection />}
+          {activeDemo === 'props' && <PropsDocumentation />}
+        </div>
       </div>
     </div>
   )
 }
+
+export default RadioPage

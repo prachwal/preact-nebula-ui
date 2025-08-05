@@ -1,52 +1,52 @@
-import { Tabs, TabList, Tab, TabPanels, TabPanel } from '../../../nebula/components'
-import { BasicUsageSection, VariantsSection, InteractiveSection, AccessibilitySection } from './sections'
+﻿import { useState } from 'preact/hooks'
+import { PageHeader } from '../../components/layout/PageHeader'
+import { DemoTabs } from '../../components/layout/DemoTabs'
+import { BasicUsageSection, VariantsSection, InteractiveSection, AccessibilitySection, PropsDocumentation } from './sections'
+
+type DemoType = 'basic' | 'variants' | 'interactive' | 'accessibility' | 'props'
+
+interface Tab {
+  key: DemoType
+  label: string
+}
 
 interface PageProps {
   path?: string
 }
 
 export function SelectPage(_props: PageProps) {
+  const [activeDemo, setActiveDemo] = useState<DemoType>('basic')
+
+  const tabs: Tab[] = [
+    { key: 'basic', label: 'Basic Usage' },
+    { key: 'variants', label: 'Variants' },
+    { key: 'interactive', label: 'Interactive' },
+    { key: 'accessibility', label: 'Accessibility' },
+    { key: 'props', label: 'Props' }
+  ]
+
   return (
-    <div className="container mx-auto px-4 py-8">
-      {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-          Select Component
-        </h1>
-        <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl">
-          A flexible dropdown component that allows users to choose from a list of options. 
-          Supports single and multiple selection, search functionality, custom options with icons, 
-          and comprehensive accessibility features.
-        </p>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <PageHeader
+          title=" Select Component"
+          description="Dropdown selection component with search and multi-select capabilities"
+        />
+        
+        <DemoTabs
+          tabs={tabs} 
+          activeTab={activeDemo} 
+          onTabChange={(tab) => setActiveDemo(tab as DemoType)} 
+        />
+
+        <div className="mt-8">
+          {activeDemo === 'basic' && <BasicUsageSection />}
+          {activeDemo === 'variants' && <VariantsSection />}
+          {activeDemo === 'interactive' && <InteractiveSection />}
+          {activeDemo === 'accessibility' && <AccessibilitySection />}
+          {activeDemo === 'props' && <PropsDocumentation />}
+        </div>
       </div>
-
-      {/* Navigation Tabs */}
-      <Tabs defaultValue="basic" className="w-full">
-        <TabList className="grid w-full grid-cols-4">
-          <Tab value="basic">Basic Usage</Tab>
-          <Tab value="variants">Variants</Tab>
-          <Tab value="interactive">Interactive</Tab>
-          <Tab value="accessibility">Accessibility</Tab>
-        </TabList>
-
-        <TabPanels className="mt-6">
-          <TabPanel value="basic" className="min-h-[600px]">
-            <BasicUsageSection />
-          </TabPanel>
-          
-          <TabPanel value="variants" className="min-h-[600px]">
-            <VariantsSection />
-          </TabPanel>
-          
-          <TabPanel value="interactive" className="min-h-[600px]">
-            <InteractiveSection />
-          </TabPanel>
-          
-          <TabPanel value="accessibility" className="min-h-[600px]">
-            <AccessibilitySection />
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
     </div>
   )
 }

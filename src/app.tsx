@@ -35,11 +35,11 @@ import { BreadcrumbPage } from './pages/breadcrumb'
 import { PaginationPage } from './pages/pagination'
 import { TablePage } from './pages/table'
 import { TabsPage } from './pages/tabs'
-import { ModalPage } from './pages/modal'
+import { ModalPage } from './pages/modal/ModalPage'
 import { TooltipPage } from './pages/tooltip'
 import { DrawerPage } from './pages/drawer/DrawerPage'
 import { PopoverPage } from './pages/popover/PopoverPage'
-import { ToastPage } from './pages/ToastPage'
+import { ToastPage } from './pages/toast/ToastPage'
 
 function ThemeToggle() {
   const { theme, toggleTheme } = useTheme()

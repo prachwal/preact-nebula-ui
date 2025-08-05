@@ -3,16 +3,27 @@ import {
   DirectionAndSpacing,
   SpacingVariants,
   AlignmentOptions,
-  LayoutExamples
+  LayoutExamples,
+  PropsDocumentation
 } from './sections'
-import { PageHeader, NavigationTabs, type DemoType } from '.'
+import { PageHeader, DemoTabs, type Tab } from '../../components/layout'
 
 interface PageProps {
   path?: string
 }
 
+type DemoType = 'direction' | 'spacing' | 'alignment' | 'examples' | 'props'
+
 export function StackPage(_props: PageProps) {
   const [activeDemo, setActiveDemo] = useState<DemoType>('direction')
+
+  const tabs: Tab[] = [
+    { key: 'direction', label: 'Direction & Spacing' },
+    { key: 'spacing', label: 'Spacing Variants' },
+    { key: 'alignment', label: 'Alignment Options' },
+    { key: 'examples', label: 'Layout Examples' },
+    { key: 'props', label: 'Props' }
+  ]
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -23,7 +34,11 @@ export function StackPage(_props: PageProps) {
             title="Stack Component" 
             description="Vertical and horizontal layout with consistent spacing and alignment control"
           />
-          <NavigationTabs activeDemo={activeDemo} onDemoChange={setActiveDemo} />
+          <DemoTabs 
+            tabs={tabs} 
+            activeTab={activeDemo} 
+            onTabChange={(tab) => setActiveDemo(tab as DemoType)} 
+          />
         </div>
       </div>
 
@@ -33,6 +48,7 @@ export function StackPage(_props: PageProps) {
         {activeDemo === 'spacing' && <SpacingVariants />}
         {activeDemo === 'alignment' && <AlignmentOptions />}
         {activeDemo === 'examples' && <LayoutExamples />}
+        {activeDemo === 'props' && <PropsDocumentation />}
       </div>
     </div>
   )

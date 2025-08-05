@@ -98,11 +98,9 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(({
 
   const handleDismiss = () => {
     setIsAnimating(true)
-    setTimeout(() => {
-      setIsVisible(false)
-      setIsAnimating(false)
-      onDismiss?.()
-    }, 150)
+    setIsVisible(false)
+    setIsAnimating(false)
+    onDismiss?.()
   }
 
   const handleKeyDown = (event: KeyboardEvent) => {
@@ -174,7 +172,7 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(({
       {...props}
     >
       {/* Icon */}
-      {icon && (
+      {icon !== false && (
         <div className={cn('flex-shrink-0 mt-0.5', iconColorClasses[variant])}>
           {typeof icon === 'boolean' ? getVariantIcon(variant) : icon}
         </div>
@@ -200,7 +198,7 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(({
       </div>
 
       {/* Dismiss button */}
-      {dismissible && (
+      {dismissible && icon !== false && (
         <button
           type="button"
           onClick={handleDismiss}
