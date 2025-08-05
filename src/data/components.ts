@@ -331,3 +331,53 @@ export const getAllComponentsAlphabetically = () => {
     components: [...components].sort((a, b) => a.name.localeCompare(b.name))
   }]
 }
+
+export const filterComponents = (searchTerm: string): Component[] => {
+  if (!searchTerm.trim()) return components
+  
+  const term = searchTerm.toLowerCase().trim()
+  return components.filter(component => 
+    component.name.toLowerCase().includes(term) ||
+    component.description.toLowerCase().includes(term) ||
+    component.category.toLowerCase().includes(term) ||
+    component.milestone.toLowerCase().includes(term)
+  )
+}
+
+export const getFilteredComponentsByMilestone = (searchTerm: string) => {
+  const filteredComponents = filterComponents(searchTerm)
+  const groups = filteredComponents.reduce((acc, component) => {
+    const milestone = component.milestone
+    if (!acc[milestone]) acc[milestone] = []
+    acc[milestone].push(component)
+    return acc
+  }, {} as Record<string, Component[]>)
+
+  return Object.entries(groups).map(([milestone, comps]) => ({
+    title: milestone,
+    components: comps.sort((a, b) => a.name.localeCompare(b.name))
+  }))
+}
+
+export const getFilteredComponentsByCategory = (searchTerm: string) => {
+  const filteredComponents = filterComponents(searchTerm)
+  const groups = filteredComponents.reduce((acc, component) => {
+    const category = component.category
+    if (!acc[category]) acc[category] = []
+    acc[category].push(component)
+    return acc
+  }, {} as Record<string, Component[]>)
+
+  return Object.entries(groups).map(([category, comps]) => ({
+    title: category,
+    components: comps.sort((a, b) => a.name.localeCompare(b.name))
+  }))
+}
+
+export const getFilteredComponentsAlphabetically = (searchTerm: string) => {
+  const filteredComponents = filterComponents(searchTerm)
+  return [{
+    title: 'All Components',
+    components: filteredComponents.sort((a, b) => a.name.localeCompare(b.name))
+  }]
+}

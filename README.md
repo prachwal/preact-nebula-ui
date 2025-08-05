@@ -15,7 +15,7 @@ Modern, accessible, and customizable component library built with **Preact** and
 - ♿ **Accessible** - WCAG compliant components
 - 🔧 **Customizable** - Easy to theme and extend
 - 📱 **Responsive** - Mobile-first design approach
-- 🧪 **Well-tested** - 100% test coverage, 485+ tests passing, 26 components
+- 🧪 **Well-tested** - 100% test coverage, 600+ tests passing, 31 components
 
 ## 📦 Installation
 
@@ -99,7 +99,14 @@ Nebula UI provides a growing set of accessible, customizable, and well-tested co
 - **Table** – Data tables with sorting, selection, responsive design
 - **Tabs** – Horizontal/vertical, variants, keyboard navigation
 
-All components are fully typed, accessible (WCAG 2.1 AA), and covered by comprehensive tests (485+ test cases).
+### 🚀 Advanced Interactions
+- **Modal** – Full-screen dialogs with focus management and portal rendering
+- **Tooltip** – Contextual information with intelligent positioning
+- **Drawer** – Sliding panels with gesture support and responsive behavior
+- **Popover** – Rich contextual content with flexible positioning
+- **Toast** – Notification system with auto-dismiss and positioning
+
+All components are fully typed, accessible (WCAG 2.1 AA), and covered by comprehensive tests (600+ test cases).
 
 ## 🎨 Customization
 
@@ -280,16 +287,22 @@ This structure ensures consistency, maintainability, and comprehensive documenta
 
 ## 📋 Roadmap
 
-- [x] [Milestone 1: Forms Foundation](docs/milestone-1/) (Input, Label, Textarea, FieldError, Button) – **Done**
-- [x] [Milestone 2: Layout System](docs/milestone-2/) (Card, Container, Stack, Divider) – **Done**  
-- [x] [Milestone 3: Feedback Components](docs/milestone-3/) (Alert, Badge, Progress, Skeleton) – **Done**
-- [x] [Milestone 4: Advanced Form Controls](docs/milestone-4/) (Checkbox, Radio, Switch, Select) – **COMPLETED**
-- [x] [Milestone 5: Navigation & Data](docs/milestone-5/) (Breadcrumb, Pagination, Table) – **COMPLETED**
-- [ ] [Milestone 6: Advanced Interactions](docs/milestone-6/) (Modal, Tooltip, Drawer, Popover) – **PLANNED**
+- [x] [Milestone 1: Forms Foundation](docs/milestone-1/) (Input, Label, Textarea, FieldError, Button) – **✅ COMPLETED**
+- [x] [Milestone 2: Layout System](docs/milestone-2/) (Card, Container, Stack, Divider) – **✅ COMPLETED**  
+- [x] [Milestone 3: Feedback Components](docs/milestone-3/) (Alert, Badge, Progress, Skeleton) – **✅ COMPLETED**
+- [x] [Milestone 4: Advanced Form Controls](docs/milestone-4/) (Checkbox, Radio, Switch, Select) – **✅ COMPLETED**
+- [x] [Milestone 5: Navigation & Data](docs/milestone-5/) (Breadcrumb, Pagination, Table) – **✅ COMPLETED**
+- [x] [Milestone 6: Advanced Interactions](docs/milestone-6/) (Modal, Tooltip, Drawer, Popover, Toast) – **✅ COMPLETED**
+
+### 🎉 Core Library Complete!
+
+**All planned milestones have been successfully completed!** The Nebula UI component library now includes 31 production-ready components with comprehensive testing, documentation, and accessibility compliance.
+
+### 🚀 Future Enhancements
 - [ ] Storybook documentation
 - [ ] Theme customization system
 - [ ] CI/CD pipeline
-- [ ] More comprehensive edge-case testing
+- [ ] Additional components based on community feedback
 ## 📚 Documentation Structure
 
 Nebula UI uses a comprehensive milestone-based documentation system. For complete documentation including project status, implementation plans, and detailed component guides, visit:

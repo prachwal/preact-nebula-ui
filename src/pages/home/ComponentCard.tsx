@@ -1,4 +1,5 @@
 import { route } from 'preact-router'
+import { Card, CardBody, Badge, Stack } from '../../../nebula/components'
 import type { Component } from '../../data/components'
 
 interface ComponentCardProps {
@@ -33,44 +34,54 @@ export function ComponentCard({ component }: ComponentCardProps) {
   const config = statusConfig[component.status]
 
   return (
-    <div 
-      className={`${config.bg} ${config.border} border rounded-lg p-6 cursor-pointer hover:shadow-md transition-all duration-200 hover:scale-[1.02]`}
+    <Card 
+      className={`${config.bg} ${config.border} cursor-pointer hover:shadow-md transition-all duration-200 hover:scale-[1.02]`}
       onClick={() => component.status === 'completed' && route(component.path)}
     >
-      <div className="flex items-start justify-between mb-3">
-        <h3 className={`text-lg font-semibold ${config.text}`}>
-          {component.name}
-        </h3>
-        <div className="flex items-center gap-2">
-          <span className={`px-2 py-1 text-xs rounded-full ${config.badge}`}>
-            {config.icon} {component.status === 'in-progress' ? 'In Progress' : component.status === 'planned' ? 'Planned' : 'Ready'}
-          </span>
-          {component.testCoverage !== undefined && component.testCoverage > 0 && (
-            <span className="px-2 py-1 text-xs rounded-full bg-blue-100 dark:bg-blue-800 text-blue-800 dark:text-blue-200">
-              {component.testCoverage}% tested
+      <CardBody>
+        <Stack spacing="md">
+          {/* Header with title and badges */}
+          <div className="flex items-start justify-between">
+            <h3 className={`text-lg font-semibold ${config.text}`}>
+              {component.name}
+            </h3>
+            <div className="flex items-center gap-2">
+              <Badge
+                variant={component.status === 'completed' ? 'success' : component.status === 'in-progress' ? 'warning' : 'default'}
+                size="sm"
+              >
+                {config.icon} {component.status === 'in-progress' ? 'In Progress' : component.status === 'planned' ? 'Planned' : 'Ready'}
+              </Badge>
+              {component.testCoverage !== undefined && component.testCoverage > 0 && (
+                <Badge variant="primary" size="sm">
+                  {component.testCoverage}% tested
+                </Badge>
+              )}
+            </div>
+          </div>
+          
+          {/* Description */}
+          <p className={`text-sm ${config.text.replace('800', '600').replace('200', '300')}`}>
+            {component.description}
+          </p>
+          
+          {/* Footer */}
+          <div className="flex items-center justify-between text-xs">
+            <span className={`${config.text.replace('800', '500').replace('200', '400')}`}>
+              {component.category}
             </span>
-          )}
-        </div>
-      </div>
-      
-      <p className={`text-sm mb-4 ${config.text.replace('800', '600').replace('200', '300')}`}>
-        {component.description}
-      </p>
-      
-      <div className="flex items-center justify-between text-xs">
-        <span className={`${config.text.replace('800', '500').replace('200', '400')}`}>
-          {component.category}
-        </span>
-        {component.status === 'completed' ? (
-          <span className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200">
-            View Demo →
-          </span>
-        ) : (
-          <span className={`${config.text.replace('800', '500').replace('200', '400')}`}>
-            Coming Soon
-          </span>
-        )}
-      </div>
-    </div>
+            {component.status === 'completed' ? (
+              <span className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200">
+                View Demo →
+              </span>
+            ) : (
+              <span className={`${config.text.replace('800', '500').replace('200', '400')}`}>
+                Coming Soon
+              </span>
+            )}
+          </div>
+        </Stack>
+      </CardBody>
+    </Card>
   )
 }

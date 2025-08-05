@@ -91,10 +91,10 @@
 - [x] **Skeleton**: Loading placeholders ✅ COMPLETED
   - [x] Text, avatar, card variants
   - [x] Animation opcje
-- [ ] **Toast**: Powiadomienia popup ✅ PLANNED FOR MILESTONE 6
-  - [ ] Position control
-  - [ ] Auto-dismiss timer
-  - [ ] Stack management
+- [x] **Toast**: Powiadomienia popup ✅ COMPLETED
+  - [x] Position control
+  - [x] Auto-dismiss timer
+  - [x] Stack management
 - [x] **Modal**: Okna modalne ✅ COMPLETED
   - [x] Backdrop blur/dim
   - [x] Close on escape/outside click

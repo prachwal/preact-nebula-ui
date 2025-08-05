@@ -1,6 +1,7 @@
 export { StatsCards } from './StatsCards'
 export { HomePage } from './HomePage'
 export { GroupingControls } from './GroupingControls'
+export { SearchControls } from './SearchControls'
 export { ComponentCard } from './ComponentCard'
 export { ComponentGroup } from './ComponentGroup'
 export { TestCoverageSection } from './TestCoverageSection'
