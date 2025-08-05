@@ -30,6 +30,21 @@ export type { SwitchProps, SwitchSize, SwitchColor, SwitchLabelPosition } from '
 export { Select } from './Select'
 export type { SelectProps, SelectOption } from './Select/Select.types'
 
+export { Slider } from './Slider'
+export type { SliderProps, SliderSize, SliderOrientation, SliderMark, SliderTooltip, SliderThumb } from './Slider/types'
+
+export { Rating } from './Rating'
+export type { RatingProps, RatingSize } from './Rating/types'
+
+export { DatePicker, Calendar } from './DatePicker'
+export type { DatePickerProps, CalendarProps, DatePickerSize } from './DatePicker/types'
+
+export { TimePicker, TimeWheel } from './TimePicker'
+export type { TimePickerProps, TimeWheelProps, Time, TimePickerSize, TimeFormat } from './TimePicker/types'
+
+export { Autocomplete } from './Autocomplete'
+export type { AutocompleteProps, AutocompleteOption, AutocompleteGroup, AutocompleteRef } from './Autocomplete/types'
+
 // Layout System Components
 export { Card, CardHeader, CardBody, CardFooter } from './Card'
 export type { CardProps, CardHeaderProps, CardBodyProps, CardFooterProps } from './Card/Card.types'

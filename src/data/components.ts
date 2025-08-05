@@ -274,6 +274,181 @@ export const components: Component[] = [
     category: 'Navigation', 
     status: 'completed',
     testCoverage: 100
+  },
+
+  // Milestone 7: Advanced Form Controls
+  { 
+    name: 'Slider', 
+    path: '/slider', 
+    description: 'Range input with single/dual handles, step marks, and tooltips', 
+    milestone: 'Milestone 7: Advanced Form Controls', 
+    category: 'Forms', 
+    status: 'completed',
+    version: '1.0.0',
+    testCoverage: 100
+  },
+  { 
+    name: 'Rating', 
+    path: '/rating', 
+    description: 'Star rating component with half-star support, custom icons, and read-only mode', 
+    milestone: 'Milestone 7: Advanced Form Controls', 
+    category: 'Forms', 
+    status: 'completed',
+    version: '1.0.0',
+    testCoverage: 99
+  },
+  { 
+    name: 'DatePicker', 
+    path: '/datepicker', 
+    description: 'Date selection with calendar interface, range support, and localization', 
+    milestone: 'Milestone 7: Advanced Form Controls', 
+    category: 'Forms', 
+    status: 'completed',
+    version: '1.0.0',
+    testCoverage: 100
+  },
+  { 
+    name: 'TimePicker', 
+    path: '/timepicker', 
+    description: 'Time selection with hour/minute/second precision and 12/24h format', 
+    milestone: 'Milestone 7: Advanced Form Controls', 
+    category: 'Forms', 
+    status: 'completed',
+    version: '1.0.0',
+    testCoverage: 85
+  },
+  { 
+    name: 'Autocomplete', 
+    path: '/autocomplete', 
+    description: 'Enhanced input with search suggestions, async loading, and multi-select', 
+    milestone: 'Milestone 7: Advanced Form Controls', 
+    category: 'Forms', 
+    status: 'completed',
+    version: '1.0.0',
+    testCoverage: 93
+  },
+
+  // Milestone 8: Data Display & Navigation (Planned)
+  { 
+    name: 'Tree', 
+    path: '/tree', 
+    description: 'Hierarchical data display with expand/collapse, selection, and search', 
+    milestone: 'Milestone 8: Data Display & Navigation', 
+    category: 'Data Display', 
+    status: 'planned',
+    testCoverage: 0
+  },
+  { 
+    name: 'List', 
+    path: '/list', 
+    description: 'Virtual scrolling list with item templates, selection, and infinite loading', 
+    milestone: 'Milestone 8: Data Display & Navigation', 
+    category: 'Data Display', 
+    status: 'planned',
+    testCoverage: 0
+  },
+  { 
+    name: 'Menu', 
+    path: '/menu', 
+    description: 'Dropdown and context menu with keyboard navigation and sub-menus', 
+    milestone: 'Milestone 8: Data Display & Navigation', 
+    category: 'Navigation', 
+    status: 'planned',
+    testCoverage: 0
+  },
+  { 
+    name: 'Steps', 
+    path: '/steps', 
+    description: 'Process visualization with validation states and step navigation', 
+    milestone: 'Milestone 8: Data Display & Navigation', 
+    category: 'Navigation', 
+    status: 'planned',
+    testCoverage: 0
+  },
+  { 
+    name: 'Statistic', 
+    path: '/statistic', 
+    description: 'Statistical data display with formatting, trends, and visual indicators', 
+    milestone: 'Milestone 8: Data Display & Navigation', 
+    category: 'Data Display', 
+    status: 'planned',
+    testCoverage: 0
+  },
+
+  // Milestone 9: Specialized Components (Planned)
+  { 
+    name: 'Upload', 
+    path: '/upload', 
+    description: 'File upload with drag & drop, progress tracking, and multiple file support', 
+    milestone: 'Milestone 9: Specialized Components', 
+    category: 'Forms', 
+    status: 'planned',
+    testCoverage: 0
+  },
+  { 
+    name: 'Transfer', 
+    path: '/transfer', 
+    description: 'Dual list selection with search, custom templates, and batch operations', 
+    milestone: 'Milestone 9: Specialized Components', 
+    category: 'Forms', 
+    status: 'planned',
+    testCoverage: 0
+  },
+  { 
+    name: 'ColorPicker', 
+    path: '/colorpicker', 
+    description: 'Color selection with HSL/RGB/HEX support, palette presets, and alpha channel', 
+    milestone: 'Milestone 9: Specialized Components', 
+    category: 'Forms', 
+    status: 'planned',
+    testCoverage: 0
+  },
+  { 
+    name: 'Calendar', 
+    path: '/calendar', 
+    description: 'Full calendar with month/week/day views, event display, and date range selection', 
+    milestone: 'Milestone 9: Specialized Components', 
+    category: 'Data Display', 
+    status: 'planned',
+    testCoverage: 0
+  },
+
+  // Milestone 10: Advanced Layout & System (Planned)
+  { 
+    name: 'Grid', 
+    path: '/grid', 
+    description: 'Advanced grid system with responsive breakpoints, gutters, and auto-layout', 
+    milestone: 'Milestone 10: Advanced Layout & System', 
+    category: 'Layout', 
+    status: 'planned',
+    testCoverage: 0
+  },
+  { 
+    name: 'Affix', 
+    path: '/affix', 
+    description: 'Sticky positioning component with offset control and boundary detection', 
+    milestone: 'Milestone 10: Advanced Layout & System', 
+    category: 'Layout', 
+    status: 'planned',
+    testCoverage: 0
+  },
+  { 
+    name: 'BackTop', 
+    path: '/backtop', 
+    description: 'Back to top button with smooth scrolling and visibility threshold', 
+    milestone: 'Milestone 10: Advanced Layout & System', 
+    category: 'Navigation', 
+    status: 'planned',
+    testCoverage: 0
+  },
+  { 
+    name: 'Anchor', 
+    path: '/anchor', 
+    description: 'Page anchor navigation with smooth scrolling and active link highlighting', 
+    milestone: 'Milestone 10: Advanced Layout & System', 
+    category: 'Navigation', 
+    status: 'planned',
+    testCoverage: 0
   }
 ]
 

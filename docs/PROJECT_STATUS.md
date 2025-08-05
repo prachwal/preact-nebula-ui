@@ -22,6 +22,7 @@
 - **Wszystkie testy przechodzą (100% coverage)**
 - **31/31 komponentów pokrytych testami**
 - **600+ test cases** z edge cases
+- **Interaktywny dashboard pokrycia testów** (http://localhost:5173/coverage)
 - ESLint i TypeScript sprawdzane bez błędów
 
 ### 🎨 Nowa Architektura Stron Demo
@@ -44,6 +45,8 @@
 
 ### 📖 Dokumentacja
 - README.md z pełną dokumentacją komponentów
+- **Analiza porównawcza z MUI i Ant Design** (COMPONENT_COMPARISON.md)
+- **Rekomendacje rozwoju** - priorytetowe komponenty do dodania
 - LICENSE MIT
 - Plan implementacji (MILESTONE_IMPLEMENTATION_PLAN.md)
 - Checklist implementacji zaktualizowany

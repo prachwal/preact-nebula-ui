@@ -40,6 +40,12 @@ import { TooltipPage } from './pages/tooltip'
 import { DrawerPage } from './pages/drawer/DrawerPage'
 import { PopoverPage } from './pages/popover/PopoverPage'
 import { ToastPage } from './pages/toast/ToastPage'
+import { SliderPage } from './pages/slider'
+import { RatingPage } from './pages/rating/RatingPage'
+import { DatePickerPage } from './pages/datepicker/DatePickerPage'
+import { TimePickerPage } from './pages/timepicker/TimePickerPage'
+import { AutocompletePage } from './pages/autocomplete'
+import { FullCoveragePage } from './pages/home' // Import FullCoveragePage
 
 function ThemeToggle() {
   const { theme, toggleTheme } = useTheme()
@@ -239,6 +245,7 @@ function AppContent() {
     <Layout>
       <Router>
         <HomePage path="/" />
+        <FullCoveragePage path="/coverage" />
         <ButtonPage path="/button" />
         <ContainerPage path="/container" />
         <DividerPage path="/divider" />
@@ -267,6 +274,11 @@ function AppContent() {
         <DrawerPage path="/drawer" />
         <PopoverPage path="/popover" />
         <ToastPage path="/toast" />
+        <SliderPage path="/slider" />
+        <RatingPage path="/rating" />
+        <DatePickerPage path="/datepicker" />
+        <TimePickerPage path="/timepicker" />
+        <AutocompletePage path="/autocomplete" />
         <LegacyShowcase path="/legacy" />
       </Router>
     </Layout>
