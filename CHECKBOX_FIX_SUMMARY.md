@@ -5,6 +5,7 @@
 Z logów debug wynika, że główny problem to:
 
 **TreeNode używał natywnego HTML input checkbox zamiast komponentu Checkbox**, co powodowało:
+
 1. Niepoprawną synchronizację stanu `checked`
 2. Nieprawidłowe zdarzenia onChange
 3. Niekonsystentne zachowanie z resztą aplikacji
@@ -14,6 +15,7 @@ Z logów debug wynika, że główny problem to:
 ### 1. TreeNode.tsx - Zastąpienie natywnego checkbox komponentem Checkbox
 
 **PRZED:**
+
 ```tsx
 <input
   type="checkbox"
@@ -24,6 +26,7 @@ Z logów debug wynika, że główny problem to:
 ```
 
 **PO:**
+
 ```tsx
 <Checkbox
   checked={checked}
@@ -36,6 +39,7 @@ Z logów debug wynika, że główny problem to:
 ```
 
 ### 2. Dodano import Checkbox komponentu
+
 ```tsx
 import { Checkbox } from '../Checkbox'
 ```
@@ -50,19 +54,23 @@ import { Checkbox } from '../Checkbox'
 ## Test Plan
 
 ### TreeView Test
+
 1. Przejdź na stronę TreeView: `http://localhost:5173/treeview`
 2. Znajdź sekcję z checkable tree
 3. Spróbuj zaznaczyć/odznaczyć różne węzły
 4. Sprawdź console.log - powinny pokazać:
+
    ```
    [TREENODE DEBUG] 🔘 TreeNode Checkbox component onChange: {checked: true, ...}
    [USETREEVIEW DEBUG] 🔘 handleCheck called: {checked: true, ...}
    ```
 
 ### Transfer Test  
+
 1. Przejdź na stronę Transfer: `http://localhost:5173/transfer`
 2. Spróbuj zaznaczyć/odznaczyć elementy w listach
 3. Sprawdź console.log - powinny pokazać:
+
    ```
    [TRANSFER DEBUG] 🔘 Item checkbox change event: {checked: true, ...}
    [CHECKBOX DEBUG] 🔘 Native input onChange triggered: {checked: true, ...}
@@ -71,8 +79,9 @@ import { Checkbox } from '../Checkbox'
 ## Debugowanie włączone
 
 Wszystkie flagi debug są ustawione na `true`:
+
 - `DEBUG_TRANSFER = true`
-- `DEBUG_CHECKBOX = true` 
+- `DEBUG_CHECKBOX = true`
 - `DEBUG_TREEVIEW = true`
 - `DEBUG_TREENODE = true`
 - `DEBUG_USETREEVIEW = true`
@@ -89,6 +98,7 @@ Jeśli checkboxy nadal nie działają, sprawdź:
 ## Weryfikacja poprawki
 
 Po teście sprawdź czy:
+
 - ✅ Checkboxy się zaznaczają/odznaczają
 - ✅ Stan jest zachowywany między re-renderami  
 - ✅ Kaskadowe zaznaczanie działa w TreeView

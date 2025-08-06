@@ -5,10 +5,12 @@
 Dodałem kompleksowe logowanie debugowania podobne do tego z Tooltip.tsx do następujących komponentów:
 
 ### 1. Transfer Components
+
 - **TransferList.tsx**: Debugowanie filtrowania, stanu selekcji, funkcji obsługi zdarzeń
 - **Checkbox.tsx**: Debugowanie inicjalizacji, zdarzeń onChange/onClick, stanu indeterminate
 
-### 2. TreeView Components 
+### 2. TreeView Components
+
 - **TreeView.tsx**: Debugowanie inicjalizacji, stanu drzewa
 - **TreeNode.tsx**: Debugowanie renderowania node'ów, obsługi checkboxów
 - **useTreeView.ts**: Debugowanie logiki handleCheck z kaskadowymi zmianami
@@ -16,6 +18,7 @@ Dodałem kompleksowe logowanie debugowania podobne do tego z Tooltip.tsx do nast
 ## Potencjalne przyczyny problemów z zaznaczaniem checkboxów
 
 ### 1. **Event Propagation Issues**
+
 ```typescript
 // W TreeNode.tsx - stopPropagation może blokować zdarzenia
 const handleCheckboxChange = (e: Event) => {
@@ -25,6 +28,7 @@ const handleCheckboxChange = (e: Event) => {
 ```
 
 ### 2. **Disabled State Conflicts**
+
 ```typescript
 // Możliwe konflikty stanu disabled na różnych poziomach
 <Checkbox
@@ -34,11 +38,13 @@ const handleCheckboxChange = (e: Event) => {
 ```
 
 ### 3. **State Management Issues**
+
 - **Transfer**: Używa kontrolowanego stanu przez `onSelect` callback
 - **TreeView**: Używa `useTreeView` hook z wewnętrznym stanem
 - Możliwy konflikt między controlled/uncontrolled componentami
 
 ### 4. **CSS/Styling Issues**
+
 ```css
 /* Checkbox może być ukryty przez CSS */
 .sr-only {
@@ -50,12 +56,15 @@ const handleCheckboxChange = (e: Event) => {
 ```
 
 ### 5. **Event Handler Chain**
+
 ```
 Native Input onClick -> Checkbox onChange -> Component handler -> Parent callback
 ```
+
 Każdy krok może być przerwany lub zablokowany.
 
 ### 6. **Preact/React Compatibility**
+
 - Używanie `preact/compat` może powodować problemy z event handling
 - Różnice w SyntheticEvent między Preact a React
 
@@ -63,14 +72,14 @@ Każdy krok może być przerwany lub zablokowany.
 
 1. **Włącz debugging** (już zrobione):
    - `DEBUG_TRANSFER = true`
-   - `DEBUG_CHECKBOX = true` 
+   - `DEBUG_CHECKBOX = true`
    - `DEBUG_TREEVIEW = true`
    - `DEBUG_TREENODE = true`
    - `DEBUG_USETREEVIEW = true`
 
 2. **Uruchom aplikację** i sprawdź console.log podczas próby zaznaczenia checkbox'a
 
-3. **Sprawdź czy**: 
+3. **Sprawdź czy**:
    - Zdarzenia są wywoływane
    - Stan jest aktualizowany
    - Callback funkcje są wywoływane
@@ -79,6 +88,7 @@ Każdy krok może być przerwany lub zablokowany.
 ## Potencjalne rozwiązania
 
 ### 1. Event Propagation Fix
+
 ```typescript
 // Zamiast e.stopPropagation(), spróbuj:
 const handleCheckboxChange = (e: Event) => {
@@ -88,6 +98,7 @@ const handleCheckboxChange = (e: Event) => {
 ```
 
 ### 2. Simplify Event Chain
+
 ```typescript
 // Direct event handling bez pośredników
 <input
@@ -98,6 +109,7 @@ const handleCheckboxChange = (e: Event) => {
 ```
 
 ### 3. State Debugging
+
 ```typescript
 // Dodaj więcej logowania stanu
 useEffect(() => {
@@ -106,6 +118,7 @@ useEffect(() => {
 ```
 
 ### 4. CSS Inspection
+
 ```typescript
 // Sprawdź czy element jest faktycznie klikable
 const rect = element.getBoundingClientRect()
@@ -123,6 +136,7 @@ console.log('Element bounds:', rect)
 ## Oczekiwane logi
 
 Po włączeniu debugowania powinieneś zobaczyć w konsoli:
+
 - `[TRANSFER DEBUG]` - logi z komponentu Transfer
 - `[CHECKBOX DEBUG]` - logi z komponentu Checkbox  
 - `[TREEVIEW DEBUG]` - logi z komponentu TreeView

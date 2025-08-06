@@ -16,12 +16,13 @@
   - **Advanced Form Controls**: Checkbox, Radio, Switch, Select ✅ (4/4)
   - **Navigation & Data**: Breadcrumb, Pagination, Table ✅ (3/3)
   - **Advanced Interactions**: Modal, Tooltip, Drawer, Popover, Toast ✅ (5/5)
+  - **Data Display & Navigation**: TreeView, Transfer, Steps, Tags, Collapse ✅ (5/5)
 
 ### 🧪 Testy i Jakość Kodu
 - Vitest + Testing Library dla Preact
 - **Wszystkie testy przechodzą (100% coverage)**
-- **31/31 komponentów pokrytych testami**
-- **600+ test cases** z edge cases
+- **36/36 komponentów pokrytych testami**
+- **650+ test cases** z edge cases
 - **Interaktywny dashboard pokrycia testów** (http://localhost:5173/coverage)
 - ESLint i TypeScript sprawdzane bez błędów
 
@@ -55,23 +56,33 @@
 ## 📊 Statystyki Projektu
 
 ```
-Komponenty: 31/31 zaimplementowane (100%)
-Testy: 600+ test cases przechodzi (100% coverage)
+Komponenty: 36/36 zaimplementowane (100%)
+Testy: 650+ test cases przechodzi (100% coverage)
 Build Size: Optymalizowany dla tree-shaking
 TypeScript: Strict mode, pełne typy
 Accessibility: WCAG 2.1 AA compliant
 ```
 
 
-## � STATUS: WSZYSTKIE MILESTONES UKOŃCZONE!
+## ✅ STATUS: MILESTONE 8 UKOŃCZONY
 
-Nebula UI ma już **31 komponentów** gotowych do produkcji:
+Nebula UI ma już **36 komponentów** gotowych do produkcji:
+
 - ✅ **Forms Foundation** (5 komponentów)
-- ✅ **Layout System** (4 komponenty) 
+- ✅ **Layout System** (4 komponenty)
 - ✅ **Feedback Components** (4 komponenty)
 - ✅ **Display & Navigation** (5 komponentów)
 - ✅ **Advanced Form Controls** (4/4 komponentów)
 - ✅ **Navigation & Data** (3/3 komponenty)
 - ✅ **Advanced Interactions** (5/5 komponentów)
+- ✅ **Data Display & Navigation** (5/5 komponentów) - NOWE!
 
-**Status**: Biblioteka komponentów kompletna i gotowa do użycia produkcyjnego!
+**Nowe komponenty w Milestone 8**:
+
+- 🗂️ **TreeView** - Hierarchiczna nawigacja z expand/collapse
+- 📋 **Transfer** - Dual-list do przenoszenia elementów
+- 📈 **Steps** - Nawigacja krok po kroku
+- 🏷️ **Tags** - Dynamiczne zarządzanie tagami
+- ⬇️ **Collapse** - Składane panele treści
+
+**Status**: Biblioteka komponentów rozszerzona o zaawansowane komponenty do wyświetlania danych!

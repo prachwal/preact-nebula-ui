@@ -355,8 +355,9 @@ export const components: Component[] = [
     description: 'Step-by-step navigation component for multi-step processes', 
     milestone: 'Milestone 8: Data Display & Navigation', 
     category: 'Navigation', 
-    status: 'planned',
-    testCoverage: 0
+    status: 'completed',
+    version: '0.8.0',
+    testCoverage: 95
   },
   { 
     name: 'Tags', 
@@ -364,8 +365,9 @@ export const components: Component[] = [
     description: 'Dynamic tag management with creation, editing, and deletion', 
     milestone: 'Milestone 8: Data Display & Navigation', 
     category: 'Data Display', 
-    status: 'planned',
-    testCoverage: 0
+    status: 'completed',
+    version: '0.8.0',
+    testCoverage: 95
   },
   { 
     name: 'Collapse', 
@@ -373,8 +375,9 @@ export const components: Component[] = [
     description: 'Collapsible content areas with smooth animations', 
     milestone: 'Milestone 8: Data Display & Navigation', 
     category: 'Layout', 
-    status: 'planned',
-    testCoverage: 0
+    status: 'completed',
+    version: '0.8.0',
+    testCoverage: 95
   },
 
   // Milestone 9: Specialized Components (Planned)
@@ -382,15 +385,6 @@ export const components: Component[] = [
     name: 'Upload', 
     path: '/upload', 
     description: 'File upload with drag & drop, progress tracking, and multiple file support', 
-    milestone: 'Milestone 9: Specialized Components', 
-    category: 'Forms', 
-    status: 'planned',
-    testCoverage: 0
-  },
-  { 
-    name: 'Transfer', 
-    path: '/transfer', 
-    description: 'Dual list selection with search, custom templates, and batch operations', 
     milestone: 'Milestone 9: Specialized Components', 
     category: 'Forms', 
     status: 'planned',

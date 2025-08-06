@@ -164,3 +164,36 @@ export type {
   UseTransferOptions,
   UseTransferReturn
 } from './Transfer'
+
+export { Steps, Step, useSteps } from './Steps'
+export type {
+  StepsProps,
+  StepProps,
+  StepsRef,
+  StepItem,
+  StepStatus,
+  StepDirection,
+  UseStepsOptions,
+  UseStepsReturn
+} from './Steps'
+
+export { Tags, Tag, useTags } from './Tags'
+export type {
+  TagsProps,
+  TagProps,
+  TagsRef,
+  TagItem,
+  TagColor,
+  TagSize,
+  TagVariant,
+  UseTagsOptions,
+  UseTagsReturn
+} from './Tags'
+
+export { Collapse, CollapsePanel, useCollapseAnimation } from './Collapse'
+export type {
+  CollapseProps,
+  CollapsePanelProps,
+  CollapseState,
+  UseCollapseAnimationReturn
+} from './Collapse'

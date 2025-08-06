@@ -22,8 +22,8 @@ export interface ComponentTestData {
 
 // Mock test data - this would be populated by actual test runner
 export const mockTestResults: TestResults = {
-  totalTests: 485,
-  passedTests: 485,
+  totalTests: 615,
+  passedTests: 545,
   failedTests: 0,
   coverage: {
     lines: 100,
@@ -32,7 +32,7 @@ export const mockTestResults: TestResults = {
     statements: 100
   },
   timestamp: new Date().toISOString(),
-  duration: 12500
+  duration: 14500
 }
 
 export const componentTestData: ComponentTestData[] = [
@@ -58,7 +58,11 @@ export const componentTestData: ComponentTestData[] = [
   { componentName: 'Spinner', testCount: 14, coverage: 100, status: 'passing', lastUpdated: '2025-08-04' },
   { componentName: 'Avatar', testCount: 24, coverage: 100, status: 'passing', lastUpdated: '2025-08-04' },
   { componentName: 'Tabs', testCount: 31, coverage: 100, status: 'passing', lastUpdated: '2025-08-04' },
-  { componentName: 'Table', testCount: 38, coverage: 100, status: 'passing', lastUpdated: '2025-01-15' }
+  { componentName: 'Table', testCount: 38, coverage: 100, status: 'passing', lastUpdated: '2025-01-15' },
+  { componentName: 'TreeView', testCount: 35, coverage: 95, status: 'passing', lastUpdated: '2025-08-06' },
+  { componentName: 'Transfer', testCount: 30, coverage: 95, status: 'passing', lastUpdated: '2025-08-06' },
+  { componentName: 'Steps', testCount: 35, coverage: 95, status: 'passing', lastUpdated: '2025-08-06' },
+  { componentName: 'Tags', testCount: 35, coverage: 95, status: 'passing', lastUpdated: '2025-08-06' }
 ]
 
 export const getTestStats = () => {
