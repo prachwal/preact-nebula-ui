@@ -36,6 +36,7 @@ export default defineConfig({
   },
   define: {
     // Globalne zmienne dla środowiska testowego
-    'process.env.NODE_ENV': '"test"'
+    'process.env.NODE_ENV': '"test"',
+    'process.env.VITEST': 'true'
   }
 })

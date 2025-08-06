@@ -197,3 +197,11 @@ export type {
   CollapseState,
   UseCollapseAnimationReturn
 } from './Collapse'
+
+export { Image } from './Image'
+export type {
+  ImageProps,
+  ZoomConfig,
+  ImageState,
+  UseImageReturn
+} from './Image'

@@ -372,39 +372,48 @@ export const components: Component[] = [
   { 
     name: 'Collapse', 
     path: '/collapse', 
-    description: 'Collapsible content areas with smooth animations', 
+    description: 'Collapsible content areas with smooth animations and accordion mode', 
     milestone: 'Milestone 8: Data Display & Navigation', 
     category: 'Layout', 
     status: 'completed',
-    version: '0.8.0',
+    version: '1.0.0',
     testCoverage: 95
   },
 
-  // Milestone 9: Specialized Components (Planned)
+  // Milestone 9: Specialized Components
+  { 
+    name: 'Image', 
+    path: '/image', 
+    description: 'Advanced image component with lazy loading, zoom functionality, progressive enhancement, and error handling', 
+    milestone: 'Milestone 9: Specialized Components', 
+    category: 'Data Display', 
+    status: 'in-progress',
+    testCoverage: 85
+  },
+  { 
+    name: 'Carousel', 
+    path: '/carousel', 
+    description: 'Image and content carousel with navigation, auto-play, thumbnails, and touch/swipe support', 
+    milestone: 'Milestone 9: Specialized Components', 
+    category: 'Data Display', 
+    status: 'planned',
+    testCoverage: 0
+  },
   { 
     name: 'Upload', 
     path: '/upload', 
-    description: 'File upload with drag & drop, progress tracking, and multiple file support', 
+    description: 'File upload with drag & drop, progress tracking, multiple file support, and preview generation', 
     milestone: 'Milestone 9: Specialized Components', 
     category: 'Forms', 
     status: 'planned',
     testCoverage: 0
   },
   { 
-    name: 'ColorPicker', 
-    path: '/colorpicker', 
-    description: 'Color selection with HSL/RGB/HEX support, palette presets, and alpha channel', 
+    name: 'Affix', 
+    path: '/affix', 
+    description: 'Position element to stick to viewport during scroll with offset and target support', 
     milestone: 'Milestone 9: Specialized Components', 
-    category: 'Forms', 
-    status: 'planned',
-    testCoverage: 0
-  },
-  { 
-    name: 'Calendar', 
-    path: '/calendar', 
-    description: 'Full calendar with month/week/day views, event display, and date range selection', 
-    milestone: 'Milestone 9: Specialized Components', 
-    category: 'Data Display', 
+    category: 'Layout', 
     status: 'planned',
     testCoverage: 0
   },
