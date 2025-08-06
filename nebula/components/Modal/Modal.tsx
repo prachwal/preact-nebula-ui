@@ -1,8 +1,8 @@
-import { JSX } from 'preact'
+import type { JSX } from 'preact'
 import { useRef, useEffect, useContext } from 'preact/hooks'
 import { createContext } from 'preact'
 import { cn } from '../../utils/cn'
-import { ModalProps, ModalHeaderProps, ModalBodyProps, ModalFooterProps, ModalSize, ModalCloseReason } from './Modal.types'
+import type { ModalProps, ModalHeaderProps, ModalBodyProps, ModalFooterProps, ModalSize, ModalCloseReason } from './Modal.types'
 import { Portal } from './Portal'
 import { useFocusTrap, useBodyScrollLock } from './focusUtils'
 

@@ -1,4 +1,4 @@
-import { CalendarProps } from './types'
+import type { CalendarProps } from './types'
 import { cn } from '../../utils/cn'
 
 export function Calendar({

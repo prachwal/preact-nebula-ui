@@ -1,7 +1,7 @@
 import { forwardRef } from 'preact/compat'
 import { useState, useMemo, useCallback } from 'preact/hooks'
 import { cn } from '../../utils/cn'
-import { PaginationProps, PaginationButtonProps } from './Pagination.types'
+import type { PaginationProps, PaginationButtonProps } from './Pagination.types'
 
 const paginationStyles = {
   container: {

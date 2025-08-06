@@ -1,5 +1,5 @@
-import { HTMLAttributes } from 'preact/compat'
-import { ComponentChildren } from 'preact'
+import type { HTMLAttributes } from 'preact/compat'
+import type { ComponentChildren } from 'preact'
 
 export type SliderSize = 'sm' | 'md' | 'lg'
 export type SliderOrientation = 'horizontal' | 'vertical'

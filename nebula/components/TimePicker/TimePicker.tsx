@@ -1,6 +1,6 @@
 import { forwardRef } from 'preact/compat'
 import { useState, useRef, useEffect } from 'preact/hooks'
-import { TimePickerProps, Time } from './types'
+import type { TimePickerProps, Time } from './types'
 import { cn } from '../../utils/cn'
 import { TimeWheel } from './TimeWheel'
 import { Portal } from '../Portal'

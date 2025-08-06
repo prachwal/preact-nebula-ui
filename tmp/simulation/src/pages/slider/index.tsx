@@ -1,1 +1,0 @@
-export { SliderPage } from './SliderPage'

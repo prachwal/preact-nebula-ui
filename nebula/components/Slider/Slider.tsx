@@ -1,6 +1,6 @@
 import { forwardRef } from 'preact/compat'
 import { useState, useRef, useCallback } from 'preact/hooks'
-import { SliderProps } from './types'
+import type { SliderProps } from './types'
 import { cn } from '../../utils/cn'
 
 const Slider = forwardRef<HTMLDivElement, SliderProps>(({
@@ -437,9 +437,9 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(({
         </div>
       )}
     </div>
-  )
-})
+  );
+});
 
-Slider.displayName = 'Slider'
+Slider.displayName = 'Slider';
 
-export { Slider }
+export { Slider };

@@ -1,7 +1,17 @@
 import { forwardRef } from 'preact/compat'
 import { useEffect, useRef, useCallback } from 'preact/hooks'
 import { cn } from '../../utils/cn'
-import { CheckboxProps } from './Checkbox.types'
+import type { CheckboxProps } from './Checkbox.types'
+
+// Debug flag - set to true to enable debugging
+const DEBUG_CHECKBOX = false
+
+// Debug utility
+const debug = (...args: any[]) => {
+  if (DEBUG_CHECKBOX) {
+    console.log('[CHECKBOX DEBUG]', ...args)
+  }
+}
 
 const checkboxStyles = {
   base: 'relative inline-flex items-center justify-center border-2 rounded transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 cursor-pointer disabled:cursor-not-allowed disabled:opacity-50',
@@ -122,11 +132,23 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     },
     ref
   ) => {
+    debug('🎯 Checkbox component initialized with props:', {
+      size,
+      variant,
+      indeterminate,
+      disabled,
+      checked,
+      id,
+      hasOnChange: !!props.onChange,
+      hasRef: !!ref
+    })
+
     const inputRef = useRef<HTMLInputElement>(null)
     const finalRef = (ref as any) || inputRef
 
     // Handle indeterminate state
     useEffect(() => {
+      debug('🔄 Setting indeterminate state:', { indeterminate, hasRef: !!finalRef.current })
       if (finalRef.current) {
         finalRef.current.indeterminate = indeterminate
       }
@@ -134,6 +156,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
 
     // Generate unique ID if not provided
     const checkboxId = id || `checkbox-${Math.random().toString(36).substr(2, 9)}`
+    debug('🆔 Checkbox ID generated:', checkboxId)
 
     // Determine checkbox state for styling
     const getCheckboxState = () => {
@@ -143,6 +166,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     }
 
     const checkboxState = getCheckboxState()
+    debug('🎨 Checkbox state determined:', { checkboxState, checked, indeterminate })
     
     // Build checkbox classes
     const checkboxClasses = cn(
@@ -156,10 +180,15 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
 
     // Handle keyboard navigation
     const handleKeyDown = useCallback((e: KeyboardEvent) => {
+      debug('⌨️ handleKeyDown triggered:', { key: e.key, disabled })
+      
       if (e.key === ' ') {
         e.preventDefault()
+        debug('⌨️ Space key pressed - triggering change')
+        
         // Manually trigger the onChange event if provided
         if (props.onChange && !disabled) {
+          debug('⌨️ Calling onChange manually')
           const syntheticEvent = {
             ...e,
             target: finalRef.current,
@@ -169,6 +198,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         }
         // Also toggle the native checkbox
         if (finalRef.current && !disabled) {
+          debug('⌨️ Clicking native checkbox')
           finalRef.current.click()
         }
       }
@@ -225,14 +255,48 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           disabled={disabled}
           className="sr-only"
           onKeyDown={handleKeyDown}
+          onChange={(e) => {
+            debug('🔘 Native input onChange triggered:', {
+              checked: (e.target as HTMLInputElement).checked,
+              disabled,
+              event: e
+            })
+            if (props.onChange) {
+              debug('🔘 Calling props.onChange')
+              props.onChange(e)
+            }
+          }}
+          onClick={(e) => {
+            debug('🔘 Native input onClick triggered:', {
+              checked: (e.target as HTMLInputElement).checked,
+              disabled,
+              event: e
+            })
+            if (props.onClick) {
+              debug('🔘 Calling props.onClick')
+              props.onClick(e)
+            }
+          }}
           aria-describedby={
             description || errorMessage 
               ? `${checkboxId}-description` 
               : undefined
           }
-          aria-invalid={error}
+          aria-invalid={error ? 'true' : 'false'}
         />
-        <div className={checkboxClasses}>
+        <div 
+          className={checkboxClasses}
+          onClick={(e) => {
+            debug('🔘 Visual checkbox div clicked:', {
+              disabled,
+              event: e
+            })
+            if (!disabled && finalRef.current) {
+              debug('🔘 Triggering native input click from visual div')
+              finalRef.current.click()
+            }
+          }}
+        >
           {renderIcon()}
         </div>
       </div>

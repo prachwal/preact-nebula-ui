@@ -1,4 +1,4 @@
-import { Ref } from 'preact/compat'
+import type { Ref } from 'preact/compat'
 
 export type DatePickerSize = 'sm' | 'md' | 'lg'
 

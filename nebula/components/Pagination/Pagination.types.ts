@@ -1,4 +1,4 @@
-import { HTMLAttributes } from 'preact/compat'
+import type { HTMLAttributes } from 'preact/compat'
 
 export type PaginationSize = 'sm' | 'md' | 'lg'
 

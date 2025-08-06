@@ -1,6 +1,6 @@
 import { forwardRef } from 'preact/compat'
 import { useState, useCallback } from 'preact/hooks'
-import { RatingProps } from './types'
+import type { RatingProps } from './types'
 import { cn } from '../../utils/cn'
 
 const Rating = forwardRef<HTMLDivElement, RatingProps>(({

@@ -45,6 +45,8 @@ import { RatingPage } from './pages/rating/RatingPage'
 import { DatePickerPage } from './pages/datepicker/DatePickerPage'
 import { TimePickerPage } from './pages/timepicker/TimePickerPage'
 import { AutocompletePage } from './pages/autocomplete'
+import { TreeViewPage } from './pages/treeview'
+import { TransferPage } from './pages/transfer'
 import { FullCoveragePage } from './pages/home' // Import FullCoveragePage
 
 function ThemeToggle() {
@@ -279,6 +281,8 @@ function AppContent() {
         <DatePickerPage path="/datepicker" />
         <TimePickerPage path="/timepicker" />
         <AutocompletePage path="/autocomplete" />
+        <TreeViewPage path="/treeview" />
+        <TransferPage path="/transfer" />
         <LegacyShowcase path="/legacy" />
       </Router>
     </Layout>

@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'preact/hooks'
 import { cn } from '../../utils/cn'
-import { RadioGroupProps } from './Radio.types'
+import type { RadioGroupProps } from './Radio.types'
 import { RadioContext } from './Radio'
 
 const errorStyles = {

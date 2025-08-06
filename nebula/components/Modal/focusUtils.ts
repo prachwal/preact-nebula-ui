@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'preact/hooks'
-import { RefObject } from 'preact'
+import type { RefObject } from 'preact'
 
 interface FocusTrapOptions {
   /**

@@ -1,7 +1,0 @@
-export { BasicUsageSection } from './BasicUsageSection'
-export { SizesSection } from './SizesSection'
-export { RangeSection } from './RangeSection'
-export { MarksSection } from './MarksSection'
-export { OrientationSection } from './OrientationSection'
-export { AdvancedSection } from './AdvancedSection'
-export { PropsDocumentation } from './PropsDocumentation'

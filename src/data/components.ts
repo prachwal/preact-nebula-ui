@@ -328,49 +328,51 @@ export const components: Component[] = [
     testCoverage: 93
   },
 
-  // Milestone 8: Data Display & Navigation (Planned)
+  // Milestone 8: Data Display & Navigation (In Progress)
   { 
-    name: 'Tree', 
-    path: '/tree', 
+    name: 'TreeView', 
+    path: '/treeview', 
     description: 'Hierarchical data display with expand/collapse, selection, and search', 
     milestone: 'Milestone 8: Data Display & Navigation', 
     category: 'Data Display', 
-    status: 'planned',
-    testCoverage: 0
+    status: 'completed',
+    version: '0.8.0',
+    testCoverage: 95
   },
   { 
-    name: 'List', 
-    path: '/list', 
-    description: 'Virtual scrolling list with item templates, selection, and infinite loading', 
+    name: 'Transfer', 
+    path: '/transfer', 
+    description: 'Dual-list component for selecting and moving items between lists', 
     milestone: 'Milestone 8: Data Display & Navigation', 
     category: 'Data Display', 
-    status: 'planned',
-    testCoverage: 0
-  },
-  { 
-    name: 'Menu', 
-    path: '/menu', 
-    description: 'Dropdown and context menu with keyboard navigation and sub-menus', 
-    milestone: 'Milestone 8: Data Display & Navigation', 
-    category: 'Navigation', 
-    status: 'planned',
-    testCoverage: 0
+    status: 'completed',
+    version: '0.8.0',
+    testCoverage: 95
   },
   { 
     name: 'Steps', 
     path: '/steps', 
-    description: 'Process visualization with validation states and step navigation', 
+    description: 'Step-by-step navigation component for multi-step processes', 
     milestone: 'Milestone 8: Data Display & Navigation', 
     category: 'Navigation', 
     status: 'planned',
     testCoverage: 0
   },
   { 
-    name: 'Statistic', 
-    path: '/statistic', 
-    description: 'Statistical data display with formatting, trends, and visual indicators', 
+    name: 'Tags', 
+    path: '/tags', 
+    description: 'Dynamic tag management with creation, editing, and deletion', 
     milestone: 'Milestone 8: Data Display & Navigation', 
     category: 'Data Display', 
+    status: 'planned',
+    testCoverage: 0
+  },
+  { 
+    name: 'Collapse', 
+    path: '/collapse', 
+    description: 'Collapsible content areas with smooth animations', 
+    milestone: 'Milestone 8: Data Display & Navigation', 
+    category: 'Layout', 
     status: 'planned',
     testCoverage: 0
   },

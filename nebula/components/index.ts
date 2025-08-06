@@ -145,3 +145,22 @@ export type {
 // Supporting components
 export { Portal } from './Portal'
 export type { PortalProps } from './Portal'
+
+// Data Display & Navigation Components
+export { TreeView, TreeNode } from './TreeView'
+export type { 
+  TreeViewProps, 
+  TreeNodeProps, 
+  TreeNode as TreeNodeType,
+  UseTreeViewOptions,
+  UseTreeViewReturn
+} from './TreeView'
+
+export { Transfer, TransferList } from './Transfer'
+export type { 
+  TransferProps, 
+  TransferListProps, 
+  TransferItem,
+  UseTransferOptions,
+  UseTransferReturn
+} from './Transfer'

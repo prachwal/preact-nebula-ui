@@ -1,4 +1,4 @@
-import { ComponentProps, ComponentChildren } from 'preact'
+import type { ComponentProps, ComponentChildren } from 'preact'
 
 export interface CheckboxProps extends Omit<ComponentProps<'input'>, 'size' | 'type'> {
   /**

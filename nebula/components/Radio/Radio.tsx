@@ -2,7 +2,7 @@ import { createContext } from 'preact'
 import { useContext, forwardRef } from 'preact/compat'
 import { useRef, useCallback } from 'preact/hooks'
 import { cn } from '../../utils/cn'
-import { RadioProps, RadioGroupContextType } from './Radio.types'
+import type { RadioProps, RadioGroupContextType } from './Radio.types'
 
 const radioStyles = {
   base: 'relative inline-flex items-center justify-center border-2 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 cursor-pointer disabled:cursor-not-allowed disabled:opacity-50',

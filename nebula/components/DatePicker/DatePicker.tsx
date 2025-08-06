@@ -1,6 +1,6 @@
 import { forwardRef } from 'preact/compat'
 import { useState, useRef, useEffect } from 'preact/hooks'
-import { DatePickerProps } from './types'
+import type { DatePickerProps } from './types'
 import { cn } from '../../utils/cn'
 import { Calendar } from './Calendar'
 import { Portal } from '../Portal'

@@ -3,7 +3,7 @@ import { DatePicker } from '../../../../nebula'
 
 export function BasicUsageSection() {
   const [controlledDate, setControlledDate] = useState<Date | null>(new Date())
-  const [uncontrolledDate, setUncontrolledDate] = useState<Date | null>(null)
+  // ...existing code...
 
   return (
     <div className="space-y-8">
@@ -35,7 +35,7 @@ export function BasicUsageSection() {
             </label>
             <DatePicker 
               defaultValue={new Date()}
-              onChange={setUncontrolledDate}
+              // ...existing code...
               placeholder="Pick a date..."
             />
           </div>

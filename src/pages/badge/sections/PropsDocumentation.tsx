@@ -1,4 +1,4 @@
-import { h } from 'preact'
+// ...existing code...
 
 export function PropsDocumentation() {
   return (

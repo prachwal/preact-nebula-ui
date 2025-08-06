@@ -1,4 +1,5 @@
-import { ComponentChildren, render } from 'preact'
+import type { ComponentChildren } from 'preact'
+import { render } from 'preact'
 import { useEffect, useRef } from 'preact/hooks'
 
 interface PortalProps {
