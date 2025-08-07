@@ -1,0 +1,54 @@
+# NPM Ignore - files to exclude from published package
+
+# Development files
+src/
+docs/
+scripts/
+tmp/
+coverage/
+.vscode/
+.github/
+
+# Test files
+**/*.test.*
+**/*.spec.*
+vitest.config.ts
+vitest.setup.ts
+test-results.*
+test-treeshaking.js
+
+# Build files
+node_modules/
+*.log
+*.lock
+.env*
+
+# Development configs
+vite.config.ts
+tsconfig*.json
+eslint.config.js
+prettier.config.js
+postcss.config.cjs
+tailwind.config.js
+
+# Git files
+.git*
+.gitignore
+
+# IDE files
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Debug files
+debug-*.html
+IMPLEMENTATION_TODO_LIST.md
+MILESTONE_COMPLETION_ANALYSIS.md
+TEST_FIXES_PLAN.md
+CHECKBOX_*.md
+
+# Only include: dist/, README.md, LICENSE, CHANGELOG.md, package.json
