@@ -1,7 +1,7 @@
 {
-  "name": "@prp/nebula-ui",
+  "name": "preact-nebula-ui",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "description": "Modern React component library built with Preact and Tailwind CSS",
   "keywords": [

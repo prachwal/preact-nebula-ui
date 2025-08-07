@@ -173,18 +173,18 @@ Since this is the initial release, there are no upgrade steps needed.
 ## Installation
 
 ```bash
-npm install @prp/nebula-ui
+npm install preact-nebula-ui
 # or
-yarn add @prp/nebula-ui
+yarn add preact-nebula-ui
 # or
-pnpm add @prp/nebula-ui
+pnpm add preact-nebula-ui
 ```
 
 ## Quick Start
 
 ```tsx
-import { Button, Input, Card } from '@prp/nebula-ui';
-import '@prp/nebula-ui/styles';
+import { Button, Input, Card } from 'preact-nebula-ui';
+import 'preact-nebula-ui/styles';
 
 function App() {
   return (

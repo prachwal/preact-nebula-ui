@@ -73,7 +73,7 @@ export function BasicUsageSection() {
             <div className="p-4 bg-gray-900 dark:bg-gray-800 rounded-lg overflow-x-auto">
               <pre className="text-sm text-gray-100">
                 <code>{`// Basic pagination
-import { Pagination } from '@prp/nebula-ui'
+import { Pagination } from 'preact-nebula-ui'
 
 function DataList() {
   const [currentPage, setCurrentPage] = useState(1)

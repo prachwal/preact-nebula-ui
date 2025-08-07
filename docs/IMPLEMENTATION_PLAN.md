@@ -253,7 +253,7 @@
 ## 🎯 Cele Końcowe
 
 1. **Kompletna biblioteka komponentów** - Nebula UI z 25+ komponentami
-2. **Opublikowana na NPM** - `@prp/nebula-ui` (gotowe)
+2. **Opublikowana na NPM** - `preact-nebula-ui` (gotowe)
 3. **Kompletne testy** - 100% coverage dla wszystkich komponentów
 4. **TypeScript support** - Pełne typy dla IntelliSense
 5. **Tree-shaking** - Optymalizowane importy
@@ -341,7 +341,7 @@ nebula/
 - **Build**: Vite ^7.0.4 + TypeScript ~5.8.3
 - **Testing**: Vitest ^2.1.9 + Testing Library
 - **TypeScript**: Pełne wsparcie typów + JSX automatic
-- **NPM**: Publikacja jako scoped package `@prp/nebula-ui`
+- **NPM**: Publikacja jako package `preact-nebula-ui`
 - **Bundling**: ESM + CJS, tree-shaking support
 - **Development**: Hot reload, fast builds
 - **CI/CD**: GitHub Actions (planned)

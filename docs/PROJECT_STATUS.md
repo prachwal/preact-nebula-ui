@@ -57,7 +57,7 @@
 - Build biblioteki działa (dist/ generowany)
 - TypeScript definitions (.d.ts) generowane
 - Tree-shaking wspierany (ES modules + CommonJS)
-- **Gotowy do publikacji jako @prp/nebula-ui**
+- **Gotowy do publikacji jako preact-nebula-ui**
 
 ### 🖥️ Windows PowerShell Scripts
 

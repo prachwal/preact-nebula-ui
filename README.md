@@ -2,7 +2,7 @@
 
 Modern, accessible, and production-ready component library built with **Preact** and **Tailwind CSS**.
 
-[![NPM Version](https://img.shields.io/npm/v/@prp/nebula-ui)](https://www.npmjs.com/package/@prp/nebula-ui)
+[![NPM Version](https://img.shields.io/npm/v/preact-nebula-ui)](https://www.npmjs.com/package/preact-nebula-ui)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8+-blue)](https://www.typescriptlang.org/)
 [![Preact](https://img.shields.io/badge/Preact-10.26+-purple)](https://preactjs.com/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4+-cyan)](https://tailwindcss.com/)
@@ -25,7 +25,7 @@ Modern, accessible, and production-ready component library built with **Preact**
 ## 📦 Installation
 
 ```bash
-npm install @prp/nebula-ui
+npm install preact-nebula-ui
 ```
 
 Make sure you have the required peer dependencies:
@@ -41,19 +41,19 @@ npm install preact
 Add the Nebula UI styles to your main CSS file:
 
 ```css
-@import '@prp/nebula-ui/styles';
+@import 'preact-nebula-ui/styles';
 ```
 
 Or import in your JavaScript/TypeScript entry file:
 
 ```javascript
-import '@prp/nebula-ui/styles'
+import 'preact-nebula-ui/styles'
 ```
 
 ### 2. Use Components
 
 ```tsx
-import { Button } from '@prp/nebula-ui'
+import { Button } from 'preact-nebula-ui'
 
 function App() {
   return (
@@ -407,7 +407,7 @@ MIT © [PRachwal](https://github.com/PRachwal)
 
 ## 🔗 Links
 
-- [NPM Package](https://www.npmjs.com/package/@prp/nebula-ui)
+- [NPM Package](https://www.npmjs.com/package/preact-nebula-ui)
 - [GitHub Repository](https://github.com/PRachwal/preact-nebula-ui)
 - [Issues](https://github.com/PRachwal/preact-nebula-ui/issues)
 

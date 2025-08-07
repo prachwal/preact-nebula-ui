@@ -163,13 +163,13 @@ All components follow a unified size system:
 
 ### 📦 Installation
 ```bash
-npm install @prp/nebula-ui
+npm install preact-nebula-ui
 ```
 
 ### 🎯 Quick Start
 ```tsx
-import { Button, Input, Card } from '@prp/nebula-ui'
-import '@prp/nebula-ui/styles'
+import { Button, Input, Card } from 'preact-nebula-ui'
+import 'preact-nebula-ui/styles'
 
 function App() {
   return (
@@ -229,7 +229,7 @@ docs/
 - [� Component Comparison](COMPONENT_COMPARISON.md) 
 - [�🚀 Implementation Plan](IMPLEMENTATION_PLAN.md)
 - [🧪 Latest Tests](../src/data/testResults.ts)
-- [📦 NPM Package](https://www.npmjs.com/package/@prp/nebula-ui)
+- [📦 NPM Package](https://www.npmjs.com/package/preact-nebula-ui)
 - [🐛 Issues](https://github.com/PRachwal/preact-nebula-ui/issues)
 
 ---

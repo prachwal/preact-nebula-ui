@@ -1,6 +1,6 @@
 import type { ComponentProps, ComponentChildren } from 'preact'
 
-export type BadgeVariant = 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'error'
+export type BadgeVariant = 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info'
 export type BadgeSize = 'sm' | 'md' | 'lg'
 export type BadgeShape = 'rounded' | 'pill' | 'square'
 

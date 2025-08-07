@@ -30,7 +30,7 @@ const getActiveAnchor = (
   elements: { [key: string]: HTMLElement },
   scrollContainer: HTMLElement | Window,
   offsetTop = 0,
-  bounds = 5
+  _bounds = 5
 ): string => {
   let scrollTop = 0
   

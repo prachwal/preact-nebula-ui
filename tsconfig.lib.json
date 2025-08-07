@@ -34,7 +34,8 @@
     }
   },
   "include": [
-    "nebula/**/*"
+    "nebula/**/*",
+    "nebula/vite-env.d.ts"
   ],
   "exclude": [
     "node_modules",

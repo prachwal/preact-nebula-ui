@@ -10,23 +10,23 @@ This guide explains how to import Nebula UI components efficiently for optimal b
 
 ```tsx
 // ✅ Best Practice - Import only what you need
-import { Button } from '@prp/nebula-ui';
-import { Input } from '@prp/nebula-ui';
-import { Card } from '@prp/nebula-ui';
+import { Button } from 'preact-nebula-ui';
+import { Input } from 'preact-nebula-ui';
+import { Card } from 'preact-nebula-ui';
 ```
 
 ### Multiple Component Imports
 
 ```tsx
 // ✅ Good - Multiple components from single import
-import { Button, Input, Card, Modal } from '@prp/nebula-ui';
+import { Button, Input, Card, Modal } from 'preact-nebula-ui';
 ```
 
 ### Barrel Exports (Use with caution)
 
 ```tsx
 // ⚠️ Caution - Imports everything, may increase bundle size
-import * as NebulaUI from '@prp/nebula-ui';
+import * as NebulaUI from 'preact-nebula-ui';
 
 // Better approach - destructure what you need
 const { Button, Input } = NebulaUI;
@@ -55,10 +55,10 @@ Always import styles separately to enable CSS tree-shaking:
 
 ```tsx
 // ✅ Import styles once in your main file
-import '@prp/nebula-ui/styles';
+import 'preact-nebula-ui/styles';
 
 // Or import in CSS
-@import '@prp/nebula-ui/styles';
+@import 'preact-nebula-ui/styles';
 ```
 
 ## 🛠️ TypeScript Integration
@@ -66,8 +66,8 @@ import '@prp/nebula-ui/styles';
 Nebula UI provides complete TypeScript definitions:
 
 ```tsx
-import type { ButtonProps, InputProps } from '@prp/nebula-ui';
-import { Button, Input } from '@prp/nebula-ui';
+import type { ButtonProps, InputProps } from 'preact-nebula-ui';
+import { Button, Input } from 'preact-nebula-ui';
 
 interface MyComponentProps {
   buttonProps: ButtonProps;
@@ -88,8 +88,8 @@ const MyComponent = ({ buttonProps, inputProps }: MyComponentProps) => (
 
 ```tsx
 // App.tsx
-import { ConfigProvider } from '@prp/nebula-ui';
-import '@prp/nebula-ui/styles';
+import { ConfigProvider } from 'preact-nebula-ui';
+import 'preact-nebula-ui/styles';
 
 const App = () => (
   <ConfigProvider theme="dark">
@@ -105,11 +105,11 @@ const App = () => (
 import { lazy } from 'preact/compat';
 
 const Table = lazy(() => 
-  import('@prp/nebula-ui').then(module => ({ default: module.Table }))
+import('preact-nebula-ui').then(module => ({ default: module.Table }))
 );
 
 const DatePicker = lazy(() => 
-  import('@prp/nebula-ui').then(module => ({ default: module.DatePicker }))
+import('preact-nebula-ui').then(module => ({ default: module.DatePicker }))
 );
 ```
 
@@ -118,7 +118,7 @@ const DatePicker = lazy(() =>
 ```tsx
 // For conditional component loading
 const loadComponent = async (componentName: string) => {
-  const module = await import('@prp/nebula-ui');
+const module = await import('preact-nebula-ui');
   return module[componentName];
 };
 
@@ -131,7 +131,7 @@ const Button = await loadComponent('Button');
 ### 1. Import Only What You Use
 ```tsx
 // ❌ Don't import unused components
-import { Button, Input, Table, DatePicker } from '@prp/nebula-ui';
+import { Button, Input, Table, DatePicker } from 'preact-nebula-ui';
 
 // Only use Button and Input
 const MyForm = () => (
@@ -144,7 +144,7 @@ const MyForm = () => (
 
 ```tsx
 // ✅ Import only what you need
-import { Button, Input } from '@prp/nebula-ui';
+import { Button, Input } from 'preact-nebula-ui';
 
 const MyForm = () => (
   <form>
@@ -210,7 +210,7 @@ import {
   Progress,
   Avatar,
   Badge 
-} from '@prp/nebula-ui';
+} from 'preact-nebula-ui';
 // Bundle size: ~200KB
 ```
 
@@ -225,7 +225,7 @@ import {
   Switch,
   Button,
   Alert
-} from '@prp/nebula-ui';
+} from 'preact-nebula-ui';
 // Bundle size: ~180KB
 ```
 
@@ -239,7 +239,7 @@ import {
   Carousel,
   Modal,
   Toast
-} from '@prp/nebula-ui';
+} from 'preact-nebula-ui';
 // Bundle size: ~220KB
 ```
 
@@ -252,7 +252,7 @@ import {
 4. Consider lazy loading for large components
 
 ### Missing Styles
-1. Ensure styles are imported: `import '@prp/nebula-ui/styles'`
+1. Ensure styles are imported: `import 'preact-nebula-ui/styles'`
 2. Check CSS import order
 3. Verify Tailwind CSS is configured correctly
 

@@ -49,7 +49,7 @@ npm pack --dry-run
 
 # Ask for confirmation
 Write-Host "`n🤔 Ready to publish to NPM?" -ForegroundColor Cyan
-Write-Host "This will publish @prp/nebula-ui@1.0.0 to the NPM registry." -ForegroundColor Cyan
+Write-Host "This will publish preact-nebula-ui@1.0.0 to the NPM registry." -ForegroundColor Cyan
 $confirmation = Read-Host "Type 'yes' to continue, or anything else to cancel"
 
 if ($confirmation.ToLower() -ne "yes") {
@@ -74,8 +74,8 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 Write-Host "`n🎉 SUCCESS! Nebula UI v1.0.0 has been published to NPM!" -ForegroundColor Green
-Write-Host "📦 Package URL: https://www.npmjs.com/package/@prp/nebula-ui" -ForegroundColor Cyan
-Write-Host "🔧 Install with: npm install @prp/nebula-ui" -ForegroundColor Cyan
+Write-Host "📦 Package URL: https://www.npmjs.com/package/preact-nebula-ui" -ForegroundColor Cyan
+Write-Host "🔧 Install with: npm install preact-nebula-ui" -ForegroundColor Cyan
 
 # Tag the release in git
 Write-Host "`n🏷️  Creating git tag..." -ForegroundColor Yellow
