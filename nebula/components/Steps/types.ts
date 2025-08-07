@@ -51,6 +51,7 @@ export interface StepProps {
   // Internal props (passed by Steps component)
   index?: number
   isLast?: boolean
+  totalSteps?: number
   direction?: StepDirection
   size?: 'default' | 'small'
   progressDot?: boolean | ((index: number, status: StepStatus) => ComponentChild)

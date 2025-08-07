@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from 'preact/hooks'
-import { CollapseState, UseCollapseAnimationReturn } from './types'
+import type { CollapseState, UseCollapseAnimationReturn } from './types'
 
 export const useCollapseAnimation = (
   accordion: boolean = false,

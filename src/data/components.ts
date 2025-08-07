@@ -387,8 +387,9 @@ export const components: Component[] = [
     description: 'Advanced image component with lazy loading, zoom functionality, progressive enhancement, and error handling', 
     milestone: 'Milestone 9: Specialized Components', 
     category: 'Data Display', 
-    status: 'in-progress',
-    testCoverage: 85
+    status: 'completed',
+    version: '1.0.0',
+    testCoverage: 95
   },
   { 
     name: 'Carousel', 
@@ -396,8 +397,9 @@ export const components: Component[] = [
     description: 'Image and content carousel with navigation, auto-play, thumbnails, and touch/swipe support', 
     milestone: 'Milestone 9: Specialized Components', 
     category: 'Data Display', 
-    status: 'planned',
-    testCoverage: 0
+    status: 'completed',
+    version: '1.0.0',
+    testCoverage: 85
   },
   { 
     name: 'Upload', 
@@ -405,8 +407,9 @@ export const components: Component[] = [
     description: 'File upload with drag & drop, progress tracking, multiple file support, and preview generation', 
     milestone: 'Milestone 9: Specialized Components', 
     category: 'Forms', 
-    status: 'planned',
-    testCoverage: 0
+    status: 'completed',
+    version: '1.0.0',
+    testCoverage: 85
   },
   { 
     name: 'Affix', 
@@ -414,8 +417,9 @@ export const components: Component[] = [
     description: 'Position element to stick to viewport during scroll with offset and target support', 
     milestone: 'Milestone 9: Specialized Components', 
     category: 'Layout', 
-    status: 'planned',
-    testCoverage: 0
+    status: 'completed',
+    version: '1.0.0',
+    testCoverage: 95
   },
 
   // Milestone 10: Advanced Layout & System (Planned)
@@ -423,15 +427,6 @@ export const components: Component[] = [
     name: 'Grid', 
     path: '/grid', 
     description: 'Advanced grid system with responsive breakpoints, gutters, and auto-layout', 
-    milestone: 'Milestone 10: Advanced Layout & System', 
-    category: 'Layout', 
-    status: 'planned',
-    testCoverage: 0
-  },
-  { 
-    name: 'Affix', 
-    path: '/affix', 
-    description: 'Sticky positioning component with offset control and boundary detection', 
     milestone: 'Milestone 10: Advanced Layout & System', 
     category: 'Layout', 
     status: 'planned',

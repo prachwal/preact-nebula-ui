@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef, useEffect } from 'preact/hooks'
-import { ImageState, ZoomConfig, UseImageReturn } from './types'
+import type { ImageState, ZoomConfig, UseImageReturn } from './types'
 
 export const useIntersectionObserver = (
   callback: (inView: boolean) => void,

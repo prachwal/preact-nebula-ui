@@ -205,3 +205,31 @@ export type {
   ImageState,
   UseImageReturn
 } from './Image'
+
+export { Carousel, CarouselSlide, useCarousel } from './Carousel'
+export type {
+  CarouselProps,
+  CarouselSlideProps,
+  UseCarouselOptions,
+  CarouselState,
+  CarouselActions
+} from './Carousel'
+
+// Upload Component (Milestone 9)
+export { Upload, UploadFileList, useUpload } from './Upload'
+export type {
+  UploadProps,
+  UploadFileProps,
+  UseUploadOptions,
+  UploadState,
+  UploadFileData
+} from './Upload'
+
+// Affix Component (Milestone 9)
+export { Affix, useAffix } from './Affix'
+export type {
+  AffixProps,
+  UseAffixOptions,
+  AffixState,
+  AffixActions
+} from './Affix'

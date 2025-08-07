@@ -1,6 +1,7 @@
 import { useState } from 'preact/hooks'
 import { Steps } from '../../../../nebula/components/Steps'
 import type { StepItem } from '../../../../nebula/components/Steps'
+import { AllGreenSection } from './AllGreenSection'
 
 export function StatusSection() {
   const [processStep, setProcessStep] = useState(1)
@@ -37,6 +38,7 @@ export function StatusSection() {
       </div>
 
       <div className="space-y-8">
+        <AllGreenSection />
         <div>
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Processing Status</h3>
           <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">

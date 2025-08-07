@@ -1,0 +1,7 @@
+export { BasicUsageSection } from './BasicUsageSection'
+export { SizesSection } from './SizesSection'
+export { AutoplaySection } from './AutoplaySection'
+export { InfiniteSection } from './InfiniteSection'
+export { NavigationSection } from './NavigationSection'
+export { MultipleSlideSection } from './MultipleSlideSection'
+export { PropsDocumentationSection } from './PropsDocumentationSection'

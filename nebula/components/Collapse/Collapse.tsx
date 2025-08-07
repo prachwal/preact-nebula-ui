@@ -1,7 +1,8 @@
 import { forwardRef, cloneElement } from 'preact/compat'
-import { VNode, isValidElement } from 'preact'
+import type { VNode } from 'preact'
+import { isValidElement } from 'preact'
 import { cn } from '../../utils/cn'
-import { CollapseProps } from './types'
+import type { CollapseProps } from './types'
 import { CollapsePanel } from './CollapsePanel'
 import { useCollapseAnimation } from './useCollapseAnimation'
 

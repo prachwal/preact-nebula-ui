@@ -3,7 +3,6 @@ import { Tags, Tag } from '../../nebula/components/Tags'
 
 export function TagsExample() {
   const [basicTags, setBasicTags] = useState(['Design', 'Development'])
-  const [colorTags, setColorTags] = useState(['Primary', 'Success', 'Warning'])
   const [editableTags, setEditableTags] = useState(['Edit me', 'Double click'])
 
   return (

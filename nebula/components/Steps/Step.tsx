@@ -1,7 +1,8 @@
+import { forwardRef } from 'preact/compat'
 import { cn } from '../../utils/cn'
 import type { StepProps } from './types'
 
-export function Step({
+export const Step = forwardRef<HTMLDivElement, StepProps>(({
   title,
   description,
   icon,
@@ -9,6 +10,7 @@ export function Step({
   disabled = false,
   index = 0,
   isLast = false,
+  totalSteps = 4,
   direction = 'horizontal',
   size = 'default',
   progressDot = false,
@@ -16,7 +18,7 @@ export function Step({
   className,
   style,
   ...props
-}: StepProps) {
+}, ref) => {
   
   const handleClick = () => {
     if (!disabled && onClick) {
@@ -26,8 +28,8 @@ export function Step({
   
   const stepClasses = cn(
     'step',
-    'relative flex items-start',
-    direction === 'horizontal' ? 'flex-1' : 'flex-col',
+    'relative flex',
+    direction === 'horizontal' ? 'flex-1 flex-col items-center' : 'flex-row items-start',
     {
       'cursor-pointer': !disabled && onClick,
       'opacity-50': disabled,
@@ -40,28 +42,21 @@ export function Step({
     className
   )
   
-  const iconContainerClasses = cn(
-    'step-icon-container',
-    'flex items-center justify-center rounded-full border-2 bg-white',
-    size === 'small' ? 'w-6 h-6 text-xs' : 'w-8 h-8 text-sm',
-    {
-      'border-gray-300 text-gray-400': status === 'wait',
-      'border-blue-500 bg-blue-500 text-white': status === 'process',
-      'border-green-500 bg-green-500 text-white': status === 'finish',
-      'border-red-500 bg-red-500 text-white': status === 'error',
-    }
-  )
-  
-  const connectorClasses = cn(
-    'step-connector',
-    direction === 'horizontal' ? 'absolute left-1/2 top-4 h-0.5 w-full' : 'absolute left-4 top-8 w-0.5 h-full',
-    {
-      'bg-gray-300': status === 'wait',
-      'bg-blue-500': status === 'process',
-      'bg-green-500': status === 'finish',
-      'bg-red-500': status === 'error',
-    }
-  )
+        const iconContainerClasses = cn(
+            'step-icon-container',
+            'flex items-center justify-center rounded-full border-2 relative z-10 shrink-0',
+            size === 'small' ? 'w-7 h-7 text-xs' : 'w-9 h-9 text-sm font-medium',
+            {
+                // WAIT: białe tło, ciemny szary tekst, szara ramka
+                'bg-white border-gray-300 text-gray-700 dark:bg-gray-900 dark:border-gray-600 dark:text-gray-400': status === 'wait',
+                // PROCESS: niebieska ramka, białe tło, niebieski tekst
+                'bg-white border-blue-500 text-blue-700 dark:bg-blue-500 dark:text-white': status === 'process',
+                // FINISH: zielona ramka, białe tło, zielony tekst
+                'bg-white border-green-500 text-green-700 dark:bg-green-500 dark:text-white': status === 'finish',
+                // ERROR: czerwona ramka, białe tło, czerwony tekst
+                'bg-white border-red-500 text-red-600 dark:bg-red-500 dark:text-white': status === 'error',
+            }
+        )
   
   const renderIcon = () => {
     if (typeof progressDot === 'function') {
@@ -107,6 +102,7 @@ export function Step({
   
   return (
     <div
+      ref={ref}
       className={stepClasses}
       onClick={handleClick}
       role="button"
@@ -114,29 +110,26 @@ export function Step({
       aria-current={status === 'process' ? 'step' : undefined}
       {...props}
     >
-      {/* Connector line */}
-      {!isLast && (
-        <div className={connectorClasses} aria-hidden="true" />
-      )}
-      
       {/* Icon container */}
-      <div className={iconContainerClasses}>
-        {renderIcon()}
+      <div className="relative">
+        <div className={iconContainerClasses}>
+          {renderIcon()}
+        </div>
       </div>
       
       {/* Content */}
       <div className={cn(
-        'step-content ml-3',
-        direction === 'horizontal' ? 'text-center' : 'text-left'
+        'step-content',
+        direction === 'horizontal' ? 'mt-4 text-center max-w-32' : 'ml-3 text-left'
       )}>
         <div className={cn(
-          'step-title font-medium',
+          'step-title font-medium leading-tight',
           size === 'small' ? 'text-sm' : 'text-base',
           {
-            'text-gray-500': status === 'wait',
-            'text-blue-600': status === 'process',
-            'text-green-600': status === 'finish',
-            'text-red-600': status === 'error',
+            'text-gray-600 dark:text-gray-400': status === 'wait',
+            'text-blue-700 dark:text-blue-400': status === 'process',
+            'text-green-700 dark:text-green-400': status === 'finish',
+            'text-red-700 dark:text-red-400': status === 'error',
           }
         )}>
           {title}
@@ -144,7 +137,7 @@ export function Step({
         
         {description && (
           <div className={cn(
-            'step-description text-gray-600 dark:text-gray-400',
+            'step-description text-gray-600 dark:text-gray-400 leading-tight',
             size === 'small' ? 'text-xs mt-1' : 'text-sm mt-2'
           )}>
             {description}
@@ -153,4 +146,6 @@ export function Step({
       </div>
     </div>
   )
-}
+})
+
+Step.displayName = 'Step'

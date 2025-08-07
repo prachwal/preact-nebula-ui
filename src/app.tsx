@@ -50,6 +50,10 @@ import { TransferPage } from './pages/transfer'
 import { StepsPage } from './pages/steps'
 import { TagsPage } from './pages/tags'
 import { CollapsePage } from './pages/collapse'
+import { ImagePage } from './pages/image'
+import { CarouselPage } from './pages/carousel'
+import { UploadPage } from './pages/UploadPage'
+import { AffixPage } from './pages/affix'
 import { FullCoveragePage } from './pages/home' // Import FullCoveragePage
 
 function ThemeToggle() {
@@ -289,6 +293,10 @@ function AppContent() {
         <StepsPage path="/steps" />
         <TagsPage path="/tags" />
         <CollapsePage path="/collapse" />
+        <ImagePage path="/image" />
+        <CarouselPage path="/carousel" />
+        <UploadPage path="/upload" />
+        <AffixPage path="/affix" />
         <LegacyShowcase path="/legacy" />
       </Router>
     </Layout>

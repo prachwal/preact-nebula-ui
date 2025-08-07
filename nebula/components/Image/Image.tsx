@@ -1,6 +1,6 @@
 import { forwardRef } from 'preact/compat'
 import { cn } from '../../utils/cn'
-import { ImageProps, ZoomConfig } from './types'
+import type { ImageProps, ZoomConfig } from './types'
 import { useImage } from './useImage'
 
 export const Image = forwardRef<HTMLDivElement, ImageProps>(
@@ -97,7 +97,7 @@ export const Image = forwardRef<HTMLDivElement, ImageProps>(
           className
         )}
         style={{
-          ...style,
+          ...(typeof style === 'object' && style !== null ? style : {}),
           ...(isZoomEnabled ? {
             '--image-zoom': state.zoom.toString(),
             '--image-translate-x': `${state.position.x}px`,

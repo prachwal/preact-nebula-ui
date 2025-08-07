@@ -310,12 +310,33 @@ nebula/components/[ComponentName]/
    }
    ```
 
-2. **Add route to app** (`src/app.tsx`):
+2. **Create page index exports** (`src/pages/[component-name]/index.ts`):
+   ```typescript
+   export { [ComponentName]Page } from './[ComponentName]Page'
+   ```
+
+3. **Add import to app** (`src/app.tsx`):
    ```typescript
    import { [ComponentName]Page } from './pages/[component-name]'
+   ```
 
-   // In router:
+4. **Add route to app** (`src/app.tsx`):
+   ```typescript
+   // In the Router component, add the route:
    <[ComponentName]Page path="/[component-name]" />
+   ```
+
+### Step 5: Integration Checklist
+
+Before considering the component complete, ensure:
+
+- [ ] **Component exports**: Added to `nebula/components/index.ts`
+- [ ] **Page exports**: Created `src/pages/[component-name]/index.ts`
+- [ ] **Data entry**: Updated `src/data/components.ts` with correct status
+- [ ] **Import added**: Added import statement in `src/app.tsx`
+- [ ] **Route configured**: Added route in Router component in `src/app.tsx`
+- [ ] **Testing**: Component and page work correctly
+- [ ] **Navigation**: Component appears in main navigation/component list
    ```
 
 ## 🎨 Design Guidelines

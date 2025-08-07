@@ -1,4 +1,4 @@
-import { ComponentChild, ComponentProps } from 'preact'
+import type { ComponentChild, ComponentProps } from 'preact'
 
 export interface ImageProps extends Omit<ComponentProps<'div'>, 'onLoad' | 'onError' | 'onClick'> {
   // Core image props

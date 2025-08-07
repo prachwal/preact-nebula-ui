@@ -1,6 +1,6 @@
 import { forwardRef } from 'preact/compat'
 import { cn } from '../../utils/cn'
-import { CollapsePanelProps } from './types'
+import type { CollapsePanelProps } from './types'
 
 const ChevronRightIcon = () => (
   <svg

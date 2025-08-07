@@ -1,0 +1,33 @@
+/* Affix Component Custom Styles */
+
+/* Affixed element */
+.affix-fixed {
+  position: fixed;
+  z-index: 1000;
+}
+
+.affix-top {
+  top: 0;
+}
+
+.affix-bottom {
+  bottom: 0;
+}
+
+/* Placeholder */
+.affix-placeholder {
+  visibility: hidden;
+}
+
+.affix-placeholder-hidden {
+  display: none;
+}
+
+/* Dynamic positioning using data attributes */
+[data-affix-offset-top] {
+  top: attr(data-affix-offset-top px);
+}
+
+[data-affix-offset-bottom] {
+  bottom: attr(data-affix-offset-bottom px);
+}

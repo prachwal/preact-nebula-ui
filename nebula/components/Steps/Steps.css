@@ -1,0 +1,28 @@
+.steps-dynamic-line {
+  position: absolute;
+  top: 18px; /* Połowa wysokości ikony (36px / 2) - tak jak w React przykładzie */
+  height: 2px;
+  background-color: #d1d5db; /* gray-300 */
+  z-index: 0;
+  left: var(--line-left);
+  width: var(--line-width);
+}
+
+.steps-dynamic-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--line-progress, 0%);
+  background-color: var(--line-color, #10b981);
+  transition: width 0.5s ease;
+  transform-origin: left;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .steps-dynamic-line {
+    background-color: #4b5563; /* gray-600 */
+  }
+}

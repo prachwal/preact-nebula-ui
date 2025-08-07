@@ -1,0 +1,33 @@
+/* Carousel Dynamic Transforms */
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-slides {
+  display: flex;
+  height: 100%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.carousel-slide {
+  flex-shrink: 0;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dynamic width classes */
+.carousel-slide-full { width: 100%; }
+.carousel-slide-half { width: 50%; }
+.carousel-slide-third { width: 33.333%; }
+.carousel-slide-quarter { width: 25%; }
+.carousel-slide-fifth { width: 20%; }
+
+/* Transform utilities for slides */
+.carousel-transform-0 { transform: translateX(0%); }
+.carousel-transform-1 { transform: translateX(-100%); }
+.carousel-transform-2 { transform: translateX(-200%); }
+.carousel-transform-3 { transform: translateX(-300%); }
+.carousel-transform-4 { transform: translateX(-400%); }
+.carousel-transform-5 { transform: translateX(-500%); }

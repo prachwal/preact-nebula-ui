@@ -1,4 +1,4 @@
-import { ComponentChild } from 'preact'
+import type { ComponentChild } from 'preact'
 
 export interface CollapseProps {
   /** Active panel key(s) - controlled */
