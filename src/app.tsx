@@ -8,7 +8,7 @@ import { Button } from '@/components'
 import { Avatar, AvatarGroup } from '@/components'
 import { FormsShowcase } from './examples/FormsShowcase'
 import { LayoutShowcase } from './LayoutShowcase'
-import { useTheme } from './contexts/ThemeContext'
+import { useSimpleTheme } from '../nebula'
 import { Layout } from './components/layout/Layout'
 
 // Import pages
@@ -54,10 +54,15 @@ import { ImagePage } from './pages/image'
 import { CarouselPage } from './pages/carousel'
 import { UploadPage } from './pages/UploadPage'
 import { AffixPage } from './pages/affix'
+import { ConfigProviderPage } from './pages/config-provider'
+import { EmptyPage } from './pages/empty'
+import { BackTopPage } from './pages/backtop'
+import { AnchorPage } from './pages/anchor'
+import { GridPage } from './pages/grid'
 import { FullCoveragePage } from './pages/home' // Import FullCoveragePage
 
 function ThemeToggle() {
-  const { theme, toggleTheme } = useTheme()
+  const { theme, toggleTheme } = useSimpleTheme()
   
   return (
     <button
@@ -297,6 +302,11 @@ function AppContent() {
         <CarouselPage path="/carousel" />
         <UploadPage path="/upload" />
         <AffixPage path="/affix" />
+        <ConfigProviderPage path="/config-provider" />
+        <EmptyPage path="/empty" />
+        <BackTopPage path="/backtop" />
+        <AnchorPage path="/anchor" />
+        <GridPage path="/grid" />
         <LegacyShowcase path="/legacy" />
       </Router>
     </Layout>

@@ -1,0 +1,9 @@
+/* Grid component styles */
+
+.grid-auto-fit {
+  grid-template-columns: var(--grid-template-columns);
+}
+
+.grid-auto-fill {
+  grid-template-columns: var(--grid-template-columns);
+}

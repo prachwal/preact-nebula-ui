@@ -5,7 +5,7 @@ import { cn } from '../../utils/cn'
 import { useUpload } from './useUpload'
 import { UploadFileList } from './UploadFileList'
 import type { UploadProps } from './Upload.types'
-import './Upload.css'
+// import './Upload.css'
 
 const Upload = forwardRef<HTMLDivElement, UploadProps>(({
   size = 'md',

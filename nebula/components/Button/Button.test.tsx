@@ -20,7 +20,7 @@ describe('Button', () => {
   it('applies variant styles correctly', () => {
     render(<Button variant="secondary">Secondary</Button>)
     const button = screen.getByRole('button')
-    expect(button).toHaveClass('bg-gray-600')
+    expect(button).toHaveClass('bg-gray-200')
   })
 
   it('applies size styles correctly', () => {

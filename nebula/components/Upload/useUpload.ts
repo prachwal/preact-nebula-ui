@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef, useEffect } from 'preact/hooks'
+import { useState, useCallback, useRef } from 'preact/hooks'
 import type { UseUploadOptions, UploadState, UploadActions, UploadFileData } from './Upload.types'
 
 export function useUpload(options: UseUploadOptions = {}): UploadState & UploadActions & { setIsDragging: (dragging: boolean) => void } {

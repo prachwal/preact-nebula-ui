@@ -1,0 +1,1 @@
+export { AnchorPage } from './AnchorPage'

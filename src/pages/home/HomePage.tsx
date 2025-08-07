@@ -1,4 +1,4 @@
-import { useState } from 'preact/hooks'
+import { useState, useEffect } from 'preact/hooks'
 import { 
   StatsCards, 
   GroupingControls, 
@@ -21,9 +21,36 @@ interface PageProps {
   path?: string
 }
 
+// Storage functions for persisting UI preferences
+const storage = {
+  getGroupBy: (): GroupBy => {
+    try {
+      const stored = localStorage.getItem('nebula-home-groupby')
+      return (stored === 'milestone' || stored === 'category' || stored === 'alphabetical') 
+        ? stored as GroupBy 
+        : 'milestone'
+    } catch {
+      return 'milestone'
+    }
+  },
+  
+  setGroupBy: (groupBy: GroupBy): void => {
+    try {
+      localStorage.setItem('nebula-home-groupby', groupBy)
+    } catch {
+      // Silently fail if localStorage is not available
+    }
+  }
+}
+
 export function HomePage(_props: PageProps) {
-  const [groupBy, setGroupBy] = useState<GroupBy>('milestone')
+  const [groupBy, setGroupBy] = useState<GroupBy>(() => storage.getGroupBy())
   const [searchTerm, setSearchTerm] = useState('')
+
+  // Save groupBy preference when it changes
+  useEffect(() => {
+    storage.setGroupBy(groupBy)
+  }, [groupBy])
 
   const getGroupedComponents = () => {
     // If there's a search term, use filtered functions

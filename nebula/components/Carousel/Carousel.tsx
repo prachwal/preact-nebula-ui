@@ -3,7 +3,7 @@ import { cn } from '../../utils/cn'
 import { useCarousel } from './useCarousel'
 import { CarouselSlide } from './CarouselSlide'
 import type { CarouselProps } from './Carousel.types'
-import './Carousel.css'
+// import './Carousel.css'
 
 const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
   children,

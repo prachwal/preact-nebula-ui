@@ -125,7 +125,8 @@ export const Steps = forwardRef<StepsRef, StepsProps>((props, ref) => {
   }
 
   const canNavigateToStep = (stepIndex: number) => {
-    return stepIndex <= current
+    // Allow navigation to any step by default
+    return stepIndex >= 0 && stepIndex < totalSteps
   }
 
   const handleStepClick = (stepIndex: number) => {

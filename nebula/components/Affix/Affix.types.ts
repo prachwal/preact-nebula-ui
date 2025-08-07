@@ -1,6 +1,6 @@
 import type { ComponentChild, ComponentProps } from 'preact'
 
-export interface AffixProps extends Omit<ComponentProps<'div'>, 'onScroll'> {
+export interface AffixProps extends Omit<ComponentProps<'div'>, 'onScroll' | 'onChange'> {
   // Size variants (required pattern)
   size?: 'sm' | 'md' | 'lg'
   
@@ -20,6 +20,7 @@ export interface AffixProps extends Omit<ComponentProps<'div'>, 'onScroll'> {
   
   // Event handlers
   onAffix?: (affixed: boolean) => void
+  onChange?: (affixed: boolean) => void
   onScroll?: (scrollTop: number, affixed: boolean) => void
   
   // Accessibility props

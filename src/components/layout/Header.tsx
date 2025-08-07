@@ -1,11 +1,11 @@
-import { useTheme } from '../../contexts/ThemeContext'
+import { useSimpleTheme } from '../../../nebula'
 import { route } from 'preact-router'
 import { Avatar } from '../../../nebula'
 import preactLogo from '../../assets/preact.svg'
 import viteLogo from '/vite.svg'
 
 export function Header() {
-  const { theme, toggleTheme } = useTheme()
+  const { theme, toggleTheme } = useSimpleTheme()
 
   return (
     <header class="sticky top-0 z-50 bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">

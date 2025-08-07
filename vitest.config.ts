@@ -14,13 +14,36 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
+      reportsDirectory: './coverage',
+      include: [
+        'nebula/**/*.{ts,tsx}'
+      ],
       exclude: [
         'node_modules/',
         'dist/',
+        'src/',
         '**/*.test.{ts,tsx}',
+        '**/*.a11y.test.{ts,tsx}',
         '**/*.config.{ts,js}',
-        'vitest.setup.ts'
-      ]
+        '**/*.d.ts',
+        '**/types.ts',
+        '**/index.ts',
+        'vitest.setup.ts',
+        'nebula/**/*.test.{ts,tsx}',
+        'nebula/**/*.a11y.test.{ts,tsx}',
+        'nebula/**/images/**'
+      ],
+      all: true,
+      skipFull: false,
+      clean: true,
+      thresholds: {
+        global: {
+          branches: 70,
+          functions: 70,
+          lines: 70,
+          statements: 70
+        }
+      }
     }
   },
   resolve: {

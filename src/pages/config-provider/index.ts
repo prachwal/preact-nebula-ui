@@ -1,0 +1,1 @@
+export {ConfigProviderPage} from './ConfigProviderPage'

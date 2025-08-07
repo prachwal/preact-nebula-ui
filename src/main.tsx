@@ -1,8 +1,7 @@
 import { render } from 'preact'
 import './index.css'
 import { App } from './app.tsx'
-import { ThemeProvider } from './contexts/ThemeContext'
-import { ToastProvider, ToastManager } from '../nebula'
+import { SimpleThemeProvider, ToastProvider, ToastManager } from '../nebula'
 
 // Universal localStorage functions for theme management
 export const themeStorage = {
@@ -33,7 +32,7 @@ export const themeStorage = {
 }
 
 render(
-  <ThemeProvider
+  <SimpleThemeProvider
     onThemeChange={themeStorage.setTheme}
     getStoredTheme={themeStorage.getTheme}
   >
@@ -41,6 +40,6 @@ render(
       <App />
       <ToastManager />
     </ToastProvider>
-  </ThemeProvider>, 
+  </SimpleThemeProvider>, 
   document.getElementById('app')!
 )

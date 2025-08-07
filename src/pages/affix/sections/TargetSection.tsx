@@ -69,7 +69,7 @@ export function TargetSection() {
                   <span className="text-gray-600 dark:text-gray-400 text-sm">Container A header</span>
                 </div>
                 
-                <Affix target={() => document.querySelector('[data-container="a"]') ?? window}>
+                <Affix target={() => (document.querySelector('[data-container="a"]') as HTMLElement) ?? window}>
                   <div className="bg-red-500 text-white px-3 py-1 rounded text-sm">
                     Affix A
                   </div>
@@ -92,7 +92,7 @@ export function TargetSection() {
                   <span className="text-gray-600 dark:text-gray-400 text-sm">Container B header</span>
                 </div>
                 
-                <Affix target={() => document.querySelector('[data-container="b"]') ?? window}>
+                <Affix target={() => (document.querySelector('[data-container="b"]') as HTMLElement) ?? window}>
                   <div className="bg-yellow-500 text-white px-3 py-1 rounded text-sm">
                     Affix B
                   </div>

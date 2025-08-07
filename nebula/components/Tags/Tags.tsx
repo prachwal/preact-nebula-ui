@@ -144,7 +144,10 @@ export const Tags = forwardRef<TagsRef, TagsProps>((props, ref) => {
       className={tagsClasses}
       {...rest}
     >
-      {tagItems.map((tag) => (
+      {(maxTags && tagItems.length > maxTags 
+        ? tagItems.slice(0, maxTags) 
+        : tagItems
+      ).map((tag) => (
         <TagItem
           key={tag.key}
           tag={tag}
@@ -159,6 +162,17 @@ export const Tags = forwardRef<TagsRef, TagsProps>((props, ref) => {
           onEditCancel={handleEditCancel}
         />
       ))}
+      
+      {maxTags && tagItems.length > maxTags && (
+        <span className={cn(
+          'nebula-tag',
+          'inline-flex items-center justify-center border rounded-md font-medium',
+          'bg-gray-100 text-gray-600 border-gray-200',
+          'text-sm px-3 py-1.5'
+        )}>
+          +{tagItems.length - maxTags}
+        </span>
+      )}
       
       {addable && !isAtMaxTags && (
         <input

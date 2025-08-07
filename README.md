@@ -63,12 +63,12 @@ function App() {
 }
 ```
 
-
 ## 🧩 Components
 
 Nebula UI provides a growing set of accessible, customizable, and well-tested components:
 
 ### 🎛️ Form Controls
+
 - **Button** – Variants, sizes, icons, loading, fullWidth
 - **Input** – All variants, accessibility, required states
 - **Label** – Accessibility, required/disabled states
@@ -80,28 +80,33 @@ Nebula UI provides a growing set of accessible, customizable, and well-tested co
 - **Select** – Dropdown with search, multi-select, keyboard navigation
 
 ### 🏗️ Layout System
+
 - **Card** – Composable, variants, header/body/footer
 - **Container** – Responsive, max-width, padding controls
 - **Stack** – Vertical/horizontal, spacing, alignment
 - **Divider** – Horizontal/vertical, text, style variants
 
 ### 📢 Feedback Components
+
 - **Alert** – Info/success/warning/error, dismissible, actions
 - **Badge** – Status indicators, dot mode, overflow handling
 - **Progress** – Linear/circular, indeterminate, labels
 - **Skeleton** – Loading placeholders, shapes, animations
 
 ### 🎨 Display Components
+
 - **Spinner** – Size, color, accessibility
 - **Avatar** – Images, initials, groups, badges
 
 ### 🧭 Navigation
+
 - **Breadcrumb** – Hierarchical navigation, responsive collapse, custom separators
 - **Pagination** – Page navigation, sizes, quick jump, accessibility
 - **Table** – Data tables with sorting, selection, responsive design
 - **Tabs** – Horizontal/vertical, variants, keyboard navigation
 
 ### 🚀 Advanced Interactions
+
 - **Modal** – Full-screen dialogs with focus management and portal rendering
 - **Tooltip** – Contextual information with intelligent positioning
 - **Drawer** – Sliding panels with gesture support and responsive behavior
@@ -109,9 +114,11 @@ Nebula UI provides a growing set of accessible, customizable, and well-tested co
 - **Toast** – Notification system with auto-dismiss and positioning
 
 ### �️ Advanced Form Controls
+
 - **Slider** – Interactive range selector with single/dual handles, marks, orientation support
 
 ### �🎨 Display & Utilities
+
 - **Spinner** – Size, color, accessibility
 - **Avatar** – Images, initials, groups, badges
 - **Typography** – Text components with consistent styling
@@ -207,6 +214,7 @@ ComponentName/
    - Error handling and validation states
 
 2. **`ComponentName.types.ts`** - Type definitions:
+
    ```tsx
    export interface ComponentNameProps extends HTMLAttributes<HTMLElement> {
      variant?: 'default' | 'outlined'
@@ -226,6 +234,7 @@ ComponentName/
    - Edge cases
 
 4. **`index.ts`** - Clean exports:
+
    ```tsx
    export { ComponentName } from './ComponentName'
    export type { ComponentNameProps } from './ComponentName.types'
@@ -261,12 +270,14 @@ componentname/
 #### 🔗 Integration Steps
 
 1. **Add to main exports** in `nebula/components/index.ts`:
+
    ```tsx
    export { ComponentName } from './ComponentName'
    export type { ComponentNameProps } from './ComponentName/ComponentName.types'
    ```
 
 2. **Add page route** in `src/app.tsx`:
+
    ```tsx
    // Import
    import { ComponentNamePage } from './pages/componentname'
@@ -277,6 +288,7 @@ componentname/
 
 3. **Add to documentation** in relevant milestone docs
 4. **Update test data** in `src/data/testResults.ts`:
+
    ```tsx
    // Add component to componentTestData array
    { componentName: 'ComponentName', testCount: XX, coverage: 100, status: 'passing', lastUpdated: '2025-08-04' }
@@ -284,7 +296,9 @@ componentname/
    // Update mockTestResults.totalTests with new count
    totalTests: XXX, // Add your component's test count to total
    ```
+
 5. **Update component status** in `src/data/components.ts`:
+
    ```tsx
    // Change component status from 'planned' to 'completed' and update coverage
    { 
@@ -293,6 +307,7 @@ componentname/
      testCoverage: 100
    }
    ```
+
 6. **Update component count** in README.md and milestone status
 
 This structure ensures consistency, maintainability, and comprehensive documentation across all components.
@@ -309,7 +324,7 @@ This structure ensures consistency, maintainability, and comprehensive documenta
 - [x] [Milestone 6: Advanced Interactions](docs/milestone-6/) (Modal, Tooltip, Drawer, Popover, Toast) – **✅ COMPLETED**
 - [ ] [Milestone 7: Advanced Form Controls](docs/milestone-7/) (Slider, DatePicker, TimePicker, Autocomplete, Rating) – **🚧 IN PROGRESS**
 
-### 🎉 Core Library Complete!
+### 🎉 Core Library Complete
 
 **All initial milestones have been successfully completed!** The Nebula UI component library now includes 31 production-ready components with comprehensive testing, documentation, and accessibility compliance.
 
@@ -320,7 +335,9 @@ This structure ensures consistency, maintainability, and comprehensive documenta
 ### 🚀 Future Enhancements
 
 #### 📅 Milestone 7: Advanced Form Controls - 🚧 IN PROGRESS
+
 Essential input controls identified through competitive analysis:
+
 - [x] **Slider/Range** - Interactive range selector with single/dual handles ⚡ **IMPLEMENTING**
 - [ ] **DatePicker** - Critical form component with calendar interface
 - [ ] **TimePicker** - Time selection with AM/PM support
@@ -328,17 +345,20 @@ Essential input controls identified through competitive analysis:
 - [ ] **Rating** - Star rating system for user feedback
 
 #### 📅 Potential Milestone 8: Data & Navigation
+
 - [ ] **Tree** - Hierarchical data display with expand/collapse
 - [ ] **List** - Virtual scrolling list component
 - [ ] **Menu** - Dropdown and context menu system
 - [ ] **Steps** - Process visualization and workflow guidance
 
 #### 📅 Long-term Vision
+
 - [ ] **Theme System** - Comprehensive design token customization
 - [ ] **Storybook Integration** - Visual component documentation
 - [ ] **Performance Optimizations** - Virtual scrolling, lazy loading
 - [ ] **Advanced Grid System** - Layout enhancement
 - [ ] **Internationalization** - Built-in i18n support
+
 ## 📚 Documentation Structure
 
 Nebula UI uses a comprehensive milestone-based documentation system. For complete documentation including project status, implementation plans, and detailed component guides, visit:
@@ -346,6 +366,7 @@ Nebula UI uses a comprehensive milestone-based documentation system. For complet
 **[📚 Unified Documentation Index](docs/README.md)**
 
 ### 🔍 Key Documentation
+
 - **[📊 Project Status](docs/PROJECT_STATUS.md)** - Current completion status and statistics  
 - **[🔍 Component Comparison](docs/COMPONENT_COMPARISON.md)** - Analysis vs MUI & Ant Design
 - **[🚀 Implementation Plan](docs/IMPLEMENTATION_PLAN.md)** - Technical roadmap and architecture
@@ -360,13 +381,12 @@ Each major milestone has its own folder in `docs/`, containing:
 **Milestone documentation folders:**
 
 - [Milestone 1: Forms Foundation](docs/milestone-1/) - ✅ **COMPLETED**
-- [Milestone 2: Layout System](docs/milestone-2/) - ✅ **COMPLETED** 
+- [Milestone 2: Layout System](docs/milestone-2/) - ✅ **COMPLETED**
 - [Milestone 3: Feedback Components](docs/milestone-3/) - ✅ **COMPLETED**
 - [Milestone 4: Advanced Form Controls](docs/milestone-4/) - ✅ **COMPLETED**
 - [Milestone 5: Navigation & Data](docs/milestone-5/) - ✅ **COMPLETED**
 - [Milestone 6: Advanced Interactions](docs/milestone-6/) - ✅ **COMPLETED**
 - [Milestone 7: Advanced Form Controls](docs/milestone-7/) - 🚧 **IN PROGRESS**
-
 
 ## 🤝 Contributing
 
@@ -378,11 +398,9 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-
 ## 📄 License
 
 MIT © [PRachwal](https://github.com/PRachwal)
-
 
 ## 🔗 Links
 
