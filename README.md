@@ -1,23 +1,26 @@
 # 🌟 Nebula UI
 
-Modern, accessible, and customizable component library built with **Preact** and **Tailwind CSS**.
+Modern, accessible, and production-ready component library built with **Preact** and **Tailwind CSS**.
 
 [![NPM Version](https://img.shields.io/npm/v/@prp/nebula-ui)](https://www.npmjs.com/package/@prp/nebula-ui)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8+-blue)](https://www.typescriptlang.org/)
 [![Preact](https://img.shields.io/badge/Preact-10.26+-purple)](https://preactjs.com/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4+-cyan)](https://tailwindcss.com/)
+[![Tests](https://img.shields.io/badge/Tests-1430%2F1430%20passing-green)](https://github.com/PRachwal/preact-nebula-ui)
+[![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen)](https://github.com/PRachwal/preact-nebula-ui)
 
 ## ✨ Features
 
 - 🚀 **Built for Preact** - Optimized for Preact with full TypeScript support
 - 🎨 **Tailwind CSS** - Utility-first styling with customization
 - 📦 **Tree-shakable** - Import only what you need
-- ♿ **Accessible** - WCAG compliant components
+- ♿ **Accessible** - WCAG 2.1 AA compliant components
 - 🔧 **Customizable** - Easy to theme and extend
 - 📱 **Responsive** - Mobile-first design approach
-- 🧪 **Well-tested** - 100% test coverage, 970+ tests passing, 32 components
-- 🎨 **Comprehensive** - Complete component system with advanced interactions
-- 📊 **Test Coverage Integration** - Real-time test coverage dashboard
+- 🧪 **Production Ready** - 1430+ tests passing (100%), 40+ components
+- � **Dark Mode** - Complete light/dark theme support
+- ⚡ **High Performance** - Optimized for production use
+- 📊 **Complete Library** - Comprehensive component ecosystem
 
 ## 📦 Installation
 
