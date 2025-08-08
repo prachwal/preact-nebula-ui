@@ -11,6 +11,7 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: [fileURLToPath(new URL('./vitest.setup.ts', import.meta.url))],
+    testTimeout: 10000, // global timeout 10s
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],

@@ -6,7 +6,7 @@ import type { AnchorProps, AnchorItem } from './Anchor.types'
 // Helper function to get all anchor elements in the page
 const getAnchorElements = (items: AnchorItem[]): Array<{ key: string; href: string; element: HTMLElement | null }> => {
   const elements: Array<{ key: string; href: string; element: HTMLElement | null }> = []
-  
+
   const collectElements = (anchorItems: AnchorItem[]) => {
     anchorItems.forEach(item => {
       const element = document.querySelector(item.href) as HTMLElement
@@ -20,7 +20,7 @@ const getAnchorElements = (items: AnchorItem[]): Array<{ key: string; href: stri
       }
     })
   }
-  
+
   collectElements(items)
   return elements
 }
@@ -33,19 +33,19 @@ const getActiveAnchor = (
   _bounds = 5
 ): string => {
   let scrollTop = 0
-  
+
   if (scrollContainer === window) {
     scrollTop = window.pageYOffset || document.documentElement.scrollTop
   } else if (scrollContainer instanceof HTMLElement) {
     scrollTop = scrollContainer.scrollTop
   }
-  
+
   let activeKey = ''
   let minDistance = Infinity
-  
+
   Object.entries(elements).forEach(([key, element]) => {
     let elementTop = 0
-    
+
     if (scrollContainer === window) {
       const rect = element.getBoundingClientRect()
       elementTop = rect.top + scrollTop
@@ -55,15 +55,15 @@ const getActiveAnchor = (
       const elementRect = element.getBoundingClientRect()
       elementTop = elementRect.top - containerRect.top + scrollContainer.scrollTop
     }
-    
+
     const distance = Math.abs(elementTop - scrollTop - offsetTop)
-    
+
     if (distance < minDistance) {
       minDistance = distance
       activeKey = key
     }
   })
-  
+
   return activeKey
 }
 
@@ -104,36 +104,36 @@ export const Anchor = forwardRef<HTMLDivElement, AnchorProps>((props, ref) => {
       bounds,
       hasTarget: !!target
     })
-    
+
     if (controlledActiveKey !== undefined) {
       console.log('ℹ️ Using controlled activeKey, skipping scroll spy')
       return
     }
-    
+
     const scrollContainer = target ? target() : window
     console.log('🎯 Scroll container:', scrollContainer === window ? 'window' : (scrollContainer as HTMLElement)?.tagName || 'unknown')
-    
+
     const elements = getAnchorElements(items)
     console.log('🔍 Found anchor elements:', elements.map(el => ({
       key: el.key,
       href: el.href,
       exists: !!el.element
     })))
-    
+
     const elementsMap: { [key: string]: HTMLElement } = {}
     elements.forEach(el => {
       if (el.element) {
         elementsMap[el.key] = el.element
       }
     })
-    
+
     const newActiveKey = getActiveAnchor(elementsMap, scrollContainer, offsetTop, bounds)
     console.log('🎯 Calculated new active key:', {
       previous: activeKey,
       new: newActiveKey,
       changed: newActiveKey !== activeKey
     })
-    
+
     if (newActiveKey !== activeKey) {
       setActiveKey(newActiveKey)
       onChange?.(newActiveKey)
@@ -154,12 +154,12 @@ export const Anchor = forwardRef<HTMLDivElement, AnchorProps>((props, ref) => {
   useEffect(() => {
     const scrollContainer = target ? target() : window
     console.log('🎧 Setting up scroll listener on:', scrollContainer === window ? 'window' : (scrollContainer as HTMLElement)?.tagName || 'unknown')
-    
+
     if (scrollContainer) {
       scrollContainer.addEventListener('scroll', handleScroll)
       handleScroll() // Initial check
     }
-    
+
     return () => {
       if (scrollContainer) {
         console.log('🗑️ Removing scroll listener from:', scrollContainer === window ? 'window' : (scrollContainer as HTMLElement)?.tagName || 'unknown')
@@ -184,34 +184,34 @@ export const Anchor = forwardRef<HTMLDivElement, AnchorProps>((props, ref) => {
       clickable,
       offsetTop
     })
-    
+
     e.preventDefault()
-    
+
     if (!clickable) {
       console.log('❌ Click ignored - clickable is false')
       return
     }
-    
+
     console.log('✅ Clickable is true, proceeding...')
-    
+
     onClick?.(e, item)
-    
+
     const element = document.querySelector(item.href) as HTMLElement
     console.log('🎯 Target element found:', {
       selector: item.href,
       element: element,
       exists: !!element
     })
-    
+
     if (element) {
       const scrollContainer = target ? target() : window
       console.log('🚀 Using scroll container:', scrollContainer === window ? 'window' : (scrollContainer as HTMLElement)?.tagName || 'unknown')
-      
+
       if (scrollContainer === window) {
         const elementRect = element.getBoundingClientRect()
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop
         const targetTop = elementRect.top + scrollTop - offsetTop
-        
+
         console.log('📏 Window scroll calculation:', {
           elementRect: {
             top: elementRect.top,
@@ -223,19 +223,19 @@ export const Anchor = forwardRef<HTMLDivElement, AnchorProps>((props, ref) => {
           calculatedTargetTop: targetTop,
           finalScrollTop: Math.max(0, targetTop)
         })
-        
+
         window.scrollTo({
           top: Math.max(0, targetTop),
           behavior: 'smooth'
         })
-        
+
         console.log('🚀 Window scroll initiated to:', Math.max(0, targetTop))
       } else if (scrollContainer instanceof HTMLElement) {
         // For custom scroll containers
         const containerRect = scrollContainer.getBoundingClientRect()
         const elementRect = element.getBoundingClientRect()
         const relativeTop = elementRect.top - containerRect.top + scrollContainer.scrollTop - offsetTop
-        
+
         console.log('📏 Container scroll calculation:', {
           containerRect: {
             top: containerRect.top,
@@ -250,15 +250,15 @@ export const Anchor = forwardRef<HTMLDivElement, AnchorProps>((props, ref) => {
           calculatedRelativeTop: relativeTop,
           finalScrollTop: Math.max(0, relativeTop)
         })
-        
+
         scrollContainer.scrollTo({
           top: Math.max(0, relativeTop),
           behavior: 'smooth'
         })
-        
+
         console.log('🚀 Container scroll initiated to:', Math.max(0, relativeTop))
       }
-      
+
       // Update active key immediately for better UX
       if (controlledActiveKey === undefined) {
         setActiveKey(item.key)
@@ -277,7 +277,7 @@ export const Anchor = forwardRef<HTMLDivElement, AnchorProps>((props, ref) => {
     return anchorItems.map(item => {
       const isActive = item.key === activeKey
       const hasChildren = item.children && item.children.length > 0
-      
+
       return (
         <div key={item.key} className={cn('anchor-item', `level-${level}`)}>
           <a
@@ -308,7 +308,7 @@ export const Anchor = forwardRef<HTMLDivElement, AnchorProps>((props, ref) => {
           >
             {item.title}
           </a>
-          
+
           {hasChildren && direction === 'vertical' && (
             <div className="ml-2">
               {renderItems(item.children!, level + 1)}
@@ -370,14 +370,14 @@ export const Anchor = forwardRef<HTMLDivElement, AnchorProps>((props, ref) => {
     >
       {/* Active indicator line for vertical layout */}
       {direction === 'vertical' && activeKey && activeItemIndex >= 0 && (
-        <div 
+        <div
           className="absolute left-0 w-0.5 bg-blue-500 dark:bg-blue-400 transition-all duration-300 h-6"
           style={{
             top: `${activeItemIndex * 32 + 4}px`
           }}
         />
       )}
-      
+
       <div className={cn('relative', direction === 'vertical' ? 'pl-4' : '')}>
         {children || renderItems(items)}
       </div>

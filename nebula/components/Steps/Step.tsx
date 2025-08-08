@@ -19,13 +19,13 @@ export const Step = forwardRef<HTMLDivElement, StepProps>(({
   style,
   ...props
 }, ref) => {
-  
+
   const handleClick = () => {
     if (!disabled && onClick) {
       onClick(index)
     }
   }
-  
+
   const stepClasses = cn(
     'step',
     'relative flex',
@@ -41,28 +41,28 @@ export const Step = forwardRef<HTMLDivElement, StepProps>(({
     },
     className
   )
-  
-        const iconContainerClasses = cn(
-            'step-icon-container',
-            'flex items-center justify-center rounded-full border-2 relative z-10 shrink-0',
-            size === 'small' ? 'w-7 h-7 text-xs' : 'w-9 h-9 text-sm font-medium',
-            {
-                // WAIT: białe tło, ciemny szary tekst, szara ramka
-                'bg-white border-gray-300 text-gray-700 dark:bg-gray-900 dark:border-gray-600 dark:text-gray-400': status === 'wait',
-                // PROCESS: niebieska ramka, białe tło, niebieski tekst
-                'bg-white border-blue-500 text-blue-700 dark:bg-blue-500 dark:text-white': status === 'process',
-                // FINISH: zielona ramka, białe tło, zielony tekst
-                'bg-white border-green-500 text-green-700 dark:bg-green-500 dark:text-white': status === 'finish',
-                // ERROR: czerwona ramka, białe tło, czerwony tekst
-                'bg-white border-red-500 text-red-600 dark:bg-red-500 dark:text-white': status === 'error',
-            }
-        )
-  
+
+  const iconContainerClasses = cn(
+    'step-icon-container',
+    'flex items-center justify-center rounded-full border-2 relative z-10 shrink-0',
+    size === 'small' ? 'w-7 h-7 text-xs' : 'w-9 h-9 text-sm font-medium',
+    {
+      // WAIT: białe tło, ciemny szary tekst, szara ramka
+      'bg-white border-gray-300 text-gray-700 dark:bg-gray-900 dark:border-gray-600 dark:text-gray-400': status === 'wait',
+      // PROCESS: niebieska ramka, białe tło, niebieski tekst
+      'bg-white border-blue-500 text-blue-700 dark:bg-blue-500 dark:text-white': status === 'process',
+      // FINISH: zielona ramka, białe tło, zielony tekst
+      'bg-white border-green-500 text-green-700 dark:bg-green-500 dark:text-white': status === 'finish',
+      // ERROR: czerwona ramka, białe tło, czerwony tekst
+      'bg-white border-red-500 text-red-600 dark:bg-red-500 dark:text-white': status === 'error',
+    }
+  )
+
   const renderIcon = () => {
     if (typeof progressDot === 'function') {
       return progressDot(index, status)
     }
-    
+
     if (progressDot) {
       return (
         <div className={cn(
@@ -76,11 +76,11 @@ export const Step = forwardRef<HTMLDivElement, StepProps>(({
         )} />
       )
     }
-    
+
     if (icon) {
       return icon
     }
-    
+
     if (status === 'finish') {
       return (
         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -88,7 +88,7 @@ export const Step = forwardRef<HTMLDivElement, StepProps>(({
         </svg>
       )
     }
-    
+
     if (status === 'error') {
       return (
         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -96,10 +96,10 @@ export const Step = forwardRef<HTMLDivElement, StepProps>(({
         </svg>
       )
     }
-    
+
     return index + 1
   }
-  
+
   return (
     <div
       ref={ref}
@@ -116,7 +116,7 @@ export const Step = forwardRef<HTMLDivElement, StepProps>(({
           {renderIcon()}
         </div>
       </div>
-      
+
       {/* Content */}
       <div className={cn(
         'step-content',
@@ -134,7 +134,7 @@ export const Step = forwardRef<HTMLDivElement, StepProps>(({
         )}>
           {title}
         </div>
-        
+
         {description && (
           <div className={cn(
             'step-description text-gray-600 dark:text-gray-400 leading-tight',

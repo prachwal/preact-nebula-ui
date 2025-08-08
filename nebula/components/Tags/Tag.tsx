@@ -15,7 +15,7 @@ export function Tag({
   style,
   ...props
 }: TagProps) {
-  
+
   const handleClose = (e: Event) => {
     e.preventDefault()
     e.stopPropagation()
@@ -99,11 +99,11 @@ export function Tag({
           {icon}
         </span>
       )}
-      
+
       <span className="nebula-tag-content">
         {children}
       </span>
-      
+
       {closable && (
         <button
           type="button"

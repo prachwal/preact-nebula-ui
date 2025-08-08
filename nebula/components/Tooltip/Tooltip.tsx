@@ -33,7 +33,7 @@ const calculatePosition = (
   shift: boolean = true
 ): Position => {
   debug('🔍 calculatePosition called', { position, offset, flip, shift })
-  
+
   // Fallback for test environment
   const viewport = typeof window !== 'undefined' ? {
     width: window.innerWidth,
@@ -70,47 +70,50 @@ const calculatePosition = (
   debug('🎯 Initial position calculation for:', position)
 
   // Calculate initial position
+  if (position === 'auto') {
+    // Auto positioning - choose best fit
+    const spaces = {
+      top: triggerRect.top,
+      bottom: viewport.height - triggerRect.bottom,
+      left: triggerRect.left,
+      right: viewport.width - triggerRect.right
+    };
+    const maxSpace = Math.max(...Object.values(spaces));
+    debug('\u0016 Auto positioning analysis:', { spaces, maxSpace });
+    let autoPlacement: TooltipPosition;
+    if (maxSpace === spaces.top) autoPlacement = 'top';
+    else if (maxSpace === spaces.bottom) autoPlacement = 'bottom';
+    else if (maxSpace === spaces.left) autoPlacement = 'left';
+    else autoPlacement = 'right';
+    debug('\u0016 Auto positioning chose:', autoPlacement);
+    return calculatePosition(triggerRect, tooltipRect, autoPlacement, offset, flip, shift);
+  }
+  // Standard positions
   switch (position) {
     case 'top':
     case 'top-start':
     case 'top-end':
-      top = triggerRect.top + viewport.scrollY - tooltipRect.height - offset
-      debug('📍 Top positioning:', { top, calculation: `${triggerRect.top} + ${viewport.scrollY} - ${tooltipRect.height} - ${offset}` })
-      break
+      top = triggerRect.top + viewport.scrollY - tooltipRect.height - offset;
+      debug('📍 Top positioning:', { top, calculation: `${triggerRect.top} + ${viewport.scrollY} - ${tooltipRect.height} - ${offset}` });
+      break;
     case 'bottom':
     case 'bottom-start':
     case 'bottom-end':
-      top = triggerRect.bottom + viewport.scrollY + offset
-      debug('📍 Bottom positioning:', { top, calculation: `${triggerRect.bottom} + ${viewport.scrollY} + ${offset}` })
-      break
+      top = triggerRect.bottom + viewport.scrollY + offset;
+      debug('📍 Bottom positioning:', { top, calculation: `${triggerRect.bottom} + ${viewport.scrollY} + ${offset}` });
+      break;
     case 'left':
     case 'left-start':
     case 'left-end':
-      left = triggerRect.left + viewport.scrollX - tooltipRect.width - offset
-      debug('📍 Left positioning:', { left, calculation: `${triggerRect.left} + ${viewport.scrollX} - ${tooltipRect.width} - ${offset}` })
-      break
+      left = triggerRect.left + viewport.scrollX - tooltipRect.width - offset;
+      debug('📍 Left positioning:', { left, calculation: `${triggerRect.left} + ${viewport.scrollX} - ${tooltipRect.width} - ${offset}` });
+      break;
     case 'right':
     case 'right-start':
     case 'right-end':
-      left = triggerRect.right + viewport.scrollX + offset
-      debug('📍 Right positioning:', { left, calculation: `${triggerRect.right} + ${viewport.scrollX} + ${offset}` })
-      break
-    case 'auto':
-      // Auto positioning - choose best fit
-      const spaces = {
-        top: triggerRect.top,
-        bottom: viewport.height - triggerRect.bottom,
-        left: triggerRect.left,
-        right: viewport.width - triggerRect.right
-      }
-      const maxSpace = Math.max(...Object.values(spaces))
-      debug('🤖 Auto positioning analysis:', { spaces, maxSpace })
-      if (maxSpace === spaces.top) placement = 'top'
-      else if (maxSpace === spaces.bottom) placement = 'bottom'
-      else if (maxSpace === spaces.left) placement = 'left'
-      else placement = 'right'
-      debug('🤖 Auto positioning chose:', placement)
-      return calculatePosition(triggerRect, tooltipRect, placement, offset, flip, shift)
+      left = triggerRect.right + viewport.scrollX + offset;
+      debug('📍 Right positioning:', { left, calculation: `${triggerRect.right} + ${viewport.scrollX} + ${offset}` });
+      break;
   }
 
   // Calculate left/top for alignment variants
@@ -118,96 +121,74 @@ const calculatePosition = (
     switch (position) {
       case 'top':
       case 'bottom':
-        left = triggerRect.left + viewport.scrollX + (triggerRect.width - tooltipRect.width) / 2
-        debug('📍 Center horizontal alignment:', { left, calculation: `${triggerRect.left} + ${viewport.scrollX} + (${triggerRect.width} - ${tooltipRect.width}) / 2` })
-        break
+        left = triggerRect.left + viewport.scrollX + (triggerRect.width - tooltipRect.width) / 2;
+        debug('📍 Center horizontal alignment:', { left, calculation: `${triggerRect.left} + ${viewport.scrollX} + (${triggerRect.width} - ${tooltipRect.width}) / 2` });
+        break;
       case 'top-start':
       case 'bottom-start':
-        left = triggerRect.left + viewport.scrollX
-        debug('📍 Start horizontal alignment:', { left, calculation: `${triggerRect.left} + ${viewport.scrollX}` })
-        break
+        left = triggerRect.left + viewport.scrollX;
+        debug('📍 Start horizontal alignment:', { left, calculation: `${triggerRect.left} + ${viewport.scrollX}` });
+        break;
       case 'top-end':
       case 'bottom-end':
-        left = triggerRect.right + viewport.scrollX - tooltipRect.width
-        debug('📍 End horizontal alignment:', { left, calculation: `${triggerRect.right} + ${viewport.scrollX} - ${tooltipRect.width}` })
-        break
+        left = triggerRect.right + viewport.scrollX - tooltipRect.width;
+        debug('📍 End horizontal alignment:', { left, calculation: `${triggerRect.right} + ${viewport.scrollX} - ${tooltipRect.width}` });
+        break;
     }
   }
 
-  if (position.includes('left') || position.includes('right')) {
-    switch (position) {
-      case 'left':
-      case 'right':
-        top = triggerRect.top + viewport.scrollY + (triggerRect.height - tooltipRect.height) / 2
-        debug('📍 Center vertical alignment:', { top, calculation: `${triggerRect.top} + ${viewport.scrollY} + (${triggerRect.height} - ${tooltipRect.height}) / 2` })
-        break
-      case 'left-start':
-      case 'right-start':
-        top = triggerRect.top + viewport.scrollY
-        debug('📍 Start vertical alignment:', { top, calculation: `${triggerRect.top} + ${viewport.scrollY}` })
-        break
-      case 'left-end':
-      case 'right-end':
-        top = triggerRect.bottom + viewport.scrollY - tooltipRect.height
-        debug('📍 End vertical alignment:', { top, calculation: `${triggerRect.bottom} + ${viewport.scrollY} - ${tooltipRect.height}` })
-        break
+  // Overflow detection
+  const wouldOverflowTop = top < viewport.scrollY;
+  const wouldOverflowBottom = top + tooltipRect.height > viewport.scrollY + viewport.height;
+  const wouldOverflowLeft = left < viewport.scrollX;
+  const wouldOverflowRight = left + tooltipRect.width > viewport.scrollX + viewport.width;
+
+  debug('🚨 Overflow detection:', {
+    wouldOverflowTop,
+    wouldOverflowBottom,
+    wouldOverflowLeft,
+    wouldOverflowRight,
+    calculations: {
+      top,
+      'top + tooltipRect.height': top + tooltipRect.height,
+      'viewport.scrollY + viewport.height': viewport.scrollY + viewport.height,
+      left,
+      'left + tooltipRect.width': left + tooltipRect.width,
+      'viewport.scrollX + viewport.width': viewport.scrollX + viewport.width
     }
-  }
+  });
 
-  debug('📍 Initial calculated position:', { top, left, placement })
-
-  // Flip if needed and enabled
   if (flip) {
-    const wouldOverflowTop = top < viewport.scrollY
-    const wouldOverflowBottom = top + tooltipRect.height > viewport.scrollY + viewport.height
-    const wouldOverflowLeft = left < viewport.scrollX
-    const wouldOverflowRight = left + tooltipRect.width > viewport.scrollX + viewport.width
-
-    debug('🚨 Overflow detection:', {
-      wouldOverflowTop,
-      wouldOverflowBottom,
-      wouldOverflowLeft,
-      wouldOverflowRight,
-      calculations: {
-        top,
-        'top + tooltipRect.height': top + tooltipRect.height,
-        'viewport.scrollY + viewport.height': viewport.scrollY + viewport.height,
-        left,
-        'left + tooltipRect.width': left + tooltipRect.width,
-        'viewport.scrollX + viewport.width': viewport.scrollX + viewport.width
-      }
-    })
-
     if (position.includes('top') && wouldOverflowTop) {
-      const flippedPosition = position.replace('top', 'bottom') as TooltipPosition
-      debug('🔄 Flipping top to bottom:', flippedPosition)
-      return calculatePosition(triggerRect, tooltipRect, flippedPosition, offset, false, shift)
+      const flippedPosition = position.replace('top', 'bottom') as TooltipPosition;
+      debug('🔄 Flipping top to bottom:', flippedPosition);
+      return calculatePosition(triggerRect, tooltipRect, flippedPosition, offset, false, shift);
     }
     if (position.includes('bottom') && wouldOverflowBottom) {
-      const flippedPosition = position.replace('bottom', 'top') as TooltipPosition
-      debug('🔄 Flipping bottom to top:', flippedPosition)
-      return calculatePosition(triggerRect, tooltipRect, flippedPosition, offset, false, shift)
+      const flippedPosition = position.replace('bottom', 'top') as TooltipPosition;
+      debug('🔄 Flipping bottom to top:', flippedPosition);
+      return calculatePosition(triggerRect, tooltipRect, flippedPosition, offset, false, shift);
     }
     if (position.includes('left') && wouldOverflowLeft) {
-      const flippedPosition = position.replace('left', 'right') as TooltipPosition
-      debug('🔄 Flipping left to right:', flippedPosition)
-      return calculatePosition(triggerRect, tooltipRect, flippedPosition, offset, false, shift)
+      const flippedPosition = position.replace('left', 'right') as TooltipPosition;
+      debug('🔄 Flipping left to right:', flippedPosition);
+      return calculatePosition(triggerRect, tooltipRect, flippedPosition, offset, false, shift);
     }
     if (position.includes('right') && wouldOverflowRight) {
-      const flippedPosition = position.replace('right', 'left') as TooltipPosition
-      debug('🔄 Flipping right to left:', flippedPosition)
-      return calculatePosition(triggerRect, tooltipRect, flippedPosition, offset, false, shift)
+      const flippedPosition = position.replace('right', 'left') as TooltipPosition;
+      debug('🔄 Flipping right to left:', flippedPosition);
+      return calculatePosition(triggerRect, tooltipRect, flippedPosition, offset, false, shift);
     }
   }
 
   // Shift if needed and enabled
   if (shift) {
-    const padding = 8
-    const originalLeft = left
-    const originalTop = top
-    left = Math.max(viewport.scrollX + padding, Math.min(left, viewport.scrollX + viewport.width - tooltipRect.width - padding))
-    top = Math.max(viewport.scrollY + padding, Math.min(top, viewport.scrollY + viewport.height - tooltipRect.height - padding))
-    
+    const padding = 8;
+    const originalLeft = left;
+    const originalTop = top;
+    left = Math.max(viewport.scrollX + padding, Math.min(left, viewport.scrollX + viewport.width - tooltipRect.width - padding));
+    top = Math.max(viewport.scrollY + padding, Math.min(top, viewport.scrollY + viewport.height - tooltipRect.height - padding));
+
     debug('↔️ Shift adjustments:', {
       padding,
       originalLeft,
@@ -216,79 +197,79 @@ const calculatePosition = (
       adjustedTop: top,
       leftChanged: originalLeft !== left,
       topChanged: originalTop !== top
-    })
+    });
   }
 
-  const finalResult = { top, left, placement }
-  debug('✅ Final calculated position:', finalResult)
+  const finalResult = { top, left, placement };
+  debug('✅ Final calculated position:', finalResult);
 
-  return finalResult
+  return finalResult;
 }
 
 // Arrow positioning
 const getArrowStyles = (placement: TooltipPosition, offset: number) => {
   debug('🏹 Calculating arrow styles for placement:', placement)
-  
+
   const arrowStyles: Record<string, string> = {}
-  
+
   if (placement.includes('top')) {
     arrowStyles.bottom = `-${ARROW_SIZE}px`
     arrowStyles.borderLeftColor = 'transparent'
     arrowStyles.borderRightColor = 'transparent'
     arrowStyles.borderBottomColor = 'transparent'
-    
+
     if (placement === 'top') arrowStyles.left = '50%'
     else if (placement === 'top-start') arrowStyles.left = `${offset}px`
     else if (placement === 'top-end') arrowStyles.right = `${offset}px`
-    
+
     debug('🏹 Top arrow styles:', arrowStyles)
   }
-  
+
   if (placement.includes('bottom')) {
     arrowStyles.top = `-${ARROW_SIZE}px`
     arrowStyles.borderLeftColor = 'transparent'
     arrowStyles.borderRightColor = 'transparent'
     arrowStyles.borderTopColor = 'transparent'
-    
+
     if (placement === 'bottom') arrowStyles.left = '50%'
     else if (placement === 'bottom-start') arrowStyles.left = `${offset}px`
     else if (placement === 'bottom-end') arrowStyles.right = `${offset}px`
-    
+
     debug('🏹 Bottom arrow styles:', arrowStyles)
   }
-  
+
   if (placement.includes('left')) {
     arrowStyles.right = `-${ARROW_SIZE}px`
     arrowStyles.borderTopColor = 'transparent'
     arrowStyles.borderBottomColor = 'transparent'
     arrowStyles.borderRightColor = 'transparent'
-    
+
     if (placement === 'left') arrowStyles.top = '50%'
     else if (placement === 'left-start') arrowStyles.top = `${offset}px`
     else if (placement === 'left-end') arrowStyles.bottom = `${offset}px`
-    
+
     debug('🏹 Left arrow styles:', arrowStyles)
   }
-  
+
   if (placement.includes('right')) {
     arrowStyles.left = `-${ARROW_SIZE}px`
     arrowStyles.borderTopColor = 'transparent'
     arrowStyles.borderBottomColor = 'transparent'
     arrowStyles.borderLeftColor = 'transparent'
-    
+
     if (placement === 'right') arrowStyles.top = '50%'
     else if (placement === 'right-start') arrowStyles.top = `${offset}px`
     else if (placement === 'right-end') arrowStyles.bottom = `${offset}px`
-    
+
     debug('🏹 Right arrow styles:', arrowStyles)
   }
-  
+
   debug('🏹 Final arrow styles:', arrowStyles)
   return arrowStyles
 }
 
 export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
-  ({ 
+  ({
     content,
     position = 'top',
     trigger = 'hover',
@@ -305,7 +286,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
     className,
     'data-testid': testId,
     children,
-    ...props 
+    ...props
   }, _ref) => {
     debug('🎯 Tooltip component initialized with props:', {
       position,
@@ -325,7 +306,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
 
     const [isVisible, setIsVisible] = useState(false)
     const [tooltipPosition, setTooltipPosition] = useState<Position>({ top: 0, left: 0, placement: position })
-    
+
     const triggerRef = useRef<HTMLElement>(null)
     const tooltipRef = useRef<HTMLDivElement>(null)
     const showTimeoutRef = useRef<number>()
@@ -346,7 +327,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
 
     const updatePosition = () => {
       debug('🔄 updatePosition called')
-      
+
       if (!triggerRef.current || !tooltipRef.current) {
         debug('❌ Missing refs:', {
           triggerRef: !!triggerRef.current,
@@ -358,7 +339,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
       // Get fresh references
       const triggerEl = triggerRef.current
       const tooltipEl = tooltipRef.current
-      
+
       debug('🎯 Elements found:', {
         triggerEl: {
           tagName: triggerEl.tagName,
@@ -380,7 +361,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
 
       const triggerRect = triggerEl.getBoundingClientRect()
       const tooltipRect = tooltipEl.getBoundingClientRect()
-      
+
       debug('📏 Raw getBoundingClientRect results:', {
         triggerRect: {
           top: triggerRect.top,
@@ -399,49 +380,49 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
           right: tooltipRect.right
         }
       })
-      
+
       // Fallback for test environment where getBoundingClientRect returns zeros
-      const fallbackTriggerRect = triggerRect.width === 0 && triggerRect.height === 0 ? 
+      const fallbackTriggerRect = triggerRect.width === 0 && triggerRect.height === 0 ?
         { top: 100, left: 100, bottom: 120, right: 200, width: 100, height: 20 } as DOMRect :
         triggerRect
-      
+
       const fallbackTooltipRect = tooltipRect.width === 0 && tooltipRect.height === 0 ?
         { top: 0, left: 0, bottom: 40, right: 200, width: 200, height: 40 } as DOMRect :
         tooltipRect
 
       const usingFallback = fallbackTriggerRect !== triggerRect || fallbackTooltipRect !== tooltipRect
-      debug('📐 Using fallback dimensions:', { 
+      debug('📐 Using fallback dimensions:', {
         usingFallback,
         fallbackTriggerRect: usingFallback ? fallbackTriggerRect : 'no fallback needed',
         fallbackTooltipRect: usingFallback ? fallbackTooltipRect : 'no fallback needed'
       })
-      
+
       const newPosition = calculatePosition(
-        fallbackTriggerRect, 
-        fallbackTooltipRect, 
-        position, 
+        fallbackTriggerRect,
+        fallbackTooltipRect,
+        position,
         offset + (hasArrow ? ARROW_SIZE : 0),
-        flip, 
+        flip,
         shift
       )
-      
+
       debug('🎯 Setting tooltip position:', newPosition)
       setTooltipPosition(newPosition)
     }
 
     const showTooltip = () => {
       debug('🟢 showTooltip() called', { disabled, delay })
-      
+
       if (disabled) {
         debug('❌ showTooltip() blocked - disabled')
         return
       }
-      
+
       if (hideTimeoutRef.current) {
         debug('🚫 Clearing hide timeout')
         clearTimeout(hideTimeoutRef.current)
       }
-      
+
       if (delay > 0) {
         debug('⏱️ Showing tooltip with delay:', delay)
         showTimeoutRef.current = window.setTimeout(() => {
@@ -465,12 +446,12 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
 
     const hideTooltip = () => {
       debug('🔴 hideTooltip() called', { closeDelay })
-      
+
       if (showTimeoutRef.current) {
         debug('🚫 Clearing show timeout')
         clearTimeout(showTimeoutRef.current)
       }
-      
+
       if (closeDelay > 0) {
         debug('⏱️ Hiding tooltip with delay:', closeDelay)
         hideTimeoutRef.current = window.setTimeout(() => {
@@ -535,7 +516,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
     // Update position on scroll/resize
     useEffect(() => {
       debug('📍 Position update effect triggered', { isVisible })
-      
+
       if (!isVisible) return
 
       const handleUpdate = () => {
@@ -546,7 +527,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
       debug('📍 Setting up position update listeners')
       window.addEventListener('scroll', handleUpdate, true)
       window.addEventListener('resize', handleUpdate)
-      
+
       return () => {
         debug('🧹 Cleaning up position listeners')
         window.removeEventListener('scroll', handleUpdate, true)
@@ -652,7 +633,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
         {...props}
       >
         {content}
-        
+
         {hasArrow && (
           <div
             className={cn(

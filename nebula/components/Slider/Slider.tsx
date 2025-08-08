@@ -24,7 +24,7 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(({
   trackClassName,
   thumbClassName,
   'aria-label': ariaLabel,
-  'aria-labelledby': ariaLabelledBy,
+  'aria-labelledby': _ariaLabelledBy,
   ...props
 }, ref) => {
   // Internal state for uncontrolled mode
@@ -67,8 +67,8 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(({
 
   // Convert pixel position to value
   const pixelToValue = useCallback((pixel: number, rect: DOMRect) => {
-    const percentage = orientation === 'horizontal' 
-      ? pixel / rect.width 
+    const percentage = orientation === 'horizontal'
+      ? pixel / rect.width
       : 1 - pixel / rect.height
 
     let newValue = min + percentage * (max - min)
@@ -99,8 +99,8 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(({
       if (!isDragging.current || !trackRef.current) return
 
       const rect = trackRef.current.getBoundingClientRect()
-      const pixel = orientation === 'horizontal' 
-        ? moveEvent.clientX - rect.left 
+      const pixel = orientation === 'horizontal'
+        ? moveEvent.clientX - rect.left
         : moveEvent.clientY - rect.top
 
       const newValue = pixelToValue(pixel, rect)
@@ -145,8 +145,8 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(({
     if (disabled || !trackRef.current) return
 
     const rect = trackRef.current.getBoundingClientRect()
-    const pixel = orientation === 'horizontal' 
-      ? event.clientX - rect.left 
+    const pixel = orientation === 'horizontal'
+      ? event.clientX - rect.left
       : event.clientY - rect.top
 
     const newValue = pixelToValue(pixel, rect)
@@ -215,10 +215,10 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(({
     if (range) {
       const newValues: [number, number] = [...normalizedValue] as [number, number]
       const newValue = Math.max(min, Math.min(max, newValues[thumbIndex] + delta))
-      
+
       // Skip if value wouldn't change
       if (newValue === newValues[thumbIndex]) return
-      
+
       newValues[thumbIndex] = newValue
 
       // Apply constraints
@@ -232,10 +232,10 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(({
       onChange?.(newValues)
     } else {
       const newValue = Math.max(min, Math.min(max, normalizedValue[0] + delta))
-      
+
       // Skip if value wouldn't change
       if (newValue === normalizedValue[0]) return
-      
+
       if (value === undefined) setInternalValue(newValue)
       onChange?.(newValue)
     }
@@ -271,8 +271,8 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(({
           key={index}
           className={cn(
             'absolute flex items-center justify-center',
-            orientation === 'horizontal' 
-              ? 'top-1/2 -translate-y-1/2 -translate-x-1/2' 
+            orientation === 'horizontal'
+              ? 'top-1/2 -translate-y-1/2 -translate-x-1/2'
               : 'left-1/2 -translate-x-1/2 translate-y-1/2'
           )}
           style={{
@@ -286,8 +286,8 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(({
           {markLabel && (
             <div className={cn(
               'absolute text-xs text-gray-600 whitespace-nowrap',
-              orientation === 'horizontal' 
-                ? 'top-full mt-1' 
+              orientation === 'horizontal'
+                ? 'top-full mt-1'
                 : 'left-full ml-2'
             )}>
               {markLabel}
@@ -341,7 +341,7 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(({
     if (range) {
       const lowerPercentage = valueToPercentage(lowerValue)
       const upperPercentage = valueToPercentage(upperValue)
-      
+
       if (orientation === 'horizontal') {
         return {
           left: `${lowerPercentage}%`,
@@ -355,7 +355,7 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(({
       }
     } else {
       const percentage = valueToPercentage(lowerValue)
-      
+
       if (orientation === 'horizontal') {
         return { width: `${percentage}%` }
       } else {
@@ -373,10 +373,10 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(({
       >
         {/* Fill */}
         <div className={fillClasses} style={fillStyle} />
-        
+
         {/* Marks */}
         {renderMarks()}
-        
+
         {/* Thumbs */}
         <div
           className={thumbClasses}
@@ -402,7 +402,7 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(({
             )} />
           )}
         </div>
-        
+
         {range && (
           <div
             className={thumbClasses}
@@ -430,7 +430,7 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(({
           </div>
         )}
       </div>
-      
+
       {error && errorMessage && (
         <div className="mt-1 text-sm text-red-600">
           {errorMessage}

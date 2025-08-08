@@ -5,7 +5,7 @@ export function ToastManagerSection() {
   let toast;
   try {
     toast = useToast()
-  } catch (error) {
+  } catch (_error) {
     // ToastProvider nie jest dostępny
     return (
       <Section
@@ -42,7 +42,7 @@ export function ToastManagerSection() {
             Show Info
           </Button>
         </div>
-        
+
         <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
           <h4 className="font-medium mb-2">Usage:</h4>
           <pre className="text-sm overflow-x-auto">

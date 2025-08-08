@@ -5,19 +5,19 @@ import type { BackTopProps } from './BackTop.types'
 
 // Default chevron up icon
 const ChevronUpIcon = () => (
-  <svg 
-    width="20" 
-    height="20" 
-    viewBox="0 0 24 24" 
-    fill="none" 
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
     xmlns="http://www.w3.org/2000/svg"
     className="w-5 h-5"
   >
-    <path 
-      d="M18 15L12 9L6 15" 
-      stroke="currentColor" 
-      strokeWidth="2" 
-      strokeLinecap="round" 
+    <path
+      d="M18 15L12 9L6 15"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
       strokeLinejoin="round"
     />
   </svg>
@@ -64,7 +64,7 @@ export const BackTop = forwardRef<HTMLButtonElement, BackTopProps>((props, ref) 
     }
 
     const shouldShow = scrollTop > visibilityHeight
-    
+
     console.log('🔝 BackTop handleScroll:', {
       scrollContainer: scrollContainer === window ? 'window' : (scrollContainer as HTMLElement)?.tagName,
       scrollTop,
@@ -72,7 +72,7 @@ export const BackTop = forwardRef<HTMLButtonElement, BackTopProps>((props, ref) 
       shouldShow,
       currentVisible: visible
     })
-    
+
     if (shouldShow !== visible) {
       console.log('👀 BackTop visibility changing from', visible, 'to', shouldShow)
       setVisible(shouldShow)
@@ -82,7 +82,7 @@ export const BackTop = forwardRef<HTMLButtonElement, BackTopProps>((props, ref) 
   // Setup scroll listener
   useEffect(() => {
     const scrollContainer = getTarget()
-    
+
     if (scrollContainer) {
       scrollContainer.addEventListener('scroll', handleScroll)
       handleScroll() // Initial check
@@ -106,7 +106,7 @@ export const BackTop = forwardRef<HTMLButtonElement, BackTopProps>((props, ref) 
       container: scrollContainer === window ? 'window' : (scrollContainer as HTMLElement)?.tagName,
       scrollContainer
     })
-    
+
     if (scrollContainer === window) {
       console.log('🚀 Scrolling window to top')
       window.scrollTo({
@@ -126,10 +126,10 @@ export const BackTop = forwardRef<HTMLButtonElement, BackTopProps>((props, ref) 
     } else if (scrollContainer && typeof (scrollContainer as any).scrollTo === 'function') {
       // Handle mock objects in tests that have scrollTo method
       console.log('🚀 Scrolling mock target to top')
-      ;(scrollContainer as any).scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      })
+        ; (scrollContainer as any).scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        })
     }
   }, [getTarget, onClick])
 
@@ -151,7 +151,7 @@ export const BackTop = forwardRef<HTMLButtonElement, BackTopProps>((props, ref) 
     // Size variants
     {
       'w-8 h-8 text-xs': size === 'sm',
-      'w-10 h-10 text-sm': size === 'md', 
+      'w-10 h-10 text-sm': size === 'md',
       'w-12 h-12 text-base': size === 'lg'
     },
     // Shape variants

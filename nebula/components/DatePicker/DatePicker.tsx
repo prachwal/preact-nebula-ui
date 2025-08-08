@@ -55,14 +55,14 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({
   const updateCalendarPosition = () => {
     if (containerRef.current) {
       const rect = containerRef.current.getBoundingClientRect()
-      
+
       // Size-based widths
       const sizeWidths = {
         sm: 192, // w-48
         md: 240, // w-60  
         lg: 288  // w-72
       }
-      
+
       setCalendarPosition({
         top: rect.bottom + 4,
         left: rect.left,
@@ -74,11 +74,11 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({
   // Handle date selection
   const handleDateSelect = (date: Date) => {
     const newValue = date
-    
+
     if (value === undefined) {
       setInternalValue(newValue)
     }
-    
+
     onChange?.(newValue)
     setIsCalendarOpen(false)
   }
@@ -87,7 +87,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({
   const handleInputChange = (e: Event) => {
     const target = e.target as HTMLInputElement
     const inputValue = target.value
-    
+
     if (!inputValue) {
       handleDateSelect(null as any)
       return
@@ -108,12 +108,12 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({
   // Format date for display
   const formatDate = (date: Date | null): string => {
     if (!date) return ''
-    
+
     // Simple formatting - in production, use a proper date formatting library
     const month = String(date.getMonth() + 1).padStart(2, '0')
     const day = String(date.getDate()).padStart(2, '0')
     const year = date.getFullYear()
-    
+
     return `${month}/${day}/${year}`
   }
 
@@ -140,7 +140,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({
     document.addEventListener('mousedown', handleClickOutside)
     window.addEventListener('scroll', handleScroll, true)
     window.addEventListener('resize', handleResize)
-    
+
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
       window.removeEventListener('scroll', handleScroll, true)
@@ -216,7 +216,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy}
           aria-describedby={
-            error && errorMessage && id 
+            error && errorMessage && id
               ? `${id}-error${ariaDescribedBy ? ` ${ariaDescribedBy}` : ''}`
               : ariaDescribedBy
           }
@@ -232,7 +232,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({
             }
           }}
         />
-        
+
         {/* Calendar toggle button */}
         <button
           type="button"
@@ -265,7 +265,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({
       {isCalendarOpen && !disabled && (
         <Portal>
           <div className="fixed inset-0 z-50 pointer-events-none">
-            <div 
+            <div
               className="absolute bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg pointer-events-auto"
               style={{
                 top: calendarPosition.top,
@@ -292,7 +292,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({
 
       {/* Error message */}
       {error && errorMessage && (
-        <div 
+        <div
           className="mt-1 text-sm text-red-600 dark:text-red-400"
           role="alert"
           id={id ? `${id}-error` : undefined}

@@ -118,14 +118,14 @@ export const TreeView = forwardRef<HTMLDivElement, TreeViewProps>(({
       return nodes.reduce((filtered: TreeNodeType[], node) => {
         const isMatch = filterNode(node, searchValue.trim())
         const filteredChildren = node.children ? filterNodes(node.children) : []
-        
+
         if (isMatch || filteredChildren.length > 0) {
           filtered.push({
             ...node,
             children: filteredChildren.length > 0 ? filteredChildren : node.children
           })
         }
-        
+
         return filtered
       }, [])
     }
@@ -138,35 +138,35 @@ export const TreeView = forwardRef<HTMLDivElement, TreeViewProps>(({
     if (!searchValue.trim() || !autoExpandParent) return currentExpandedKeys
 
     const expandedSet = new Set(currentExpandedKeys)
-    
+
     function hasMatchingDescendant(nodes: TreeNodeType[]): boolean {
       return nodes.some(node => {
-        const isMatch = filterTreeNode ? 
-          filterTreeNode(node, searchValue.trim()) : 
+        const isMatch = filterTreeNode ?
+          filterTreeNode(node, searchValue.trim()) :
           node.title.toLowerCase().includes(searchValue.toLowerCase().trim())
-          
+
         if (isMatch) return true
-        
+
         if (node.children) {
           return hasMatchingDescendant(node.children)
         }
-        
+
         return false
       })
     }
-    
+
     function addParentKeys(nodes: TreeNodeType[]) {
       nodes.forEach(node => {
         if (node.children && hasMatchingDescendant(node.children)) {
           expandedSet.add(node.key)
         }
-        
+
         if (node.children) {
           addParentKeys(node.children)
         }
       })
     }
-    
+
     addParentKeys(data)
     return Array.from(expandedSet)
   }, [data, searchValue, currentExpandedKeys, autoExpandParent, filterTreeNode])
@@ -175,11 +175,11 @@ export const TreeView = forwardRef<HTMLDivElement, TreeViewProps>(({
   const handleSearchChange = (e: Event) => {
     const target = e.target as HTMLInputElement
     const value = target.value
-    
+
     if (controlledSearchValue === undefined) {
       setInternalSearchValue(value)
     }
-    
+
     onSearch?.(value)
   }
 
@@ -189,18 +189,18 @@ export const TreeView = forwardRef<HTMLDivElement, TreeViewProps>(({
       const isExpanded = expandedKeysWithSearch.includes(node.key)
       const isSelected = currentSelectedKeys.includes(node.key)
       const isChecked = currentCheckedKeys.includes(node.key)
-      
+
       // Calculate indeterminate state for checkboxes
       const getIndeterminate = (nodeKey: string): boolean => {
         const nodeData = getNodeByKey(nodeKey)
         if (!nodeData || !nodeData.children || !checkable) return false
-        
+
         const childKeys = nodeData.children.map(child => child.key)
         const checkedChildren = childKeys.filter(key => currentCheckedKeys.includes(key))
-        
+
         return checkedChildren.length > 0 && checkedChildren.length < childKeys.length
       }
-      
+
       const isIndeterminate = getIndeterminate(node.key)
 
       return (
@@ -223,7 +223,7 @@ export const TreeView = forwardRef<HTMLDivElement, TreeViewProps>(({
             selectable={selectable !== false}
             size={size}
           />
-          
+
           {/* Render children if expanded */}
           {node.children && isExpanded && (
             <div className="tree-children">
@@ -263,7 +263,7 @@ export const TreeView = forwardRef<HTMLDivElement, TreeViewProps>(({
             />
           </div>
         )}
-        
+
         <div className="p-8 text-center text-gray-500 dark:text-gray-400">
           <svg className="w-12 h-12 mx-auto mb-4 text-gray-300 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
@@ -315,7 +315,7 @@ export const TreeView = forwardRef<HTMLDivElement, TreeViewProps>(({
       )}
 
       {/* Tree content */}
-      <div 
+      <div
         className={cn(
           'tree-content overflow-auto',
           { 'p-2': filteredData.length > 0 }

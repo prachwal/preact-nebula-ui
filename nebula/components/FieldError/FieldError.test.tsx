@@ -5,7 +5,7 @@ import { FieldError } from './FieldError'
 describe('FieldError', () => {
   it('renders error message correctly', () => {
     render(<FieldError data-testid="field-error">This is an error</FieldError>)
-    
+
     const errorElement = screen.getByTestId('field-error')
     expect(errorElement).toBeInTheDocument()
     expect(errorElement).toHaveTextContent('This is an error')
@@ -14,31 +14,31 @@ describe('FieldError', () => {
   describe('Rendering behavior', () => {
     it('does not render when children is null', () => {
       render(<FieldError data-testid="field-error">{null}</FieldError>)
-      
+
       expect(screen.queryByTestId('field-error')).not.toBeInTheDocument()
     })
 
     it('does not render when children is undefined', () => {
       render(<FieldError data-testid="field-error">{undefined}</FieldError>)
-      
+
       expect(screen.queryByTestId('field-error')).not.toBeInTheDocument()
     })
 
     it('does not render when children is empty string', () => {
       render(<FieldError data-testid="field-error">{""}</FieldError>)
-      
+
       expect(screen.queryByTestId('field-error')).not.toBeInTheDocument()
     })
 
     it('does not render when children is false', () => {
       render(<FieldError data-testid="field-error">{false}</FieldError>)
-      
+
       expect(screen.queryByTestId('field-error')).not.toBeInTheDocument()
     })
 
     it('renders when children is 0', () => {
       render(<FieldError data-testid="field-error">{0}</FieldError>)
-      
+
       const errorElement = screen.getByTestId('field-error')
       expect(errorElement).toBeInTheDocument()
       expect(errorElement).toHaveTextContent('0')
@@ -46,7 +46,7 @@ describe('FieldError', () => {
 
     it('renders when children is whitespace', () => {
       render(<FieldError data-testid="field-error">{" "}</FieldError>)
-      
+
       const errorElement = screen.getByTestId('field-error')
       expect(errorElement).toBeInTheDocument()
       expect(errorElement.innerHTML).toBe(' ')
@@ -56,7 +56,7 @@ describe('FieldError', () => {
   describe('Styling', () => {
     it('applies correct default classes', () => {
       render(<FieldError data-testid="field-error">Error message</FieldError>)
-      
+
       const errorElement = screen.getByTestId('field-error')
       expect(errorElement).toHaveClass('mt-1', 'text-sm', 'text-red-600')
     })
@@ -67,7 +67,7 @@ describe('FieldError', () => {
           Custom error
         </FieldError>
       )
-      
+
       const errorElement = screen.getByTestId('field-error')
       expect(errorElement).toHaveClass('custom-error-class')
       expect(errorElement).toHaveClass('mt-1', 'text-sm', 'text-red-600') // Still has defaults
@@ -77,21 +77,21 @@ describe('FieldError', () => {
   describe('Accessibility', () => {
     it('has proper ARIA role', () => {
       render(<FieldError data-testid="field-error">Accessible error</FieldError>)
-      
+
       const errorElement = screen.getByTestId('field-error')
       expect(errorElement).toHaveAttribute('role', 'alert')
     })
 
     it('has proper aria-live attribute', () => {
       render(<FieldError data-testid="field-error">Live error</FieldError>)
-      
+
       const errorElement = screen.getByTestId('field-error')
       expect(errorElement).toHaveAttribute('aria-live', 'polite')
     })
 
     it('can be associated with form controls via id', () => {
       render(<FieldError id="input-error" data-testid="field-error">Error for input</FieldError>)
-      
+
       const errorElement = screen.getByTestId('field-error')
       expect(errorElement).toHaveAttribute('id', 'input-error')
     })
@@ -100,7 +100,7 @@ describe('FieldError', () => {
   describe('Content types', () => {
     it('renders text content', () => {
       render(<FieldError data-testid="field-error">Simple text error</FieldError>)
-      
+
       expect(screen.getByText('Simple text error')).toBeInTheDocument()
     })
 
@@ -110,7 +110,7 @@ describe('FieldError', () => {
           <span>Complex</span> <strong>error message</strong>
         </FieldError>
       )
-      
+
       expect(screen.getByText('Complex')).toBeInTheDocument()
       expect(screen.getByText('error message')).toBeInTheDocument()
     })
@@ -121,14 +121,14 @@ describe('FieldError', () => {
           Error: <span>Field is required</span>
         </FieldError>
       )
-      
+
       expect(screen.getByText('Error:')).toBeInTheDocument()
       expect(screen.getByText('Field is required')).toBeInTheDocument()
     })
 
     it('renders numeric content', () => {
       render(<FieldError data-testid="field-error">{42}</FieldError>)
-      
+
       expect(screen.getByText('42')).toBeInTheDocument()
     })
   })
@@ -136,15 +136,15 @@ describe('FieldError', () => {
   describe('Props forwarding', () => {
     it('forwards additional props to div element', () => {
       render(
-        <FieldError 
-          title="Error tooltip" 
+        <FieldError
+          title="Error tooltip"
           data-custom="custom-value"
           data-testid="field-error"
         >
           Error with props
         </FieldError>
       )
-      
+
       const errorElement = screen.getByTestId('field-error')
       expect(errorElement).toHaveAttribute('title', 'Error tooltip')
       expect(errorElement).toHaveAttribute('data-custom', 'custom-value')
@@ -152,15 +152,15 @@ describe('FieldError', () => {
 
     it('overrides default attributes when provided', () => {
       render(
-        <FieldError 
-          role="status" 
+        <FieldError
+          role="status"
           aria-live="assertive"
           data-testid="field-error"
         >
           Custom attributes error
         </FieldError>
       )
-      
+
       const errorElement = screen.getByTestId('field-error')
       expect(errorElement).toHaveAttribute('role', 'status')
       expect(errorElement).toHaveAttribute('aria-live', 'assertive')
@@ -183,31 +183,33 @@ describe('FieldError', () => {
           </FieldError>
         </div>
       )
-      
+
       const input = screen.getByRole('textbox')
       const error = screen.getByTestId('field-error')
-      
+
       expect(input).toHaveAttribute('aria-describedby', 'field-error-1')
       expect(error).toHaveAttribute('id', 'field-error-1')
     })
 
     it('can be conditionally rendered', () => {
+      let showError = false;
       const { rerender } = render(
         <FieldError data-testid="field-error">
-          {false && 'Hidden error'}
+          {showError ? 'Visible error' : null}
         </FieldError>
-      )
-      
-      expect(screen.queryByTestId('field-error')).not.toBeInTheDocument()
-      
+      );
+
+      expect(screen.queryByTestId('field-error')).not.toBeInTheDocument();
+
+      showError = true;
       rerender(
         <FieldError data-testid="field-error">
-          {true && 'Visible error'}
+          {showError ? 'Visible error' : null}
         </FieldError>
-      )
-      
-      expect(screen.getByTestId('field-error')).toBeInTheDocument()
-      expect(screen.getByText('Visible error')).toBeInTheDocument()
-    })
+      );
+
+      expect(screen.getByTestId('field-error')).toBeInTheDocument();
+      expect(screen.getByText('Visible error')).toBeInTheDocument();
+    });
   })
 })
