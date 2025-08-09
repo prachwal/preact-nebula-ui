@@ -2,25 +2,41 @@ import { useState, useEffect } from 'preact/hooks'
 import { marked } from 'marked'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/github-dark.css'
+import '../styles/markdown.css'
 
 interface MarkdownViewerProps {
     readonly filePath: string
     readonly className?: string
 }
 
-// Configure marked with highlight.js
-marked.setOptions({
-    highlight: function (code, lang) {
-        if (lang && hljs.getLanguage(lang)) {
-            try {
-                return hljs.highlight(code, { language: lang }).value
-            } catch (err) {
-                console.warn('Highlight.js error:', err)
-            }
+// Configure marked with highlight.js renderer
+const renderer = new marked.Renderer()
+
+// Custom code renderer for highlight.js
+renderer.code = function ({ text, lang }) {
+    const validLanguage = lang && hljs.getLanguage(lang) ? lang : ''
+    if (validLanguage) {
+        try {
+            const highlighted = hljs.highlight(text, { language: validLanguage }).value
+            return `<pre class="hljs"><code class="hljs language-${validLanguage}">${highlighted}</code></pre>`
+        } catch (err) {
+            console.warn('Highlight.js error:', err)
         }
-        return hljs.highlightAuto(code).value
-    },
-    langPrefix: 'hljs language-',
+    }
+
+    // Fallback to auto-detect
+    try {
+        const highlighted = hljs.highlightAuto(text).value
+        return `<pre class="hljs"><code class="hljs">${highlighted}</code></pre>`
+    } catch (err) {
+        console.warn('Highlight.js auto-detect error:', err)
+        return `<pre><code>${text}</code></pre>`
+    }
+}
+
+// Set marked options
+marked.setOptions({
+    renderer,
     breaks: true,
     gfm: true,
 })
@@ -92,27 +108,7 @@ export function MarkdownViewer({ filePath, className = '' }: MarkdownViewerProps
 
     return (
         <div
-            className={`
-        markdown-viewer prose prose-gray dark:prose-invert max-w-none
-        prose-headings:text-gray-900 dark:prose-headings:text-white
-        prose-p:text-gray-700 dark:prose-p:text-gray-300
-        prose-strong:text-gray-900 dark:prose-strong:text-white
-        prose-code:text-pink-600 dark:prose-code:text-pink-400
-        prose-code:bg-gray-100 dark:prose-code:bg-gray-800
-        prose-code:px-1 prose-code:py-0.5 prose-code:rounded
-        prose-pre:bg-gray-900 dark:prose-pre:bg-gray-900
-        prose-pre:border prose-pre:border-gray-200 dark:prose-pre:border-gray-700
-        prose-blockquote:border-l-blue-500 dark:prose-blockquote:border-l-blue-400
-        prose-blockquote:bg-blue-50 dark:prose-blockquote:bg-blue-900/20
-        prose-blockquote:py-2 prose-blockquote:px-4 prose-blockquote:rounded-r
-        prose-a:text-blue-600 dark:prose-a:text-blue-400
-        prose-a:hover:text-blue-800 dark:prose-a:hover:text-blue-300
-        prose-table:text-sm
-        prose-th:bg-gray-50 dark:prose-th:bg-gray-800
-        prose-th:text-gray-900 dark:prose-th:text-white
-        prose-td:text-gray-700 dark:prose-td:text-gray-300
-        ${className}
-      `}
+            className={`markdown-viewer ${className}`}
             dangerouslySetInnerHTML={{ __html: content }}
         />
     )
