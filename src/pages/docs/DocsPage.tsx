@@ -20,7 +20,6 @@ export function DocsPage(props: Readonly<DocsPageProps>) {
     const [documentTitle, setDocumentTitle] = useState('')
     const [selectedTreeKeys, setSelectedTreeKeys] = useState<string[]>([])
     const [expandedTreeKeys, setExpandedTreeKeys] = useState<string[]>(['Components'])
-    const [documentFragment, setDocumentFragment] = useState<string | null>(null)
 
     // Handle file parameter from URL
     const fileFromUrl = props.file || props.path?.split('/').pop()?.replace('.md', '')
@@ -76,11 +75,9 @@ export function DocsPage(props: Readonly<DocsPageProps>) {
         // Add fragment if provided
         if (fragment) {
             documentationPath += `#${fragment}`
-            setDocumentFragment(fragment)
         } else if (currentHash) {
             // Preserve existing hash
             documentationPath += currentHash
-            setDocumentFragment(currentHash.substring(1))
         }
 
         console.log('Navigating to:', {
@@ -182,7 +179,6 @@ export function DocsPage(props: Readonly<DocsPageProps>) {
                 // Handle hash fragment
                 if (currentHash) {
                     const fragment = currentHash.substring(1) // Remove #
-                    setDocumentFragment(decodeURIComponent(fragment))
                     console.log('Setting fragment from URL:', fragment)
                 }
 

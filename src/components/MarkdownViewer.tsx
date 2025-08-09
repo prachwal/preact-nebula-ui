@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'preact/hooks'
 import { marked } from 'marked'
 import hljs from 'highlight.js'
-import { route } from 'preact-router'
 import 'highlight.js/styles/github-dark.css'
 import '../styles/markdown.css'
 
