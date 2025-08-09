@@ -1,7 +1,7 @@
-import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 
 // Import sections
 import {
@@ -19,18 +19,15 @@ interface UploadPageProps {
 }
 
 export function UploadPage(_props: Readonly<UploadPageProps>) {
-  const [activeTab, setActiveTab] = useState('basic')
-
-  const tabs = [
-    { key: 'basic', id: 'basic', label: 'Basic Usage' },
-    { key: 'sizes', id: 'sizes', label: 'Sizes' },
-    { key: 'dragdrop', id: 'dragdrop', label: 'Drag & Drop' },
-    { key: 'validation', id: 'validation', label: 'Validation' },
-    { key: 'progress', id: 'progress', label: 'Progress' },
-    { key: 'multiple', id: 'multiple', label: 'Multiple Files' },
-    { key: 'props', id: 'props', label: 'Props' },
-    { key: 'documentation', id: 'documentation', label: 'Documentation' }
-  ]
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(
+    PathTabPageConfigs.withDocumentation('/upload', [
+      { key: 'sizes', label: 'Sizes' },
+      { key: 'dragdrop', label: 'Drag & Drop' },
+      { key: 'validation', label: 'Validation' },
+      { key: 'progress', label: 'Progress' },
+      { key: 'multiple', label: 'Multiple Files' }
+    ])
+  )
 
   const renderSection = () => {
     switch (activeTab) {

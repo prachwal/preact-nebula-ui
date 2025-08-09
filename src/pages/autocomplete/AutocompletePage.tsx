@@ -1,7 +1,7 @@
-import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 
 // Import sections
 import { BasicUsageSection } from './sections/BasicUsageSection'
@@ -13,24 +13,18 @@ import { CustomRenderingSection } from './sections/CustomRenderingSection'
 import { StatesSection } from './sections/StatesSection'
 import { PropsDocumentation } from './sections/PropsDocumentation'
 
-const tabs = [
-  { key: 'basic', label: 'Basic Usage' },
-  { key: 'sizes', label: 'Sizes' },
-  { key: 'multiple', label: 'Multiple Selection' },
-  { key: 'async', label: 'Async Search' },
-  { key: 'create', label: 'Create Options' },
-  { key: 'custom', label: 'Custom Rendering' },
-  { key: 'states', label: 'States' },
-  { key: 'props', label: 'Props' },
-  { key: 'documentation', label: 'Documentation' }
-]
-
 interface PageProps {
   path?: string
 }
 
 export function AutocompletePage(_props: Readonly<PageProps>) {
-  const [activeTab, setActiveTab] = useState('basic')
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(
+    PathTabPageConfigs.withDocumentation('/autocomplete', [
+      { key: 'sizes', label: 'Sizes' },
+      { key: 'custom', label: 'Custom Options' },
+      { key: 'loading', label: 'Loading States' }
+    ])
+  )
 
   const renderContent = () => {
     switch (activeTab) {

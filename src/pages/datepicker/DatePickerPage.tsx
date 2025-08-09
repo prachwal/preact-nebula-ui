@@ -1,7 +1,7 @@
-import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 import {
   BasicUsageSection,
   SizesSection,
@@ -15,16 +15,13 @@ interface PageProps {
 }
 
 export function DatePickerPage(_props: Readonly<PageProps>) {
-  const tabs = [
-    { key: 'basic', label: 'Basic Usage' },
-    { key: 'sizes', label: 'Sizes' },
-    { key: 'states', label: 'States' },
-    { key: 'validation', label: 'Validation' },
-    { key: 'props', label: 'Props' },
-    { key: 'documentation', label: 'Documentation' }
-  ]
-
-  const [activeTab, setActiveTab] = useState('basic')
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(
+    PathTabPageConfigs.withDocumentation('/datepicker', [
+      { key: 'sizes', label: 'Sizes' },
+      { key: 'states', label: 'States' },
+      { key: 'validation', label: 'Validation' }
+    ])
+  )
 
   const renderSection = () => {
     switch (activeTab) {

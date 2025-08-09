@@ -1,31 +1,40 @@
-﻿import { useState } from 'preact/hooks'
-import { PageHeader } from '../../components/layout/PageHeader'
+﻿import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 import { BasicSection, RequiredSection, SizingSection, ExamplesSection, PropsDocumentation } from './sections'
 
-type DemoType = 'basic' | 'required' | 'sizing' | 'examples' | 'props' | 'documentation'
-
-interface Tab {
-  key: DemoType
-  label: string
-}
-
 interface PageProps {
-  path?: string
+  readonly path?: string
 }
 
-export function LabelPage(_props: PageProps) {
-  const [activeDemo, setActiveDemo] = useState<DemoType>('basic')
+export function LabelPage(_props: Readonly<PageProps>) {
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(
+    PathTabPageConfigs.withDocumentation('/label', [
+      { key: 'required', label: 'Required Labels' },
+      { key: 'sizing', label: 'Sizing' },
+      { key: 'examples', label: 'Examples' }
+    ])
+  )
 
-  const tabs: Tab[] = [
-    { key: 'basic', label: 'Basic Usage' },
-    { key: 'required', label: 'Required Labels' },
-    { key: 'sizing', label: 'Sizing' },
-    { key: 'examples', label: 'Examples' },
-    { key: 'props', label: 'Props' },
-    { key: 'documentation', label: 'Documentation' }
-  ]
+  const renderSection = () => {
+    switch (activeTab) {
+      case 'basic':
+        return <BasicSection />
+      case 'required':
+        return <RequiredSection />
+      case 'sizing':
+        return <SizingSection />
+      case 'examples':
+        return <ExamplesSection />
+      case 'props':
+        return <PropsDocumentation />
+      case 'documentation':
+        return <DocumentationTab componentName="label" />
+      default:
+        return <BasicSection />
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -37,17 +46,12 @@ export function LabelPage(_props: PageProps) {
 
         <DemoTabs
           tabs={tabs}
-          activeTab={activeDemo}
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
         />
 
         <div className="mt-8">
-          {activeDemo === 'basic' && <BasicSection />}
-          {activeDemo === 'required' && <RequiredSection />}
-          {activeDemo === 'sizing' && <SizingSection />}
-          {activeDemo === 'examples' && <ExamplesSection />}
-          {activeDemo === 'props' && <PropsDocumentation />}
-          {activeDemo === 'documentation' && <DocumentationTab componentName="label" />}
+          {renderSection()}
         </div>
       </div>
     </div>

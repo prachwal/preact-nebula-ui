@@ -1,7 +1,7 @@
-﻿import { useState } from 'preact/hooks'
-import { PageHeader } from '../../components/layout/PageHeader'
+﻿import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 import {
   VariantsSection,
   SizesSection,
@@ -11,33 +11,27 @@ import {
   PropsDocumentation
 } from './sections'
 
-type DemoType = 'variants' | 'sizes' | 'states' | 'icons' | 'combinations' | 'props' | 'docs'
-
-interface Tab {
-  key: DemoType
-  label: string
-}
+type DemoType = 'variants' | 'sizes' | 'states' | 'icons' | 'combinations' | 'props' | 'documentation'
 
 interface PageProps {
   readonly path?: string
 }
 
 export function ButtonPage(_props: PageProps) {
-  const [activeDemo, setActiveDemo] = useState<DemoType>('variants')
-
-  const handleButtonClick = () => {
-    console.log('Button clicked!')
-  }
-
-  const tabs: Tab[] = [
+  const tabConfig = PathTabPageConfigs.withDocumentation('/button', [
     { key: 'variants', label: 'Variants' },
     { key: 'sizes', label: 'Sizes' },
     { key: 'states', label: 'States' },
     { key: 'icons', label: 'Icons' },
-    { key: 'combinations', label: 'Combinations' },
-    { key: 'props', label: 'Props' },
-    { key: 'docs', label: 'Dokumentacja' }
-  ]
+    { key: 'combinations', label: 'Combinations' }
+  ])
+
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(tabConfig)
+  const activeDemo = activeTab as DemoType
+
+  const handleButtonClick = () => {
+    console.log('Button clicked!')
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -49,8 +43,8 @@ export function ButtonPage(_props: PageProps) {
 
         <DemoTabs
           tabs={tabs}
-          activeTab={activeDemo}
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
         />
 
         <div className="mt-8">
@@ -60,7 +54,7 @@ export function ButtonPage(_props: PageProps) {
           {activeDemo === 'icons' && <IconsSection onButtonClick={handleButtonClick} />}
           {activeDemo === 'combinations' && <CombinationsSection onButtonClick={handleButtonClick} />}
           {activeDemo === 'props' && <PropsDocumentation />}
-          {activeDemo === 'docs' && <DocumentationTab componentName="button" />}
+          {activeDemo === 'documentation' && <DocumentationTab componentName="button" />}
         </div>
       </div>
     </div>

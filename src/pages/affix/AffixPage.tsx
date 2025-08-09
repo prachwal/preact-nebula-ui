@@ -1,7 +1,7 @@
-import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 import {
   BasicUsageSection,
   PositionSection,
@@ -15,18 +15,15 @@ interface PageProps {
   path?: string
 }
 
-export function AffixPage(_props: PageProps) {
-  const [activeTab, setActiveTab] = useState('basic')
-
-  const tabs = [
-    { key: 'basic', label: 'Basic Usage' },
-    { key: 'position', label: 'Position' },
-    { key: 'target', label: 'Target' },
-    { key: 'offset', label: 'Offset' },
-    { key: 'advanced', label: 'Advanced' },
-    { key: 'props', label: 'Props' },
-    { key: 'documentation', label: 'Documentation' }
-  ]
+export function AffixPage(_props: Readonly<PageProps>) {
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(
+    PathTabPageConfigs.withDocumentation('/affix', [
+      { key: 'position', label: 'Position' },
+      { key: 'target', label: 'Target' },
+      { key: 'offset', label: 'Offset' },
+      { key: 'advanced', label: 'Advanced' }
+    ])
+  )
 
   const renderContent = () => {
     switch (activeTab) {

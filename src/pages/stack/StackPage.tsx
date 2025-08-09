@@ -1,4 +1,3 @@
-import { useState } from 'preact/hooks'
 import {
   DirectionAndSpacing,
   SpacingVariants,
@@ -6,26 +5,43 @@ import {
   LayoutExamples,
   PropsDocumentation
 } from './sections'
-import { PageHeader, DemoTabs, type Tab } from '../../components/layout'
+import { PageHeader, DemoTabs } from '../../components/layout'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 
 interface PageProps {
-  path?: string
+  readonly path?: string
 }
 
-type DemoType = 'direction' | 'spacing' | 'alignment' | 'examples' | 'props' | 'documentation'
+export function StackPage(_props: Readonly<PageProps>) {
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(
+    PathTabPageConfigs.withDocumentation('/stack', [
+      { key: 'spacing', label: 'Spacing Variants' },
+      { key: 'alignment', label: 'Alignment Options' },
+      { key: 'examples', label: 'Layout Examples' }
+    ])
+  )
 
-export function StackPage(_props: PageProps) {
-  const [activeDemo, setActiveDemo] = useState<DemoType>('direction')
-
-  const tabs: Tab[] = [
-    { key: 'direction', label: 'Direction & Spacing' },
-    { key: 'spacing', label: 'Spacing Variants' },
-    { key: 'alignment', label: 'Alignment Options' },
-    { key: 'examples', label: 'Layout Examples' },
-    { key: 'props', label: 'Props' },
-    { key: 'documentation', label: 'Documentation' }
-  ]
+  const renderSection = () => {
+    switch (activeTab) {
+      case 'basic':
+        return <DirectionAndSpacing />
+      case 'direction':
+        return <DirectionAndSpacing />
+      case 'spacing':
+        return <SpacingVariants />
+      case 'alignment':
+        return <AlignmentOptions />
+      case 'examples':
+        return <LayoutExamples />
+      case 'props':
+        return <PropsDocumentation />
+      case 'documentation':
+        return <DocumentationTab componentName="stack" />
+      default:
+        return <DirectionAndSpacing />
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -38,20 +54,15 @@ export function StackPage(_props: PageProps) {
           />
           <DemoTabs
             tabs={tabs}
-            activeTab={activeDemo}
-            onTabChange={(tab) => setActiveDemo(tab as DemoType)}
+            activeTab={activeTab}
+            onTabChange={setActiveTab}
           />
         </div>
       </div>
 
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {activeDemo === 'direction' && <DirectionAndSpacing />}
-        {activeDemo === 'spacing' && <SpacingVariants />}
-        {activeDemo === 'alignment' && <AlignmentOptions />}
-        {activeDemo === 'examples' && <LayoutExamples />}
-        {activeDemo === 'props' && <PropsDocumentation />}
-        {activeDemo === 'documentation' && <DocumentationTab componentName="stack" />}
+        {renderSection()}
       </div>
     </div>
   )

@@ -1,7 +1,7 @@
-import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 import { BasicUsageSection } from './sections/BasicUsageSection'
 import { ResponsiveSection } from './sections/ResponsiveSection'
 import { SpanningSection } from './sections/SpanningSection'
@@ -9,20 +9,17 @@ import { AlignmentSection } from './sections/AlignmentSection'
 import { PropsDocumentation } from './sections/PropsDocumentation'
 
 interface PageProps {
-  path?: string
+  readonly path?: string
 }
 
-export function GridPage(_props: PageProps) {
-  const [activeTab, setActiveTab] = useState('basic')
-
-  const tabs = [
-    { id: 'basic', label: 'Basic Usage', key: 'basic' },
-    { id: 'responsive', label: 'Responsive', key: 'responsive' },
-    { id: 'spanning', label: 'Spanning', key: 'spanning' },
-    { id: 'alignment', label: 'Alignment', key: 'alignment' },
-    { id: 'props', label: 'Props', key: 'props' },
-    { id: 'documentation', label: 'Documentation', key: 'documentation' }
-  ]
+export function GridPage(_props: Readonly<PageProps>) {
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(
+    PathTabPageConfigs.withDocumentation('/grid', [
+      { key: 'responsive', label: 'Responsive' },
+      { key: 'spanning', label: 'Column Spanning' },
+      { key: 'gutter', label: 'Gutter & Spacing' }
+    ])
+  )
 
   const renderTabContent = () => {
     switch (activeTab) {

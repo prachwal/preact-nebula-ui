@@ -1,31 +1,43 @@
-﻿import { useState } from 'preact/hooks'
-import { PageHeader } from '../../components/layout/PageHeader'
+﻿import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
 import { SizesSection, ColorsSection, UsageSection, AccessibilitySection, PropsDocumentation } from './sections'
-
-type DemoType = 'sizes' | 'colors' | 'usage' | 'accessibility' | 'props' | 'documentation'
-
-interface Tab {
-  key: DemoType
-  label: string
-}
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 
 interface PageProps {
   readonly path?: string
 }
 
 export function SpinnerPage(_props: PageProps) {
-  const [activeDemo, setActiveDemo] = useState<DemoType>('sizes')
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(
+    PathTabPageConfigs.withDocumentation('/spinner', [
+      { key: 'sizes', label: 'Sizes' },
+      { key: 'colors', label: 'Colors' },
+      { key: 'usage', label: 'Usage' },
+      { key: 'accessibility', label: 'Accessibility' }
+    ])
+  )
 
-  const tabs: Tab[] = [
-    { key: 'sizes', label: 'Sizes' },
-    { key: 'colors', label: 'Colors' },
-    { key: 'usage', label: 'Usage' },
-    { key: 'accessibility', label: 'Accessibility' },
-    { key: 'props', label: 'Props' },
-    { key: 'documentation', label: 'Documentation' }
-  ]
+  const renderSection = () => {
+    switch (activeTab) {
+      case 'basic':
+        return <SizesSection />
+      case 'sizes':
+        return <SizesSection />
+      case 'colors':
+        return <ColorsSection />
+      case 'usage':
+        return <UsageSection />
+      case 'accessibility':
+        return <AccessibilitySection />
+      case 'props':
+        return <PropsDocumentation />
+      case 'documentation':
+        return <DocumentationTab componentName="spinner" />
+      default:
+        return <SizesSection />
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -37,17 +49,12 @@ export function SpinnerPage(_props: PageProps) {
 
         <DemoTabs
           tabs={tabs}
-          activeTab={activeDemo}
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
         />
 
         <div className="mt-8">
-          {activeDemo === 'sizes' && <SizesSection />}
-          {activeDemo === 'colors' && <ColorsSection />}
-          {activeDemo === 'usage' && <UsageSection />}
-          {activeDemo === 'accessibility' && <AccessibilitySection />}
-          {activeDemo === 'props' && <PropsDocumentation />}
-          {activeDemo === 'documentation' && <DocumentationTab componentName="spinner" />}
+          {renderSection()}
         </div>
       </div>
     </div>

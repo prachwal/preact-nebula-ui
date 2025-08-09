@@ -1,0 +1,30 @@
+{
+  "name": "Tooltip",
+  "category": "Overlays",
+  "description": "Contextual information overlay on hover or focus",
+  "size": "medium",
+  "complexity": "medium",
+  "tags": [
+    "overlay",
+    "information",
+    "hover",
+    "context"
+  ],
+  "hasTests": true,
+  "hasStories": false,
+  "hasA11yTests": false,
+  "buildStatus": "stable",
+  "features": [
+    "TypeScript support with strict typing",
+    "Full accessibility (WCAG 2.1 AA)",
+    "Dark mode and theme support",
+    "Responsive design patterns",
+    "Performance optimized"
+  ],
+  "examples": [
+    "Basic usage",
+    "Advanced configuration",
+    "Custom styling",
+    "Event handling"
+  ]
+}

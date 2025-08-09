@@ -1,31 +1,22 @@
-import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 import { SizesSection, ShapesSection, GroupsSection, BadgesSection, PropsDocumentation } from './sections'
-
-type DemoType = 'sizes' | 'shapes' | 'groups' | 'badges' | 'props' | 'documentation'
-
-interface Tab {
-  key: DemoType
-  label: string
-}
 
 interface PageProps {
   path?: string
 }
 
 export function AvatarPage(_props: Readonly<PageProps>) {
-  const [activeDemo, setActiveDemo] = useState<DemoType>('sizes')
-
-  const tabs: Tab[] = [
-    { key: 'sizes', label: 'Sizes' },
-    { key: 'shapes', label: 'Shapes' },
-    { key: 'groups', label: 'Avatar Groups' },
-    { key: 'badges', label: 'Status Badges' },
-    { key: 'props', label: 'Props' },
-    { key: 'documentation', label: 'Documentation' }
-  ]
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(
+    PathTabPageConfigs.withDocumentation('/avatar', [
+      { key: 'sizes', label: 'Sizes' },
+      { key: 'shapes', label: 'Shapes' },
+      { key: 'groups', label: 'Avatar Groups' },
+      { key: 'badges', label: 'Status Badges' }
+    ])
+  )
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -37,19 +28,33 @@ export function AvatarPage(_props: Readonly<PageProps>) {
 
         <DemoTabs
           tabs={tabs}
-          activeTab={activeDemo}
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
         />
 
         <div className="mt-8">
-          {activeDemo === 'sizes' && <SizesSection />}
-          {activeDemo === 'shapes' && <ShapesSection />}
-          {activeDemo === 'groups' && <GroupsSection />}
-          {activeDemo === 'badges' && <BadgesSection />}
-          {activeDemo === 'props' && <PropsDocumentation />}
-          {activeDemo === 'documentation' && <DocumentationTab componentName="avatar" />}
+          {renderSection()}
         </div>
       </div>
     </div>
   )
+
+  function renderSection() {
+    switch (activeTab) {
+      case 'sizes':
+        return <SizesSection />
+      case 'shapes':
+        return <ShapesSection />
+      case 'groups':
+        return <GroupsSection />
+      case 'badges':
+        return <BadgesSection />
+      case 'props':
+        return <PropsDocumentation />
+      case 'documentation':
+        return <DocumentationTab componentName="avatar" />
+      default:
+        return <SizesSection />
+    }
+  }
 }

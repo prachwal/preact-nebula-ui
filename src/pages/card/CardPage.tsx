@@ -1,31 +1,21 @@
-import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 import { BasicUsageSection, VariantsSection, StructureSection, ExamplesSection, PropsDocumentation } from './sections'
-
-type DemoType = 'basic' | 'variants' | 'structure' | 'examples' | 'props' | 'docs'
-
-interface Tab {
-  key: DemoType
-  label: string
-}
 
 interface PageProps {
   readonly path?: string
 }
 
 export function CardPage(_props: PageProps) {
-  const [activeDemo, setActiveDemo] = useState<DemoType>('basic')
-
-  const tabs: Tab[] = [
-    { key: 'basic', label: 'Basic Usage' },
-    { key: 'variants', label: 'Card Variants' },
-    { key: 'structure', label: 'Card Structure' },
-    { key: 'examples', label: 'Real Examples' },
-    { key: 'props', label: 'Props' },
-    { key: 'docs', label: 'Documentation' }
-  ]
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(
+    PathTabPageConfigs.withDocumentation('/card', [
+      { key: 'variants', label: 'Card Variants' },
+      { key: 'structure', label: 'Card Structure' },
+      { key: 'examples', label: 'Real Examples' }
+    ])
+  )
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -37,17 +27,17 @@ export function CardPage(_props: PageProps) {
 
         <DemoTabs
           tabs={tabs}
-          activeTab={activeDemo}
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
         />
 
         <div className="mt-8">
-          {activeDemo === 'basic' && <BasicUsageSection />}
-          {activeDemo === 'variants' && <VariantsSection />}
-          {activeDemo === 'structure' && <StructureSection />}
-          {activeDemo === 'examples' && <ExamplesSection />}
-          {activeDemo === 'props' && <PropsDocumentation />}
-          {activeDemo === 'docs' && <DocumentationTab componentName="card" />}
+          {activeTab === 'basic' && <BasicUsageSection />}
+          {activeTab === 'variants' && <VariantsSection />}
+          {activeTab === 'structure' && <StructureSection />}
+          {activeTab === 'examples' && <ExamplesSection />}
+          {activeTab === 'props' && <PropsDocumentation />}
+          {activeTab === 'documentation' && <DocumentationTab componentName="card" />}
         </div>
       </div>
     </div>

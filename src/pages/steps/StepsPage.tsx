@@ -1,7 +1,7 @@
-import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 import {
   BasicUsageSection,
   SizesSection,
@@ -10,23 +10,18 @@ import {
   PropsDocumentation
 } from './sections'
 
-type TabType = 'basic' | 'sizes' | 'orientation' | 'status' | 'props' | 'documentation'
-
 interface StepsPageProps {
   readonly path?: string
 }
 
 export function StepsPage(_props: StepsPageProps) {
-  const [activeTab, setActiveTab] = useState<TabType>('basic')
-
-  const tabs = [
-    { key: 'basic', id: 'basic', label: 'Basic Usage' },
-    { key: 'sizes', id: 'sizes', label: 'Sizes' },
-    { key: 'orientation', id: 'orientation', label: 'Orientation' },
-    { key: 'status', id: 'status', label: 'Status' },
-    { key: 'props', id: 'props', label: 'Props' },
-    { key: 'documentation', id: 'documentation', label: 'Documentation' }
-  ]
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(
+    PathTabPageConfigs.withDocumentation('/steps', [
+      { key: 'sizes', label: 'Sizes' },
+      { key: 'orientation', label: 'Orientation' },
+      { key: 'status', label: 'Status' }
+    ])
+  )
 
   const renderSection = () => {
     switch (activeTab) {
@@ -57,7 +52,7 @@ export function StepsPage(_props: StepsPageProps) {
       <DemoTabs
         tabs={tabs}
         activeTab={activeTab}
-        onTabChange={(tab) => setActiveTab(tab as TabType)}
+        onTabChange={setActiveTab}
       />
 
       <div className="mt-8">

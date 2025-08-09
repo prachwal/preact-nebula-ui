@@ -1,7 +1,7 @@
-﻿import { useState } from 'preact/hooks'
-import { PageHeader } from '../../components/layout/PageHeader'
+﻿import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 import { getExampleData } from './ExampleData'
 import {
   BasicExample,
@@ -13,31 +13,21 @@ import {
   PropsDocumentation
 } from './sections'
 
-type DemoType = 'basic' | 'separators' | 'homeIcon' | 'responsive' | 'icons' | 'edgeCases' | 'props' | 'documentation'
-
-interface Tab {
-  key: DemoType
-  label: string
-}
-
 interface PageProps {
   readonly path?: string
 }
 
 export function BreadcrumbPage(_props: PageProps) {
-  const [activeDemo, setActiveDemo] = useState<DemoType>('basic')
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(
+    PathTabPageConfigs.withDocumentation('/breadcrumb', [
+      { key: 'separators', label: 'Separators' },
+      { key: 'homeIcon', label: 'Home Icon' },
+      { key: 'responsive', label: 'Responsive' },
+      { key: 'icons', label: 'Icons' },
+      { key: 'edgeCases', label: 'Edge Cases' }
+    ])
+  )
   const { basicItems, longItems, itemsWithIcons } = getExampleData()
-
-  const tabs: Tab[] = [
-    { key: 'basic', label: 'Basic Usage' },
-    { key: 'separators', label: 'Separators' },
-    { key: 'homeIcon', label: 'Home Icon' },
-    { key: 'responsive', label: 'Responsive' },
-    { key: 'icons', label: 'Icons' },
-    { key: 'edgeCases', label: 'Edge Cases' },
-    { key: 'props', label: 'Props' },
-    { key: 'documentation', label: 'Documentation' }
-  ]
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -49,19 +39,19 @@ export function BreadcrumbPage(_props: PageProps) {
 
         <DemoTabs
           tabs={tabs}
-          activeTab={activeDemo}
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
         />
 
         <div className="mt-8">
-          {activeDemo === 'basic' && <BasicExample items={basicItems} />}
-          {activeDemo === 'separators' && <SeparatorVariants items={basicItems} />}
-          {activeDemo === 'homeIcon' && <HomeIconExample items={basicItems} />}
-          {activeDemo === 'responsive' && <ResponsiveCollapse items={longItems} />}
-          {activeDemo === 'icons' && <IconsExample items={itemsWithIcons} />}
-          {activeDemo === 'edgeCases' && <EdgeCases />}
-          {activeDemo === 'props' && <PropsDocumentation />}
-          {activeDemo === 'documentation' && <DocumentationTab componentName="breadcrumb" />}
+          {activeTab === 'basic' && <BasicExample items={basicItems} />}
+          {activeTab === 'separators' && <SeparatorVariants items={basicItems} />}
+          {activeTab === 'homeIcon' && <HomeIconExample items={basicItems} />}
+          {activeTab === 'responsive' && <ResponsiveCollapse items={longItems} />}
+          {activeTab === 'icons' && <IconsExample items={itemsWithIcons} />}
+          {activeTab === 'edgeCases' && <EdgeCases />}
+          {activeTab === 'props' && <PropsDocumentation />}
+          {activeTab === 'documentation' && <DocumentationTab componentName="breadcrumb" />}
         </div>
       </div>
     </div>

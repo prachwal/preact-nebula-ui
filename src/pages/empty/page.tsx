@@ -1,5 +1,7 @@
-import { DemoTabs } from '../../components/DemoTabs'
+import { PageHeader } from '../../components/layout/PageHeader'
+import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 import { BasicUsageSection } from './sections/BasicUsageSection'
 import { VariantsSection } from './sections/VariantsSection'
 import { SizesSection } from './sections/SizesSection'
@@ -10,46 +12,40 @@ interface PageProps {
 }
 
 export function EmptyPage(_props: Readonly<PageProps>) {
-  const tabs = [
-    {
-      id: 'basic',
-      label: 'Basic Usage',
-      content: <BasicUsageSection />
-    },
-    {
-      id: 'variants',
-      label: 'Variants',
-      content: <VariantsSection />
-    },
-    {
-      id: 'sizes',
-      label: 'Sizes',
-      content: <SizesSection />
-    },
-    {
-      id: 'api',
-      label: 'API Reference',
-      content: <PropsDocumentationSection />
-    },
-    {
-      id: 'documentation',
-      label: 'Documentation',
-      content: <DocumentationTab componentName="empty" />
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(
+    PathTabPageConfigs.withDocumentation('/empty', [
+      { key: 'variants', label: 'Variants' },
+      { key: 'sizes', label: 'Sizes' }
+    ])
+  )
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'basic':
+        return <BasicUsageSection />
+      case 'variants':
+        return <VariantsSection />
+      case 'sizes':
+        return <SizesSection />
+      case 'props':
+        return <PropsDocumentationSection />
+      case 'documentation':
+        return <DocumentationTab componentName="empty" />
+      default:
+        return <BasicUsageSection />
     }
-  ]
+  }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-          📭 Empty
-        </h1>
-        <p className="text-lg text-gray-600 dark:text-gray-300">
-          Display meaningful empty states with customizable illustrations and actions.
-        </p>
+    <div className="empty-page">
+      <PageHeader
+        title="📭 Empty"
+        description="Display meaningful empty states with customizable illustrations and actions."
+      />
+      <DemoTabs tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
+      <div className="demo-content">
+        {renderContent()}
       </div>
-
-      <DemoTabs tabs={tabs} />
     </div>
   )
 }

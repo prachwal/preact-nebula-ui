@@ -1,0 +1,32 @@
+{
+    "name": "Button",
+    "category": "General",
+    "description": "Versatile interactive element with multiple variants and states",
+    "size": "small",
+    "complexity": "low",
+    "tags": [
+        "interactive",
+        "action",
+        "click",
+        "form"
+    ],
+    "hasTests": true,
+    "hasStories": false,
+    "hasA11yTests": false,
+    "buildStatus": "stable",
+    "features": [
+        "Multiple variants (primary, secondary, outline, ghost, destructive)",
+        "Size options (sm, md, lg, xl)",
+        "Loading and disabled states",
+        "Icon support",
+        "Full width option",
+        "ARIA compliant"
+    ],
+    "examples": [
+        "Basic button",
+        "Button variants",
+        "Button with icons",
+        "Loading button",
+        "Button groups"
+    ]
+}

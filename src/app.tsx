@@ -12,6 +12,7 @@ import { Layout } from './components/layout/Layout';
 
 // Lazy loaded pages
 const HomePage = lazy(() => import('./pages/home').then(m => ({ default: m.HomePage })));
+const DocsPage = lazy(() => import('./pages/docs').then(m => ({ default: m.DocsPage })));
 const FullCoveragePage = lazy(() => import('./pages/home').then(m => ({ default: m.FullCoveragePage })));
 const ButtonPage = lazy(() => import('./pages/button').then(m => ({ default: m.ButtonPage })));
 const ContainerPage = lazy(() => import('./pages/container').then(m => ({ default: m.ContainerPage })));
@@ -252,59 +253,62 @@ function LegacyShowcase(_props: { path?: string }) {
 }
 
 function AppContent() {
+  const [currentPath, setCurrentPath] = useState(window.location.pathname)
+
   return (
-    <Layout>
-      <Suspense fallback={<div class="p-8 text-center text-gray-500 dark:text-gray-400">Ładowanie strony...</div>}>
-        <Router>
+    <Layout currentPath={currentPath}>
+      <Suspense fallback={<div className="p-8 text-center text-gray-500 dark:text-gray-400">Ładowanie strony...</div>}>
+        <Router onChange={(e) => setCurrentPath(e.url)}>
           <HomePage path="/" />
+          <DocsPage path="/docs" />
           <FullCoveragePage path="/coverage" />
-          <ButtonPage path="/button" />
-          <ContainerPage path="/container" />
-          <DividerPage path="/divider" />
-          <SpinnerPage path="/spinner" />
-          <InputPage path="/input" />
-          <TextareaPage path="/textarea" />
-          <LabelPage path="/label" />
-          <FieldErrorPage path="/field-error" />
-          <CardPage path="/card" />
-          <StackPage path="/stack" />
-          <AvatarPage path="/avatar" />
-          <AlertPage path="/alert" />
-          <BadgePage path="/badge" />
-          <ProgressPage path="/progress" />
-          <SkeletonPage path="/skeleton" />
-          <CheckboxPage path="/checkbox" />
-          <RadioPage path="/radio" />
-          <SwitchPage path="/switch" />
-          <SelectPage path="/select" />
-          <BreadcrumbPage path="/breadcrumb" />
-          <PaginationPage path="/pagination" />
-          <TablePage path="/table" />
-          <TabsPage path="/tabs" />
-          <ModalPage path="/modal" />
-          <TooltipPage path="/tooltip" />
-          <DrawerPage path="/drawer" />
-          <PopoverPage path="/popover" />
-          <ToastPage path="/toast" />
-          <SliderPage path="/slider" />
-          <RatingPage path="/rating" />
-          <DatePickerPage path="/datepicker" />
-          <TimePickerPage path="/timepicker" />
-          <AutocompletePage path="/autocomplete" />
-          <TreeViewPage path="/treeview" />
-          <TransferPage path="/transfer" />
-          <StepsPage path="/steps" />
-          <TagsPage path="/tags" />
-          <CollapsePage path="/collapse" />
-          <ImagePage path="/image" />
-          <CarouselPage path="/carousel" />
-          <UploadPage path="/upload" />
-          <AffixPage path="/affix" />
-          <ConfigProviderPage path="/config-provider" />
-          <EmptyPage path="/empty" />
-          <BackTopPage path="/backtop" />
-          <AnchorPage path="/anchor" />
-          <GridPage path="/grid" />
+          <ButtonPage path="/button/:tab?" />
+          <ContainerPage path="/container/:tab?" />
+          <DividerPage path="/divider/:tab?" />
+          <SpinnerPage path="/spinner/:tab?" />
+          <InputPage path="/input/:tab?" />
+          <TextareaPage path="/textarea/:tab?" />
+          <LabelPage path="/label/:tab?" />
+          <FieldErrorPage path="/field-error/:tab?" />
+          <CardPage path="/card/:tab?" />
+          <StackPage path="/stack/:tab?" />
+          <AvatarPage path="/avatar/:tab?" />
+          <AlertPage path="/alert/:tab?" />
+          <BadgePage path="/badge/:tab?" />
+          <ProgressPage path="/progress/:tab?" />
+          <SkeletonPage path="/skeleton/:tab?" />
+          <CheckboxPage path="/checkbox/:tab?" />
+          <RadioPage path="/radio/:tab?" />
+          <SwitchPage path="/switch/:tab?" />
+          <SelectPage path="/select/:tab?" />
+          <BreadcrumbPage path="/breadcrumb/:tab?" />
+          <PaginationPage path="/pagination/:tab?" />
+          <TablePage path="/table/:tab?" />
+          <TabsPage path="/tabs/:tab?" />
+          <ModalPage path="/modal/:tab?" />
+          <TooltipPage path="/tooltip/:tab?" />
+          <DrawerPage path="/drawer/:tab?" />
+          <PopoverPage path="/popover/:tab?" />
+          <ToastPage path="/toast/:tab?" />
+          <SliderPage path="/slider/:tab?" />
+          <RatingPage path="/rating/:tab?" />
+          <DatePickerPage path="/datepicker/:tab?" />
+          <TimePickerPage path="/timepicker/:tab?" />
+          <AutocompletePage path="/autocomplete/:tab?" />
+          <TreeViewPage path="/treeview/:tab?" />
+          <TransferPage path="/transfer/:tab?" />
+          <StepsPage path="/steps/:tab?" />
+          <TagsPage path="/tags/:tab?" />
+          <CollapsePage path="/collapse/:tab?" />
+          <ImagePage path="/image/:tab?" />
+          <CarouselPage path="/carousel/:tab?" />
+          <UploadPage path="/upload/:tab?" />
+          <AffixPage path="/affix/:tab?" />
+          <ConfigProviderPage path="/config-provider/:tab?" />
+          <EmptyPage path="/empty/:tab?" />
+          <BackTopPage path="/backtop/:tab?" />
+          <AnchorPage path="/anchor/:tab?" />
+          <GridPage path="/grid/:tab?" />
           <LegacyShowcase path="/legacy" />
         </Router>
       </Suspense>

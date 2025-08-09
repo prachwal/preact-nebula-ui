@@ -1,0 +1,18 @@
+{
+    "name": "Milestone 1 - Core Infrastructure",
+    "category": "Milestones",
+    "description": "Foundation components and build infrastructure",
+    "status": "completed",
+    "size": "large",
+    "tags": [
+        "milestone",
+        "infrastructure",
+        "foundation"
+    ],
+    "components": [
+        "Button",
+        "Input",
+        "Card",
+        "Layout"
+    ]
+}

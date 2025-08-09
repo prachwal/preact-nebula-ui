@@ -1,7 +1,7 @@
-import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 import {
   BasicUsageSection,
   ThemeSection,
@@ -10,23 +10,19 @@ import {
   PropsDocumentationSection
 } from './sections'
 
-type DemoType = 'basic' | 'theme' | 'locale' | 'defaults' | 'props' | 'documentation'
-
 interface PageProps {
   path?: string
+  tab?: string
 }
 
 export function ConfigProviderPage(_props: PageProps) {
-  const [activeTab, setActiveTab] = useState<DemoType>('basic')
-
-  const tabs = [
-    { key: 'basic', label: 'Basic Usage' },
+  const tabConfig = PathTabPageConfigs.withDocumentation('/config-provider', [
     { key: 'theme', label: 'Theme' },
     { key: 'locale', label: 'Locale' },
-    { key: 'defaults', label: 'Component Defaults' },
-    { key: 'props', label: 'Props' },
-    { key: 'documentation', label: 'Documentation' }
-  ]
+    { key: 'defaults', label: 'Component Defaults' }
+  ])
+
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(tabConfig)
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -39,7 +35,7 @@ export function ConfigProviderPage(_props: PageProps) {
         <DemoTabs
           tabs={tabs}
           activeTab={activeTab}
-          onTabChange={(tab) => setActiveTab(tab as DemoType)}
+          onTabChange={setActiveTab}
         />
 
         <div className="mt-8">

@@ -1,7 +1,7 @@
-import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 import { BasicUsageSection } from './sections/BasicUsageSection'
 import { VariantsSection } from './sections/VariantsSection'
 import { VisibilitySection } from './sections/VisibilitySection'
@@ -13,16 +13,13 @@ interface PageProps {
 }
 
 export function BackTopPage(_props: PageProps) {
-  const [activeTab, setActiveTab] = useState('basic')
-
-  const tabs = [
-    { id: 'basic', label: 'Basic Usage', key: 'basic' },
-    { id: 'variants', label: 'Variants', key: 'variants' },
-    { id: 'visibility', label: 'Visibility', key: 'visibility' },
-    { id: 'targets', label: 'Custom Targets', key: 'targets' },
-    { id: 'props', label: 'Props', key: 'props' },
-    { id: 'documentation', label: 'Documentation', key: 'documentation' }
-  ]
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(
+    PathTabPageConfigs.withDocumentation('/backtop', [
+      { key: 'variants', label: 'Variants' },
+      { key: 'visibility', label: 'Visibility' },
+      { key: 'targets', label: 'Custom Targets' }
+    ])
+  )
 
   const renderTabContent = () => {
     switch (activeTab) {

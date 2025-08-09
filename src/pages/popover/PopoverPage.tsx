@@ -1,7 +1,7 @@
-import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 import {
   BasicUsageSection,
   VariantsSection,
@@ -10,28 +10,37 @@ import {
   PropsDocumentation
 } from './sections'
 
-type DemoType = 'basic' | 'variants' | 'interactive' | 'accessibility' | 'props' | 'documentation'
-
-interface Tab {
-  key: DemoType
-  label: string
-}
-
 interface PageProps {
   path?: string
 }
 
 export function PopoverPage(_props: Readonly<PageProps>) {
-  const [activeDemo, setActiveDemo] = useState<DemoType>('basic')
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(
+    PathTabPageConfigs.withDocumentation('/popover', [
+      { key: 'variants', label: 'Variants' },
+      { key: 'interactive', label: 'Interactive' },
+      { key: 'accessibility', label: 'Accessibility' }
+    ])
+  )
 
-  const tabs: Tab[] = [
-    { key: 'basic', label: 'Basic Usage' },
-    { key: 'variants', label: 'Variants' },
-    { key: 'interactive', label: 'Interactive' },
-    { key: 'accessibility', label: 'Accessibility' },
-    { key: 'props', label: 'Props' },
-    { key: 'documentation', label: 'Documentation' }
-  ]
+  const renderSection = () => {
+    switch (activeTab) {
+      case 'basic':
+        return <BasicUsageSection />
+      case 'variants':
+        return <VariantsSection />
+      case 'interactive':
+        return <InteractiveSection />
+      case 'accessibility':
+        return <AccessibilitySection />
+      case 'props':
+        return <PropsDocumentation />
+      case 'documentation':
+        return <DocumentationTab componentName="popover" />
+      default:
+        return <BasicUsageSection />
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -43,17 +52,12 @@ export function PopoverPage(_props: Readonly<PageProps>) {
 
         <DemoTabs
           tabs={tabs}
-          activeTab={activeDemo}
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
         />
 
         <div className="mt-8">
-          {activeDemo === 'basic' && <BasicUsageSection />}
-          {activeDemo === 'variants' && <VariantsSection />}
-          {activeDemo === 'interactive' && <InteractiveSection />}
-          {activeDemo === 'accessibility' && <AccessibilitySection />}
-          {activeDemo === 'props' && <PropsDocumentation />}
-          {activeDemo === 'documentation' && <DocumentationTab componentName="popover" />}
+          {renderSection()}
         </div>
       </div>
     </div>

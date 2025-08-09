@@ -1,31 +1,22 @@
-import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
 import { SizesSection, PaddingSection, CenteringSection, CombinationsSection, PropsDocumentation } from './sections'
 
-type DemoType = 'sizes' | 'padding' | 'centering' | 'combinations' | 'props' | 'documentation'
-
-interface Tab {
-  key: DemoType
-  label: string
-}
-
 interface PageProps {
-  path?: string;
+  path?: string
 }
 
-export default function ContainerPage(_props: PageProps) {
-  const [activeDemo, setActiveDemo] = useState<DemoType>('sizes')
-
-  const tabs: Tab[] = [
-    { key: 'sizes', label: 'Sizes' },
-    { key: 'padding', label: 'Padding' },
-    { key: 'centering', label: 'Centering' },
-    { key: 'combinations', label: 'Combinations' },
-    { key: 'props', label: 'Props' },
-    { key: 'documentation', label: 'Documentation' }
-  ]
+export default function ContainerPage(_props: Readonly<PageProps>) {
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(
+    PathTabPageConfigs.withDocumentation('/container', [
+      { key: 'sizes', label: 'Sizes' },
+      { key: 'padding', label: 'Padding' },
+      { key: 'centering', label: 'Centering' },
+      { key: 'combinations', label: 'Combinations' }
+    ])
+  )
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -37,17 +28,17 @@ export default function ContainerPage(_props: PageProps) {
 
         <DemoTabs
           tabs={tabs}
-          activeTab={activeDemo}
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
         />
 
         <div className="mt-8">
-          {activeDemo === 'sizes' && <SizesSection />}
-          {activeDemo === 'padding' && <PaddingSection />}
-          {activeDemo === 'centering' && <CenteringSection />}
-          {activeDemo === 'combinations' && <CombinationsSection />}
-          {activeDemo === 'props' && <PropsDocumentation />}
-          {activeDemo === 'documentation' && <DocumentationTab componentName="container" />}
+          {activeTab === 'sizes' && <SizesSection />}
+          {activeTab === 'padding' && <PaddingSection />}
+          {activeTab === 'centering' && <CenteringSection />}
+          {activeTab === 'combinations' && <CombinationsSection />}
+          {activeTab === 'props' && <PropsDocumentation />}
+          {activeTab === 'documentation' && <DocumentationTab componentName="container" />}
         </div>
       </div>
     </div>

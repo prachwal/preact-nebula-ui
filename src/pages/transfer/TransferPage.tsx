@@ -1,21 +1,21 @@
-import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 import { BasicUsageSection, SizesSection } from './sections'
 
 interface PageProps {
   path?: string
 }
 
-const tabs = [
-  { key: 'basic', label: 'Basic Usage' },
-  { key: 'sizes', label: 'Sizes' },
-  { key: 'documentation', label: 'Documentation' }
-]
-
 export function TransferPage(_props: Readonly<PageProps>) {
-  const [activeTab, setActiveTab] = useState('basic')
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(
+    PathTabPageConfigs.withDocumentation('/transfer', [
+      { key: 'sizes', label: 'Sizes' },
+      { key: 'search', label: 'Search & Filter' },
+      { key: 'advanced', label: 'Advanced' }
+    ])
+  )
 
   const renderContent = () => {
     switch (activeTab) {

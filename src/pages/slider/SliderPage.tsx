@@ -1,7 +1,7 @@
-import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 import {
   BasicUsageSection,
   SizesSection,
@@ -18,18 +18,16 @@ interface PageProps {
 }
 
 export function SliderPage(_props: Readonly<PageProps>) {
-  const [activeTab, setActiveTab] = useState('basic')
-  const tabs = [
-    { key: 'basic', label: 'Basic Usage' },
-    { key: 'sizes', label: 'Sizes' },
-    { key: 'range', label: 'Range' },
-    { key: 'marks', label: 'Marks' },
-    { key: 'orientation', label: 'Orientation' },
-    { key: 'custom-thumb', label: 'Custom Thumb' },
-    { key: 'advanced', label: 'Advanced' },
-    { key: 'props', label: 'Props' },
-    { key: 'documentation', label: 'Documentation' }
-  ]
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(
+    PathTabPageConfigs.withDocumentation('/slider', [
+      { key: 'sizes', label: 'Sizes' },
+      { key: 'range', label: 'Range' },
+      { key: 'marks', label: 'Marks' },
+      { key: 'orientation', label: 'Orientation' },
+      { key: 'custom-thumb', label: 'Custom Thumb' },
+      { key: 'advanced', label: 'Advanced' }
+    ])
+  )
   const renderSection = () => {
     switch (activeTab) {
       case 'basic':

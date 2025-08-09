@@ -1,0 +1,48 @@
+{
+    "name": "Project Documentation",
+    "category": "Project",
+    "description": "Core project documentation and guides",
+    "files": [
+        {
+            "name": "README.md",
+            "description": "Main project documentation and setup guide",
+            "size": "large",
+            "tags": [
+                "overview",
+                "setup",
+                "getting-started"
+            ]
+        },
+        {
+            "name": "IMPLEMENTATION_PLAN.md",
+            "description": "Detailed implementation roadmap and architecture",
+            "size": "large",
+            "tags": [
+                "planning",
+                "architecture",
+                "roadmap"
+            ]
+        },
+        {
+            "name": "PROJECT_STATUS.md",
+            "description": "Current project status and progress overview",
+            "size": "medium",
+            "tags": [
+                "status",
+                "progress",
+                "tracking"
+            ]
+        },
+        {
+            "name": "COMPONENT_COVERAGE_REPORT.md",
+            "description": "Test coverage and quality metrics analysis",
+            "size": "large",
+            "tags": [
+                "testing",
+                "coverage",
+                "quality",
+                "metrics"
+            ]
+        }
+    ]
+}

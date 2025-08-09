@@ -1,0 +1,31 @@
+{
+    "name": "Card",
+    "category": "Data Display",
+    "description": "Container component for displaying content in structured format",
+    "size": "medium",
+    "complexity": "low",
+    "tags": [
+        "container",
+        "content",
+        "display",
+        "layout"
+    ],
+    "hasTests": true,
+    "hasStories": false,
+    "hasA11yTests": false,
+    "buildStatus": "stable",
+    "features": [
+        "Header, body, and footer sections",
+        "Hover and focus states",
+        "Shadow and border variants",
+        "Clickable card support",
+        "Image and media support",
+        "Responsive design"
+    ],
+    "examples": [
+        "Basic card",
+        "Card with image",
+        "Clickable card",
+        "Card with actions"
+    ]
+}

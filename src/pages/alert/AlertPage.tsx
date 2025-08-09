@@ -1,31 +1,24 @@
-import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 import { BasicUsageSection, VariantsSection, SizesSection, InteractiveSection, PropsDocumentation } from './sections'
 
-type DemoType = 'basic' | 'variants' | 'sizes' | 'interactive' | 'props' | 'docs'
-
-interface Tab {
-  key: DemoType
-  label: string
-}
+type DemoType = 'basic' | 'variants' | 'sizes' | 'interactive' | 'props' | 'documentation'
 
 interface PageProps {
   readonly path?: string
 }
 
 export function AlertPage(_props: PageProps) {
-  const [activeDemo, setActiveDemo] = useState<DemoType>('basic')
-
-  const tabs: Tab[] = [
-    { key: 'basic', label: 'Basic Usage' },
+  const tabConfig = PathTabPageConfigs.withDocumentation('/alert', [
     { key: 'variants', label: 'Variants' },
     { key: 'sizes', label: 'Sizes' },
-    { key: 'interactive', label: 'Interactive' },
-    { key: 'props', label: 'Props' },
-    { key: 'docs', label: 'Documentation' }
-  ]
+    { key: 'interactive', label: 'Interactive' }
+  ])
+
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(tabConfig)
+  const activeDemo = activeTab as DemoType
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -37,8 +30,8 @@ export function AlertPage(_props: PageProps) {
 
         <DemoTabs
           tabs={tabs}
-          activeTab={activeDemo}
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
         />
 
         <div className="mt-8">
@@ -47,7 +40,7 @@ export function AlertPage(_props: PageProps) {
           {activeDemo === 'sizes' && <SizesSection />}
           {activeDemo === 'interactive' && <InteractiveSection />}
           {activeDemo === 'props' && <PropsDocumentation />}
-          {activeDemo === 'docs' && <DocumentationTab componentName="alert" />}
+          {activeDemo === 'documentation' && <DocumentationTab componentName="alert" />}
         </div>
       </div>
     </div>

@@ -1,33 +1,23 @@
-﻿import { useState } from 'preact/hooks'
-import { PageHeader } from '../../components/layout/PageHeader'
+﻿import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 import { BasicUsageSection, VariantsSection, SizesSection, StatesSection, FeaturesSection, ExamplesSection, PropsDocumentation } from './sections'
-
-type DemoType = 'basic' | 'variants' | 'sizes' | 'states' | 'features' | 'examples' | 'props' | 'docs'
-
-interface Tab {
-  key: DemoType
-  label: string
-}
 
 interface PageProps {
   readonly path?: string
 }
 
 export function TextareaPage(_props: PageProps) {
-  const [activeDemo, setActiveDemo] = useState<DemoType>('basic')
-
-  const tabs: Tab[] = [
-    { key: 'basic', label: 'Basic Usage' },
-    { key: 'variants', label: 'Variants' },
-    { key: 'sizes', label: 'Sizes' },
-    { key: 'states', label: 'States' },
-    { key: 'features', label: 'Features' },
-    { key: 'examples', label: 'Examples' },
-    { key: 'props', label: 'Props' },
-    { key: 'docs', label: 'Documentation' }
-  ]
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(
+    PathTabPageConfigs.withDocumentation('/textarea', [
+      { key: 'variants', label: 'Variants' },
+      { key: 'sizes', label: 'Sizes' },
+      { key: 'states', label: 'States' },
+      { key: 'features', label: 'Features' },
+      { key: 'examples', label: 'Examples' }
+    ])
+  )
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -39,19 +29,19 @@ export function TextareaPage(_props: PageProps) {
 
         <DemoTabs
           tabs={tabs}
-          activeTab={activeDemo}
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
         />
 
         <div className="mt-8">
-          {activeDemo === 'basic' && <BasicUsageSection />}
-          {activeDemo === 'variants' && <VariantsSection />}
-          {activeDemo === 'sizes' && <SizesSection />}
-          {activeDemo === 'states' && <StatesSection />}
-          {activeDemo === 'features' && <FeaturesSection />}
-          {activeDemo === 'examples' && <ExamplesSection />}
-          {activeDemo === 'props' && <PropsDocumentation />}
-          {activeDemo === 'docs' && <DocumentationTab componentName="textarea" />}
+          {activeTab === 'basic' && <BasicUsageSection />}
+          {activeTab === 'variants' && <VariantsSection />}
+          {activeTab === 'sizes' && <SizesSection />}
+          {activeTab === 'states' && <StatesSection />}
+          {activeTab === 'features' && <FeaturesSection />}
+          {activeTab === 'examples' && <ExamplesSection />}
+          {activeTab === 'props' && <PropsDocumentation />}
+          {activeTab === 'documentation' && <DocumentationTab componentName="textarea" />}
         </div>
       </div>
     </div>

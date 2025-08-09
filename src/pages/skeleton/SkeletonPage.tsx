@@ -1,31 +1,21 @@
-import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 import { BasicUsageSection, AnimationSection, ShapesAndSizesSection, InteractiveSection, PropsDocumentation } from './sections'
-
-type DemoType = 'basic' | 'animation' | 'shapes' | 'interactive' | 'props' | 'documentation'
-
-interface Tab {
-  key: DemoType
-  label: string
-}
 
 interface PageProps {
   readonly path?: string
 }
 
 export function SkeletonPage(_props: PageProps) {
-  const [activeDemo, setActiveDemo] = useState<DemoType>('basic')
-
-  const tabs: Tab[] = [
-    { key: 'basic', label: 'Basic Usage' },
-    { key: 'animation', label: 'Animation' },
-    { key: 'shapes', label: 'Shapes & Sizes' },
-    { key: 'interactive', label: 'Interactive' },
-    { key: 'props', label: 'Props' },
-    { key: 'documentation', label: 'Documentation' }
-  ]
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(
+    PathTabPageConfigs.withDocumentation('/skeleton', [
+      { key: 'animation', label: 'Animation' },
+      { key: 'shapes', label: 'Shapes & Sizes' },
+      { key: 'interactive', label: 'Interactive' }
+    ])
+  )
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -37,19 +27,33 @@ export function SkeletonPage(_props: PageProps) {
 
         <DemoTabs
           tabs={tabs}
-          activeTab={activeDemo}
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
         />
 
         <div className="mt-8">
-          {activeDemo === 'basic' && <BasicUsageSection />}
-          {activeDemo === 'animation' && <AnimationSection />}
-          {activeDemo === 'shapes' && <ShapesAndSizesSection />}
-          {activeDemo === 'interactive' && <InteractiveSection />}
-          {activeDemo === 'props' && <PropsDocumentation />}
-          {activeDemo === 'documentation' && <DocumentationTab componentName="skeleton" />}
+          {renderSection()}
         </div>
       </div>
     </div>
   )
+
+  function renderSection() {
+    switch (activeTab) {
+      case 'basic':
+        return <BasicUsageSection />
+      case 'animation':
+        return <AnimationSection />
+      case 'shapes':
+        return <ShapesAndSizesSection />
+      case 'interactive':
+        return <InteractiveSection />
+      case 'props':
+        return <PropsDocumentation />
+      case 'documentation':
+        return <DocumentationTab componentName="skeleton" />
+      default:
+        return <BasicUsageSection />
+    }
+  }
 }

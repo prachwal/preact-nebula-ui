@@ -1,7 +1,7 @@
-import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 import {
   BasicUsageSection,
   SizesSection,
@@ -12,25 +12,43 @@ import {
   PropsDocumentation
 } from './sections'
 
-type DemoType = 'basic' | 'sizes' | 'lazy' | 'zoom' | 'error' | 'responsive' | 'props' | 'documentation'
-
 interface PageProps {
   path?: string
 }
 
 export function ImagePage(_props: Readonly<PageProps>) {
-  const [activeTab, setActiveTab] = useState<DemoType>('basic')
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(
+    PathTabPageConfigs.withDocumentation('/image', [
+      { key: 'sizes', label: 'Sizes' },
+      { key: 'lazy', label: 'Lazy Loading' },
+      { key: 'zoom', label: 'Zoom' },
+      { key: 'error', label: 'Error Handling' },
+      { key: 'responsive', label: 'Responsive' }
+    ])
+  )
 
-  const tabs = [
-    { key: 'basic', label: 'Basic Usage' },
-    { key: 'sizes', label: 'Sizes' },
-    { key: 'lazy', label: 'Lazy Loading' },
-    { key: 'zoom', label: 'Zoom' },
-    { key: 'error', label: 'Error Handling' },
-    { key: 'responsive', label: 'Responsive' },
-    { key: 'props', label: 'Props' },
-    { key: 'documentation', label: 'Documentation' }
-  ]
+  const renderSection = () => {
+    switch (activeTab) {
+      case 'basic':
+        return <BasicUsageSection />
+      case 'sizes':
+        return <SizesSection />
+      case 'lazy':
+        return <LazyLoadingSection />
+      case 'zoom':
+        return <ZoomSection />
+      case 'error':
+        return <ErrorHandlingSection />
+      case 'responsive':
+        return <ResponsiveSection />
+      case 'props':
+        return <PropsDocumentation />
+      case 'documentation':
+        return <DocumentationTab componentName="image" />
+      default:
+        return <BasicUsageSection />
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -43,18 +61,11 @@ export function ImagePage(_props: Readonly<PageProps>) {
         <DemoTabs
           tabs={tabs}
           activeTab={activeTab}
-          onTabChange={(tab) => setActiveTab(tab as DemoType)}
+          onTabChange={setActiveTab}
         />
 
         <div className="mt-8">
-          {activeTab === 'basic' && <BasicUsageSection />}
-          {activeTab === 'sizes' && <SizesSection />}
-          {activeTab === 'lazy' && <LazyLoadingSection />}
-          {activeTab === 'zoom' && <ZoomSection />}
-          {activeTab === 'error' && <ErrorHandlingSection />}
-          {activeTab === 'responsive' && <ResponsiveSection />}
-          {activeTab === 'props' && <PropsDocumentation />}
-          {activeTab === 'documentation' && <DocumentationTab componentName="image" />}
+          {renderSection()}
         </div>
       </div>
     </div>

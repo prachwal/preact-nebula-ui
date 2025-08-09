@@ -1,7 +1,7 @@
-import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 import {
   BasicUsageSection,
   ColorsSection,
@@ -15,16 +15,13 @@ interface TagsPageProps {
 }
 
 export function TagsPage(_props: Readonly<TagsPageProps>) {
-  const [activeTab, setActiveTab] = useState('basic')
-
-  const tabs = [
-    { key: 'basic', id: 'basic', label: 'Basic Usage' },
-    { key: 'colors', id: 'colors', label: 'Colors' },
-    { key: 'sizes', id: 'sizes', label: 'Sizes' },
-    { key: 'variants', id: 'variants', label: 'Variants' },
-    { key: 'props', id: 'props', label: 'Props' },
-    { key: 'documentation', id: 'documentation', label: 'Documentation' }
-  ]
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(
+    PathTabPageConfigs.withDocumentation('/tags', [
+      { key: 'colors', label: 'Colors' },
+      { key: 'sizes', label: 'Sizes' },
+      { key: 'variants', label: 'Variants' }
+    ])
+  )
 
   const renderSection = () => {
     switch (activeTab) {

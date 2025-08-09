@@ -1,23 +1,21 @@
-import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 import { BasicUsageSection, SearchSection, SizesSection, AccessibilitySection } from './sections'
 
 interface PageProps {
   path?: string
 }
 
-const tabs = [
-  { key: 'basic', label: 'Basic Usage' },
-  { key: 'search', label: 'Search' },
-  { key: 'sizes', label: 'Sizes' },
-  { key: 'accessibility', label: 'Accessibility' },
-  { key: 'documentation', label: 'Documentation' }
-]
-
 export function TreeViewPage(_props: Readonly<PageProps>) {
-  const [activeTab, setActiveTab] = useState('basic')
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(
+    PathTabPageConfigs.withDocumentation('/treeview', [
+      { key: 'icons', label: 'Custom Icons' },
+      { key: 'selection', label: 'Selection' },
+      { key: 'lazy', label: 'Lazy Loading' }
+    ])
+  )
 
   const renderContent = () => {
     switch (activeTab) {

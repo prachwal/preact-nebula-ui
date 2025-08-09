@@ -1,0 +1,31 @@
+{
+    "name": "Input",
+    "category": "Form Controls",
+    "description": "Text input field with validation and various formats",
+    "size": "medium",
+    "complexity": "medium",
+    "tags": [
+        "form",
+        "input",
+        "text",
+        "validation"
+    ],
+    "hasTests": true,
+    "hasStories": false,
+    "hasA11yTests": false,
+    "buildStatus": "stable",
+    "features": [
+        "Multiple input types (text, email, password, number)",
+        "Size variants (sm, md, lg)",
+        "Validation states and messages",
+        "Prefix and suffix support",
+        "Placeholder text",
+        "Disabled and readonly states"
+    ],
+    "examples": [
+        "Basic text input",
+        "Input with validation",
+        "Input with prefix/suffix",
+        "Controlled and uncontrolled inputs"
+    ]
+}

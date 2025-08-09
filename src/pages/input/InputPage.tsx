@@ -1,32 +1,25 @@
-﻿import { useState } from 'preact/hooks'
-import { PageHeader } from '../../components/layout/PageHeader'
+﻿import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 import { BasicUsageSection, SizesSection, VariantsSection, IconsSection, StatesSection, PropsDocumentation } from './sections'
 
-type DemoType = 'basic' | 'sizes' | 'variants' | 'icons' | 'states' | 'props' | 'docs'
-
-interface Tab {
-  key: DemoType
-  label: string
-}
+type DemoType = 'basic' | 'sizes' | 'variants' | 'icons' | 'states' | 'props' | 'documentation'
 
 interface PageProps {
   readonly path?: string
 }
 
 export function InputPage(_props: PageProps) {
-  const [activeDemo, setActiveDemo] = useState<DemoType>('basic')
-
-  const tabs: Tab[] = [
-    { key: 'basic', label: 'Basic Usage' },
+  const tabConfig = PathTabPageConfigs.withDocumentation('/input', [
     { key: 'sizes', label: 'Sizes' },
     { key: 'variants', label: 'Variants' },
     { key: 'icons', label: 'With Icons' },
-    { key: 'states', label: 'States' },
-    { key: 'props', label: 'Props' },
-    { key: 'docs', label: 'Documentation' }
-  ]
+    { key: 'states', label: 'States' }
+  ])
+
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(tabConfig)
+  const activeDemo = activeTab as DemoType
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -38,8 +31,8 @@ export function InputPage(_props: PageProps) {
 
         <DemoTabs
           tabs={tabs}
-          activeTab={activeDemo}
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
         />
 
         <div className="mt-8">
@@ -49,7 +42,7 @@ export function InputPage(_props: PageProps) {
           {activeDemo === 'icons' && <IconsSection />}
           {activeDemo === 'states' && <StatesSection />}
           {activeDemo === 'props' && <PropsDocumentation />}
-          {activeDemo === 'docs' && <DocumentationTab componentName="input" />}
+          {activeDemo === 'documentation' && <DocumentationTab componentName="input" />}
         </div>
       </div>
     </div>

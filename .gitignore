@@ -24,5 +24,9 @@ dist-ssr
 *.sw?
 .venv
 coverage
+
+# Documentation build artifacts
+public/docs/
+
 # Local Netlify folder
 .netlify

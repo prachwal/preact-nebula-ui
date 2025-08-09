@@ -1,7 +1,7 @@
-import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 import {
   BasicUsageSection,
   AccordionSection,
@@ -14,17 +14,14 @@ interface CollapsePageProps {
   path?: string
 }
 
-export function CollapsePage(_props: CollapsePageProps) {
-  const [activeTab, setActiveTab] = useState('basic')
-
-  const tabs = [
-    { key: 'basic', id: 'basic', label: 'Basic Usage' },
-    { key: 'accordion', id: 'accordion', label: 'Accordion' },
-    { key: 'nested', id: 'nested', label: 'Nested' },
-    { key: 'customization', id: 'customization', label: 'Customization' },
-    { key: 'props', id: 'props', label: 'Props' },
-    { key: 'documentation', id: 'documentation', label: 'Documentation' }
-  ]
+export function CollapsePage(_props: Readonly<CollapsePageProps>) {
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(
+    PathTabPageConfigs.withDocumentation('/collapse', [
+      { key: 'accordion', label: 'Accordion' },
+      { key: 'nested', label: 'Nested' },
+      { key: 'customization', label: 'Customization' }
+    ])
+  )
 
   const renderSection = () => {
     switch (activeTab) {

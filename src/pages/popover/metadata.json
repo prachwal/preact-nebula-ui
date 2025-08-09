@@ -1,0 +1,30 @@
+{
+  "name": "Popover",
+  "category": "Overlays",
+  "description": "Popover tooltip overlay",
+  "size": "large",
+  "complexity": "high",
+  "tags": [
+    "component",
+    "ui",
+    "overlay",
+    "popup"
+  ],
+  "hasTests": true,
+  "hasStories": false,
+  "hasA11yTests": false,
+  "buildStatus": "stable",
+  "features": [
+    "TypeScript support with strict typing",
+    "Full accessibility (WCAG 2.1 AA)",
+    "Dark mode and theme support",
+    "Responsive design patterns",
+    "Performance optimized"
+  ],
+  "examples": [
+    "Basic usage",
+    "Advanced configuration",
+    "Custom styling",
+    "Event handling"
+  ]
+}

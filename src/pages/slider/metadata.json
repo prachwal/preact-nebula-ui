@@ -1,0 +1,30 @@
+{
+  "name": "Slider",
+  "category": "Form Controls",
+  "description": "Range slider for numeric value selection",
+  "size": "large",
+  "complexity": "high",
+  "tags": [
+    "range",
+    "slider",
+    "numeric",
+    "input"
+  ],
+  "hasTests": true,
+  "hasStories": false,
+  "hasA11yTests": false,
+  "buildStatus": "stable",
+  "features": [
+    "TypeScript support with strict typing",
+    "Full accessibility (WCAG 2.1 AA)",
+    "Dark mode and theme support",
+    "Responsive design patterns",
+    "Performance optimized"
+  ],
+  "examples": [
+    "Basic usage",
+    "Advanced configuration",
+    "Custom styling",
+    "Event handling"
+  ]
+}

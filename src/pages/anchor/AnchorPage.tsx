@@ -1,7 +1,7 @@
-import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 import { BasicUsageSection } from './sections/BasicUsageSection'
 import { SizesSection } from './sections/SizesSection'
 import { PositioningSection } from './sections/PositioningSection'
@@ -12,17 +12,14 @@ interface PageProps {
   path?: string
 }
 
-export function AnchorPage(_props: PageProps) {
-  const [activeTab, setActiveTab] = useState('basic')
-
-  const tabs = [
-    { id: 'basic', label: 'Basic Usage', key: 'basic' },
-    { id: 'sizes', label: 'Sizes', key: 'sizes' },
-    { id: 'positioning', label: 'Positioning', key: 'positioning' },
-    { id: 'targets', label: 'Scroll Targets', key: 'targets' },
-    { id: 'props', label: 'Props', key: 'props' },
-    { id: 'documentation', label: 'Documentation', key: 'documentation' }
-  ]
+export function AnchorPage(_props: Readonly<PageProps>) {
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(
+    PathTabPageConfigs.withDocumentation('/anchor', [
+      { key: 'sizes', label: 'Sizes' },
+      { key: 'positioning', label: 'Positioning' },
+      { key: 'targets', label: 'Scroll Targets' }
+    ])
+  )
 
   const renderTabContent = () => {
     switch (activeTab) {

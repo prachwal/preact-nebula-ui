@@ -1,31 +1,21 @@
-﻿import { useState } from 'preact/hooks'
-import { PageHeader } from '../../components/layout/PageHeader'
+﻿import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 import { BasicUsageSection, VariantsSection, InteractiveSection, AccessibilitySection, PropsDocumentation } from './sections'
-
-type DemoType = 'basic' | 'variants' | 'interactive' | 'accessibility' | 'props' | 'docs'
-
-interface Tab {
-  key: DemoType
-  label: string
-}
 
 interface PageProps {
   readonly path?: string
 }
 
 export function CheckboxPage(_props: PageProps) {
-  const [activeDemo, setActiveDemo] = useState<DemoType>('basic')
-
-  const tabs: Tab[] = [
-    { key: 'basic', label: 'Basic Usage' },
-    { key: 'variants', label: 'Variants' },
-    { key: 'interactive', label: 'Interactive' },
-    { key: 'accessibility', label: 'Accessibility' },
-    { key: 'props', label: 'Props' },
-    { key: 'docs', label: 'Documentation' }
-  ]
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(
+    PathTabPageConfigs.withDocumentation('/checkbox', [
+      { key: 'variants', label: 'Variants' },
+      { key: 'interactive', label: 'Interactive' },
+      { key: 'accessibility', label: 'Accessibility' }
+    ])
+  )
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -37,17 +27,17 @@ export function CheckboxPage(_props: PageProps) {
 
         <DemoTabs
           tabs={tabs}
-          activeTab={activeDemo}
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
         />
 
         <div className="mt-8">
-          {activeDemo === 'basic' && <BasicUsageSection />}
-          {activeDemo === 'variants' && <VariantsSection />}
-          {activeDemo === 'interactive' && <InteractiveSection />}
-          {activeDemo === 'accessibility' && <AccessibilitySection />}
-          {activeDemo === 'props' && <PropsDocumentation />}
-          {activeDemo === 'docs' && <DocumentationTab componentName="checkbox" />}
+          {activeTab === 'basic' && <BasicUsageSection />}
+          {activeTab === 'variants' && <VariantsSection />}
+          {activeTab === 'interactive' && <InteractiveSection />}
+          {activeTab === 'accessibility' && <AccessibilitySection />}
+          {activeTab === 'props' && <PropsDocumentation />}
+          {activeTab === 'documentation' && <DocumentationTab componentName="checkbox" />}
         </div>
       </div>
     </div>

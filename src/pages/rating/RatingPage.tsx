@@ -1,7 +1,7 @@
-import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 import {
   BasicUsageSection,
   SizesSection,
@@ -17,18 +17,15 @@ interface PageProps {
 }
 
 export function RatingPage(_props: Readonly<PageProps>) {
-  const tabs = [
-    { key: 'basic', label: 'Basic Usage' },
-    { key: 'sizes', label: 'Sizes' },
-    { key: 'half-stars', label: 'Half Stars' },
-    { key: 'custom-icons', label: 'Custom Icons' },
-    { key: 'states', label: 'States' },
-    { key: 'value-display', label: 'Value Display' },
-    { key: 'props', label: 'Props' },
-    { key: 'documentation', label: 'Documentation' }
-  ]
-
-  const [activeTab, setActiveTab] = useState('basic')
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(
+    PathTabPageConfigs.withDocumentation('/rating', [
+      { key: 'sizes', label: 'Sizes' },
+      { key: 'half-stars', label: 'Half Stars' },
+      { key: 'custom-icons', label: 'Custom Icons' },
+      { key: 'states', label: 'States' },
+      { key: 'value-display', label: 'Value Display' }
+    ])
+  )
 
   const renderSection = () => {
     switch (activeTab) {

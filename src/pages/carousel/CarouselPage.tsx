@@ -1,7 +1,7 @@
-import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
 import { DocumentationTab } from '../../components/DocumentationTab'
+import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
 
 // Import sections
 import {
@@ -19,18 +19,15 @@ interface CarouselPageProps {
 }
 
 export function CarouselPage(_props: Readonly<CarouselPageProps>) {
-  const [activeTab, setActiveTab] = useState('basic')
-
-  const tabs = [
-    { key: 'basic', id: 'basic', label: 'Basic Usage' },
-    { key: 'sizes', id: 'sizes', label: 'Sizes' },
-    { key: 'autoplay', id: 'autoplay', label: 'Autoplay' },
-    { key: 'infinite', id: 'infinite', label: 'Infinite Loop' },
-    { key: 'navigation', id: 'navigation', label: 'Navigation' },
-    { key: 'multiple', id: 'multiple', label: 'Multiple Slides' },
-    { key: 'props', id: 'props', label: 'Props' },
-    { key: 'documentation', id: 'documentation', label: 'Documentation' }
-  ]
+  const { activeTab, setActiveTab, tabs } = usePathTabPage(
+    PathTabPageConfigs.withDocumentation('/carousel', [
+      { key: 'sizes', label: 'Sizes' },
+      { key: 'autoplay', label: 'Autoplay' },
+      { key: 'infinite', label: 'Infinite Loop' },
+      { key: 'navigation', label: 'Navigation' },
+      { key: 'multiple', label: 'Multiple Slides' }
+    ])
+  )
 
   const renderSection = () => {
     switch (activeTab) {
