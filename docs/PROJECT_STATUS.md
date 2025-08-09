@@ -1,30 +1,30 @@
-# 🎉 Nebula UI - Status Projektu
+# 🎉 Nebula UI - Project Status
 
-## 🎯 AKTUALNY STATUS - December 2024
+## 🎯 CURRENT STATUS - December 2024
 
-### 🧪 Stan Testów
+### 🧪 Test Status
 
-- **Wszystkie testy przechodzą**: 1430/1430 (100%) ✅
-- **Test Files**: 57 plików testowych
+- **All tests passing**: 1430/1430 (100%) ✅
+- **Test Files**: 57 test files
 - **Coverage**: 85%+
-- **Ostatnia aktualizacja**: Naprawiono wszystkie błędy testów
+- **Last update**: All test errors fixed
 
-### 📊 Główne Statystyki
+### 📊 Main Statistics
 
-- **Komponenty**: 57+ komponentów zaimplementowanych
-- **TypeScript**: Pełne wsparcie
-- **Accessibility**: Dedykowane testy a11y
-- **Dark Mode**: Pełne wsparcie
+- **Components**: 57+ components implemented
+- **TypeScript**: Full support
+- **Accessibility**: Dedicated a11y tests
+- **Dark Mode**: Full support
 
-## ✅ ZAKOŃCZONE KROKI MILOWE
+## ✅ COMPLETED MILESTONES
 
-### 📦 Kompletny System Komponentów
+### 📦 Complete Component System
 
-- Struktura folderów `nebula/` utworzona
-- TypeScript skonfigurowany z path mapping
-- Vite skonfigurowany dla build biblioteki
-- PostCSS + Tailwind CSS v3 działają
-- **Wszystkie komponenty zaimplementowane**:
+- Folder structure `nebula/` created
+- TypeScript configured with path mapping
+- Vite configured for library build
+- PostCSS + Tailwind CSS v3 working
+- **All components implemented**:
   - **Forms Foundation**: Button, Input, Label, Textarea, FieldError ✅
   - **Layout System**: Card, Container, Stack, Divider ✅
   - **Feedback Components**: Alert, Badge, Progress, Skeleton ✅
@@ -34,74 +34,74 @@
   - **Advanced Interactions**: Modal, Tooltip, Drawer, Popover, Toast ✅
   - **Data Display & Navigation**: TreeView, Transfer, Steps, Tags, Collapse ✅
 
-### 🧪 Testy i Jakość Kodu
+### 🧪 Tests and Code Quality
 
-- Vitest + Testing Library dla Preact
-- **Wszystkie testy przechodzą (100% coverage)**
-- **36/36 komponentów pokrytych testami**
-- **650+ test cases** z edge cases
-- **Interaktywny dashboard pokrycia testów** (<http://localhost:5173/coverage>)
-- ESLint i TypeScript sprawdzane bez błędów
+- Vitest + Testing Library for Preact
+- **All tests passing (100% coverage)**
+- **36/36 components covered by tests**
+- **650+ test cases** including edge cases
+- **Interactive test coverage dashboard** (<http://localhost:5173/coverage>)
+- ESLint and TypeScript checked with no errors
 
-### 🎨 Nowa Architektura Stron Demo
+### 🎨 New Demo Page Architecture
 
-- **Komponentowa struktura stron** - każda strona podzielona na sekcje
-- **4 standardowe sekcje**: BasicUsage, Variants, Sizes, Interactive
-- **Modularność i reużywalność** - łatwiejsze utrzymanie
-- **Konsystentność** - wszystkie strony mają tę samą strukturę
-- **Przykłady**: AlertPage, BadgePage, ProgressPage, SkeletonPage
+- **Component-based page structure** - each page split into sections
+- **4 standard sections**: BasicUsage, Variants, Sizes, Interactive
+- **Modularity and reusability** - easier maintenance
+- **Consistency** - all pages have the same structure
+- **Examples**: AlertPage, BadgePage, ProgressPage, SkeletonPage
 
-### 📦 Publikacja NPM
+### 📦 NPM Publication
 
-- Package.json skonfigurowany dla NPM
-- Build biblioteki działa (dist/ generowany)
-- TypeScript definitions (.d.ts) generowane
-- Tree-shaking wspierany (ES modules + CommonJS)
-- **Gotowy do publikacji jako preact-nebula-ui**
+- Package.json configured for NPM
+- Library build works (dist/ generated)
+- TypeScript definitions (.d.ts) generated
+- Tree-shaking supported (ES modules + CommonJS)
+- **Ready to publish as preact-nebula-ui**
 
 ### 🖥️ Windows PowerShell Scripts
 
 - `scripts/build.ps1` - build script
-- `scripts/publish.ps1` - publish script z dry-run
+- `scripts/publish.ps1` - publish script with dry-run
 
-### 📖 Dokumentacja
+### 📖 Documentation
 
-- README.md z pełną dokumentacją komponentów
-- **Analiza porównawcza z MUI i Ant Design** (COMPONENT_COMPARISON.md)
-- **Rekomendacje rozwoju** - priorytetowe komponenty do dodania
+- README.md with complete component documentation
+- **Comparative analysis with MUI and Ant Design** (COMPONENT_COMPARISON.md)
+- **Development recommendations** - priority components to add
 - LICENSE MIT
-- Plan implementacji (MILESTONE_IMPLEMENTATION_PLAN.md)
-- Checklist implementacji zaktualizowany
+- Implementation plan (MILESTONE_IMPLEMENTATION_PLAN.md)
+- Implementation checklist updated
 
-## 📊 Statystyki Projektu
+## 📊 Project Statistics
 
 ```
-Komponenty: 36/36 zaimplementowane (100%)
-Testy: 650+ test cases przechodzi (100% coverage)
-Build Size: Optymalizowany dla tree-shaking
-TypeScript: Strict mode, pełne typy
+Components: 36/36 implemented (100%)
+Tests: 650+ test cases passing (100% coverage)
+Build Size: Optimized for tree-shaking
+TypeScript: Strict mode, full types
 Accessibility: WCAG 2.1 AA compliant
 ```
 
-## ✅ STATUS: MILESTONE 8 UKOŃCZONY
+## ✅ STATUS: MILESTONE 8 COMPLETED
 
-Nebula UI ma już **36 komponentów** gotowych do produkcji:
+Nebula UI now has **36 components** ready for production:
 
-- ✅ **Forms Foundation** (5 komponentów)
-- ✅ **Layout System** (4 komponenty)
-- ✅ **Feedback Components** (4 komponenty)
-- ✅ **Display & Navigation** (5 komponentów)
-- ✅ **Advanced Form Controls** (4/4 komponentów)
-- ✅ **Navigation & Data** (3/3 komponenty)
-- ✅ **Advanced Interactions** (5/5 komponentów)
-- ✅ **Data Display & Navigation** (5/5 komponentów) - NOWE!
+- ✅ **Forms Foundation** (5 components)
+- ✅ **Layout System** (4 components)
+- ✅ **Feedback Components** (4 components)
+- ✅ **Display & Navigation** (5 components)
+- ✅ **Advanced Form Controls** (4/4 components)
+- ✅ **Navigation & Data** (3/3 components)
+- ✅ **Advanced Interactions** (5/5 components)
+- ✅ **Data Display & Navigation** (5/5 components) - NEW!
 
-**Nowe komponenty w Milestone 8**:
+**New components in Milestone 8**:
 
-- 🗂️ **TreeView** - Hierarchiczna nawigacja z expand/collapse
-- 📋 **Transfer** - Dual-list do przenoszenia elementów
-- 📈 **Steps** - Nawigacja krok po kroku
-- 🏷️ **Tags** - Dynamiczne zarządzanie tagami
-- ⬇️ **Collapse** - Składane panele treści
+- 🗂️ **TreeView** - Hierarchical navigation with expand/collapse
+- 📋 **Transfer** - Dual-list for moving items
+- 📈 **Steps** - Step-by-step navigation
+- 🏷️ **Tags** - Dynamic tag management
+- ⬇️ **Collapse** - Collapsible content panels
 
-**Status**: Biblioteka komponentów rozszerzona o zaawansowane komponenty do wyświetlania danych!
+**Status**: Component library expanded with advanced data display components!

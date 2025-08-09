@@ -1,0 +1,20 @@
+{
+    "name": "Milestone 6 - Overlay Components",
+    "category": "Milestones",
+    "description": "Interactive overlay and popup components for enhanced user experience",
+    "status": "completed",
+    "size": "large",
+    "tags": [
+        "milestone",
+        "overlays",
+        "popups",
+        "interaction"
+    ],
+    "components": [
+        "Modal",
+        "Dialog",
+        "Drawer",
+        "Tooltip",
+        "Popover"
+    ]
+}

@@ -1,20 +1,20 @@
-# ConfigProvider - Dokumentacja
+# ConfigProvider - Documentation
 
-## Przegląd
+## Overview
 
-Komponent `ConfigProvider` zapewnia globalną konfigurację dla wszystkich komponentów Nebula UI w aplikacji. Umożliwia zarządzanie motywami, ustawieniami regionalnymi, domyślnymi propami komponentów oraz innymi globalnymi ustawieniami interfejsu użytkownika.
+The `ConfigProvider` component provides global configuration for all Nebula UI components in your application. It allows you to manage themes, locale settings, default component props, and other global UI settings.
 
-## Funkcje
+## Features
 
-- **Zarządzanie motywami** - Globalna konfiguracja kolorów, typografii i tokenów designu
-- **Internacjonalizacja** - Wsparcie dla wielu języków i formatów regionalnych
-- **Domyślne props** - Centralne zarządzanie domyślnymi właściwościami komponentów
-- **CSS Variables** - Automatyczne generowanie zmiennych CSS
-- **Algorytmy motywu** - Dynamiczne generowanie kolorów na podstawie podstawowego zestawu
-- **Prefiksy CSS** - Konfiguracja prefiksów klas CSS
-- **Wave efekty** - Konfiguracja efektów interakcji
+- **Theme management** - Global configuration of colors, typography, and design tokens
+- **Internationalization** - Support for multiple languages and regional formats
+- **Default props** - Central management of default component properties
+- **CSS Variables** - Automatic generation of CSS variables
+- **Theme algorithms** - Dynamic color generation based on a base set
+- **CSS Prefixes** - Configuration of CSS class prefixes
+- **Wave effects** - Configuration of interaction effects
 
-## Podstawowe użycie
+## Basic Usage
 
 ```tsx
 import { ConfigProvider } from '@preact-nebula/ui'
@@ -36,28 +36,28 @@ function Root() {
 }
 ```
 
-## Zaawansowane przykłady
+## Advanced Examples
 
-### Kompletna konfiguracja motywu
+### Complete Theme Configuration
 
 ```tsx
 import { ConfigProvider } from '@preact-nebula/ui'
 
 const customTheme = {
   token: {
-    // Kolory podstawowe
+    // Primary colors
     colorPrimary: '#722ed1',
     colorSuccess: '#52c41a',
     colorWarning: '#faad14',
     colorError: '#f5222d',
     colorInfo: '#1890ff',
     
-    // Tło i teksty
+    // Background and text
     colorBg: '#ffffff',
     colorText: '#262626',
     colorTextSecondary: '#8c8c8c',
     
-    // Typografia
+    // Typography
     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto',
     fontSize: 14,
     lineHeight: 1.5714285714285714,
@@ -71,12 +71,12 @@ const customTheme = {
     borderRadiusLG: 8,
     borderRadiusSM: 4,
     
-    // Kontrolki
+    // Controls
     controlHeight: 32,
     controlHeightLG: 40,
     controlHeightSM: 24,
     
-    // Animacje
+    // Animations
     motionDurationMid: '0.2s',
     motionEaseInOut: 'cubic-bezier(0.645, 0.045, 0.355, 1)',
     
@@ -106,15 +106,15 @@ function ThemedApp() {
   return (
     <ConfigProvider theme={customTheme}>
       <div className="min-h-screen bg-gray-50">
-        <h1>Aplikacja z niestandardowym motywem</h1>
-        {/* Komponenty aplikacji */}
+        <h1>Application with Custom Theme</h1>
+        {/* Application components */}
       </div>
     </ConfigProvider>
   )
 }
 ```
 
-### Konfiguracja z ustawieniami regionalnymi
+### Configuration with Locale Settings
 
 ```tsx
 import { ConfigProvider } from '@preact-nebula/ui'
@@ -163,15 +163,15 @@ function LocalizedApp() {
       }}
     >
       <div>
-        <h1>Aplikacja w języku polskim</h1>
-        {/* Komponenty będą używać polskich tłumaczeń */}
+        <h1>Application in Polish</h1>
+        {/* Components will use Polish translations */}
       </div>
     </ConfigProvider>
   )
 }
 ```
 
-### Domyślne props dla komponentów
+### Default Props for Components
 
 ```tsx
 const componentDefaults = {
@@ -212,13 +212,13 @@ function AppWithDefaults() {
       }}
     >
       <div>
-        {/* Wszystkie przyciski będą domyślnie md i primary */}
-        <Button>Przycisk</Button>
+        {/* All buttons will be md and primary by default */}
+        <Button>Button</Button>
         
-        {/* Wszystkie inputy będą mieć placeholder */}
+        {/* All inputs will have a placeholder */}
         <Input />
         
-        {/* Tabele będą domyślnie z ramkami */}
+        {/* Tables will be bordered by default */}
         <Table dataSource={data} columns={columns} />
       </div>
     </ConfigProvider>
@@ -226,7 +226,7 @@ function AppWithDefaults() {
 }
 ```
 
-### CSS Variables i prefiksy
+### CSS Variables and Prefixes
 
 ```tsx
 function CustomPrefixApp() {
@@ -246,15 +246,15 @@ function CustomPrefixApp() {
       }}
     >
       <div>
-        {/* Komponenty będą używać prefiksu "my-ui-" */}
-        <Button>Przycisk z custom prefiksem</Button>
+        {/* Components will use the prefix "my-ui-" */}
+        <Button>Button with Custom Prefix</Button>
       </div>
     </ConfigProvider>
   )
 }
 ```
 
-### Nested Providers i dziedziczenie
+### Nested Providers and Inheritance
 
 ```tsx
 function NestedProvidersApp() {
@@ -269,29 +269,29 @@ function NestedProvidersApp() {
     >
       <div className="app">
         <header>
-          <h1>Aplikacja główna</h1>
+          <h1>Main Application</h1>
         </header>
         
         <main>
-          {/* Sekcja z różnym motywem */}
+          {/* Section with a different theme */}
           <ConfigProvider
             theme={{
               algorithm: darkAlgorithm,
-              inherit: true, // Dziedziczy tokeny z parent
+              inherit: true, // Inherit tokens from parent
               token: {
                 colorPrimary: '#722ed1', // Override primary color
               }
             }}
           >
             <section className="dark-section">
-              <h2>Sekcja z ciemnym motywem</h2>
-              <Button>Ciemny przycisk</Button>
+              <h2>Section with Dark Theme</h2>
+              <Button>Dark Button</Button>
             </section>
           </ConfigProvider>
           
           <section className="normal-section">
-            <h2>Sekcja z normalnym motywem</h2>
-            <Button>Normalny przycisk</Button>
+            <h2>Section with Normal Theme</h2>
+            <Button>Normal Button</Button>
           </section>
         </main>
       </div>
@@ -304,48 +304,48 @@ function NestedProvidersApp() {
 
 ### ConfigProviderProps
 
-| Prop                | Typ                                  | Domyślna        | Opis                           |
-| ------------------- | ------------------------------------ | --------------- | ------------------------------ |
-| `theme`             | `ThemeConfig`                        | `undefined`     | Konfiguracja motywu            |
-| `locale`            | `LocaleConfig`                       | `undefined`     | Ustawienia regionalne          |
-| `componentDefaults` | `ComponentDefaultsConfig`            | `{}`            | Domyślne props dla komponentów |
-| `prefixCls`         | `string`                             | `'nebula'`      | Prefiks dla klas CSS           |
-| `iconPrefixCls`     | `string`                             | `'nebula-icon'` | Prefiks dla ikon               |
-| `cssVar`            | `boolean \| CSSVarConfig`            | `false`         | Konfiguracja CSS Variables     |
-| `algorithm`         | `ThemeAlgorithm \| ThemeAlgorithm[]` | `undefined`     | Algorytmy generowania motywu   |
-| `autoInsertCss`     | `boolean`                            | `true`          | Automatyczne wstawianie CSS    |
-| `wave`              | `WaveConfig`                         | `undefined`     | Konfiguracja efektów wave      |
+| Prop                | Type                                 | Default         | Description                  |
+| ------------------- | ------------------------------------ | --------------- | ---------------------------- |
+| `theme`             | `ThemeConfig`                        | `undefined`     | Theme configuration          |
+| `locale`            | `LocaleConfig`                       | `undefined`     | Locale settings              |
+| `componentDefaults` | `ComponentDefaultsConfig`            | `{}`            | Default props for components |
+| `prefixCls`         | `string`                             | `'nebula'`      | Prefix for CSS classes       |
+| `iconPrefixCls`     | `string`                             | `'nebula-icon'` | Prefix for icons             |
+| `cssVar`            | `boolean \| CSSVarConfig`            | `false`         | CSS Variables configuration  |
+| `algorithm`         | `ThemeAlgorithm \| ThemeAlgorithm[]` | `undefined`     | Theme generation algorithms  |
+| `autoInsertCss`     | `boolean`                            | `true`          | Automatic CSS insertion      |
+| `wave`              | `WaveConfig`                         | `undefined`     | Wave effects configuration   |
 
 ### ThemeConfig
 
-| Prop         | Typ                                  | Opis                               |
-| ------------ | ------------------------------------ | ---------------------------------- |
-| `token`      | `GlobalToken`                        | Globalne tokeny designu            |
-| `components` | `ComponentTokenMap`                  | Tokeny specyficzne dla komponentów |
-| `algorithm`  | `ThemeAlgorithm \| ThemeAlgorithm[]` | Algorytmy generowania              |
-| `hashed`     | `boolean`                            | Czy używać hash dla CSS            |
-| `inherit`    | `boolean`                            | Czy dziedziczyć z parent           |
+| Prop         | Type                                 | Description               |
+| ------------ | ------------------------------------ | ------------------------- |
+| `token`      | `GlobalToken`                        | Global design tokens      |
+| `components` | `ComponentTokenMap`                  | Component-specific tokens |
+| `algorithm`  | `ThemeAlgorithm \| ThemeAlgorithm[]` | Generation algorithms     |
+| `hashed`     | `boolean`                            | Use hash for CSS          |
+| `inherit`    | `boolean`                            | Inherit from parent       |
 
-### GlobalToken (wybrane właściwości)
+### GlobalToken (selected properties)
 
-| Token           | Typ      | Opis                   |
-| --------------- | -------- | ---------------------- |
-| `colorPrimary`  | `string` | Główny kolor aplikacji |
-| `colorSuccess`  | `string` | Kolor sukcesu          |
-| `colorWarning`  | `string` | Kolor ostrzeżenia      |
-| `colorError`    | `string` | Kolor błędu            |
-| `fontFamily`    | `string` | Czcionka główna        |
-| `fontSize`      | `number` | Rozmiar czcionki       |
-| `borderRadius`  | `number` | Promień ramki          |
-| `controlHeight` | `number` | Wysokość kontrolek     |
-| `padding`       | `number` | Podstawowy padding     |
-| `margin`        | `number` | Podstawowy margin      |
+| Token           | Type     | Description               |
+| --------------- | -------- | ------------------------- |
+| `colorPrimary`  | `string` | Primary application color |
+| `colorSuccess`  | `string` | Success color             |
+| `colorWarning`  | `string` | Warning color             |
+| `colorError`    | `string` | Error color               |
+| `fontFamily`    | `string` | Primary font              |
+| `fontSize`      | `number` | Font size                 |
+| `borderRadius`  | `number` | Border radius             |
+| `controlHeight` | `number` | Control height            |
+| `padding`       | `number` | Default padding           |
+| `margin`        | `number` | Default margin            |
 
 ## Hooks
 
 ### useConfig
 
-Hook do dostępu do globalnej konfiguracji:
+Hook to access global configuration:
 
 ```tsx
 import { useConfig } from '@preact-nebula/ui'
@@ -355,7 +355,7 @@ function MyComponent() {
   
   return (
     <div className={`${config.prefixCls}-my-component`}>
-      <p>Prefiks: {config.prefixCls}</p>
+      <p>Prefix: {config.prefixCls}</p>
     </div>
   )
 }
@@ -363,7 +363,7 @@ function MyComponent() {
 
 ### useTheme
 
-Hook do dostępu do tokénów motywu:
+Hook to access theme tokens:
 
 ```tsx
 import { useTheme } from '@preact-nebula/ui'
@@ -379,7 +379,7 @@ function ThemedComponent() {
         padding: token.padding,
       }}
     >
-      Komponent używający tokénów motywu
+      Component using theme tokens
     </div>
   )
 }
@@ -387,7 +387,7 @@ function ThemedComponent() {
 
 ### useLocale
 
-Hook do dostępu do ustawień regionalnych:
+Hook to access locale settings:
 
 ```tsx
 import { useLocale } from '@preact-nebula/ui'
@@ -397,9 +397,9 @@ function LocalizedComponent() {
   
   return (
     <div>
-      <p>Język: {locale}</p>
+      <p>Language: {locale}</p>
       <p>OK: {messages['button.ok']}</p>
-      <p>Data: {formatDate(new Date())}</p>
+      <p>Date: {formatDate(new Date())}</p>
     </div>
   )
 }
@@ -407,7 +407,7 @@ function LocalizedComponent() {
 
 ### useComponentDefaults
 
-Hook do dostępu do domyślnych props:
+Hook to access default props:
 
 ```tsx
 import { useComponentDefaults } from '@preact-nebula/ui'
@@ -420,7 +420,7 @@ function MyButton(props: ButtonProps) {
 }
 ```
 
-## Algorytmy motywu
+## Theme Algorithms
 
 ### Dark Theme Algorithm
 
@@ -440,7 +440,7 @@ function DarkApp() {
       }}
     >
       <div className="dark-app">
-        <h1>Ciemny motyw</h1>
+        <h1>Dark Theme</h1>
       </div>
     </ConfigProvider>
   )
@@ -465,14 +465,14 @@ function CompactApp() {
       }}
     >
       <div className="compact-app">
-        <h1>Kompaktowy motyw</h1>
+        <h1>Compact Theme</h1>
       </div>
     </ConfigProvider>
   )
 }
 ```
 
-### Łączenie algorytmów
+### Combining Algorithms
 
 ```tsx
 import { ConfigProvider, theme } from '@preact-nebula/ui'
@@ -490,19 +490,19 @@ function DarkCompactApp() {
       }}
     >
       <div>
-        <h1>Ciemny + Kompaktowy</h1>
+        <h1>Dark + Compact Theme</h1>
       </div>
     </ConfigProvider>
   )
 }
 ```
 
-## Najlepsze praktyki
+## Best Practices
 
-### Hierarchia Provider'ów
+### Provider Hierarchy
 
 ```tsx
-// ✅ Dobrze - logiczna hierarchia
+// ✅ Good - logical hierarchy
 <ConfigProvider theme={globalTheme}>
   <Router>
     <Layout>
@@ -513,7 +513,7 @@ function DarkCompactApp() {
   </Router>
 </ConfigProvider>
 
-// ❌ Źle - za dużo zagnieżdżeń
+// ❌ Bad - too many nested providers
 <ConfigProvider>
   <ConfigProvider>
     <ConfigProvider>
@@ -526,7 +526,7 @@ function DarkCompactApp() {
 ### Performance
 
 ```tsx
-// ✅ Dobrze - stabilne referencje
+// ✅ Good - stable references
 const theme = useMemo(() => ({
   token: { colorPrimary: '#1890ff' }
 }), [])
@@ -535,7 +535,7 @@ const theme = useMemo(() => ({
   <App />
 </ConfigProvider>
 
-// ❌ Źle - nowa referencja przy każdym renderze
+// ❌ Bad - new reference on every render
 <ConfigProvider theme={{ token: { colorPrimary: '#1890ff' } }}>
   <App />
 </ConfigProvider>
@@ -544,7 +544,7 @@ const theme = useMemo(() => ({
 ### TypeScript
 
 ```tsx
-// Rozszerzanie typów tokénów
+// Extending token types
 declare module '@preact-nebula/ui' {
   interface GlobalToken {
     customColorBrand?: string
@@ -552,7 +552,7 @@ declare module '@preact-nebula/ui' {
   }
 }
 
-// Użycie z TypeScript
+// Usage with TypeScript
 const theme: ThemeConfig = {
   token: {
     customColorBrand: '#ff6b35',
@@ -561,9 +561,9 @@ const theme: ThemeConfig = {
 }
 ```
 
-## Przykłady integracji
+## Integration Examples
 
-### Z React Router
+### With React Router
 
 ```tsx
 import { ConfigProvider } from '@preact-nebula/ui'
@@ -590,7 +590,7 @@ function App() {
 }
 ```
 
-### Z State Management
+### With State Management
 
 ```tsx
 import { useSelector } from 'react-redux'
@@ -616,4 +616,4 @@ function ThemedApp() {
 }
 ```
 
-ConfigProvider jest fundamentalnym komponentem który pozwala na centralne zarządzanie wszystkimi aspektami wyglądu i zachowania komponentów w aplikacji Nebula UI.
+ConfigProvider is a fundamental component that allows central management of all aspects of the appearance and behavior of components in the Nebula UI application.

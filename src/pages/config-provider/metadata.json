@@ -1,0 +1,12 @@
+{
+    "component": "ConfigProvider",
+    "category": "System",
+    "status": "stable",
+    "description": "Global configuration provider for theming and localization.",
+    "tags": [
+        "config",
+        "provider",
+        "theme",
+        "localization"
+    ]
+}

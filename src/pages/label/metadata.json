@@ -1,0 +1,12 @@
+{
+    "component": "Label",
+    "category": "Form Controls",
+    "status": "stable",
+    "description": "Label component for accessible form labeling.",
+    "tags": [
+        "label",
+        "form",
+        "input",
+        "accessibility"
+    ]
+}

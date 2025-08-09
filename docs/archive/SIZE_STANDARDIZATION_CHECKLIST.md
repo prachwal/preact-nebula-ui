@@ -1,34 +1,34 @@
 # 🎯 SIZE STANDARDIZATION CHECKLIST
 
-## 📋 Analiza Problemu
-**Problem**: Niekonsystentne definicje rozmiarów komponentów powodują błędy TypeScript gdzie type zawiera więcej opcji niż implementacja.
+## 📋 Problem Analysis
+**Problem**: Inconsistent component size definitions cause TypeScript errors where the type includes more options than the implementation.
 
-**Root Cause**: 
-1. Type definitions zawierają rozmiary jak `2xl`, ale implementacje nie mają wszystkich mappingów
-2. Brak standaryzacji rozmiarów między komponentami
-3. Różne konwencje nazewnicze (niektóre używają `base`, inne `md`)
+**Root Cause**:
+1. Type definitions include sizes like `2xl`, but implementations do not have all mappings
+2. Lack of size standardization between components
+3. Different naming conventions (some use `base`, others `md`)
 
-## 🎯 Standardyzacja Rozmiarów
+## 🎯 Size Standardization
 
 ### 📏 Unified Size Scale
 ```typescript
-// Standardowy system rozmiarów dla całej biblioteki
+// Standard size system for the entire library
 export type ComponentSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
 
-// Dla specjalnych przypadków:
+// For special cases:
 export type ExtendedSize = ComponentSize | '3xl' | '4xl' // Typography
 export type ContainerSize = ComponentSize | 'full'      // Container
 export type TextSize = 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' // Text (base = md)
 ```
 
-## ✅ CHECKLIST - Pliki do Naprawy
+## ✅ CHECKLIST - Files to Fix
 
 ### 🔤 Typography Components
-- [x] **Text.tsx** - ✅ FIXED - dodano `'2xl': 'text-2xl'` w `textSizes`
+- [x] **Text.tsx** - ✅ FIXED - added `'2xl': 'text-2xl'` in `textSizes`
   - Type: `'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl'`
   - Implementation: ✅ COMPLETE
   
-- [x] **Heading.tsx** - ✅ VERIFIED - wszystkie rozmiary są zmapowane
+- [x] **Heading.tsx** - ✅ VERIFIED - all sizes are mapped
   - Type: `'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl'`
   - Implementation: ✅ COMPLETE
 
@@ -59,7 +59,7 @@ export type TextSize = 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' // Text (base 
   - Type: `'sm' | 'md' | 'lg'`
   - Implementation: ✅ COMPLETE
 
-## 🔧 Standardowy Tailwind Mapping
+## 🔧 Standard Tailwind Mapping
 
 ### 📏 Size Mappings Reference
 ```typescript
@@ -67,8 +67,8 @@ export type TextSize = 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' // Text (base 
 const TYPOGRAPHY_SIZES = {
   xs: 'text-xs',     // 12px
   sm: 'text-sm',     // 14px  
-  base: 'text-base', // 16px (tylko Text)
-  md: 'text-base',   // 16px (inne komponenty)
+  base: 'text-base', // 16px (Text only)
+  md: 'text-base',   // 16px (other components)
   lg: 'text-lg',     // 18px
   xl: 'text-xl',     // 20px
   '2xl': 'text-2xl', // 24px
@@ -97,34 +97,34 @@ const ICON_SIZES = {
 }
 ```
 
-## 🚀 Plan Implementacji
+## 🚀 Implementation Plan
 
 ### Phase 1: Immediate Fixes (Critical Errors)
-1. ✅ **Text.tsx** - Dodaj brakujący `2xl` mapping
-2. ⏳ **Verify All Components** - Sprawdź zgodność type vs implementation
+1. ✅ **Text.tsx** - Add missing `2xl` mapping
+2. ⏳ **Verify All Components** - Check type vs implementation consistency
 
 ### Phase 2: Standardization  
-1. ⏳ **Create Size Constants** - Stwórz centralne definicje
-2. ⏳ **Update Components** - Użyj standardowych mappingów
-3. ⏳ **Update Types** - Zunifikuj type definitions
+1. ⏳ **Create Size Constants** - Create central definitions
+2. ⏳ **Update Components** - Use standard mappings
+3. ⏳ **Update Types** - Unify type definitions
 
 ### Phase 3: Validation
-1. ⏳ **Run Tests** - Sprawdź czy wszystko działa
-2. ⏳ **Build Check** - Sprawdź TypeScript compilation
-3. ⏳ **Manual Testing** - Sprawdź w Vite demo
+1. ⏳ **Run Tests** - Check if everything works
+2. ⏳ **Build Check** - Check TypeScript compilation
+3. ⏳ **Manual Testing** - Check in Vite demo
 
 ## 📊 Progress Tracking
 
-| Component | Status | Type Check | Implementation | Fixed |
-|-----------|--------|------------|----------------|-------|
-| Text | ✅ FIXED | ✅ | ✅ Added 2xl | ✅ |
-| Heading | ✅ VERIFIED | ✅ | ✅ Complete | ✅ |
-| Avatar | ✅ VERIFIED | ✅ | ✅ Complete | ✅ |
-| Spinner | ✅ VERIFIED | ✅ | ✅ Complete | ✅ |
-| Card | ✅ VERIFIED | ✅ | ✅ Complete | ✅ |
-| Container | ✅ VERIFIED | ✅ | ✅ Complete | ✅ |
-| Divider | ✅ VERIFIED | ✅ | ✅ Complete | ✅ |
-| Tabs | ✅ VERIFIED | ✅ | ✅ Complete | ✅ |
+| Component | Status     | Type Check | Implementation | Fixed |
+| --------- | ---------- | ---------- | -------------- | ----- |
+| Text      | ✅ FIXED    | ✅          | ✅ Added 2xl    | ✅     |
+| Heading   | ✅ VERIFIED | ✅          | ✅ Complete     | ✅     |
+| Avatar    | ✅ VERIFIED | ✅          | ✅ Complete     | ✅     |
+| Spinner   | ✅ VERIFIED | ✅          | ✅ Complete     | ✅     |
+| Card      | ✅ VERIFIED | ✅          | ✅ Complete     | ✅     |
+| Container | ✅ VERIFIED | ✅          | ✅ Complete     | ✅     |
+| Divider   | ✅ VERIFIED | ✅          | ✅ Complete     | ✅     |
+| Tabs      | ✅ VERIFIED | ✅          | ✅ Complete     | ✅     |
 
 ## 🎯 Success Criteria
 - [x] No TypeScript compilation errors
@@ -135,8 +135,8 @@ const ICON_SIZES = {
 - [x] Tests pass
 
 ## 📝 Notes
-- Zachować backwards compatibility
-- Text component keep `base` dla consistency z Tailwind
-- Inne componenty używają `md` zamiast `base`
-- Container może mieć `full` jako specjalny przypadek
-- Typography może mieć extended sizes (`3xl`, `4xl`)
+- Maintain backwards compatibility
+- Text component keeps `base` for consistency with Tailwind
+- Other components use `md` instead of `base`
+- Container may have `full` as a special case
+- Typography may have extended sizes (`3xl`, `4xl`)

@@ -1,4 +1,3 @@
-import { BackTop } from '../../../../nebula'
 import { PageHeader } from '../../../components/layout'
 import { SearchPanel, DocumentationSidebar, DocumentationContent } from '.'
 import type { SearchPanelProps, DocumentationSidebarProps, DocumentationContentProps } from '.'
@@ -73,16 +72,6 @@ export function DocumentationLayout({
                     </main>
                 </div>
             </div>
-
-            {/* Back to Top Button */}
-            <BackTop
-                visibilityHeight={400}
-                duration={800}
-                style={{
-                    right: '32px',
-                    bottom: '32px'
-                }}
-            />
         </div>
     )
 }

@@ -1,0 +1,12 @@
+{
+    "component": "Radio",
+    "category": "Form Controls",
+    "status": "stable",
+    "description": "Radio button component for single selection in forms.",
+    "tags": [
+        "radio",
+        "form",
+        "input",
+        "selection"
+    ]
+}

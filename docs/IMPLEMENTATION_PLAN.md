@@ -1,48 +1,48 @@
-# Nebula UI - Plan Implementacji Systemu Komponentów
+# Nebula UI - Component System Implementation Plan
 
-## 📋 Checklist Implementacji
+## 📋 Implementation Checklist
 
-### 🏗️ Faza 1: Struktura Projektu ✅ COMPLETED
-- [x] Utworzenie folderu `nebula/` dla komponentów
-- [x] Konfiguracja TypeScript dla nowego folderu
-- [x] Aktualizacja `package.json` z metadanymi NPM
-- [x] Konfiguracja build systemu dla biblioteki
-- [x] Dodanie skryptów Windows PowerShell
+### 🏗️ Phase 1: Project Structure ✅ COMPLETED
+- [x] Create the `nebula/` folder for components
+- [x] Configure TypeScript for the new folder
+- [x] Update `package.json` with NPM metadata
+- [x] Configure the build system for the library
+- [x] Add Windows PowerShell scripts
 
-### 🧩 Faza 2: Podstawowe Komponenty UI
+### 🧩 Phase 2: Basic UI Components
 
 #### Button ✅ COMPLETED
-- [x] Utworzenie komponentu Button z TypeScript
-- [x] Definicja typów i props
-- [x] Style z Tailwind CSS
-- [x] Warianty (primary, secondary, outline, ghost, destructive)
-- [x] Rozmiary (sm, md, lg, xl)
-- [x] Stany (default, hover, active, disabled, loading)
-- [x] Ikony (leftIcon, rightIcon)
-- [x] Dedykowany komponent Spinner z różnymi rozmiarami i kolorami
+- [x] Create Button component with TypeScript
+- [x] Define types and props
+- [x] Styles with Tailwind CSS
+- [x] Variants (primary, secondary, outline, ghost, destructive)
+- [x] Sizes (sm, md, lg, xl)
+- [x] States (default, hover, active, disabled, loading)
+- [x] Icons (leftIcon, rightIcon)
+- [x] Dedicated Spinner component with various sizes and colors
 
 #### Input & Forms ✅ MOSTLY COMPLETED
-- [x] **Input**: Podstawowe pole tekstowe
-  - [x] Warianty (default, error, success)
-  - [x] Rozmiary (sm, md, lg)
-  - [x] Typy (text, email, password, number, tel, url)
+- [x] **Input**: Basic text field
+  - [x] Variants (default, error, success)
+  - [x] Sizes (sm, md, lg)
+  - [x] Types (text, email, password, number, tel, url)
   - [x] Placeholder, required, disabled
-  - [x] Ikony wewnętrzne (prefix/suffix)
-- [x] **Textarea**: Wieloliniowe pole tekstowe
-  - [x] Auto-resize opcja
-  - [x] Licznik znaków
-- [x] **Select**: Dropdown wyboru ✅ COMPLETED
-  - [x] Single i multi-select
-  - [x] Wyszukiwanie w opcjach
-  - [x] Custom opcje z ikonami
-- [x] **Checkbox**: Pola wyboru ✅ COMPLETED
+  - [x] Internal icons (prefix/suffix)
+- [x] **Textarea**: Multiline text field
+  - [x] Auto-resize option
+  - [x] Character counter
+- [x] **Select**: Dropdown selection ✅ COMPLETED
+  - [x] Single and multi-select
+  - [x] Option search
+  - [x] Custom options with icons
+- [x] **Checkbox**: Selection fields ✅ COMPLETED
   - [x] Indeterminate state
-  - [x] Custom ikony
-- [x] **Radio**: Przyciski opcji ✅ COMPLETED
-  - [x] Grupy radio buttonów
-- [x] **Switch**: Toggle przełącznik ✅ COMPLETED
-  - [x] Rozmiary i kolory
-- [x] **Label**: Etykiety formularzy
+  - [x] Custom icons
+- [x] **Radio**: Option buttons ✅ COMPLETED
+  - [x] Radio button groups
+- [x] **Switch**: Toggle switch ✅ COMPLETED
+  - [x] Sizes and colors
+- [x] **Label**: Form labels
   - [x] Required indicator
   - [x] Helper text
 - [x] **FieldError**: Error messages
@@ -50,157 +50,157 @@
   - [x] Accessibility support
 
 #### Layout & Navigation ✅ COMPLETED
-- [x] **Card**: Kontener treści
+- [x] **Card**: Content container
   - [x] Header, body, footer
-  - [x] Warianty (default, elevated, outlined)
+  - [x] Variants (default, elevated, outlined)
   - [x] Hover effects
 - [x] **Container**: Responsive wrapper
   - [x] Max-width breakpoints
   - [x] Padding variants
-- [x] **Grid**: System siatki ✅ COMPLETED (via Stack)
-  - [x] Responsive kolumny
-  - [x] Gap opcje
+- [x] **Grid**: Grid system ✅ COMPLETED (via Stack)
+  - [x] Responsive columns
+  - [x] Gap options
 - [x] **Flex**: Flexbox utilities ✅ COMPLETED (via Stack)
-  - [x] Direction, align, justify opcje
+  - [x] Direction, align, justify options
 - [x] **Stack**: Vertical/horizontal stacking
-  - [x] Spacing kontrola
-- [x] **Divider**: Separator linii
-  - [x] Vertical i horizontal
-  - [x] Z tekstem w środku
-- [x] **Breadcrumb**: Ścieżka nawigacji ✅ COMPLETED
+  - [x] Spacing control
+- [x] **Divider**: Line separator
+  - [x] Vertical and horizontal
+  - [x] With text in the middle
+- [x] **Breadcrumb**: Navigation path ✅ COMPLETED
   - [x] Custom separators
   - [x] Collapsed overflow
-- [x] **Tabs**: Zakładki ✅ COMPLETED
-  - [x] Horizontal i vertical
+- [x] **Tabs**: Tabs ✅ COMPLETED
+  - [x] Horizontal and vertical
   - [x] Controlled/uncontrolled
-- [x] **Pagination**: Stronicowanie ✅ COMPLETED
-  - [x] Page numbers i arrows
+- [x] **Pagination**: Pagination ✅ COMPLETED
+  - [x] Page numbers and arrows
   - [x] Items per page selector
 
 #### Feedback & Overlays ✅ COMPLETED
-- [x] **Alert**: Komunikaty informacyjne ✅ COMPLETED
-  - [x] Typy (info, success, warning, error)
-  - [x] Dismissible opcja
-  - [x] Ikony i akcje
-- [x] **Badge**: Małe etykiety ✅ COMPLETED
-  - [x] Warianty kolorów
+- [x] **Alert**: Informational messages ✅ COMPLETED
+  - [x] Types (info, success, warning, error)
+  - [x] Dismissible option
+  - [x] Icons and actions
+- [x] **Badge**: Small labels ✅ COMPLETED
+  - [x] Color variants
   - [x] Dot indicator
-- [x] **Progress**: Paski postępu ✅ COMPLETED
-  - [x] Linear i circular
+- [x] **Progress**: Progress bars ✅ COMPLETED
+  - [x] Linear and circular
   - [x] Indeterminate states
 - [x] **Skeleton**: Loading placeholders ✅ COMPLETED
   - [x] Text, avatar, card variants
-  - [x] Animation opcje
-- [x] **Toast**: Powiadomienia popup ✅ COMPLETED
+  - [x] Animation options
+- [x] **Toast**: Popup notifications ✅ COMPLETED
   - [x] Position control
   - [x] Auto-dismiss timer
   - [x] Stack management
-- [x] **Modal**: Okna modalne ✅ COMPLETED
+- [x] **Modal**: Modal windows ✅ COMPLETED
   - [x] Backdrop blur/dim
   - [x] Close on escape/outside click
   - [x] Size variants
 - [x] **Drawer**: Sliding panels ✅ COMPLETED
   - [x] Position (left, right, top, bottom)
   - [x] Overlay backdrop
-- [x] **Tooltip**: Podpowiedzi hover ✅ COMPLETED
+- [x] **Tooltip**: Hover hints ✅ COMPLETED
   - [x] Position control
-  - [x] Delay opcje
+  - [x] Delay options
 - [x] **Popover**: Contextual content ✅ COMPLETED
-  - [x] Trigger opcje
+  - [x] Trigger options
   - [x] Arrow pointer
 - [x] **Spinner**: Loading indicators ✅ COMPLETED
-  - [x] Rozmiary (xs, sm, md, lg, xl, 2xl)
-  - [x] Kolory (current, blue, gray, white, red, green, yellow)
-  - [x] Animacja spin
+  - [x] Sizes (xs, sm, md, lg, xl, 2xl)
+  - [x] Colors (current, blue, gray, white, red, green, yellow)
+  - [x] Spin animation
   - [x] Accessibility support
 
 #### Data Display ✅ COMPLETED
-- [x] **Table**: Tabele danych ✅ COMPLETED
-  - [x] Sortowanie kolumn
+- [x] **Table**: Data tables ✅ COMPLETED
+  - [x] Column sorting
   - [x] Responsive scroll
   - [x] Row selection
   - [x] Pagination integration
-- [x] **Badge**: Małe etykiety ✅ COMPLETED
-  - [x] Warianty kolorów
+- [x] **Badge**: Small labels ✅ COMPLETED
+  - [x] Color variants
   - [x] Dot indicator
-- [x] **Avatar**: Zdjęcia profilowe ✅ COMPLETED
-  - [x] Rozmiary i kształty
+- [x] **Avatar**: Profile pictures ✅ COMPLETED
+  - [x] Sizes and shapes
   - [x] Fallback initials
   - [x] Status indicators
-- [x] **Progress**: Paski postępu ✅ COMPLETED
-  - [x] Linear i circular
+- [x] **Progress**: Progress bars ✅ COMPLETED
+  - [x] Linear and circular
   - [x] Indeterminate states
 - [x] **Skeleton**: Loading placeholders ✅ COMPLETED
   - [x] Text, avatar, card variants
-  - [x] Animation opcje
+  - [x] Animation options
 
 #### Navigation ✅ COMPLETED
-- [x] **Breadcrumb**: Ścieżka nawigacji ✅ COMPLETED
+- [x] **Breadcrumb**: Navigation path ✅ COMPLETED
   - [x] Custom separators
   - [x] Collapsed overflow
-- [x] **Tabs**: Zakładki ✅ COMPLETED
-  - [x] Horizontal i vertical
+- [x] **Tabs**: Tabs ✅ COMPLETED
+  - [x] Horizontal and vertical
   - [x] Controlled/uncontrolled
-- [x] **Pagination**: Stronicowanie ✅ COMPLETED
-  - [x] Page numbers i arrows
+- [x] **Pagination**: Pagination ✅ COMPLETED
+  - [x] Page numbers and arrows
   - [x] Items per page selector
 - [ ] **Steps**: Wizard steps ✅ PLANNED FOR FUTURE
   - [ ] Progress indicator
   - [ ] Clickable/non-clickable steps
 
-### 🧪 Faza 3: Testy i Quality Assurance ✅ MOSTLY COMPLETED
-- [x] Konfiguracja Vitest
-- [x] Konfiguracja Testing Library dla Preact
-- [x] Testy jednostkowe dla Button (10/10 passing)
-- [x] Testy jednostkowe dla Spinner (22/22 passing)
-- [x] Testy jednostkowe dla Input (35/37 passing - 2 focus/blur edge cases)
-- [x] Testy jednostkowe dla Textarea (43/45 passing - 2 focus/blur edge cases)
-- [x] Testy jednostkowe dla Card (30/30 passing)
-- [x] Testy jednostkowe dla Container (22/22 passing)
-- [x] Testy jednostkowe dla Stack (34/34 passing)
-- [x] Testy jednostkowe dla Label (22/22 passing)
-- [x] Testy jednostkowe dla FieldError (21/21 passing)
-- [x] Testy jednostkowe dla Divider (28/28 passing)
-- [x] Testy jednostkowe dla Alert (24/24 passing)
-- [x] Testy jednostkowe dla Badge (20/20 passing)
-- [x] Testy jednostkowe dla Progress (26/26 passing)
-- [x] Testy jednostkowe dla Skeleton (22/22 passing)
-- [x] Testy jednostkowe dla Avatar (31/31 passing)
-- [x] Testy jednostkowe dla Checkbox (28/28 passing)
-- [x] Testy jednostkowe dla Radio (32/32 passing)
-- [x] Testy jednostkowe dla Switch (35/35 passing)
-- [x] Testy jednostkowe dla Select (45/45 passing)
-- [x] Testy jednostkowe dla Tabs (28/28 passing)
-- [x] Testy jednostkowe dla Breadcrumb (29/29 passing)
-- [x] Testy jednostkowe dla Pagination (47/47 passing)
-- [x] Testy jednostkowe dla Table (38/38 passing)
-- [ ] Testy snapshot dla wszystkich komponentów
-- [ ] Testy accessibility (a11y) z @testing-library/jest-dom
-- [ ] Testy integracyjne formularzy
-- [ ] E2E testy kluczowych scenariuszy
+### 🧪 Phase 3: Testing and Quality Assurance ✅ MOSTLY COMPLETED
+- [x] Configure Vitest
+- [x] Configure Testing Library for Preact
+- [x] Unit tests for Button (10/10 passing)
+- [x] Unit tests for Spinner (22/22 passing)
+- [x] Unit tests for Input (35/37 passing - 2 focus/blur edge cases)
+- [x] Unit tests for Textarea (43/45 passing - 2 focus/blur edge cases)
+- [x] Unit tests for Card (30/30 passing)
+- [x] Unit tests for Container (22/22 passing)
+- [x] Unit tests for Stack (34/34 passing)
+- [x] Unit tests for Label (22/22 passing)
+- [x] Unit tests for FieldError (21/21 passing)
+- [x] Unit tests for Divider (28/28 passing)
+- [x] Unit tests for Alert (24/24 passing)
+- [x] Unit tests for Badge (20/20 passing)
+- [x] Unit tests for Progress (26/26 passing)
+- [x] Unit tests for Skeleton (22/22 passing)
+- [x] Unit tests for Avatar (31/31 passing)
+- [x] Unit tests for Checkbox (28/28 passing)
+- [x] Unit tests for Radio (32/32 passing)
+- [x] Unit tests for Switch (35/35 passing)
+- [x] Unit tests for Select (45/45 passing)
+- [x] Unit tests for Tabs (28/28 passing)
+- [x] Unit tests for Breadcrumb (29/29 passing)
+- [x] Unit tests for Pagination (47/47 passing)
+- [x] Unit tests for Table (38/38 passing)
+- [ ] Snapshot tests for all components
+- [ ] Accessibility (a11y) tests with @testing-library/jest-dom
+- [ ] Integration tests for forms
+- [ ] E2E tests for key scenarios
 - [ ] Performance testing (bundle size, render time)
 - [ ] Cross-browser compatibility tests
 
-### 📦 Faza 4: Build i Publikacja ✅ COMPLETED
-- [x] Konfiguracja Rollup/Vite dla biblioteki
-- [x] Generowanie typów TypeScript (.d.ts)
-- [x] Konfiguracja entry points (index.ts)
-- [x] Przygotowanie do NPM (README, LICENSE)
-- [x] Skrypty deploy na Windows PowerShell
+### 📦 Phase 4: Build and Publication ✅ COMPLETED
+- [x] Configure Rollup/Vite for the library
+- [x] Generate TypeScript types (.d.ts)
+- [x] Configure entry points (index.ts)
+- [x] Prepare for NPM (README, LICENSE)
+- [x] Deploy scripts for Windows PowerShell
 
-### 🚀 Faza 5: Deploy i Testowanie
-- [x] Lokalny build test
-- [x] Próbny deploy do NPM (dry-run)
-- [ ] Rzeczywisty deploy
-- [ ] Test importu w zewnętrznym projekcie
+### 🚀 Phase 5: Deploy and Testing
+- [x] Local build test
+- [x] Test deploy to NPM (dry-run)
+- [ ] Actual deploy
+- [ ] Import test in external project
 - [ ] Semantic versioning setup
 - [ ] CI/CD pipeline (GitHub Actions)
 
-### 📚 Faza 6: Dokumentacja i Ekosystem
-- [x] README z przykładami użycia
-- [ ] Dokumentacja API komponentów
-- [ ] Storybook dla interactive docs
-- [ ] Changelog i release notes
+### 📚 Phase 6: Documentation and Ecosystem
+- [x] README with usage examples
+- [ ] Component API documentation
+- [ ] Storybook for interactive docs
+- [ ] Changelog and release notes
 - [ ] Migration guides
 - [ ] Best practices guide
 - [ ] Design system guidelines
@@ -208,7 +208,7 @@
 
 ---
 
-## 🎯 Roadmap Kolejnych Wersji
+## 🎯 Roadmap for Upcoming Versions
 
 ### v0.1.0 - MVP ✅ COMPLETED
 - [x] Button component
@@ -250,22 +250,22 @@
 
 ---
 
-## 🎯 Cele Końcowe
+## 🎯 Final Goals
 
-1. **Kompletna biblioteka komponentów** - Nebula UI z 25+ komponentami
-2. **Opublikowana na NPM** - `preact-nebula-ui` (gotowe)
-3. **Kompletne testy** - 100% coverage dla wszystkich komponentów
-4. **TypeScript support** - Pełne typy dla IntelliSense
-5. **Tree-shaking** - Optymalizowane importy
-6. **Tailwind CSS** - Wykorzystanie utility-first CSS
+1. **Complete component library** - Nebula UI with 25+ components
+2. **Published on NPM** - `preact-nebula-ui` (ready)
+3. **Complete tests** - 100% coverage for all components
+4. **TypeScript support** - Full types for IntelliSense
+5. **Tree-shaking** - Optimized imports
+6. **Tailwind CSS** - Utility-first CSS usage
 7. **Accessibility** - WCAG 2.1 AA compliance
 8. **Responsive Design** - Mobile-first approach
 9. **Theme System** - Dark/light mode support
-10. **Developer Experience** - Excellent DX z dokumentacją
+10. **Developer Experience** - Excellent DX with documentation
 
 ---
 
-## 📖 Struktura Docelowa
+## 📖 Target Structure
 
 ```
 nebula/
@@ -334,14 +334,14 @@ nebula/
 
 ---
 
-## 🔧 Technologie
+## 🔧 Technologies
 
 - **Framework**: Preact ^10.26.9
 - **Styling**: Tailwind CSS ^3.4.17
 - **Build**: Vite ^7.0.4 + TypeScript ~5.8.3
 - **Testing**: Vitest ^2.1.9 + Testing Library
-- **TypeScript**: Pełne wsparcie typów + JSX automatic
-- **NPM**: Publikacja jako package `preact-nebula-ui`
+- **TypeScript**: Full type support + JSX automatic
+- **NPM**: Publication as package `preact-nebula-ui`
 - **Bundling**: ESM + CJS, tree-shaking support
 - **Development**: Hot reload, fast builds
 - **CI/CD**: GitHub Actions (planned)
@@ -352,8 +352,8 @@ nebula/
 ## 🚧 Implementation Priority
 
 ### 🔥 High Priority (v0.2.0)
-1. **Input** - Podstawa wszystkich formularzy
-2. **Label** - Accessibility i UX
+1. **Input** - Foundation of all forms
+2. **Label** - Accessibility and UX
 3. **Card** - Layout foundation
 4. **Alert** - User feedback
 

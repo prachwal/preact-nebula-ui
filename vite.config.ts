@@ -7,7 +7,7 @@ import { fileURLToPath, URL } from 'node:url'
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   const isLib = mode === 'lib'
-  
+
   return {
     plugins: [
       preact(),

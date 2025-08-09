@@ -2,7 +2,7 @@ import { useState } from 'preact/hooks';
 import { Suspense, lazy } from 'preact/compat';
 import Router, { route } from 'preact-router';
 import preactLogo from './assets/preact.svg';
-import viteLogo from '../public/vite.svg';
+import viteLogo from '/vite.svg?url';
 import './app.css';
 import { Button, Avatar, AvatarGroup } from '@/components';
 import { FormsShowcase } from './examples/FormsShowcase';
@@ -260,7 +260,7 @@ function AppContent() {
       <Suspense fallback={<div className="p-8 text-center text-gray-500 dark:text-gray-400">Ładowanie strony...</div>}>
         <Router onChange={(e) => setCurrentPath(e.url)}>
           <HomePage path="/" />
-          <DocsPage path="/docs" />
+          <DocsPage path="/documentation/:category?/:file?" />
           <FullCoveragePage path="/coverage" />
           <ButtonPage path="/button/:tab?" />
           <ContainerPage path="/container/:tab?" />

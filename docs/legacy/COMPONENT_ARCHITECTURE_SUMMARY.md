@@ -1,43 +1,43 @@
-# Symulacja - Kompletna struktura plików dla komponentu Slider
+# Simulation - Complete File Structure for the Slider Component
 
-## Utworzone pliki (modułowa architektura):
+## Generated Files (Modular Architecture):
 
-### 1. Komponent główny
-- `nebula/components/Slider/index.ts` - eksport publiczny
-- `nebula/components/Slider/Slider.tsx` - główny komponent (300+ linii)
-- `nebula/components/Slider/types.ts` - definicje typów TypeScript
+### 1. Core Component
+- `nebula/components/Slider/index.ts` - public export
+- `nebula/components/Slider/Slider.tsx` - main component (300+ lines)
+- `nebula/components/Slider/types.ts` - TypeScript type definitions
 
-### 2. Testy
-- `nebula/components/Slider/Slider.test.tsx` - testy jednostkowe (400+ linii, 25 testów)
-- `nebula/components/Slider/Slider.a11y.test.tsx` - testy dostępności (200+ linii, 20 testów)
+### 2. Tests
+- `nebula/components/Slider/Slider.test.tsx` - unit tests (400+ lines, 25 tests)
+- `nebula/components/Slider/Slider.a11y.test.tsx` - accessibility tests (200+ lines, 20 tests)
 
-### 3. Strona testowa (modułowa struktura zgodna z wzorcem Alert)
-- `src/pages/slider/SliderPage.tsx` - główna strona z PageHeader i DemoTabs
-- `src/pages/slider/sections/index.ts` - eksport sekcji
-- `src/pages/slider/sections/BasicUsageSection.tsx` - podstawowe użycie
-- `src/pages/slider/sections/SizesSection.tsx` - różne rozmiary
-- `src/pages/slider/sections/RangeSection.tsx` - tryb zakresu
-- `src/pages/slider/sections/MarksSection.tsx` - znaczniki i etykiety
-- `src/pages/slider/sections/OrientationSection.tsx` - orientacja pozioma/pionowa
-- `src/pages/slider/sections/AdvancedSection.tsx` - zaawansowane funkcje
-- `src/pages/slider/sections/PropsDocumentation.tsx` - dokumentacja props
+### 3. Demo Page (Modular Structure Following the Alert Pattern)
+- `src/pages/slider/SliderPage.tsx` - main page with PageHeader and DemoTabs
+- `src/pages/slider/sections/index.ts` - exports all sections
+- `src/pages/slider/sections/BasicUsageSection.tsx` - basic usage
+- `src/pages/slider/sections/SizesSection.tsx` - size variations
+- `src/pages/slider/sections/RangeSection.tsx` - range mode
+- `src/pages/slider/sections/MarksSection.tsx` - marks and labels
+- `src/pages/slider/sections/OrientationSection.tsx` - horizontal/vertical orientation
+- `src/pages/slider/sections/AdvancedSection.tsx` - advanced features
+- `src/pages/slider/sections/PropsDocumentation.tsx` - props documentation
 
-### 4. Aktualizacje plików danych
-- `src/data/components.ts` - dodanie komponentu Slider do rejestru
-- `src/data/testResults.ts` - wyniki testów dla Slider
-- `src/app.tsx` - dodanie routingu dla /slider
-- `nebula/components/index.ts` - eksport komponentu Slider
-- `src/components/layout/Navigation.tsx` - dodanie do nawigacji
+### 4. Data File Updates
+- `src/data/components.ts` - added Slider to the component registry
+- `src/data/testResults.ts` - test results for Slider
+- `src/app.tsx` - added routing for `/slider`
+- `nebula/components/index.ts` - exported the Slider component
+- `src/components/layout/Navigation.tsx` - added to navigation
 
-## Kluczowe cechy architektury:
+## Key Architecture Highlights:
 
-### ✅ Modułowa struktura stron
-- Każda sekcja w osobnym pliku
+### ✅ Modular Page Structure
+- Each section in its own file
 - PageHeader + DemoTabs pattern
-- Switch statement do renderowania sekcji
-- Zgodność z wzorcem Alert
+- Switch statement for rendering sections
+- Follows the Alert component pattern
 
-### ✅ Kompletna funkcjonalność
+### ✅ Complete Functionality
 - Single/Range value selection
 - Horizontal/Vertical orientation
 - Custom marks & labels
@@ -47,24 +47,24 @@
 - Accessibility support
 - Custom styling options
 
-### ✅ Kompleksowe testowanie
-- 45 testów (25 funkcjonalnych + 20 a11y)
-- 100% pokrycie kodu
+### ✅ Comprehensive Testing
+- 45 tests (25 functional + 20 a11y)
+- 100% code coverage
 - Performance metrics
 - Bundle size optimization
 
-### ✅ Integracja z systemem
+### ✅ System Integration
 - Routing updates
 - Navigation integration
 - Data folder synchronization
 - Export management
 
-## Dlaczego modułowa architektura?
+## Why Modular Architecture?
 
-1. **Łatwość utrzymania** - każda sekcja jest niezależna
-2. **Reużywalność** - sekcje można wykorzystać w innych komponentach
-3. **Testowanie** - łatwiejsze testowanie izolowanych sekcji
-4. **Performance** - lazy loading poszczególnych sekcji
-5. **Współpraca zespołowa** - różne osoby mogą pracować nad różnymi sekcjami
+1. **Maintainability** - each section is isolated
+2. **Reusability** - sections can be reused across components
+3. **Testability** - easier to test isolated sections
+4. **Performance** - lazy loading of individual sections
+5. **Team Collaboration** - different team members can work on different sections
 
-Ta struktura jest teraz zgodna z wzorcem Alert i innymi komponentami w projekcie!
+This structure now aligns with the Alert pattern and other components in the project!

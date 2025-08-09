@@ -8,17 +8,26 @@ Modern, accessible, and production-ready component library built with **Preact**
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4+-cyan)](https://tailwindcss.com/)
 [![Tests](https://img.shields.io/badge/Tests-1500%2B%20passing-green)](https://github.com/PRachwal/preact-nebula-ui)
 [![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen)](https://github.com/PRachwal/preact-nebula-ui)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3ba12db1-4116-487d-bf65-46630cc72fdc/deploy-status)](https://app.netlify.com/projects/preact-nebula-ui/deploys)
+
+---
+
+> **Live Demo & Documentation:**
+> [https://preact-nebula-ui.netlify.app/](https://preact-nebula-ui.netlify.app/)
+
+---
 
 ## 🚀 Project Status (August 2025)
 
 **🎉 PROJECT COMPLETE - PRODUCTION READY**
 
-- **Components:** 50+ (100% implemented across all milestones)
-- **Tests:** 1500+ comprehensive test cases (100% coverage)
-- **Documentation:** Complete for all components with interactive demos
-- **Accessibility:** WCAG 2.1 AA compliant across all components
-- **Architecture:** Modular, maintainable, and fully typed
-- **Performance:** Tree-shakable, optimized for production
+- **Live demo & docs:** [https://preact-nebula-ui.netlify.app/](https://preact-nebula-ui.netlify.app/)
+- **Automatic documentation:** The build process generates full metadata and README for every component
+- **Clean repository:** Build artifacts (public/docs) are ignored by git
+- **Build integration:** Documentation is copied to dist/docs on every build
+- **Components:** 44+ (100% coverage, full documentation)
+- **Tests:** 1430+ (100% coverage)
+- **Production-ready:** Ready for deployment
 
 ## ✨ Features
 
@@ -108,8 +117,9 @@ function App() {
 ```
 
 ## 📚 Complete Component Library (50+ Components)
+Nebula UI provides a comprehensive set of accessible, customizable, and well-tested components organized by category. All documentation and demos are available online:
 
-Nebula UI provides a comprehensive set of accessible, customizable, and well-tested components organized by category:
+**Live Demo & Docs:** [https://preact-nebula-ui.netlify.app/](https://preact-nebula-ui.netlify.app/)
 
 ### 📝 Form Components (13 components)
 - **Button** – Action buttons with variants, sizes, loading states
@@ -484,18 +494,17 @@ The core library is complete and production-ready. Future enhancements may inclu
 - **i18n Support** - Built-in internationalization
 
 ## 📚 Documentation Structure
-
 Nebula UI uses a comprehensive milestone-based documentation system. For complete documentation including project status, implementation plans, and detailed component guides, visit:
 
-**[📚 Unified Documentation Index](docs/README.md)**
+**Live Demo & Docs:** [https://preact-nebula-ui.netlify.app/](https://preact-nebula-ui.netlify.app/)
 
 ## 📚 Documentation & Examples
-
 ### 🔍 Key Documentation Files
+- **Live Demo & Docs:** [https://preact-nebula-ui.netlify.app/](https://preact-nebula-ui.netlify.app/)
 - **[📊 Consolidated Project Documentation](docs/CONSOLIDATED_PROJECT_DOCUMENTATION.md)** - Complete project overview and component inventory
 - **[📋 Unified Checklist](docs/UNIFIED_CHECKLIST.md)** - Implementation status and completion tracking
-- **[� Component Coverage Report](docs/COMPONENT_COVERAGE_REPORT.md)** - Detailed component status tables
-- **[� Documentation Index](docs/README.md)** - Organized documentation by milestone
+- **[📊 Component Coverage Report](docs/COMPONENT_COVERAGE_REPORT.md)** - Detailed component status tables
+- **[📚 Documentation Index](docs/README.md)** - Organized documentation by milestone
 
 ### 💡 Usage Examples
 

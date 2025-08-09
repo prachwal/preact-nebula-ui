@@ -1,0 +1,12 @@
+{
+    "component": "FieldError",
+    "category": "Form Feedback",
+    "status": "stable",
+    "description": "Component for displaying validation error messages in forms.",
+    "tags": [
+        "field",
+        "error",
+        "form",
+        "validation"
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    "name": "Milestone 9 - Utility Components",
+    "category": "Milestones",
+    "description": "Essential utility components for enhanced user experience",
+    "status": "completed",
+    "size": "medium",
+    "tags": [
+        "milestone",
+        "utilities",
+        "enhancement",
+        "navigation"
+    ],
+    "components": [
+        "BackTop",
+        "Loading"
+    ]
+}

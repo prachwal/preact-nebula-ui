@@ -57,7 +57,7 @@ Files that are actively maintained and referenced:
 - Deployment and usage guides
 
 ### 📦 Archive Folder
-Historical documents from development process:
+Historical documents from the development process:
 - Debug and troubleshooting documents
 - Development completion analyses
 - Legacy status reports

@@ -20,6 +20,19 @@ async function buildDocumentationSystem() {
 
     try {
         // Clean and prepare directories
+        console.log('🧹 Cleaning existing documentation directory...');
+        try {
+            await fs.rm(PUBLIC_DOCS_DIR, { recursive: true, force: true });
+            console.log('✅ Cleaned existing public/docs directory');
+        } catch (cleanError) {
+            // Directory might not exist, which is fine
+            if (cleanError.code !== 'ENOENT') {
+                console.log('⚠️ Warning during cleanup:', cleanError.message);
+            } else {
+                console.log('ℹ️ No existing docs directory to clean');
+            }
+        }
+
         await fs.mkdir(PUBLIC_DOCS_DIR, { recursive: true });
         await fs.mkdir(path.dirname(METADATA_OUTPUT_FILE), { recursive: true });
 
@@ -123,25 +136,31 @@ async function processComponentPages(metadata) {
                         await fs.copyFile(readmePath, docTarget);
 
                         const docEntry = {
-                            ...componentMetadata,
+                            name: componentMetadata.component || componentMetadata.name || entry.name,
+                            component: componentMetadata.component || componentMetadata.name || entry.name,
+                            category: componentMetadata.category || 'Other',
+                            status: componentMetadata.status || 'stable',
+                            description: componentMetadata.description || `${componentMetadata.component || entry.name} component documentation.`,
+                            tags: componentMetadata.tags || [entry.name.toLowerCase()],
                             path: `/docs/components/${entry.name}.md`,
                             lastModified: new Date().toISOString()
                         };
 
                         metadata.components.push(docEntry);
 
-                        console.log(`✅ ${componentMetadata.name}: metadata + documentation`);
+                        console.log(`✅ ${componentMetadata.component || componentMetadata.category || entry.name}: metadata + documentation`);
 
                     } catch {
                         // No README.md found, create basic entry
                         const basicEntry = {
                             ...componentMetadata,
+                            name: componentMetadata.component || componentMetadata.category || entry.name,
                             path: `/components/${entry.name}`,
                             lastModified: new Date().toISOString()
                         };
 
                         metadata.components.push(basicEntry);
-                        console.log(`📝 ${componentMetadata.name}: metadata only`);
+                        console.log(`📝 ${componentMetadata.component || componentMetadata.category || entry.name}: metadata only`);
                     }
                 } catch {
                     console.warn(`⚠️ No metadata.json found for: ${entry.name}`);

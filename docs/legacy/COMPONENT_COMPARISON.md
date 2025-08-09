@@ -1,8 +1,8 @@
-# 🔍 Nebula UI - Porównanie z systemami komponentów MUI i Ant Design
+# 🔍 Nebula UI - Comparison with MUI and Ant Design Component Systems
 
-## 📊 Obecny stan Nebula UI (31 komponentów)
+## 📊 Current State of Nebula UI (31 Components)
 
-### ✅ Zaimplementowane komponenty
+### ✅ Implemented Components
 
 #### 🎛️ Form Controls (9)
 - Button, Input, Label, Textarea, FieldError
@@ -22,12 +22,11 @@
 
 ---
 
-## 🆚 Porównanie z popularnymi systemami
+## 🆚 Comparison with Popular Systems
 
-### 📋 Tabela porównawcza głównych komponentów
+### 📋 Comparison Table of Main Components
 
-| Kategoria | Nebula UI (31) | Material-UI (100+) | Ant Design (80+) | Status w Nebula |
-|-----------|----------------|---------------------|-------------------|-----------------|
+| Category | Nebula UI (31) | Material-UI (100+) | Ant Design (80+) | Status in Nebula |
 | **📝 Basic Input** | ✅ | ✅ | ✅ | ✅ Complete |
 | Button | ✅ | ✅ | ✅ | ✅ |
 | Input | ✅ | ✅ | ✅ | ✅ |
@@ -79,9 +78,9 @@
 
 ---
 
-## 🎯 Rekomendacje rozwoju
+## 🎯 Development Recommendations
 
-### 🔥 Priorytet 1: Brakujące podstawowe komponenty
+### 🔥 Priority 1: Missing Core Components
 
 #### 📝 Form Controls Advanced
 1. **Slider/Range** 🎯
@@ -115,7 +114,7 @@
    - Selection states
    - **Impact**: Średni - częste użycie
 
-### 🔧 Priorytet 2: Ulepszenia UX
+### 🔧 Priority 2: UX Enhancements
 
 #### 🧭 Navigation Enhancement
 6. **Menu** 
@@ -143,7 +142,7 @@
    - Multiple files
    - **Impact**: Średni - common requirement
 
-### 📈 Priorytet 3: Advanced Features
+### 📈 Priority 3: Advanced Features
 
 10. **Transfer**
     - Dual list selection
@@ -165,34 +164,34 @@
 
 ---
 
-## 📊 Analiza konkurencji
+## 📊 Competitive Analysis
 
 ### 🎨 Material-UI (MUI)
-**Mocne strony:**
+**Strengths:**
 - Bardzo dobra dokumentacja
 - Design system oparty na Material Design
 - Rozbudowany theme system
 - Duża społeczność
 
-**Słabe strony:**
+**Weaknesses:**
 - Ciężka biblioteka (bundle size)
 - Ograniczenia Material Design
 - React-only
 
 ### 🐜 Ant Design
-**Mocne strony:**
+**Strengths:**
 - Bardzo bogaty zestaw komponentów
 - Gotowe do użycia w enterprise
 - Dobra i18n support
 - Design language
 
-**Słabe strony:**
+**Weaknesses:**
 - Opiniowany design (trudny do customizacji)
 - Chiński bias w designie
 - React-only
 
-### 🌟 Nebula UI - Przewagi
-**Unikalne cechy:**
+### 🌟 Nebula UI - Advantages
+**Unique Features:**
 - ✅ **Preact compatibility** - mniejszy bundle size
 - ✅ **Tailwind CSS** - łatwiejsza customizacja
 - ✅ **Modern TypeScript** - lepsze DX

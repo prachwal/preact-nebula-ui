@@ -18,6 +18,20 @@ async function copyDocsToDistribution() {
         const DIST_DOCS_DIR = path.join(DIST_DIR, 'docs');
         const PUBLIC_DOCS_DIR = 'public/docs';
 
+        // Clean existing dist/docs directory
+        console.log('🧹 Cleaning existing dist/docs directory...');
+        try {
+            await fs.rm(DIST_DOCS_DIR, { recursive: true, force: true });
+            console.log('✅ Cleaned existing dist/docs directory');
+        } catch (cleanError) {
+            // Directory might not exist, which is fine
+            if (cleanError.code !== 'ENOENT') {
+                console.log('⚠️ Warning during cleanup:', cleanError.message);
+            } else {
+                console.log('ℹ️ No existing dist/docs directory to clean');
+            }
+        }
+
         // Ensure dist directory exists
         await fs.mkdir(DIST_DOCS_DIR, { recursive: true });
 

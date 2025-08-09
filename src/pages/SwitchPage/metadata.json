@@ -1,0 +1,12 @@
+{
+    "component": "Switch",
+    "category": "Form Controls",
+    "status": "stable",
+    "description": "Switch component for toggling between two states.",
+    "tags": [
+        "switch",
+        "toggle",
+        "form",
+        "input"
+    ]
+}

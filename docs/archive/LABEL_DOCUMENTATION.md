@@ -1,20 +1,20 @@
-# Label - Dokumentacja
+# Label - Documentation
 
-## Przegląd
+## Overview
 
-Komponent `Label` służy do tworzenia dostępnych etykiet dla kontrolek formularzy. Zapewnia odpowiednie stylowanie, wsparcie dla stanów wymagalności i niepełnosprawności, oraz pełną integrację z ekosystemem formularzy.
+The `Label` component is used to create accessible labels for form controls. It provides proper styling, support for required and disabled states, and full integration with form ecosystems.
 
-## Funkcje
+## Features
 
-- **Rozmiary** - Trzy warianty rozmiaru (sm, md, lg)
-- **Stan wymagalności** - Automatyczne dodawanie gwiazdki (*)
-- **Stan disabled** - Wizualne oznaczenie nieaktywnych pól
-- **Dostępność** - Pełne wsparcie dla technologii asystujących
-- **Dark mode** - Automatyczna adaptacja do ciemnego motywu
-- **TypeScript** - Pełne wsparcie typów
-- **Customizacja** - Możliwość stylowania poprzez className
+- **Sizes** - Three size variants (sm, md, lg)
+- **Required State** - Automatically adds an asterisk (*)
+- **Disabled State** - Visual indication for inactive fields
+- **Accessibility** - Full support for assistive technologies
+- **Dark mode** - Automatic adaptation to dark theme
+- **TypeScript** - Full type support
+- **Customization** - Can be styled via className
 
-## Podstawowe użycie
+## Basic Usage
 
 ```tsx
 import { Label, Input } from '@preact-nebula/ui'
@@ -41,9 +41,9 @@ function BasicLabelExample() {
 }
 ```
 
-## Zaawansowane przykłady
+## Advanced Examples
 
-### Różne rozmiary etykiet
+### Different label sizes
 
 ```tsx
 import { Label, Input } from '@preact-nebula/ui'
@@ -76,7 +76,7 @@ function LabelSizesExample() {
 }
 ```
 
-### Kompleksowy formularz z etykietami
+### Complex form with labels
 
 ```tsx
 import { Label, Input, Textarea, Select, Checkbox, Radio } from '@preact-nebula/ui'
@@ -109,7 +109,7 @@ function ComplexFormExample() {
   
   return (
     <form className="max-w-2xl mx-auto space-y-6">
-      <h2 className="text-2xl font-bold mb-6">Formularz rejestracyjny</h2>
+      <h2 className="text-2xl font-bold mb-6">Registration Form</h2>
       
       {/* Pola wymagane */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -125,7 +125,7 @@ function ComplexFormExample() {
             aria-required="true"
           />
           <p className="mt-1 text-xs text-gray-500">
-            To pole jest wymagane
+            This field is required
           </p>
         </div>
         
@@ -146,7 +146,7 @@ function ComplexFormExample() {
       {/* Email z dodatkową pomocą */}
       <div>
         <Label htmlFor="email" required>
-          Adres email
+          Email address
         </Label>
         <Input
           id="email"
@@ -158,16 +158,16 @@ function ComplexFormExample() {
           aria-describedby="email-help"
         />
         <p id="email-help" className="mt-1 text-sm text-gray-600">
-          Użyjemy tego adresu do kontaktu z Tobą
+          We will use this address to contact you
         </p>
       </div>
       
       {/* Pole opcjonalne */}
       <div>
         <Label htmlFor="bio" size="lg">
-          Biografia
+          Biography
           <span className="ml-2 text-sm font-normal text-gray-500">
-            (opcjonalne)
+            (optional)
           </span>
         </Label>
         <Textarea
@@ -180,14 +180,14 @@ function ComplexFormExample() {
           aria-describedby="bio-help"
         />
         <p id="bio-help" className="mt-1 text-sm text-gray-500">
-          Maksymalnie 500 znaków
+          Maximum 500 characters
         </p>
       </div>
       
       {/* Select z etykietą */}
       <div>
         <Label htmlFor="country" required>
-          Kraj
+          Country
         </Label>
         <Select
           id="country"
@@ -195,17 +195,17 @@ function ComplexFormExample() {
           onChange={updateField('country')}
           aria-required="true"
         >
-          <option value="">Wybierz kraj</option>
-          <option value="PL">Polska</option>
-          <option value="DE">Niemcy</option>
-          <option value="UK">Wielka Brytania</option>
-          <option value="US">Stany Zjednoczone</option>
+          <option value="">Select country</option>
+          <option value="PL">Poland</option>
+          <option value="DE">Germany</option>
+          <option value="UK">United Kingdom</option>
+          <option value="US">United States</option>
         </Select>
       </div>
       
       {/* Checkbox z custom etykietą */}
       <div className="space-y-2">
-        <Label>Preferencje komunikacji</Label>
+        <Label>Communication preferences</Label>
         <div className="space-y-2">
           <Checkbox
             id="newsletter"
@@ -213,7 +213,7 @@ function ComplexFormExample() {
             onChange={(checked) => updateField('newsletter')(checked)}
           >
             <Label htmlFor="newsletter" size="sm" className="ml-2 cursor-pointer">
-              Chcę otrzymywać newsletter
+              I want to receive the newsletter
             </Label>
           </Checkbox>
         </div>
@@ -223,7 +223,7 @@ function ComplexFormExample() {
       <fieldset className="space-y-3">
         <legend>
           <Label required size="md">
-            Preferowany sposób kontaktu
+            Preferred contact method
           </Label>
         </legend>
         <div className="space-y-2">
@@ -247,7 +247,7 @@ function ComplexFormExample() {
             onChange={() => updateField('contactMethod')('phone')}
           >
             <Label htmlFor="contact-phone" size="sm" className="ml-2 cursor-pointer">
-              Telefon
+              Phone
             </Label>
           </Radio>
         </div>
@@ -259,7 +259,7 @@ function ComplexFormExample() {
           type="submit"
           className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors"
         >
-          Zarejestruj się
+          Register
         </button>
       </div>
     </form>
@@ -294,7 +294,7 @@ function CustomLabelComponents() {
             Cena <span className="text-red-500">*</span>
           </span>
           <span className="text-sm text-gray-500 font-normal">
-            w PLN
+            in PLN
           </span>
         </Label>
         <Input 
@@ -343,7 +343,7 @@ function CustomLabelComponents() {
 }
 ```
 
-### Labels z walidacją
+### Labels with validation
 
 ```tsx
 import { Label, Input, FieldError } from '@preact-nebula/ui'
@@ -408,7 +408,7 @@ function ValidatedLabelsExample() {
             isFieldInvalid('username') && "text-red-600"
           )}
         >
-          Nazwa użytkownika
+          Username
         </Label>
         <Input
           id="username"
@@ -432,7 +432,7 @@ function ValidatedLabelsExample() {
             isFieldInvalid('password') && "text-red-600"
           )}
         >
-          Hasło
+          Password
         </Label>
         <Input
           type="password"
@@ -457,7 +457,7 @@ function ValidatedLabelsExample() {
             isFieldInvalid('confirmPassword') && "text-red-600"
           )}
         >
-          Potwierdź hasło
+          Confirm password
         </Label>
         <Input
           type="password"
@@ -479,14 +479,14 @@ function ValidatedLabelsExample() {
         className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors disabled:bg-gray-400"
         disabled={Object.values(errors).some(error => !!error)}
       >
-        Zarejestruj się
+        Register
       </button>
     </form>
   )
 }
 ```
 
-### Labels w układach responsywnych
+### Labels in responsive layouts
 
 ```tsx
 import { Label, Input, Select, Textarea } from '@preact-nebula/ui'
@@ -494,13 +494,13 @@ import { Label, Input, Select, Textarea } from '@preact-nebula/ui'
 function ResponsiveLabelsExample() {
   return (
     <div className="max-w-4xl mx-auto">
-      <h2 className="text-2xl font-bold mb-6">Responsywny formularz</h2>
+      <h2 className="text-2xl font-bold mb-6">Responsive form</h2>
       
       {/* Layout na desktop: label obok inputa */}
       <div className="space-y-6">
         <div className="grid grid-cols-1 lg:grid-cols-4 lg:gap-4 lg:items-center">
           <Label htmlFor="company" className="lg:text-right" size="sm">
-            Firma
+            Company
           </Label>
           <div className="lg:col-span-3">
             <Input id="company" size="sm" />
@@ -509,7 +509,7 @@ function ResponsiveLabelsExample() {
         
         <div className="grid grid-cols-1 lg:grid-cols-4 lg:gap-4 lg:items-start">
           <Label htmlFor="address" className="lg:text-right lg:mt-2" size="sm">
-            Adres
+            Address
           </Label>
           <div className="lg:col-span-3">
             <Textarea id="address" rows={3} />
@@ -519,21 +519,21 @@ function ResponsiveLabelsExample() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="lg:col-start-1">
             <Label htmlFor="city" size="sm" required>
-              Miasto
+              City
             </Label>
             <Input id="city" size="sm" />
           </div>
           
           <div>
             <Label htmlFor="postal" size="sm" required>
-              Kod pocztowy
+              Postal code
             </Label>
             <Input id="postal" size="sm" placeholder="00-000" />
           </div>
           
           <div className="md:col-span-2 lg:col-span-1">
             <Label htmlFor="country" size="sm" required>
-              Kraj
+              Country
             </Label>
             <Select id="country" size="sm">
               <option>Wybierz kraj</option>
@@ -547,14 +547,14 @@ function ResponsiveLabelsExample() {
         <fieldset className="border rounded-lg p-4 space-y-4">
           <legend className="px-2">
             <Label className="text-lg font-semibold">
-              Dane kontaktowe
+              Contact details
             </Label>
           </legend>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <Label htmlFor="phone" size="sm">
-                Telefon
+                Phone
               </Label>
               <Input 
                 type="tel" 
@@ -587,40 +587,40 @@ function ResponsiveLabelsExample() {
 
 ### LabelProps
 
-| Prop          | Typ                    | Domyślna    | Opis                              |
-| ------------- | ---------------------- | ----------- | --------------------------------- |
-| `required`    | `boolean`              | `false`     | Czy pole jest wymagane (dodaje *) |
-| `disabled`    | `boolean`              | `false`     | Czy etykieta jest nieaktywna      |
-| `size`        | `'sm' \| 'md' \| 'lg'` | `'md'`      | Rozmiar etykiety                  |
-| `htmlFor`     | `string`               | `undefined` | ID kontrolki do powiązania        |
-| `className`   | `string`               | `undefined` | Dodatkowe klasy CSS               |
-| `children`    | `ComponentChildren`    | -           | Zawartość etykiety                |
-| `data-testid` | `string`               | `undefined` | Identyfikator dla testów          |
+| Prop          | Type                | Default     | Description                    |
+| ------------- | ------------------- | ----------- | ------------------------------ |
+| `required`    | `boolean`           | `false`     | Is the field required (adds *) |
+| `disabled`    | `boolean`           | `false`     | Is the label inactive          |
+| `size`        | `'sm'               | 'md'        | 'lg'`                          | `'md'` | Label size |
+| `htmlFor`     | `string`            | `undefined` | ID of the control to associate |
+| `className`   | `string`            | `undefined` | Additional CSS classes         |
+| `children`    | `ComponentChildren` | -           | Label content                  |
+| `data-testid` | `string`            | `undefined` | Test identifier                |
 
-### Rozmiary
+### Sizes
 
-- **sm** - `text-sm` (14px) - dla kompaktowych formularzy
-- **md** - `text-base` (16px) - standardowy rozmiar
-- **lg** - `text-lg` (18px) - dla większych formularzy
+- **sm** - `text-sm` (14px) - for compact forms
+- **md** - `text-base` (16px) - standard size
+- **lg** - `text-lg` (18px) - for larger forms
 
-### Dodatkowe props
+### Additional props
 
-Komponent przyjmuje wszystkie standardowe props elementu `label`.
+The component accepts all standard label element props.
 
-## Dostępność
+## Accessibility
 
-### Najlepsze praktyki
+### Best practices
 
 ```tsx
-// ✅ Dobrze - poprawne powiązanie
+// ✅ Good - correct association
 <Label htmlFor="username" required>
-  Nazwa użytkownika
+  Username
 </Label>
 <Input id="username" aria-required="true" />
 
-// ✅ Dobrze - z opisem pomocniczym
+// ✅ Good - with helper description
 <Label htmlFor="password">
-  Hasło
+  Password
 </Label>
 <Input 
   type="password"
@@ -628,106 +628,125 @@ Komponent przyjmuje wszystkie standardowe props elementu `label`.
   aria-describedby="password-help"
 />
 <div id="password-help">
-  Minimum 8 znaków, co najmniej jedna cyfra
+  Minimum 8 characters, at least one digit
 </div>
 
-// ✅ Dobrze - grupowanie radio buttons
+// ✅ Good - grouping radio buttons
 <fieldset>
   <legend>
-    <Label required>Preferowany kontakt</Label>
+    <Label required>Preferred contact</Label>
   </legend>
   <Radio name="contact" value="email">Email</Radio>
-  <Radio name="contact" value="phone">Telefon</Radio>
+  <Radio name="contact" value="phone">Phone</Radio>
 </fieldset>
 
-// ❌ Źle - brak powiązania
+// ❌ Bad - no association
 <Label>Username</Label>
 <Input />
 ```
 
 ### ARIA Support
 
-- Automatyczne powiązanie z kontrolkami poprzez `htmlFor`
-- Wsparcie dla `aria-label` na gwiazdce wymagalności
-- Kompatybilność z `aria-describedby` dla dodatkowych opisów
-- Wsparcie dla `fieldset` i `legend` w grupach kontrolek
+- Automatic association with controls via `htmlFor`
+- Support for `aria-label` on required asterisk
+- Compatibility with `aria-describedby` for additional descriptions
+- Support for `fieldset` and `legend` in control groups
 
-## Najlepsze praktyki
+## Best practices
 
-### Teksty etykiet
+### Label texts
 
 ```tsx
-// ✅ Dobrze - jasne i konkretne
+// ✅ Good - clear and specific
 <Label htmlFor="email" required>Email</Label>
-<Label htmlFor="birthDate">Data urodzenia</Label>
-<Label htmlFor="company">Nazwa firmy</Label>
+<Label htmlFor="birthDate">Date of birth</Label>
+<Label htmlFor="company">Company name</Label>
 
-// ❌ Źle - niejasne lub zbyt ogólne
-<Label htmlFor="field1">Pole 1</Label>
+// ❌ Bad - unclear or too generic
+<Label htmlFor="field1">Field 1</Label>
 <Label htmlFor="input">Input</Label>
-<Label htmlFor="data">Dane</Label>
+<Label htmlFor="data">Data</Label>
 ```
 
-### Hierarchia i grupowanie
+### Hierarchy and grouping
 
 ```tsx
-// ✅ Dobrze - logiczne grupowanie
+// ✅ Good - logical grouping
 <fieldset>
   <legend>
     <Label className="text-lg font-semibold">
-      Adres dostawy
+      Delivery address
     </Label>
   </legend>
   
   <div className="grid grid-cols-2 gap-4">
     <div>
-      <Label htmlFor="street" required size="sm">Ulica</Label>
+      <Label htmlFor="street" required size="sm">Street</Label>
       <Input id="street" />
     </div>
     <div>
-      <Label htmlFor="number" required size="sm">Numer</Label>
+      <Label htmlFor="number" required size="sm">Number</Label>
       <Input id="number" />
     </div>
   </div>
 </fieldset>
+
+// ❌ Bad - illogical grouping
+<fieldset>
+  <legend>
+    <Label className="text-lg font-semibold">
+      Użytkownik
+    </Label>
+  </legend>
+  
+  <div>
+    <Label htmlFor="username" required size="sm">Nazwa użytkownika</Label>
+    <Input id="username" />
+  </div>
+  
+  <div>
+    <Label htmlFor="password" required size="sm">Hasło</Label>
+    <Input type="password" id="password" />
+  </div>
+</fieldset>
 ```
 
-### Spójność rozmiarów
+### Consistent sizes
 
 ```tsx
-// ✅ Dobrze - spójne rozmiary
+// ✅ Good - consistent sizes
 <div className="space-y-4">
   <div>
-    <Label htmlFor="name" size="sm">Imię</Label>
+    <Label htmlFor="name" size="sm">First name</Label>
     <Input id="name" size="sm" />
   </div>
   <div>
-    <Label htmlFor="surname" size="sm">Nazwisko</Label>
+    <Label htmlFor="surname" size="sm">Last name</Label>
     <Input id="surname" size="sm" />
   </div>
 </div>
 
-// ❌ Źle - niespójne rozmiary
+// ❌ Bad - inconsistent sizes
 <div className="space-y-4">
   <div>
-    <Label htmlFor="name" size="lg">Imię</Label>
+    <Label htmlFor="name" size="lg">First name</Label>
     <Input id="name" size="sm" />
   </div>
   <div>
-    <Label htmlFor="surname" size="sm">Nazwisko</Label>
+    <Label htmlFor="surname" size="sm">Last name</Label>
     <Input id="surname" size="lg" />
   </div>
 </div>
 ```
 
-## Integracja z innymi komponentami
+## Integration with other components
 
-### Z Input
+### With Input
 
 ```tsx
 <div>
   <Label htmlFor="search" size="sm">
-    Szukaj produktów
+    Search products
   </Label>
   <Input
     id="search"
@@ -738,41 +757,41 @@ Komponent przyjmuje wszystkie standardowe props elementu `label`.
 </div>
 ```
 
-### Z Select
+### With Select
 
 ```tsx
 <div>
   <Label htmlFor="category" required>
-    Kategoria
+    Category
   </Label>
   <Select id="category" aria-required="true">
-    <option value="">Wybierz kategorię</option>
-    <option value="electronics">Elektronika</option>
-    <option value="clothing">Odzież</option>
+    <option value="">Select category</option>
+    <option value="electronics">Electronics</option>
+    <option value="clothing">Clothing</option>
   </Select>
 </div>
 ```
 
-### Z Textarea
+### With Textarea
 
 ```tsx
 <div>
   <Label htmlFor="description" className="flex justify-between">
-    <span>Opis</span>
-    <span className="text-sm text-gray-500">Opcjonalne</span>
+    <span>Description</span>
+    <span className="text-sm text-gray-500">Optional</span>
   </Label>
   <Textarea
     id="description"
     rows={4}
-    placeholder="Opisz swoje doświadczenie..."
+    placeholder="Describe your experience..."
     maxLength={1000}
   />
 </div>
 ```
 
-## Testowanie
+## Testing
 
-### Przykłady testów
+### Test examples
 
 ```tsx
 import { render, screen } from '@testing-library/preact'
@@ -820,4 +839,4 @@ describe('Label', () => {
 })
 ```
 
-Komponent `Label` jest podstawowym elementem dostępnych formularzy, zapewniając właściwe etykietowanie kontrolek i wsparcie dla wszystkich standardów dostępności.
+The `Label` component is a fundamental element of accessible forms, providing proper labeling for controls and support for all accessibility standards.

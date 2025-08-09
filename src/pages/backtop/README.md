@@ -472,3 +472,27 @@ function BlogPost() {
 ```
 
 The BackTop component enhances user experience by providing quick navigation back to important sections of your content, especially on long pages with extensive scrolling.
+
+## Rozwiązywanie problemów
+
+### Typowe problemy i rozwiązania
+
+1. **BackTop nie pojawia się po przewinięciu**
+   - Sprawdź czy `visibilityHeight` nie jest zbyt duże
+   - Upewnij się, że kontener ma wystarczającą wysokość do przewinięcia
+
+2. **Przewijanie nie działa płynnie**
+   - Sprawdź czy przeglądarka obsługuje `scroll-behavior: smooth`
+   - Rozważ dostosowanie wartości `duration`
+
+3. **Problemy z pozycjonowaniem**
+   - Sprawdź czy rodzic ma `position: relative` gdy używasz custom target
+   - Upewnij się, że `right` i `bottom` mają odpowiednie wartości
+
+### Kod źródłowy
+
+Aby zobaczyć pełną implementację komponentu BackTop, sprawdź [#file:BackTop.tsx](BackTop.tsx).
+
+### Debugowanie
+
+Komponent BackTop zawiera wbudowane narzędzia debugowania. Aby je włączyć, ustaw `DEBUG_BACKTOP = true` w pliku źródłowym.

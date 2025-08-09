@@ -12,7 +12,7 @@ export function Header({ currentPath = '/' }: Readonly<HeaderProps>) {
 
   const isActive = (path: string) => {
     if (path === '/' && currentPath === '/') return true
-    if (path === '/docs' && currentPath?.startsWith('/docs')) return true
+    if (path === '/documentation' && currentPath?.startsWith('/documentation')) return true
     return false
   }
 
@@ -35,17 +35,17 @@ export function Header({ currentPath = '/' }: Readonly<HeaderProps>) {
             <button
               onClick={() => route('/')}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${isActive('/')
-                  ? 'bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100'
-                  : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-200'
+                ? 'bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100'
+                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-200'
                 }`}
             >
               🏠 Home
             </button>
             <button
-              onClick={() => route('/docs')}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${isActive('/docs')
-                  ? 'bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100'
-                  : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-200'
+              onClick={() => route('/documentation')}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${isActive('/documentation')
+                ? 'bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100'
+                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-200'
                 }`}
             >
               📚 Docs

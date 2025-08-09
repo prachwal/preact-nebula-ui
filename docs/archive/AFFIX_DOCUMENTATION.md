@@ -1,20 +1,20 @@
-# Affix - Dokumentacja
+# Affix - Documentation
 
-## Przegląd
+## Overview
 
-Komponent `Affix` umożliwia "przyklejenie" elementu do określonej pozycji na ekranie podczas przewijania strony. Jest szczególnie przydatny do tworzenia elementów nawigacji, przycisków akcji lub paneli bocznych, które powinny pozostać widoczne podczas przewijania treści.
+The `Affix` component allows you to "stick" an element to a specific position on the screen while scrolling. It's especially useful for creating navigation elements, action buttons, or side panels that should remain visible while the content is being scrolled.
 
-## Funkcje
+## Features
 
-- **Pozycjonowanie** - Możliwość przyklejenia do góry lub dołu ekranu
-- **Offsety** - Kontrola odległości od krawędzi ekranu
-- **Target** - Możliwość określenia elementu kontenera do monitorowania
-- **Threshold** - Próg aktywacji przyklejenia
-- **Rozmiary** - Warianty rozmiaru (sm, md, lg)
-- **Zdarzenia** - Callback'i dla różnych stanów komponentu
-- **Dostępność** - Pełne wsparcie dla technologii asystujących
+- **Positioning** - Ability to stick to the top or bottom of the screen
+- **Offsets** - Control the distance from the edge of the screen
+- **Target** - Ability to specify a container element to monitor
+- **Threshold** - Activation threshold for affixing
+- **Sizes** - Size variants (sm, md, lg)
+- **Events** - Callbacks for different component states
+- **Accessibility** - Full support for assistive technologies
 
-## Podstawowe użycie
+## Basic Usage
 
 ```tsx
 import { Affix } from '@preact-nebula/ui'
@@ -23,33 +23,33 @@ function BasicAffixExample() {
   return (
     <div className="h-screen">
       <div className="h-96 bg-gray-100 p-4">
-        Przewiń w dół...
+        Scroll down...
       </div>
       
       <Affix offsetTop={20}>
         <div className="bg-blue-500 text-white p-4 rounded">
-          Ten element zostanie przyklejony do góry ekranu
+          This element will be affixed to the top of the screen
         </div>
       </Affix>
       
       <div className="h-screen bg-gray-200 p-4">
-        Długa treść strony...
+        Long page content...
       </div>
     </div>
   )
 }
 ```
 
-## Zaawansowane przykłady
+## Advanced Examples
 
-### Affix z pozycjonowaniem na dole
+### Affix positioned at the bottom
 
 ```tsx
 function BottomAffixExample() {
   return (
     <div className="min-h-screen">
       <div className="h-screen bg-gray-100 p-4">
-        Treść strony
+        Page content
       </div>
       
       <Affix 
@@ -58,7 +58,7 @@ function BottomAffixExample() {
         onAffix={(affixed) => console.log('Affixed:', affixed)}
       >
         <button className="bg-green-500 text-white px-4 py-2 rounded">
-          Przycisk przyklejony do dołu
+          Button affixed to the bottom
         </button>
       </Affix>
     </div>
@@ -66,7 +66,7 @@ function BottomAffixExample() {
 }
 ```
 
-### Affix z custom target
+### Affix with custom target
 
 ```tsx
 function CustomTargetAffixExample() {
@@ -74,14 +74,14 @@ function CustomTargetAffixExample() {
   
   return (
     <div className="h-screen flex">
-      <div className="flex-1 p-4">Treść główna</div>
+      <div className="flex-1 p-4">Main content</div>
       
       <div 
         ref={setTarget}
         className="w-64 h-96 overflow-y-auto bg-gray-50 p-4"
       >
         <div className="h-64 bg-gray-200 mb-4">
-          Przewijalny kontener
+          Scrollable container
         </div>
         
         <Affix 
@@ -90,12 +90,12 @@ function CustomTargetAffixExample() {
           size="sm"
         >
           <div className="bg-blue-400 text-white p-2 rounded">
-            Przyklejony w kontenerze
+            Affixed within the container
           </div>
         </Affix>
         
         <div className="h-96 bg-gray-200 mt-4">
-          Więcej treści...
+          More content...
         </div>
       </div>
     </div>
@@ -103,7 +103,7 @@ function CustomTargetAffixExample() {
 }
 ```
 
-### Responsywny Affix z threshold
+### Responsive Affix with threshold
 
 ```tsx
 function ResponsiveAffixExample() {
@@ -112,11 +112,11 @@ function ResponsiveAffixExample() {
   return (
     <div className="min-h-screen">
       <header className="h-20 bg-blue-600 text-white flex items-center px-6">
-        <h1>Nagłówek strony</h1>
+        <h1>Page Header</h1>
       </header>
       
       <div className="h-40 bg-gray-100 p-4">
-        Przewiń w dół aby aktywować przyklejenie
+        Scroll down to activate affixing
       </div>
       
       <Affix
@@ -134,56 +134,56 @@ function ResponsiveAffixExample() {
         <nav className="bg-white border-b px-6 py-3">
           <div className="flex space-x-6">
             <a href="#" className="text-gray-600 hover:text-blue-600">
-              Nawigacja
+              Navigation
             </a>
             <a href="#" className="text-gray-600 hover:text-blue-600">
-              Produkty
+              Products
             </a>
             <a href="#" className="text-gray-600 hover:text-blue-600">
-              Kontakt
+              Contact
             </a>
           </div>
         </nav>
       </Affix>
       
       <div className="h-screen bg-gray-200 p-4">
-        <p>Długa treść strony...</p>
+        <p>Long page content...</p>
       </div>
     </div>
   )
 }
 ```
 
-### Affix z różnymi rozmiarami
+### Affix with different sizes
 
 ```tsx
 function SizedAffixExample() {
   return (
     <div className="min-h-screen space-y-8">
       <div className="h-64 bg-gray-100 p-4">
-        Przewiń aby zobaczyć różne rozmiary
+        Scroll to see different sizes
       </div>
       
       <Affix offsetTop={20} size="sm">
         <div className="bg-red-400 text-white p-2 rounded text-sm">
-          Mały Affix (sm)
+          Small Affix (sm)
         </div>
       </Affix>
       
       <Affix offsetTop={60} size="md">
         <div className="bg-green-500 text-white p-3 rounded">
-          Średni Affix (md) - domyślny
+          Medium Affix (md) - default
         </div>
       </Affix>
       
       <Affix offsetTop={110} size="lg">
         <div className="bg-blue-600 text-white p-4 rounded text-lg">
-          Duży Affix (lg)
+          Large Affix (lg)
         </div>
       </Affix>
       
       <div className="h-screen bg-gray-200 p-4">
-        Treść strony
+        Page content
       </div>
     </div>
   )
@@ -194,84 +194,84 @@ function SizedAffixExample() {
 
 ### AffixProps
 
-| Prop           | Typ                                                                | Domyślna    | Opis                                         |
-| -------------- | ------------------------------------------------------------------ | ----------- | -------------------------------------------- |
-| `size`         | `'sm' \| 'md' \| 'lg'`                                             | `'md'`      | Rozmiar komponentu                           |
-| `offsetTop`    | `number`                                                           | `0`         | Odległość od góry przy pozycjonowaniu górnym |
-| `offsetBottom` | `number`                                                           | `undefined` | Odległość od dołu przy pozycjonowaniu dolnym |
-| `target`       | `HTMLElement \| Window \| string \| (() => HTMLElement \| Window)` | `window`    | Element do monitorowania przewijania         |
-| `position`     | `'top' \| 'bottom'`                                                | `'top'`     | Pozycja przyklejenia                         |
-| `disabled`     | `boolean`                                                          | `false`     | Wyłącza funkcjonalność przyklejania          |
-| `threshold`    | `number`                                                           | `0`         | Próg w pikselach do aktywacji                |
-| `onAffix`      | `(affixed: boolean) => void`                                       | `undefined` | Callback wywoływany przy zmianie stanu       |
-| `onChange`     | `(affixed: boolean) => void`                                       | `undefined` | Alias dla onAffix                            |
-| `onScroll`     | `(scrollTop: number, affixed: boolean) => void`                    | `undefined` | Callback przy przewijaniu                    |
-| `className`    | `string`                                                           | `undefined` | Dodatkowe klasy CSS                          |
-| `children`     | `ComponentChild`                                                   | `undefined` | Zawartość komponentu                         |
+| Prop           | Type                                                               | Default     | Description                                         |
+| -------------- | ------------------------------------------------------------------ | ----------- | --------------------------------------------------- |
+| `size`         | `'sm' \| 'md' \| 'lg'`                                             | `'md'`      | Component size                                      |
+| `offsetTop`    | `number`                                                           | `0`         | Distance from the top when affixed at the top       |
+| `offsetBottom` | `number`                                                           | `undefined` | Distance from the bottom when affixed at the bottom |
+| `target`       | `HTMLElement \| Window \| string \| (() => HTMLElement \| Window)` | `window`    | Element to monitor for scrolling                    |
+| `position`     | `'top' \| 'bottom'`                                                | `'top'`     | Affix position                                      |
+| `disabled`     | `boolean`                                                          | `false`     | Disables the affixing functionality                 |
+| `threshold`    | `number`                                                           | `0`         | Threshold in pixels for activation                  |
+| `onAffix`      | `(affixed: boolean) => void`                                       | `undefined` | Callback fired on state change                      |
+| `onChange`     | `(affixed: boolean) => void`                                       | `undefined` | Alias for onAffix                                   |
+| `onScroll`     | `(scrollTop: number, affixed: boolean) => void`                    | `undefined` | Callback on scroll                                  |
+| `className`    | `string`                                                           | `undefined` | Additional CSS classes                              |
+| `children`     | `ComponentChild`                                                   | `undefined` | Component content                                   |
 
-### Rozmiary
+### Sizes
 
-- **sm** - Kompaktowy rozmiar dla małych elementów
-- **md** - Standardowy rozmiar (domyślny)
-- **lg** - Większy rozmiar dla istotnych elementów
+- **sm** - Compact size for small elements
+- **md** - Standard size (default)
+- **lg** - Larger size for prominent elements
 
 ### Target Options
 
-- **HTMLElement** - Konkretny element DOM
-- **Window** - Okno przeglądarki (domyślne)
-- **string** - Selektor CSS
-- **function** - Funkcja zwracająca element
+- **HTMLElement** - Specific DOM element
+- **Window** - Browser window (default)
+- **string** - CSS selector
+- **function** - Function returning an element
 
-## Dostępność
+## Accessibility
 
 ### ARIA Support
 
 ```tsx
 <Affix
-  aria-label="Przyklejona nawigacja"
+  aria-label="Sticky navigation"
   aria-describedby="affix-help"
   role="navigation"
 >
   <nav>
     <span id="affix-help" className="sr-only">
-      Ta nawigacja zostanie przyklejona podczas przewijania
+      This navigation will stick while scrolling
     </span>
-    {/* Elementy nawigacji */}
+    {/* Navigation items */}
   </nav>
 </Affix>
 ```
 
-### Najlepsze praktyki dostępności
+### Accessibility Best Practices
 
-- Używaj odpowiednich ról ARIA dla przyklejonych elementów
-- Zapewnij alternatywny sposób dostępu do przyklejonych treści
-- Unikaj zakłócania naturalnego flow nawigacji klawiszem Tab
-- Testuj z czytnikami ekranu
-- Rozważ opcje wyłączenia dla użytkowników z wrażliwością na ruch
+- Use appropriate ARIA roles for affixed elements
+- Provide an alternative way to access affixed content
+- Avoid disrupting the natural tab navigation flow
+- Test with screen readers
+- Consider disabling for users with motion sensitivity
 
-## Najlepsze praktyki
+## Best Practices
 
-### Użycie
+### Usage
 
 ```tsx
-// ✅ Dobrze - podstawowe przyklejenie
+// ✅ Good - basic affixing
 <Affix offsetTop={20}>
-  <button>Przyklejony przycisk</button>
+  <button>Sticky button</button>
 </Affix>
 
-// ✅ Dobrze - z odpowiednim ARIA
+// ✅ Good - with appropriate ARIA
 <Affix 
   position="bottom" 
   offsetBottom={20}
-  aria-label="Pasek narzędzi"
+  aria-label="Toolbar"
 >
   <div role="toolbar">
-    <button>Zapisz</button>
-    <button>Anuluj</button>
+    <button>Save</button>
+    <button>Cancel</button>
   </div>
 </Affix>
 
-// ❌ Źle - za dużo przyklejonych elementów
+// ❌ Bad - too many sticky elements
 <>
   <Affix offsetTop={0}><nav>Nav 1</nav></Affix>
   <Affix offsetTop={60}><nav>Nav 2</nav></Affix>
@@ -281,21 +281,21 @@ function SizedAffixExample() {
 
 ### Performance
 
-- Używaj `threshold` aby uniknąć niepotrzebnych przeliczeń
-- Ogranicz liczbę jednocześnie aktywnych elementów Affix
-- Rozważ `disabled` w przypadkach gdy funkcjonalność nie jest potrzebna
-- Używaj `target` dla elementów w przewijalnych kontenerach
+- Use `threshold` to avoid unnecessary calculations
+- Limit the number of active Affix elements at the same time
+- Consider `disabled` when the functionality is not needed
+- Use `target` for elements in scrollable containers
 
 ### Responsive Design
 
 ```tsx
-// Adaptatywne offsety
+// Adaptive offsets
 <Affix 
   offsetTop={20}
-  className="lg:static lg:relative" // Wyłącz na dużych ekranach
+  className="lg:static lg:relative" // Disable on large screens
 >
   <div className="lg:p-0 p-4">
-    Responsywna zawartość
+    Responsive content
   </div>
 </Affix>
 ```
@@ -303,26 +303,26 @@ function SizedAffixExample() {
 ### Z-index Management
 
 ```tsx
-// Kontrola warstw
+// Layer control
 <Affix 
   offsetTop={20}
-  className="z-50" // Zapewnij odpowiedni z-index
+  className="z-50" // Ensure proper z-index
 >
   <div className="bg-white shadow-lg">
-    Przyklejona zawartość
+    Sticky content
   </div>
 </Affix>
 ```
 
-## Integracja z innymi komponentami
+## Integration with Other Components
 
-### Z BackTop
+### With BackTop
 
 ```tsx
 <>
   <Affix offsetTop={20}>
     <nav className="bg-white shadow">
-      Główna nawigacja
+      Main navigation
     </nav>
   </Affix>
   
@@ -333,7 +333,7 @@ function SizedAffixExample() {
 </>
 ```
 
-### Z Drawer
+### With Drawer
 
 ```tsx
 function DrawerWithAffix() {
@@ -357,16 +357,16 @@ function DrawerWithAffix() {
         onClose={() => setDrawerOpen(false)}
         placement="left"
       >
-        <nav>Elementy menu mobilnego</nav>
+        <nav>Mobile menu items</nav>
       </Drawer>
     </>
   )
 }
 ```
 
-## Przykłady zaawansowane
+## Advanced Examples
 
-### Affix z animacjami
+### Affix with animations
 
 ```tsx
 function AnimatedAffixExample() {
@@ -386,16 +386,16 @@ function AnimatedAffixExample() {
         isAffixed ? "border-2 border-blue-500" : "border border-gray-200"
       )}>
         <h3 className="text-lg font-semibold">
-          {isAffixed ? "🔒 Przyklejony" : "📄 Normalny"}
+          {isAffixed ? "🔒 Affixed" : "📄 Normal"}
         </h3>
-        <p>Status komponentu zmienia się wraz z przewijaniem</p>
+        <p>The component's status changes with scrolling</p>
       </div>
     </Affix>
   )
 }
 ```
 
-### Smart Navigation z Affix
+### Smart Navigation with Affix
 
 ```tsx
 function SmartNavigation() {
@@ -440,4 +440,4 @@ function SmartNavigation() {
 }
 ```
 
-Komponent `Affix` jest potężnym narzędziem do tworzenia przyklejanych interfejsów, które poprawiają użyteczność i dostępność aplikacji poprzez utrzymywanie kluczowych elementów w zasięgu użytkownika podczas przewijania treści.
+The `Affix` component is a powerful tool for creating sticky interfaces that enhance the usability and accessibility of applications by keeping key elements within the user's reach while scrolling through content.
