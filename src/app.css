@@ -1,1 +1,28 @@
 /* Wszystkie style zostały przeniesione do index.css dla lepszej organizacji z Tailwind CSS */
+
+/* Highlight.js theme for code syntax highlighting */
+@import 'highlight.js/styles/github-dark.css';
+
+/* Custom markdown styles */
+.markdown-viewer {
+    line-height: 1.7;
+}
+
+.markdown-viewer pre {
+    @apply rounded-lg shadow-sm;
+    background: #0d1117 !important;
+}
+
+.markdown-viewer pre code {
+    @apply text-sm;
+}
+
+.markdown-viewer :not(pre)>code {
+    @apply text-sm font-mono;
+}
+
+@media (prefers-color-scheme: light) {
+    .markdown-viewer pre {
+        background: #f6f8fa !important;
+    }
+}

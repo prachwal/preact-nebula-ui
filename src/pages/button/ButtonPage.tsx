@@ -1,16 +1,17 @@
 ﻿import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
-import { 
-  VariantsSection, 
-  SizesSection, 
-  StatesSection, 
-  IconsSection, 
+import { DocumentationTab } from '../../components/DocumentationTab'
+import {
+  VariantsSection,
+  SizesSection,
+  StatesSection,
+  IconsSection,
   CombinationsSection,
   PropsDocumentation
 } from './sections'
 
-type DemoType = 'variants' | 'sizes' | 'states' | 'icons' | 'combinations' | 'props'
+type DemoType = 'variants' | 'sizes' | 'states' | 'icons' | 'combinations' | 'props' | 'docs'
 
 interface Tab {
   key: DemoType
@@ -18,7 +19,7 @@ interface Tab {
 }
 
 interface PageProps {
-  path?: string
+  readonly path?: string
 }
 
 export function ButtonPage(_props: PageProps) {
@@ -34,7 +35,8 @@ export function ButtonPage(_props: PageProps) {
     { key: 'states', label: 'States' },
     { key: 'icons', label: 'Icons' },
     { key: 'combinations', label: 'Combinations' },
-    { key: 'props', label: 'Props' }
+    { key: 'props', label: 'Props' },
+    { key: 'docs', label: 'Dokumentacja' }
   ]
 
   return (
@@ -44,11 +46,11 @@ export function ButtonPage(_props: PageProps) {
           title=" Button Component"
           description="Interactive button component with variants, sizes, states, and icons"
         />
-        
+
         <DemoTabs
-          tabs={tabs} 
-          activeTab={activeDemo} 
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)} 
+          tabs={tabs}
+          activeTab={activeDemo}
+          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
         />
 
         <div className="mt-8">
@@ -58,6 +60,7 @@ export function ButtonPage(_props: PageProps) {
           {activeDemo === 'icons' && <IconsSection onButtonClick={handleButtonClick} />}
           {activeDemo === 'combinations' && <CombinationsSection onButtonClick={handleButtonClick} />}
           {activeDemo === 'props' && <PropsDocumentation />}
+          {activeDemo === 'docs' && <DocumentationTab componentName="Button" />}
         </div>
       </div>
     </div>
