@@ -1,3 +1,32 @@
+:root {
+    --code-bg-light: #f1f5f9;
+    --code-bg-dark: #0f172a;
+    --code-color-light: #1e293b;
+    --code-color-dark: #e6eaf3;
+    --code-header-bg-light: #e2e8f0;
+    --code-header-bg-dark: #1e293b;
+}
+
+/* BackTop button for markdown preview */
+.backtop-btn {
+    box-shadow: 0 4px 16px 0 rgba(30, 64, 175, 0.15);
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+.backtop-btn:hover {
+    background: #2563eb;
+    box-shadow: 0 6px 24px 0 rgba(30, 64, 175, 0.22);
+}
+
+.dark .backtop-btn {
+    background: #3b82f6;
+    color: #fff;
+}
+
+.dark .backtop-btn:hover {
+    background: #2563eb;
+}
+
 /* Markdown Viewer Custom Styles */
 .markdown-viewer {
     line-height: 1.6;
@@ -18,9 +47,15 @@
     margin: 1.5rem 0;
     border-radius: 12px;
     overflow: hidden;
-    background: #0f172a;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    border: 1px solid #1e293b;
+    background: var(--code-bg-light);
+    border: 1px solid #d1d5db;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+.dark .markdown-viewer .code-block-wrapper {
+    background: var(--code-bg-dark);
+    border: 1px solid #4b5563;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
 }
 
 .markdown-viewer .code-header {
@@ -28,24 +63,33 @@
     justify-content: space-between;
     align-items: center;
     padding: 0.75rem 1rem;
-    background: linear-gradient(to bottom, #1e293b, #0f172a);
-    border-bottom: 1px solid #334155;
+    background: var(--code-header-bg-light);
+    border-bottom: 1px solid #d1d5db;
+}
+
+.dark .markdown-viewer .code-header {
+    background: var(--code-header-bg-dark);
+    border-bottom: 1px solid #4b5563;
 }
 
 .markdown-viewer .code-language {
     font-size: 0.75rem;
     font-weight: 600;
-    color: #94a3b8;
+    color: #64748b;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 
+.dark .markdown-viewer .code-language {
+    color: #94a3b8;
+}
+
 .markdown-viewer .copy-button {
-    background: #334155;
-    border: 1px solid #475569;
-    color: #cbd5e1;
-    padding: 6px 12px;
-    border-radius: 6px;
+    background: #f1f5f9;
+    border: 1px solid #d1d5db;
+    color: #374151;
+    padding: 8px 12px;
+    border-radius: 8px;
     font-size: 0.75rem;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -53,19 +97,39 @@
     align-items: center;
     gap: 6px;
     font-weight: 500;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
 .markdown-viewer .copy-button:hover {
-    background: #475569;
-    border-color: #64748b;
-    color: #f1f5f9;
+    background: #e5e7eb;
+    border-color: #9ca3af;
+    color: #1f2937;
     transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .markdown-viewer .copy-button.copied {
-    background: #059669;
+    background: #dcfce7;
+    border-color: #22c55e;
+    color: #15803d;
+}
+
+.dark .markdown-viewer .copy-button {
+    background: #374151;
+    border: 1px solid #4b5563;
+    color: #d1d5db;
+}
+
+.dark .markdown-viewer .copy-button:hover {
+    background: #4b5563;
+    border-color: #6b7280;
+    color: #f3f4f6;
+}
+
+.dark .markdown-viewer .copy-button.copied {
+    background: #065f46;
     border-color: #10b981;
-    color: white;
+    color: #6ee7b7;
 }
 
 .markdown-viewer .copy-button svg {
@@ -75,7 +139,7 @@
 }
 
 .markdown-viewer .code-block-wrapper .hljs {
-    background: #0f172a !important;
+    background: var(--code-bg-light) !important;
     padding: 1.5rem !important;
     font-size: 0.875rem;
     line-height: 1.6;
@@ -85,11 +149,103 @@
     font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
 }
 
+.dark .markdown-viewer .code-block-wrapper .hljs {
+    background: var(--code-bg-dark) !important;
+}
+
 .markdown-viewer .code-block-wrapper .hljs code {
-    background: transparent !important;
+    background: var(--code-bg-light) !important;
+    color: var(--code-color-light) !important;
     padding: 0 !important;
     border-radius: 0 !important;
-    color: inherit !important;
+}
+
+/* Dark mode for code blocks */
+.dark .markdown-viewer .code-block-wrapper .hljs code {
+    background: var(--code-bg-dark) !important;
+    color: var(--code-color-dark) !important;
+}
+
+/* Syntax highlighting for light theme */
+.markdown-viewer .hljs-keyword,
+.markdown-viewer .hljs-built_in,
+.markdown-viewer .hljs-selector-tag {
+    color: #dc2626 !important;
+    /* Red - keywords like import, function */
+}
+
+.markdown-viewer .hljs-string,
+.markdown-viewer .hljs-attr {
+    color: #059669 !important;
+    /* Green - strings and attributes */
+}
+
+.markdown-viewer .hljs-number {
+    color: #ea580c !important;
+    /* Orange - numbers */
+}
+
+.markdown-viewer .hljs-title,
+.markdown-viewer .hljs-class .hljs-title {
+    color: #7c3aed !important;
+    /* Purple - function names, classes */
+}
+
+.markdown-viewer .hljs-comment {
+    color: #6b7280 !important;
+    /* Gray - comments */
+    font-style: italic;
+}
+
+.markdown-viewer .hljs-tag {
+    color: #2563eb !important;
+    /* Blue - HTML tags */
+}
+
+.markdown-viewer .hljs-name {
+    color: #059669 !important;
+    /* Green - component names */
+}
+
+/* Syntax highlighting for dark theme */
+.dark .markdown-viewer .hljs-keyword,
+.dark .markdown-viewer .hljs-built_in,
+.dark .markdown-viewer .hljs-selector-tag {
+    color: #f87171 !important;
+    /* Light red */
+}
+
+.dark .markdown-viewer .hljs-string,
+.dark .markdown-viewer .hljs-attr {
+    color: #34d399 !important;
+    /* Light green */
+}
+
+.dark .markdown-viewer .hljs-number {
+    color: #fb923c !important;
+    /* Light orange */
+}
+
+.dark .markdown-viewer .hljs-title,
+.dark .markdown-viewer .hljs-class .hljs-title {
+    color: #a78bfa !important;
+    /* Light purple */
+}
+
+.dark .markdown-viewer .hljs-comment {
+    color: #9ca3af !important;
+    /* Light gray */
+    font-style: italic;
+}
+
+.dark .markdown-viewer .hljs-tag {
+    color: #60a5fa !important;
+    /* Light blue */
+}
+
+.dark .markdown-viewer .hljs-name {
+    color: #34d399 !important;
+    /* Light green */
 }
 
 .markdown-viewer .code-block-wrapper pre {

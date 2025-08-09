@@ -166,16 +166,18 @@ export function DocsPage(props: Readonly<DocsPageProps>) {
             })
 
             if (targetFile) {
-                console.log('Selected file from URL:', {
-                    fileFromUrl,
-                    categoryFromUrl,
-                    cleanFileName,
-                    targetFile: targetFile.path,
-                    currentHash
-                })
-                setSelectedFile(targetFile.path)
-                setDocumentTitle(targetFile.name)
-                setSelectedTreeKeys([targetFile.path])
+                if (selectedFile !== targetFile.path) {
+                    console.log('Selected file from URL:', {
+                        fileFromUrl,
+                        categoryFromUrl,
+                        cleanFileName,
+                        targetFile: targetFile.path,
+                        currentHash
+                    })
+                    setSelectedFile(targetFile.path)
+                    setDocumentTitle(targetFile.name)
+                    setSelectedTreeKeys([targetFile.path])
+                }
 
                 // Handle hash fragment
                 if (currentHash) {

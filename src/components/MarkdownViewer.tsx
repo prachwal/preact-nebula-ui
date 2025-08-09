@@ -312,10 +312,35 @@ export function MarkdownViewer({ filePath, className = '' }: MarkdownViewerProps
         )
     }
 
+    // BackTop button visibility
+    const [showBackTop, setShowBackTop] = useState(false)
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+            setShowBackTop(scrollTop > 400)
+        }
+        window.addEventListener('scroll', handleScroll)
+        handleScroll()
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
+
     return (
-        <div
-            className={`markdown-viewer ${className}`}
-            dangerouslySetInnerHTML={{ __html: content }}
-        />
+        <>
+            <div className={`markdown-viewer ${className}`} dangerouslySetInnerHTML={{ __html: content }} />
+            {showBackTop && (
+                <button
+                    type="button"
+                    className="fixed bottom-8 right-8 z-50 backtop-btn transition-all duration-200 flex items-center justify-center cursor-pointer select-none focus:outline-none focus:ring-2 focus:ring-offset-2 w-10 h-10 rounded-full bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 dark:bg-blue-500 dark:hover:bg-blue-600 shadow-lg"
+                    aria-label="Przewiń do góry"
+                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                    style={{ boxShadow: '0 4px 16px 0 rgba(30, 64, 175, 0.15)' }}
+                >
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5">
+                        <path d="M18 15L12 9L6 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                </button>
+            )}
+        </>
     )
 }
