@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/preact'
 import { useState } from 'preact/hooks'
 import { TreeView } from './TreeView'
@@ -33,7 +34,7 @@ const mockData: TreeNode[] = [
 describe('TreeView', () => {
   it('renders tree nodes correctly', () => {
     render(<TreeView data={mockData} />)
-    
+
     expect(screen.getByText('Documents')).toBeInTheDocument()
     expect(screen.getByText('Images')).toBeInTheDocument()
     expect(screen.getByText('Videos')).toBeInTheDocument()
@@ -41,7 +42,7 @@ describe('TreeView', () => {
 
   it('shows children when expanded', () => {
     render(<TreeView data={mockData} defaultExpandedKeys={['1']} />)
-    
+
     expect(screen.getByText('Work')).toBeInTheDocument()
     expect(screen.getByText('Personal')).toBeInTheDocument()
   })
@@ -49,19 +50,19 @@ describe('TreeView', () => {
   it('handles node selection', () => {
     const onSelect = vi.fn()
     render(<TreeView data={mockData} onSelect={onSelect} />)
-    
+
     fireEvent.click(screen.getByText('Videos'))
-    
+
     expect(onSelect).toHaveBeenCalledWith(['3'], mockData[2], true)
   })
 
   it('handles node expansion', () => {
     const onExpand = vi.fn()
     render(<TreeView data={mockData} onExpand={onExpand} />)
-    
+
     const expandButton = screen.getAllByRole('button')[0]
     fireEvent.click(expandButton)
-    
+
     expect(onExpand).toHaveBeenCalledWith(['1'], mockData[0], true)
   })
 
@@ -94,7 +95,7 @@ describe('TreeView', () => {
 
   it('shows checkboxes when checkable', () => {
     render(<TreeView data={mockData} checkable />)
-    
+
     const checkboxes = screen.getAllByRole('checkbox')
     expect(checkboxes.length).toBeGreaterThan(0)
   })
@@ -102,25 +103,25 @@ describe('TreeView', () => {
   it('handles checkbox changes', () => {
     const onCheck = vi.fn()
     render(<TreeView data={mockData} checkable onCheck={onCheck} />)
-    
+
     const checkbox = screen.getAllByRole('checkbox')[0]
     fireEvent.click(checkbox)
-    
+
     expect(onCheck).toHaveBeenCalled()
   })
 
   it('shows search input when searchable', () => {
     render(<TreeView data={mockData} searchable />)
-    
+
     expect(screen.getByPlaceholderText('Search...')).toBeInTheDocument()
   })
 
   it('filters nodes based on search', () => {
     render(<TreeView data={mockData} searchable />)
-    
+
     const searchInput = screen.getByPlaceholderText('Search...')
     fireEvent.input(searchInput, { target: { value: 'Work' } })
-    
+
     expect(screen.getByText('Work')).toBeInTheDocument()
     expect(screen.queryByText('Videos')).not.toBeInTheDocument()
   })
@@ -128,42 +129,42 @@ describe('TreeView', () => {
   it('calls onSearch when search value changes', () => {
     const onSearch = vi.fn()
     render(<TreeView data={mockData} searchable onSearch={onSearch} />)
-    
+
     const searchInput = screen.getByPlaceholderText('Search...')
     fireEvent.input(searchInput, { target: { value: 'test' } })
-    
+
     expect(onSearch).toHaveBeenCalledWith('test')
   })
 
   it('shows empty state when no data', () => {
     render(<TreeView data={[]} />)
-    
+
     expect(screen.getByText('No data')).toBeInTheDocument()
   })
 
   it('shows custom empty text', () => {
     render(<TreeView data={[]} emptyText="No files found" />)
-    
+
     expect(screen.getByText('No files found')).toBeInTheDocument()
   })
 
   it('shows loading state', () => {
     render(<TreeView data={[]} loading />)
-    
+
     expect(screen.getByText('Loading...')).toBeInTheDocument()
   })
 
   it('renders with different sizes', () => {
     const { rerender } = render(<TreeView data={mockData} size="sm" />)
     expect(screen.getByRole('tree')).toBeInTheDocument()
-    
+
     rerender(<TreeView data={mockData} size="lg" />)
     expect(screen.getByRole('tree')).toBeInTheDocument()
   })
 
   it('shows tree lines when enabled', () => {
     render(<TreeView data={mockData} showLine />)
-    
+
     expect(screen.getByRole('tree')).toBeInTheDocument()
   })
 
@@ -172,13 +173,13 @@ describe('TreeView', () => {
       { key: '1', title: 'Enabled', disabled: false },
       { key: '2', title: 'Disabled', disabled: true }
     ]
-    
+
     const onSelect = vi.fn()
     render(<TreeView data={dataWithDisabled} onSelect={onSelect} />)
-    
+
     fireEvent.click(screen.getByText('Disabled'))
     expect(onSelect).not.toHaveBeenCalled()
-    
+
     fireEvent.click(screen.getByText('Enabled'))
     expect(onSelect).toHaveBeenCalled()
   })
@@ -187,31 +188,31 @@ describe('TreeView', () => {
     const { rerender } = render(
       <TreeView data={mockData} selectedKeys={['1']} />
     )
-    
+
     expect(screen.getByText('Documents').closest('[role="treeitem"]')).toHaveClass('bg-blue-50')
-    
+
     rerender(<TreeView data={mockData} selectedKeys={['2']} />)
-    
+
     expect(screen.getByText('Images').closest('[role="treeitem"]')).toHaveClass('bg-blue-50')
   })
 
   it('supports controlled expansion', () => {
     render(<TreeView data={mockData} expandedKeys={['1']} />)
-    
+
     expect(screen.getByText('Work')).toBeInTheDocument()
     expect(screen.getByText('Personal')).toBeInTheDocument()
   })
 
   it('auto-expands parent nodes when searching', () => {
     render(
-      <TreeView 
-        data={mockData} 
-        searchable 
+      <TreeView
+        data={mockData}
+        searchable
         autoExpandParent
         searchValue="Projects"
       />
     )
-    
+
     // When searching for "Projects", parent nodes should auto-expand
     expect(screen.getByText('Work')).toBeInTheDocument()
     expect(screen.getByText('Projects.docx')).toBeInTheDocument()
@@ -221,16 +222,16 @@ describe('TreeView', () => {
     const customFilter = (node: TreeNode, search: string) => {
       return node.key.includes(search)
     }
-    
+
     render(
-      <TreeView 
-        data={mockData} 
-        searchable 
+      <TreeView
+        data={mockData}
+        searchable
         searchValue="1-1"
         filterTreeNode={customFilter}
       />
     )
-    
+
     expect(screen.getByText('Work')).toBeInTheDocument()
   })
 })

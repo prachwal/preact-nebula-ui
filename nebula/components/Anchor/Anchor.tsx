@@ -1,7 +1,17 @@
-import { forwardRef } from 'preact/compat'
-import { useState, useEffect, useCallback } from 'preact/hooks'
-import { cn } from '../../utils/cn'
-import type { AnchorProps, AnchorItem } from './Anchor.types'
+import { forwardRef } from 'preact/compat';
+import { useState, useEffect, useCallback } from 'preact/hooks';
+import { cn } from '../../utils/cn';
+import type { AnchorProps, AnchorItem } from './Anchor.types';
+
+// Debug flag - set to true to enable debugging
+const DEBUG_ANCHOR = false
+
+// Debug utility
+const debug = (...args: any[]) => {
+  if (DEBUG_ANCHOR) {
+    console.log('[ANCHOR DEBUG]', ...args)
+  }
+}
 
 // Helper function to get all anchor elements in the page
 const getAnchorElements = (items: AnchorItem[]): Array<{ key: string; href: string; element: HTMLElement | null }> => {
@@ -97,7 +107,7 @@ export const Anchor = forwardRef<HTMLDivElement, AnchorProps>((props, ref) => {
 
   // Handle scroll to update active anchor
   const handleScroll = useCallback(() => {
-    console.log('📜 Anchor handleScroll triggered:', {
+    debug('📜 Anchor handleScroll triggered:', {
       controlledActiveKey,
       currentActiveKey: activeKey,
       offsetTop,
@@ -106,15 +116,15 @@ export const Anchor = forwardRef<HTMLDivElement, AnchorProps>((props, ref) => {
     })
 
     if (controlledActiveKey !== undefined) {
-      console.log('ℹ️ Using controlled activeKey, skipping scroll spy')
+      debug('ℹ️ Using controlled activeKey, skipping scroll spy')
       return
     }
 
     const scrollContainer = target ? target() : window
-    console.log('🎯 Scroll container:', scrollContainer === window ? 'window' : (scrollContainer as HTMLElement)?.tagName || 'unknown')
+    debug('🎯 Scroll container:', scrollContainer === window ? 'window' : (scrollContainer as HTMLElement)?.tagName || 'unknown')
 
     const elements = getAnchorElements(items)
-    console.log('🔍 Found anchor elements:', elements.map(el => ({
+    debug('🔍 Found anchor elements:', elements.map(el => ({
       key: el.key,
       href: el.href,
       exists: !!el.element
@@ -128,7 +138,7 @@ export const Anchor = forwardRef<HTMLDivElement, AnchorProps>((props, ref) => {
     })
 
     const newActiveKey = getActiveAnchor(elementsMap, scrollContainer, offsetTop, bounds)
-    console.log('🎯 Calculated new active key:', {
+    debug('🎯 Calculated new active key:', {
       previous: activeKey,
       new: newActiveKey,
       changed: newActiveKey !== activeKey
@@ -137,7 +147,7 @@ export const Anchor = forwardRef<HTMLDivElement, AnchorProps>((props, ref) => {
     if (newActiveKey !== activeKey) {
       setActiveKey(newActiveKey)
       onChange?.(newActiveKey)
-      console.log('🔄 Active key updated from', activeKey, 'to', newActiveKey)
+      debug('🔄 Active key updated from', activeKey, 'to', newActiveKey)
     }
 
     // Handle affix behavior
@@ -145,7 +155,7 @@ export const Anchor = forwardRef<HTMLDivElement, AnchorProps>((props, ref) => {
       const shouldFix = window.pageYOffset > offsetTop
       if (shouldFix !== isFixed) {
         setIsFixed(shouldFix)
-        console.log('📌 Affix state changed to:', shouldFix)
+        debug('📌 Affix state changed to:', shouldFix)
       }
     }
   }, [items, activeKey, controlledActiveKey, offsetTop, bounds, affix, isFixed, onChange, target])
@@ -153,7 +163,7 @@ export const Anchor = forwardRef<HTMLDivElement, AnchorProps>((props, ref) => {
   // Setup scroll listener
   useEffect(() => {
     const scrollContainer = target ? target() : window
-    console.log('🎧 Setting up scroll listener on:', scrollContainer === window ? 'window' : (scrollContainer as HTMLElement)?.tagName || 'unknown')
+    debug('🎧 Setting up scroll listener on:', scrollContainer === window ? 'window' : (scrollContainer as HTMLElement)?.tagName || 'unknown')
 
     if (scrollContainer) {
       scrollContainer.addEventListener('scroll', handleScroll)
@@ -162,7 +172,7 @@ export const Anchor = forwardRef<HTMLDivElement, AnchorProps>((props, ref) => {
 
     return () => {
       if (scrollContainer) {
-        console.log('🗑️ Removing scroll listener from:', scrollContainer === window ? 'window' : (scrollContainer as HTMLElement)?.tagName || 'unknown')
+        debug('🗑️ Removing scroll listener from:', scrollContainer === window ? 'window' : (scrollContainer as HTMLElement)?.tagName || 'unknown')
         scrollContainer.removeEventListener('scroll', handleScroll)
       }
     }
@@ -177,7 +187,7 @@ export const Anchor = forwardRef<HTMLDivElement, AnchorProps>((props, ref) => {
 
   // Handle anchor click
   const handleClick = useCallback((e: MouseEvent, item: AnchorItem) => {
-    console.log('🔗 Anchor handleClick triggered:', {
+    debug('🔗 Anchor handleClick triggered:', {
       href: item.href,
       key: item.key,
       title: item.title,
@@ -188,16 +198,16 @@ export const Anchor = forwardRef<HTMLDivElement, AnchorProps>((props, ref) => {
     e.preventDefault()
 
     if (!clickable) {
-      console.log('❌ Click ignored - clickable is false')
+      debug('❌ Click ignored - clickable is false')
       return
     }
 
-    console.log('✅ Clickable is true, proceeding...')
+    debug('✅ Clickable is true, proceeding...')
 
     onClick?.(e, item)
 
     const element = document.querySelector(item.href) as HTMLElement
-    console.log('🎯 Target element found:', {
+    debug('🎯 Target element found:', {
       selector: item.href,
       element: element,
       exists: !!element
@@ -205,14 +215,14 @@ export const Anchor = forwardRef<HTMLDivElement, AnchorProps>((props, ref) => {
 
     if (element) {
       const scrollContainer = target ? target() : window
-      console.log('🚀 Using scroll container:', scrollContainer === window ? 'window' : (scrollContainer as HTMLElement)?.tagName || 'unknown')
+      debug('🚀 Using scroll container:', scrollContainer === window ? 'window' : (scrollContainer as HTMLElement)?.tagName || 'unknown')
 
       if (scrollContainer === window) {
         const elementRect = element.getBoundingClientRect()
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop
         const targetTop = elementRect.top + scrollTop - offsetTop
 
-        console.log('📏 Window scroll calculation:', {
+        debug('📏 Window scroll calculation:', {
           elementRect: {
             top: elementRect.top,
             bottom: elementRect.bottom,
@@ -229,14 +239,14 @@ export const Anchor = forwardRef<HTMLDivElement, AnchorProps>((props, ref) => {
           behavior: 'smooth'
         })
 
-        console.log('🚀 Window scroll initiated to:', Math.max(0, targetTop))
+        debug('🚀 Window scroll initiated to:', Math.max(0, targetTop))
       } else if (scrollContainer instanceof HTMLElement) {
         // For custom scroll containers
         const containerRect = scrollContainer.getBoundingClientRect()
         const elementRect = element.getBoundingClientRect()
         const relativeTop = elementRect.top - containerRect.top + scrollContainer.scrollTop - offsetTop
 
-        console.log('📏 Container scroll calculation:', {
+        debug('📏 Container scroll calculation:', {
           containerRect: {
             top: containerRect.top,
             height: containerRect.height
@@ -256,19 +266,19 @@ export const Anchor = forwardRef<HTMLDivElement, AnchorProps>((props, ref) => {
           behavior: 'smooth'
         })
 
-        console.log('🚀 Container scroll initiated to:', Math.max(0, relativeTop))
+        debug('🚀 Container scroll initiated to:', Math.max(0, relativeTop))
       }
 
       // Update active key immediately for better UX
       if (controlledActiveKey === undefined) {
         setActiveKey(item.key)
         onChange?.(item.key)
-        console.log('🔄 Active key updated to:', item.key)
+        debug('🔄 Active key updated to:', item.key)
       } else {
-        console.log('ℹ️ Active key is controlled, not updating internally')
+        debug('ℹ️ Active key is controlled, not updating internally')
       }
     } else {
-      console.error('❌ Element not found for selector:', item.href)
+      debug('❌ Element not found for selector:', item.href)
     }
   }, [clickable, offsetTop, onClick, controlledActiveKey, onChange, target])
 

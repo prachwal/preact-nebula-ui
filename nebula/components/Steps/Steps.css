@@ -1,8 +1,11 @@
+/* Empty placeholder for Steps styles */
 .steps-dynamic-line {
   position: absolute;
-  top: 18px; /* Połowa wysokości ikony (36px / 2) - tak jak w React przykładzie */
+  top: 18px;
+  /* Połowa wysokości ikony (36px / 2) - tak jak w React przykładzie */
   height: 2px;
-  background-color: #d1d5db; /* gray-300 */
+  background-color: #d1d5db;
+  /* gray-300 */
   z-index: 0;
   left: var(--line-left);
   width: var(--line-width);
@@ -23,6 +26,7 @@
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
   .steps-dynamic-line {
-    background-color: #4b5563; /* gray-600 */
+    background-color: #4b5563;
+    /* gray-600 */
   }
 }

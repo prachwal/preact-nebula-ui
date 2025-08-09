@@ -1,7 +1,17 @@
-import { forwardRef } from 'preact/compat'
-import { useState, useEffect, useCallback } from 'preact/hooks'
-import { cn } from '../../utils/cn'
-import type { BackTopProps } from './BackTop.types'
+import { forwardRef } from 'preact/compat';
+import { useState, useEffect, useCallback } from 'preact/hooks';
+import { cn } from '../../utils/cn';
+import type { BackTopProps } from './BackTop.types';
+
+// Debug flag - set to true to enable debugging
+const DEBUG_BACKTOP = false
+
+// Debug utility
+const debug = (...args: any[]) => {
+  if (DEBUG_BACKTOP) {
+    console.log('[BACKTOP DEBUG]', ...args)
+  }
+}
 
 // Default chevron up icon
 const ChevronUpIcon = () => (
@@ -65,7 +75,7 @@ export const BackTop = forwardRef<HTMLButtonElement, BackTopProps>((props, ref) 
 
     const shouldShow = scrollTop > visibilityHeight
 
-    console.log('🔝 BackTop handleScroll:', {
+    debug('🔝 BackTop handleScroll:', {
       scrollContainer: scrollContainer === window ? 'window' : (scrollContainer as HTMLElement)?.tagName,
       scrollTop,
       visibilityHeight,
@@ -74,7 +84,7 @@ export const BackTop = forwardRef<HTMLButtonElement, BackTopProps>((props, ref) 
     })
 
     if (shouldShow !== visible) {
-      console.log('👀 BackTop visibility changing from', visible, 'to', shouldShow)
+      debug('👀 BackTop visibility changing from', visible, 'to', shouldShow)
       setVisible(shouldShow)
     }
   }, [getTarget, visibilityHeight, visible])
@@ -97,24 +107,24 @@ export const BackTop = forwardRef<HTMLButtonElement, BackTopProps>((props, ref) 
 
   // Handle click to scroll to top
   const handleClick = useCallback((e: MouseEvent) => {
-    console.log('🔝 BackTop handleClick triggered')
+    debug('🔝 BackTop handleClick triggered')
     e.preventDefault()
     onClick?.(e)
 
     const scrollContainer = getTarget()
-    console.log('🎯 BackTop scroll target:', {
+    debug('🎯 BackTop scroll target:', {
       container: scrollContainer === window ? 'window' : (scrollContainer as HTMLElement)?.tagName,
       scrollContainer
     })
 
     if (scrollContainer === window) {
-      console.log('🚀 Scrolling window to top')
+      debug('🚀 Scrolling window to top')
       window.scrollTo({
         top: 0,
         behavior: 'smooth'
       })
     } else if (scrollContainer instanceof HTMLElement) {
-      console.log('🚀 Scrolling element to top:', {
+      debug('🚀 Scrolling element to top:', {
         currentScrollTop: scrollContainer.scrollTop,
         scrollHeight: scrollContainer.scrollHeight,
         clientHeight: scrollContainer.clientHeight
@@ -125,7 +135,7 @@ export const BackTop = forwardRef<HTMLButtonElement, BackTopProps>((props, ref) 
       })
     } else if (scrollContainer && typeof (scrollContainer as any).scrollTo === 'function') {
       // Handle mock objects in tests that have scrollTo method
-      console.log('🚀 Scrolling mock target to top')
+      debug('🚀 Scrolling mock target to top')
         ; (scrollContainer as any).scrollTo({
           top: 0,
           behavior: 'smooth'
@@ -135,11 +145,11 @@ export const BackTop = forwardRef<HTMLButtonElement, BackTopProps>((props, ref) 
 
   // Don't render if not visible
   if (!visible) {
-    console.log('❌ BackTop not rendering - not visible')
+    debug('❌ BackTop not rendering - not visible')
     return null
   }
 
-  console.log('✅ BackTop rendering - visible:', visible)
+  debug('✅ BackTop rendering - visible:', visible)
 
   // Base classes with positioning
   const baseClasses = cn(

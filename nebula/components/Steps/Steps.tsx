@@ -1,9 +1,19 @@
-import { forwardRef, useImperativeHandle, useRef, useEffect, useState } from 'preact/compat'
-import { cn } from '../../utils/cn'
-import { Step } from './Step'
-import { useSteps } from './useSteps'
-import type { StepsProps, StepsRef, StepItem, StepStatus } from './types'
+import { forwardRef, useImperativeHandle, useRef, useEffect, useState } from 'preact/compat';
+import { cn } from '../../utils/cn';
+import { Step } from './Step';
+import { useSteps } from './useSteps';
+import type { StepsProps, StepsRef, StepItem, StepStatus } from './types';
 import './Steps.css'
+
+// Debug flag - set to true to enable debugging
+const DEBUG_STEPS = false
+
+// Debug utility
+const debug = (...args: any[]) => {
+  if (DEBUG_STEPS) {
+    console.log('[STEPS DEBUG]', ...args)
+  }
+}
 
 export const Steps = forwardRef<StepsRef, StepsProps>((props, ref) => {
   const {
@@ -48,11 +58,11 @@ export const Steps = forwardRef<StepsRef, StepsProps>((props, ref) => {
             // Tak jak w React przykładzie - bierzemy pozycję całego Step komponentu
             const rect = ref.getBoundingClientRect()
             const containerRect = stepsContainerRef.current?.getBoundingClientRect()
-            
+
             if (containerRect) {
               // Pozycja X to środek Step komponentu (tak jak w React przykładzie)
               const x = rect.left - containerRect.left + rect.width / 2
-              console.log(`Step ${index}: Using step center at x=${x}`)
+              debug(`Step ${index}: Using step center at x=${x}`)
               return {
                 x,
                 width: rect.width
@@ -61,18 +71,18 @@ export const Steps = forwardRef<StepsRef, StepsProps>((props, ref) => {
           }
           return { x: 0, width: 0 }
         })
-        console.log('Final positions:', positions)
+        debug('Final positions:', positions)
         setStepPositions(positions)
       }
     }
 
     calculatePositions()
-    
+
     // Dodajemy opóźnione wywołanie na wypadek, gdyby DOM nie był jeszcze gotowy
     const timeoutId = setTimeout(calculatePositions, 100)
-    
+
     window.addEventListener('resize', calculatePositions)
-    
+
     return () => {
       window.removeEventListener('resize', calculatePositions)
       clearTimeout(timeoutId)
@@ -89,7 +99,7 @@ export const Steps = forwardRef<StepsRef, StepsProps>((props, ref) => {
             if (ref) {
               const rect = ref.getBoundingClientRect()
               const containerRect = stepsContainerRef.current?.getBoundingClientRect()
-              
+
               if (containerRect) {
                 const x = rect.left - containerRect.left + rect.width / 2
                 return { x, width: rect.width }
@@ -100,7 +110,7 @@ export const Steps = forwardRef<StepsRef, StepsProps>((props, ref) => {
           setStepPositions(positions)
         }
       }
-      
+
       setTimeout(calculatePositions, 50)
     }
   }, [stepRefs.current.length, totalSteps, direction])
@@ -161,7 +171,7 @@ export const Steps = forwardRef<StepsRef, StepsProps>((props, ref) => {
           const lineWidth = nextPosition.x - position.x
           const stepStatus = stepsData[index]?.status || getStepStatus(index)
           const isCompleted = stepStatus === 'finish'
-          
+
           return (
             <div
               key={`line-${index}`}
@@ -181,7 +191,7 @@ export const Steps = forwardRef<StepsRef, StepsProps>((props, ref) => {
       {stepsData.map((step, index) => {
         const stepStatus = step.status || getStepStatus(index)
         const isLast = index === totalSteps - 1
-        
+
         return (
           <Step
             key={step.key || `step-${index}`}
@@ -201,7 +211,7 @@ export const Steps = forwardRef<StepsRef, StepsProps>((props, ref) => {
           />
         )
       })}
-      
+
       {children && (
         <div className="nebula-steps-content">
           {children}

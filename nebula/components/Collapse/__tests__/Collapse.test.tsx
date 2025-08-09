@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/preact'
 import { Collapse } from '../Collapse'
 
@@ -89,7 +89,7 @@ describe('Collapse Component', () => {
   describe('Controlled Mode', () => {
     it('works in controlled mode', () => {
       const handleChange = vi.fn()
-      
+
       render(
         <Collapse activeKey="1" onChange={handleChange}>
           <Collapse.Panel key="1" header="Panel 1">
@@ -174,7 +174,7 @@ describe('Collapse Component', () => {
       )
 
       expect(screen.getByTestId('custom-icon')).toHaveTextContent('+')
-      
+
       const header = screen.getByText('Panel 1')
       fireEvent.click(header)
       expect(screen.getByTestId('custom-icon')).toHaveTextContent('−')
