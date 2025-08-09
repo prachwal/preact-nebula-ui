@@ -1,6 +1,7 @@
 import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
+import { DocumentationTab } from '../../components/DocumentationTab'
 
 // Import sections
 import { BasicUsageSection } from './sections/BasicUsageSection'
@@ -20,14 +21,15 @@ const tabs = [
   { key: 'create', label: 'Create Options' },
   { key: 'custom', label: 'Custom Rendering' },
   { key: 'states', label: 'States' },
-  { key: 'props', label: 'Props' }
+  { key: 'props', label: 'Props' },
+  { key: 'documentation', label: 'Documentation' }
 ]
 
 interface PageProps {
   path?: string
 }
 
-export function AutocompletePage(_props: PageProps) {
+export function AutocompletePage(_props: Readonly<PageProps>) {
   const [activeTab, setActiveTab] = useState('basic')
 
   const renderContent = () => {
@@ -48,6 +50,8 @@ export function AutocompletePage(_props: PageProps) {
         return <StatesSection />
       case 'props':
         return <PropsDocumentation />
+      case 'documentation':
+        return <DocumentationTab componentName="autocomplete" />
       default:
         return <BasicUsageSection />
     }
@@ -59,13 +63,13 @@ export function AutocompletePage(_props: PageProps) {
         title="Autocomplete"
         description="Enhanced input with search suggestions, async loading, and multi-select capabilities. Perfect for forms that need intelligent search functionality."
       />
-      
+
       <DemoTabs
         tabs={tabs}
         activeTab={activeTab}
         onTabChange={setActiveTab}
       />
-      
+
       <div className="space-y-8">
         {renderContent()}
       </div>

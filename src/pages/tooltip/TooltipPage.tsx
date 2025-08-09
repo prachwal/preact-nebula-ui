@@ -1,15 +1,16 @@
 import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
-import { 
-  BasicUsageSection, 
-  VariantsSection, 
-  InteractiveSection, 
-  AccessibilitySection, 
-  PropsDocumentation 
+import { DocumentationTab } from '../../components/DocumentationTab'
+import {
+  BasicUsageSection,
+  VariantsSection,
+  InteractiveSection,
+  AccessibilitySection,
+  PropsDocumentation
 } from './sections'
 
-type DemoType = 'basic' | 'variants' | 'interactive' | 'accessibility' | 'props'
+type DemoType = 'basic' | 'variants' | 'interactive' | 'accessibility' | 'props' | 'docs'
 
 interface Tab {
   key: DemoType
@@ -17,7 +18,7 @@ interface Tab {
 }
 
 interface PageProps {
-  path?: string
+  readonly path?: string
 }
 
 export function TooltipPage(_props: PageProps) {
@@ -28,7 +29,8 @@ export function TooltipPage(_props: PageProps) {
     { key: 'variants', label: 'Variants' },
     { key: 'interactive', label: 'Interactive' },
     { key: 'accessibility', label: 'Accessibility' },
-    { key: 'props', label: 'Props' }
+    { key: 'props', label: 'Props' },
+    { key: 'docs', label: 'Documentation' }
   ]
 
   return (
@@ -38,11 +40,11 @@ export function TooltipPage(_props: PageProps) {
           title="💬 Tooltip Component"
           description="Contextual information display with intelligent positioning, multiple trigger options, and rich content support. Perfect for providing helpful hints and detailed information."
         />
-        
+
         <DemoTabs
-          tabs={tabs} 
-          activeTab={activeDemo} 
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)} 
+          tabs={tabs}
+          activeTab={activeDemo}
+          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
         />
 
         <div className="mt-8">
@@ -51,6 +53,7 @@ export function TooltipPage(_props: PageProps) {
           {activeDemo === 'interactive' && <InteractiveSection />}
           {activeDemo === 'accessibility' && <AccessibilitySection />}
           {activeDemo === 'props' && <PropsDocumentation />}
+          {activeDemo === 'docs' && <DocumentationTab componentName="tooltip" />}
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
+import { DocumentationTab } from '../../components/DocumentationTab'
 import { BasicUsageSection } from './sections/BasicUsageSection'
 import { ResponsiveSection } from './sections/ResponsiveSection'
 import { SpanningSection } from './sections/SpanningSection'
@@ -19,7 +20,8 @@ export function GridPage(_props: PageProps) {
     { id: 'responsive', label: 'Responsive', key: 'responsive' },
     { id: 'spanning', label: 'Spanning', key: 'spanning' },
     { id: 'alignment', label: 'Alignment', key: 'alignment' },
-    { id: 'props', label: 'Props', key: 'props' }
+    { id: 'props', label: 'Props', key: 'props' },
+    { id: 'documentation', label: 'Documentation', key: 'documentation' }
   ]
 
   const renderTabContent = () => {
@@ -34,6 +36,8 @@ export function GridPage(_props: PageProps) {
         return <AlignmentSection />
       case 'props':
         return <PropsDocumentation />
+      case 'documentation':
+        return <DocumentationTab componentName="grid" />
       default:
         return <BasicUsageSection />
     }
@@ -45,13 +49,13 @@ export function GridPage(_props: PageProps) {
         title="Grid"
         description="Advanced grid system with responsive breakpoints, gutters, and auto-layout"
       />
-      
+
       <DemoTabs
         tabs={tabs}
         activeTab={activeTab}
         onTabChange={setActiveTab}
       />
-      
+
       <div className="tab-content">
         {renderTabContent()}
       </div>

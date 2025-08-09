@@ -1,9 +1,10 @@
 ﻿import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
+import { DocumentationTab } from '../../components/DocumentationTab'
 import { BasicUsageSection, VariantsSection, InteractiveSection, AccessibilitySection, PropsDocumentation } from './sections'
 
-type DemoType = 'basic' | 'variants' | 'interactive' | 'accessibility' | 'props'
+type DemoType = 'basic' | 'variants' | 'interactive' | 'accessibility' | 'props' | 'docs'
 
 interface Tab {
   key: DemoType
@@ -11,7 +12,7 @@ interface Tab {
 }
 
 interface PageProps {
-  path?: string
+  readonly path?: string
 }
 
 export function CheckboxPage(_props: PageProps) {
@@ -22,7 +23,8 @@ export function CheckboxPage(_props: PageProps) {
     { key: 'variants', label: 'Variants' },
     { key: 'interactive', label: 'Interactive' },
     { key: 'accessibility', label: 'Accessibility' },
-    { key: 'props', label: 'Props' }
+    { key: 'props', label: 'Props' },
+    { key: 'docs', label: 'Documentation' }
   ]
 
   return (
@@ -32,11 +34,11 @@ export function CheckboxPage(_props: PageProps) {
           title=" Checkbox Component"
           description="Accessible checkbox inputs with support for controlled/uncontrolled modes, indeterminate states, validation, and custom content. Perfect for forms, settings, and selection interfaces."
         />
-        
+
         <DemoTabs
-          tabs={tabs} 
-          activeTab={activeDemo} 
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)} 
+          tabs={tabs}
+          activeTab={activeDemo}
+          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
         />
 
         <div className="mt-8">
@@ -45,6 +47,7 @@ export function CheckboxPage(_props: PageProps) {
           {activeDemo === 'interactive' && <InteractiveSection />}
           {activeDemo === 'accessibility' && <AccessibilitySection />}
           {activeDemo === 'props' && <PropsDocumentation />}
+          {activeDemo === 'docs' && <DocumentationTab componentName="checkbox" />}
         </div>
       </div>
     </div>

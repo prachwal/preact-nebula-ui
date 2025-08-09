@@ -1,7 +1,8 @@
 import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
-import { 
+import { DocumentationTab } from '../../components/DocumentationTab'
+import {
   BasicUsageSection,
   SizesSection,
   LazyLoadingSection,
@@ -11,13 +12,13 @@ import {
   PropsDocumentation
 } from './sections'
 
-type DemoType = 'basic' | 'sizes' | 'lazy' | 'zoom' | 'error' | 'responsive' | 'props'
+type DemoType = 'basic' | 'sizes' | 'lazy' | 'zoom' | 'error' | 'responsive' | 'props' | 'documentation'
 
 interface PageProps {
   path?: string
 }
 
-export function ImagePage(_props: PageProps) {
+export function ImagePage(_props: Readonly<PageProps>) {
   const [activeTab, setActiveTab] = useState<DemoType>('basic')
 
   const tabs = [
@@ -27,7 +28,8 @@ export function ImagePage(_props: PageProps) {
     { key: 'zoom', label: 'Zoom' },
     { key: 'error', label: 'Error Handling' },
     { key: 'responsive', label: 'Responsive' },
-    { key: 'props', label: 'Props' }
+    { key: 'props', label: 'Props' },
+    { key: 'documentation', label: 'Documentation' }
   ]
 
   return (
@@ -37,7 +39,7 @@ export function ImagePage(_props: PageProps) {
           title="🖼️ Image Component"
           description="Advanced image component with lazy loading, zoom functionality, progressive enhancement, and comprehensive error handling. Features intersection observer-based lazy loading, interactive zoom controls, responsive image support, and graceful fallbacks."
         />
-        
+
         <DemoTabs
           tabs={tabs}
           activeTab={activeTab}
@@ -52,6 +54,7 @@ export function ImagePage(_props: PageProps) {
           {activeTab === 'error' && <ErrorHandlingSection />}
           {activeTab === 'responsive' && <ResponsiveSection />}
           {activeTab === 'props' && <PropsDocumentation />}
+          {activeTab === 'documentation' && <DocumentationTab componentName="image" />}
         </div>
       </div>
     </div>

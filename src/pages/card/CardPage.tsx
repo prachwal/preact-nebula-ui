@@ -1,9 +1,10 @@
 import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
+import { DocumentationTab } from '../../components/DocumentationTab'
 import { BasicUsageSection, VariantsSection, StructureSection, ExamplesSection, PropsDocumentation } from './sections'
 
-type DemoType = 'basic' | 'variants' | 'structure' | 'examples' | 'props'
+type DemoType = 'basic' | 'variants' | 'structure' | 'examples' | 'props' | 'docs'
 
 interface Tab {
   key: DemoType
@@ -11,7 +12,7 @@ interface Tab {
 }
 
 interface PageProps {
-  path?: string
+  readonly path?: string
 }
 
 export function CardPage(_props: PageProps) {
@@ -22,7 +23,8 @@ export function CardPage(_props: PageProps) {
     { key: 'variants', label: 'Card Variants' },
     { key: 'structure', label: 'Card Structure' },
     { key: 'examples', label: 'Real Examples' },
-    { key: 'props', label: 'Props' }
+    { key: 'props', label: 'Props' },
+    { key: 'docs', label: 'Documentation' }
   ]
 
   return (
@@ -32,11 +34,11 @@ export function CardPage(_props: PageProps) {
           title="🃏 Card Component"
           description="Content container with header, body, and footer sections for organized layouts"
         />
-        
+
         <DemoTabs
-          tabs={tabs} 
-          activeTab={activeDemo} 
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)} 
+          tabs={tabs}
+          activeTab={activeDemo}
+          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
         />
 
         <div className="mt-8">
@@ -45,6 +47,7 @@ export function CardPage(_props: PageProps) {
           {activeDemo === 'structure' && <StructureSection />}
           {activeDemo === 'examples' && <ExamplesSection />}
           {activeDemo === 'props' && <PropsDocumentation />}
+          {activeDemo === 'docs' && <DocumentationTab componentName="card" />}
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
+import { DocumentationTab } from '../../components/DocumentationTab'
 import {
   BasicUsageSection,
   SizesSection,
@@ -13,10 +14,10 @@ import {
 } from './sections'
 
 interface PageProps {
-  path?: string
+  readonly path?: string
 }
 
-export function SliderPage(_props: PageProps) {
+export function SliderPage(_props: Readonly<PageProps>) {
   const [activeTab, setActiveTab] = useState('basic')
   const tabs = [
     { key: 'basic', label: 'Basic Usage' },
@@ -26,7 +27,8 @@ export function SliderPage(_props: PageProps) {
     { key: 'orientation', label: 'Orientation' },
     { key: 'custom-thumb', label: 'Custom Thumb' },
     { key: 'advanced', label: 'Advanced' },
-    { key: 'props', label: 'Props' }
+    { key: 'props', label: 'Props' },
+    { key: 'documentation', label: 'Documentation' }
   ]
   const renderSection = () => {
     switch (activeTab) {
@@ -46,6 +48,8 @@ export function SliderPage(_props: PageProps) {
         return <AdvancedSection />
       case 'props':
         return <PropsDocumentation />
+      case 'documentation':
+        return <DocumentationTab componentName="slider" />
       default:
         return <BasicUsageSection />
     }
@@ -53,17 +57,17 @@ export function SliderPage(_props: PageProps) {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <PageHeader 
+      <PageHeader
         title="Slider"
         description="Interactive slider component for selecting numeric values or ranges. Supports single and dual handle modes, custom marks, and full accessibility."
       />
-      
-      <DemoTabs 
+
+      <DemoTabs
         activeTab={activeTab}
         onTabChange={setActiveTab}
         tabs={tabs}
       />
-      
+
       <div className="mt-8">
         {renderSection()}
       </div>

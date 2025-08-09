@@ -1,6 +1,7 @@
 import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
+import { DocumentationTab } from '../../components/DocumentationTab'
 import {
   BasicUsageSection,
   PositionSection,
@@ -23,7 +24,8 @@ export function AffixPage(_props: PageProps) {
     { key: 'target', label: 'Target' },
     { key: 'offset', label: 'Offset' },
     { key: 'advanced', label: 'Advanced' },
-    { key: 'props', label: 'Props' }
+    { key: 'props', label: 'Props' },
+    { key: 'documentation', label: 'Documentation' }
   ]
 
   const renderContent = () => {
@@ -40,6 +42,8 @@ export function AffixPage(_props: PageProps) {
         return <AdvancedSection />
       case 'props':
         return <PropsDocumentationSection />
+      case 'documentation':
+        return <DocumentationTab componentName="affix" />
       default:
         return <BasicUsageSection />
     }
@@ -51,14 +55,14 @@ export function AffixPage(_props: PageProps) {
         title="Affix"
         description="A component that keeps content fixed to the viewport during scroll, useful for navigation menus, toolbars, and other UI elements that should remain visible."
       />
-      
+
       <div className="mx-auto max-w-7xl px-4 py-12">
         <DemoTabs
           tabs={tabs}
           activeTab={activeTab}
           onTabChange={setActiveTab}
         />
-        
+
         <div className="mt-8">
           {renderContent()}
         </div>

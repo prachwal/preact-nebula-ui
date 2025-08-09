@@ -1,5 +1,6 @@
 import { route } from 'preact-router'
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@/components'
+import { DocumentationTab } from '../../components/DocumentationTab'
 import { BasicSection, TypesSection, IntegrationSection, ExamplesSection, PropsDocumentation } from './sections'
 
 interface PageProps {
@@ -14,7 +15,7 @@ export function FieldErrorPage(_props: PageProps) {
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div class="flex items-center justify-between">
             <div>
-              <button 
+              <button
                 onClick={() => route('/')}
                 class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 mb-2 inline-flex items-center"
               >
@@ -41,6 +42,7 @@ export function FieldErrorPage(_props: PageProps) {
             <Tab value="integration">Form Integration</Tab>
             <Tab value="examples">Real Examples</Tab>
             <Tab value="props">Props</Tab>
+            <Tab value="documentation">Documentation</Tab>
           </TabList>
 
           <TabPanels>
@@ -58,6 +60,9 @@ export function FieldErrorPage(_props: PageProps) {
             </TabPanel>
             <TabPanel value="props">
               <PropsDocumentation />
+            </TabPanel>
+            <TabPanel value="documentation">
+              <DocumentationTab componentName="fielderror" />
             </TabPanel>
           </TabPanels>
         </Tabs>

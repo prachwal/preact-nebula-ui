@@ -1,9 +1,10 @@
 import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
+import { DocumentationTab } from '../../components/DocumentationTab'
 import { SizesSection, ShapesSection, GroupsSection, BadgesSection, PropsDocumentation } from './sections'
 
-type DemoType = 'sizes' | 'shapes' | 'groups' | 'badges' | 'props'
+type DemoType = 'sizes' | 'shapes' | 'groups' | 'badges' | 'props' | 'documentation'
 
 interface Tab {
   key: DemoType
@@ -14,7 +15,7 @@ interface PageProps {
   path?: string
 }
 
-export function AvatarPage(_props: PageProps) {
+export function AvatarPage(_props: Readonly<PageProps>) {
   const [activeDemo, setActiveDemo] = useState<DemoType>('sizes')
 
   const tabs: Tab[] = [
@@ -22,7 +23,8 @@ export function AvatarPage(_props: PageProps) {
     { key: 'shapes', label: 'Shapes' },
     { key: 'groups', label: 'Avatar Groups' },
     { key: 'badges', label: 'Status Badges' },
-    { key: 'props', label: 'Props' }
+    { key: 'props', label: 'Props' },
+    { key: 'documentation', label: 'Documentation' }
   ]
 
   return (
@@ -32,11 +34,11 @@ export function AvatarPage(_props: PageProps) {
           title="👤 Avatar Component"
           description="User profile images with fallbacks, status indicators, and grouping options"
         />
-        
+
         <DemoTabs
-          tabs={tabs} 
-          activeTab={activeDemo} 
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)} 
+          tabs={tabs}
+          activeTab={activeDemo}
+          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
         />
 
         <div className="mt-8">
@@ -45,6 +47,7 @@ export function AvatarPage(_props: PageProps) {
           {activeDemo === 'groups' && <GroupsSection />}
           {activeDemo === 'badges' && <BadgesSection />}
           {activeDemo === 'props' && <PropsDocumentation />}
+          {activeDemo === 'documentation' && <DocumentationTab componentName="avatar" />}
         </div>
       </div>
     </div>

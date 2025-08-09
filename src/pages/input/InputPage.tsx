@@ -1,9 +1,10 @@
 ﻿import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
-import { SizesSection, VariantsSection, IconsSection, StatesSection, PropsDocumentation } from './sections'
+import { DocumentationTab } from '../../components/DocumentationTab'
+import { BasicUsageSection, SizesSection, VariantsSection, IconsSection, StatesSection, PropsDocumentation } from './sections'
 
-type DemoType = 'sizes' | 'variants' | 'icons' | 'states' | 'props'
+type DemoType = 'basic' | 'sizes' | 'variants' | 'icons' | 'states' | 'props' | 'docs'
 
 interface Tab {
   key: DemoType
@@ -11,18 +12,20 @@ interface Tab {
 }
 
 interface PageProps {
-  path?: string
+  readonly path?: string
 }
 
 export function InputPage(_props: PageProps) {
-  const [activeDemo, setActiveDemo] = useState<DemoType>('sizes')
+  const [activeDemo, setActiveDemo] = useState<DemoType>('basic')
 
   const tabs: Tab[] = [
+    { key: 'basic', label: 'Basic Usage' },
     { key: 'sizes', label: 'Sizes' },
     { key: 'variants', label: 'Variants' },
     { key: 'icons', label: 'With Icons' },
     { key: 'states', label: 'States' },
-    { key: 'props', label: 'Props' }
+    { key: 'props', label: 'Props' },
+    { key: 'docs', label: 'Documentation' }
   ]
 
   return (
@@ -32,19 +35,21 @@ export function InputPage(_props: PageProps) {
           title=" Input Component"
           description="Text input component with multiple variants, sizes, and states for form interactions"
         />
-        
+
         <DemoTabs
-          tabs={tabs} 
-          activeTab={activeDemo} 
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)} 
+          tabs={tabs}
+          activeTab={activeDemo}
+          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
         />
 
         <div className="mt-8">
+          {activeDemo === 'basic' && <BasicUsageSection />}
           {activeDemo === 'sizes' && <SizesSection />}
           {activeDemo === 'variants' && <VariantsSection />}
           {activeDemo === 'icons' && <IconsSection />}
           {activeDemo === 'states' && <StatesSection />}
           {activeDemo === 'props' && <PropsDocumentation />}
+          {activeDemo === 'docs' && <DocumentationTab componentName="input" />}
         </div>
       </div>
     </div>

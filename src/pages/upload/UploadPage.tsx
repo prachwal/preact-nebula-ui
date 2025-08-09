@@ -1,6 +1,7 @@
 import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
+import { DocumentationTab } from '../../components/DocumentationTab'
 
 // Import sections
 import {
@@ -17,7 +18,7 @@ interface UploadPageProps {
   path?: string
 }
 
-export function UploadPage(_props: UploadPageProps) {
+export function UploadPage(_props: Readonly<UploadPageProps>) {
   const [activeTab, setActiveTab] = useState('basic')
 
   const tabs = [
@@ -27,7 +28,8 @@ export function UploadPage(_props: UploadPageProps) {
     { key: 'validation', id: 'validation', label: 'Validation' },
     { key: 'progress', id: 'progress', label: 'Progress' },
     { key: 'multiple', id: 'multiple', label: 'Multiple Files' },
-    { key: 'props', id: 'props', label: 'Props' }
+    { key: 'props', id: 'props', label: 'Props' },
+    { key: 'documentation', id: 'documentation', label: 'Documentation' }
   ]
 
   const renderSection = () => {
@@ -46,6 +48,8 @@ export function UploadPage(_props: UploadPageProps) {
         return <MultipleFilesSection />
       case 'props':
         return <PropsDocumentationSection />
+      case 'documentation':
+        return <DocumentationTab componentName="upload" />
       default:
         return <BasicUsageSection />
     }
@@ -57,7 +61,7 @@ export function UploadPage(_props: UploadPageProps) {
         title="Upload"
         description="A comprehensive file upload component with drag-and-drop support, progress tracking, validation, and multiple file handling."
       />
-      
+
       <DemoTabs
         tabs={tabs}
         activeTab={activeTab}

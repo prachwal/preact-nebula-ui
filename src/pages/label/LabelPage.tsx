@@ -1,9 +1,10 @@
 ﻿import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
+import { DocumentationTab } from '../../components/DocumentationTab'
 import { BasicSection, RequiredSection, SizingSection, ExamplesSection, PropsDocumentation } from './sections'
 
-type DemoType = 'basic' | 'required' | 'sizing' | 'examples' | 'props'
+type DemoType = 'basic' | 'required' | 'sizing' | 'examples' | 'props' | 'documentation'
 
 interface Tab {
   key: DemoType
@@ -22,7 +23,8 @@ export function LabelPage(_props: PageProps) {
     { key: 'required', label: 'Required Labels' },
     { key: 'sizing', label: 'Sizing' },
     { key: 'examples', label: 'Examples' },
-    { key: 'props', label: 'Props' }
+    { key: 'props', label: 'Props' },
+    { key: 'documentation', label: 'Documentation' }
   ]
 
   return (
@@ -32,11 +34,11 @@ export function LabelPage(_props: PageProps) {
           title=" Label Component"
           description="Form label component with accessibility features and flexible styling"
         />
-        
+
         <DemoTabs
-          tabs={tabs} 
-          activeTab={activeDemo} 
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)} 
+          tabs={tabs}
+          activeTab={activeDemo}
+          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
         />
 
         <div className="mt-8">
@@ -45,6 +47,7 @@ export function LabelPage(_props: PageProps) {
           {activeDemo === 'sizing' && <SizingSection />}
           {activeDemo === 'examples' && <ExamplesSection />}
           {activeDemo === 'props' && <PropsDocumentation />}
+          {activeDemo === 'documentation' && <DocumentationTab componentName="label" />}
         </div>
       </div>
     </div>

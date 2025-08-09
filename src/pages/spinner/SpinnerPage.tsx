@@ -1,9 +1,10 @@
 ﻿import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
+import { DocumentationTab } from '../../components/DocumentationTab'
 import { SizesSection, ColorsSection, UsageSection, AccessibilitySection, PropsDocumentation } from './sections'
 
-type DemoType = 'sizes' | 'colors' | 'usage' | 'accessibility' | 'props'
+type DemoType = 'sizes' | 'colors' | 'usage' | 'accessibility' | 'props' | 'documentation'
 
 interface Tab {
   key: DemoType
@@ -11,7 +12,7 @@ interface Tab {
 }
 
 interface PageProps {
-  path?: string
+  readonly path?: string
 }
 
 export function SpinnerPage(_props: PageProps) {
@@ -22,7 +23,8 @@ export function SpinnerPage(_props: PageProps) {
     { key: 'colors', label: 'Colors' },
     { key: 'usage', label: 'Usage' },
     { key: 'accessibility', label: 'Accessibility' },
-    { key: 'props', label: 'Props' }
+    { key: 'props', label: 'Props' },
+    { key: 'documentation', label: 'Documentation' }
   ]
 
   return (
@@ -32,11 +34,11 @@ export function SpinnerPage(_props: PageProps) {
           title=" Spinner Component"
           description="Loading indicator component with customizable sizes and colors"
         />
-        
+
         <DemoTabs
-          tabs={tabs} 
-          activeTab={activeDemo} 
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)} 
+          tabs={tabs}
+          activeTab={activeDemo}
+          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
         />
 
         <div className="mt-8">
@@ -45,6 +47,7 @@ export function SpinnerPage(_props: PageProps) {
           {activeDemo === 'usage' && <UsageSection />}
           {activeDemo === 'accessibility' && <AccessibilitySection />}
           {activeDemo === 'props' && <PropsDocumentation />}
+          {activeDemo === 'documentation' && <DocumentationTab componentName="spinner" />}
         </div>
       </div>
     </div>

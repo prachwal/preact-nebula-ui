@@ -1,6 +1,7 @@
 import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
+import { DocumentationTab } from '../../components/DocumentationTab'
 import {
   BasicUsageSection,
   SizesSection,
@@ -13,13 +14,14 @@ interface PageProps {
   path?: string
 }
 
-export function DatePickerPage(_props: PageProps) {
+export function DatePickerPage(_props: Readonly<PageProps>) {
   const tabs = [
     { key: 'basic', label: 'Basic Usage' },
     { key: 'sizes', label: 'Sizes' },
     { key: 'states', label: 'States' },
     { key: 'validation', label: 'Validation' },
-    { key: 'props', label: 'Props' }
+    { key: 'props', label: 'Props' },
+    { key: 'documentation', label: 'Documentation' }
   ]
 
   const [activeTab, setActiveTab] = useState('basic')
@@ -36,6 +38,8 @@ export function DatePickerPage(_props: PageProps) {
         return <ValidationSection />
       case 'props':
         return <PropsDocumentation />
+      case 'documentation':
+        return <DocumentationTab componentName="datepicker" />
       default:
         return <BasicUsageSection />
     }
@@ -47,13 +51,13 @@ export function DatePickerPage(_props: PageProps) {
         title="DatePicker"
         description="A date selection component with calendar interface, validation, and flexible configuration options."
       />
-      
+
       <DemoTabs
         tabs={tabs}
         activeTab={activeTab}
         onTabChange={setActiveTab}
       />
-      
+
       <div className="mt-6">
         {renderSection()}
       </div>

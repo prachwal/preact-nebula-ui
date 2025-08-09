@@ -1,6 +1,7 @@
 import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
+import { DocumentationTab } from '../../components/DocumentationTab'
 import {
   BasicUsageSection,
   AccordionSection,
@@ -21,7 +22,8 @@ export function CollapsePage(_props: CollapsePageProps) {
     { key: 'accordion', id: 'accordion', label: 'Accordion' },
     { key: 'nested', id: 'nested', label: 'Nested' },
     { key: 'customization', id: 'customization', label: 'Customization' },
-    { key: 'props', id: 'props', label: 'Props' }
+    { key: 'props', id: 'props', label: 'Props' },
+    { key: 'documentation', id: 'documentation', label: 'Documentation' }
   ]
 
   const renderSection = () => {
@@ -36,6 +38,8 @@ export function CollapsePage(_props: CollapsePageProps) {
         return <CustomizationSection />
       case 'props':
         return <PropsDocumentation />
+      case 'documentation':
+        return <DocumentationTab componentName="collapse" />
       default:
         return <BasicUsageSection />
     }
@@ -47,13 +51,13 @@ export function CollapsePage(_props: CollapsePageProps) {
         title="Collapse"
         description="Hide and show content sections with smooth expanding and collapsing animations"
       />
-      
-      <DemoTabs 
-        tabs={tabs} 
-        activeTab={activeTab} 
-        onTabChange={setActiveTab} 
+
+      <DemoTabs
+        tabs={tabs}
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
       />
-      
+
       <div className="mt-8">
         {renderSection()}
       </div>

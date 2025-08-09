@@ -1,6 +1,7 @@
 import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
+import { DocumentationTab } from '../../components/DocumentationTab'
 import { BasicUsageSection } from './sections/BasicUsageSection'
 import { VariantsSection } from './sections/VariantsSection'
 import { VisibilitySection } from './sections/VisibilitySection'
@@ -19,7 +20,8 @@ export function BackTopPage(_props: PageProps) {
     { id: 'variants', label: 'Variants', key: 'variants' },
     { id: 'visibility', label: 'Visibility', key: 'visibility' },
     { id: 'targets', label: 'Custom Targets', key: 'targets' },
-    { id: 'props', label: 'Props', key: 'props' }
+    { id: 'props', label: 'Props', key: 'props' },
+    { id: 'documentation', label: 'Documentation', key: 'documentation' }
   ]
 
   const renderTabContent = () => {
@@ -34,6 +36,8 @@ export function BackTopPage(_props: PageProps) {
         return <CustomTargetsSection />
       case 'props':
         return <PropsDocumentation />
+      case 'documentation':
+        return <DocumentationTab componentName="backtop" />
       default:
         return <BasicUsageSection />
     }
@@ -45,13 +49,13 @@ export function BackTopPage(_props: PageProps) {
         title="BackTop"
         description="Back to top button with smooth scrolling and visibility threshold"
       />
-      
+
       <DemoTabs
         tabs={tabs}
         activeTab={activeTab}
         onTabChange={setActiveTab}
       />
-      
+
       <div className="tab-content">
         {renderTabContent()}
       </div>

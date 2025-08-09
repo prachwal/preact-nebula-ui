@@ -1,6 +1,7 @@
 import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
+import { DocumentationTab } from '../../components/DocumentationTab'
 import {
   BasicUsageSection,
   VariantsSection,
@@ -11,7 +12,7 @@ import {
   PropsDocumentation
 } from './sections'
 
-type DemoType = 'basic' | 'variants' | 'sizes' | 'manager' | 'features' | 'accessibility' | 'props'
+type DemoType = 'basic' | 'variants' | 'sizes' | 'manager' | 'features' | 'accessibility' | 'props' | 'documentation'
 
 interface Tab {
   key: DemoType
@@ -19,7 +20,7 @@ interface Tab {
 }
 
 interface PageProps {
-  path?: string
+  readonly path?: string
 }
 
 export function ToastPage(_props: PageProps) {
@@ -32,7 +33,8 @@ export function ToastPage(_props: PageProps) {
     { key: 'manager', label: 'Toast Manager' },
     { key: 'features', label: 'Features' },
     { key: 'accessibility', label: 'Accessibility' },
-    { key: 'props', label: 'Props' }
+    { key: 'props', label: 'Props' },
+    { key: 'documentation', label: 'Documentation' }
   ]
 
   return (
@@ -42,11 +44,11 @@ export function ToastPage(_props: PageProps) {
           title="🔔 Toast Notifications"
           description="Temporary notifications that provide feedback about actions or system status."
         />
-        
+
         <DemoTabs
-          tabs={tabs} 
-          activeTab={activeDemo} 
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)} 
+          tabs={tabs}
+          activeTab={activeDemo}
+          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
         />
 
         <div className="mt-8">
@@ -57,6 +59,7 @@ export function ToastPage(_props: PageProps) {
           {activeDemo === 'features' && <FeaturesSection />}
           {activeDemo === 'accessibility' && <AccessibilitySection />}
           {activeDemo === 'props' && <PropsDocumentation />}
+          {activeDemo === 'documentation' && <DocumentationTab componentName="toast" />}
         </div>
       </div>
     </div>

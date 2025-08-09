@@ -1,9 +1,10 @@
 ﻿import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
-import { VariantsSection, SizesSection, StatesSection, FeaturesSection, ExamplesSection, PropsDocumentation } from './sections'
+import { DocumentationTab } from '../../components/DocumentationTab'
+import { BasicUsageSection, VariantsSection, SizesSection, StatesSection, FeaturesSection, ExamplesSection, PropsDocumentation } from './sections'
 
-type DemoType = 'variants' | 'sizes' | 'states' | 'features' | 'examples' | 'props'
+type DemoType = 'basic' | 'variants' | 'sizes' | 'states' | 'features' | 'examples' | 'props' | 'docs'
 
 interface Tab {
   key: DemoType
@@ -11,19 +12,21 @@ interface Tab {
 }
 
 interface PageProps {
-  path?: string
+  readonly path?: string
 }
 
 export function TextareaPage(_props: PageProps) {
-  const [activeDemo, setActiveDemo] = useState<DemoType>('variants')
+  const [activeDemo, setActiveDemo] = useState<DemoType>('basic')
 
   const tabs: Tab[] = [
+    { key: 'basic', label: 'Basic Usage' },
     { key: 'variants', label: 'Variants' },
     { key: 'sizes', label: 'Sizes' },
     { key: 'states', label: 'States' },
     { key: 'features', label: 'Features' },
     { key: 'examples', label: 'Examples' },
-    { key: 'props', label: 'Props' }
+    { key: 'props', label: 'Props' },
+    { key: 'docs', label: 'Documentation' }
   ]
 
   return (
@@ -33,20 +36,22 @@ export function TextareaPage(_props: PageProps) {
           title=" Textarea Component"
           description="Multi-line text input with validation, sizing, and advanced features"
         />
-        
+
         <DemoTabs
-          tabs={tabs} 
-          activeTab={activeDemo} 
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)} 
+          tabs={tabs}
+          activeTab={activeDemo}
+          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
         />
 
         <div className="mt-8">
+          {activeDemo === 'basic' && <BasicUsageSection />}
           {activeDemo === 'variants' && <VariantsSection />}
           {activeDemo === 'sizes' && <SizesSection />}
           {activeDemo === 'states' && <StatesSection />}
           {activeDemo === 'features' && <FeaturesSection />}
           {activeDemo === 'examples' && <ExamplesSection />}
           {activeDemo === 'props' && <PropsDocumentation />}
+          {activeDemo === 'docs' && <DocumentationTab componentName="textarea" />}
         </div>
       </div>
     </div>

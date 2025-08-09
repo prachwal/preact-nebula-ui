@@ -1,9 +1,10 @@
 import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
+import { DocumentationTab } from '../../components/DocumentationTab'
 import { BasicUsageSection, VariantsSection, SizesSection, InteractiveSection, PropsDocumentation } from './sections'
 
-type DemoType = 'basic' | 'variants' | 'sizes' | 'interactive' | 'props'
+type DemoType = 'basic' | 'variants' | 'sizes' | 'interactive' | 'props' | 'documentation'
 
 interface Tab {
   key: DemoType
@@ -11,7 +12,7 @@ interface Tab {
 }
 
 interface PageProps {
-  path?: string
+  readonly path?: string
 }
 
 export function ProgressPage(_props: PageProps) {
@@ -22,7 +23,8 @@ export function ProgressPage(_props: PageProps) {
     { key: 'variants', label: 'Variants' },
     { key: 'sizes', label: 'Sizes' },
     { key: 'interactive', label: 'Interactive' },
-    { key: 'props', label: 'Props' }
+    { key: 'props', label: 'Props' },
+    { key: 'documentation', label: 'Documentation' }
   ]
 
   return (
@@ -32,11 +34,11 @@ export function ProgressPage(_props: PageProps) {
           title="📊 Progress Component"
           description="Progress indicators show the completion status of ongoing processes, giving users feedback about the current state and expected duration of operations. The Progress component supports both linear and circular variants with customizable colors, sizes, and label display options."
         />
-        
+
         <DemoTabs
-          tabs={tabs} 
-          activeTab={activeDemo} 
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)} 
+          tabs={tabs}
+          activeTab={activeDemo}
+          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
         />
 
         <div className="mt-8">
@@ -45,6 +47,7 @@ export function ProgressPage(_props: PageProps) {
           {activeDemo === 'sizes' && <SizesSection />}
           {activeDemo === 'interactive' && <InteractiveSection />}
           {activeDemo === 'props' && <PropsDocumentation />}
+          {activeDemo === 'documentation' && <DocumentationTab componentName="progress" />}
         </div>
       </div>
     </div>

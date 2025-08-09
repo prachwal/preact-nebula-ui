@@ -1,7 +1,8 @@
 import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
-import { 
+import { DocumentationTab } from '../../components/DocumentationTab'
+import {
   BasicUsageSection,
   ThemeSection,
   LocaleSection,
@@ -9,7 +10,7 @@ import {
   PropsDocumentationSection
 } from './sections'
 
-type DemoType = 'basic' | 'theme' | 'locale' | 'defaults' | 'props'
+type DemoType = 'basic' | 'theme' | 'locale' | 'defaults' | 'props' | 'documentation'
 
 interface PageProps {
   path?: string
@@ -23,7 +24,8 @@ export function ConfigProviderPage(_props: PageProps) {
     { key: 'theme', label: 'Theme' },
     { key: 'locale', label: 'Locale' },
     { key: 'defaults', label: 'Component Defaults' },
-    { key: 'props', label: 'Props' }
+    { key: 'props', label: 'Props' },
+    { key: 'documentation', label: 'Documentation' }
   ]
 
   return (
@@ -33,7 +35,7 @@ export function ConfigProviderPage(_props: PageProps) {
           title="🔧 ConfigProvider Component"
           description="Global configuration provider for theme management, internationalization, and component defaults across your entire application."
         />
-        
+
         <DemoTabs
           tabs={tabs}
           activeTab={activeTab}
@@ -46,6 +48,7 @@ export function ConfigProviderPage(_props: PageProps) {
           {activeTab === 'locale' && <LocaleSection />}
           {activeTab === 'defaults' && <ComponentDefaultsSection />}
           {activeTab === 'props' && <PropsDocumentationSection />}
+          {activeTab === 'documentation' && <DocumentationTab componentName="configprovider" />}
         </div>
       </div>
     </div>

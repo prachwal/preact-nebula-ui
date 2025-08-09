@@ -1,6 +1,7 @@
 import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
+import { DocumentationTab } from '../../components/DocumentationTab'
 
 // Import sections
 import {
@@ -17,7 +18,7 @@ interface CarouselPageProps {
   path?: string
 }
 
-export function CarouselPage(_props: CarouselPageProps) {
+export function CarouselPage(_props: Readonly<CarouselPageProps>) {
   const [activeTab, setActiveTab] = useState('basic')
 
   const tabs = [
@@ -27,7 +28,8 @@ export function CarouselPage(_props: CarouselPageProps) {
     { key: 'infinite', id: 'infinite', label: 'Infinite Loop' },
     { key: 'navigation', id: 'navigation', label: 'Navigation' },
     { key: 'multiple', id: 'multiple', label: 'Multiple Slides' },
-    { key: 'props', id: 'props', label: 'Props' }
+    { key: 'props', id: 'props', label: 'Props' },
+    { key: 'documentation', id: 'documentation', label: 'Documentation' }
   ]
 
   const renderSection = () => {
@@ -46,6 +48,8 @@ export function CarouselPage(_props: CarouselPageProps) {
         return <MultipleSlideSection />
       case 'props':
         return <PropsDocumentationSection />
+      case 'documentation':
+        return <DocumentationTab componentName="carousel" />
       default:
         return <BasicUsageSection />
     }
@@ -57,7 +61,7 @@ export function CarouselPage(_props: CarouselPageProps) {
         title="Carousel"
         description="A responsive carousel component for displaying slides with navigation controls, autoplay, and touch support."
       />
-      
+
       <DemoTabs
         tabs={tabs}
         activeTab={activeTab}

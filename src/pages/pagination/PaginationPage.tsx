@@ -1,6 +1,7 @@
 import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
+import { DocumentationTab } from '../../components/DocumentationTab'
 import {
   BasicUsageSection,
   VariantsSection,
@@ -10,24 +11,27 @@ import {
   type DemoType
 } from './sections'
 
+type ExtendedDemoType = DemoType | 'documentation'
+
 interface Tab {
-  key: DemoType
+  key: ExtendedDemoType
   label: string
 }
 
 interface PageProps {
-  path?: string
+  readonly path?: string
 }
 
 export function PaginationPage(_props: PageProps) {
-  const [activeDemo, setActiveDemo] = useState<DemoType>('basic')
+  const [activeDemo, setActiveDemo] = useState<ExtendedDemoType>('basic')
 
   const tabs: Tab[] = [
     { key: 'basic', label: 'Basic Usage' },
     { key: 'variants', label: 'Variants' },
     { key: 'interactive', label: 'Interactive' },
     { key: 'accessibility', label: 'Accessibility' },
-    { key: 'props', label: 'Props' }
+    { key: 'props', label: 'Props' },
+    { key: 'documentation', label: 'Documentation' }
   ]
 
   return (
@@ -37,19 +41,18 @@ export function PaginationPage(_props: PageProps) {
           title="📄 Pagination Component"
           description="Navigation component for breaking large datasets into manageable pages with intuitive controls and accessibility features."
         />
-        
-        <DemoTabs
-          tabs={tabs} 
-          activeTab={activeDemo} 
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)} 
-        />
 
-        <div className="mt-8">
+        <DemoTabs
+          tabs={tabs}
+          activeTab={activeDemo}
+          onTabChange={(tab) => setActiveDemo(tab as ExtendedDemoType)}
+        />        <div className="mt-8">
           {activeDemo === 'basic' && <BasicUsageSection />}
           {activeDemo === 'variants' && <VariantsSection />}
           {activeDemo === 'interactive' && <InteractiveSection />}
           {activeDemo === 'accessibility' && <AccessibilitySection />}
           {activeDemo === 'props' && <PropsDocumentation />}
+          {activeDemo === 'documentation' && <DocumentationTab componentName="pagination" />}
         </div>
       </div>
     </div>

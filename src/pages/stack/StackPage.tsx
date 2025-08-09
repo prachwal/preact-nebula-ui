@@ -7,12 +7,13 @@ import {
   PropsDocumentation
 } from './sections'
 import { PageHeader, DemoTabs, type Tab } from '../../components/layout'
+import { DocumentationTab } from '../../components/DocumentationTab'
 
 interface PageProps {
   path?: string
 }
 
-type DemoType = 'direction' | 'spacing' | 'alignment' | 'examples' | 'props'
+type DemoType = 'direction' | 'spacing' | 'alignment' | 'examples' | 'props' | 'documentation'
 
 export function StackPage(_props: PageProps) {
   const [activeDemo, setActiveDemo] = useState<DemoType>('direction')
@@ -22,7 +23,8 @@ export function StackPage(_props: PageProps) {
     { key: 'spacing', label: 'Spacing Variants' },
     { key: 'alignment', label: 'Alignment Options' },
     { key: 'examples', label: 'Layout Examples' },
-    { key: 'props', label: 'Props' }
+    { key: 'props', label: 'Props' },
+    { key: 'documentation', label: 'Documentation' }
   ]
 
   return (
@@ -30,14 +32,14 @@ export function StackPage(_props: PageProps) {
       {/* Header */}
       <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <PageHeader 
-            title="Stack Component" 
+          <PageHeader
+            title="Stack Component"
             description="Vertical and horizontal layout with consistent spacing and alignment control"
           />
-          <DemoTabs 
-            tabs={tabs} 
-            activeTab={activeDemo} 
-            onTabChange={(tab) => setActiveDemo(tab as DemoType)} 
+          <DemoTabs
+            tabs={tabs}
+            activeTab={activeDemo}
+            onTabChange={(tab) => setActiveDemo(tab as DemoType)}
           />
         </div>
       </div>
@@ -49,6 +51,7 @@ export function StackPage(_props: PageProps) {
         {activeDemo === 'alignment' && <AlignmentOptions />}
         {activeDemo === 'examples' && <LayoutExamples />}
         {activeDemo === 'props' && <PropsDocumentation />}
+        {activeDemo === 'documentation' && <DocumentationTab componentName="stack" />}
       </div>
     </div>
   )

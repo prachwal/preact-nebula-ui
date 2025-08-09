@@ -1,9 +1,10 @@
 import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
+import { DocumentationTab } from '../../components/DocumentationTab'
 import { SizesSection, PaddingSection, CenteringSection, CombinationsSection, PropsDocumentation } from './sections'
 
-type DemoType = 'sizes' | 'padding' | 'centering' | 'combinations' | 'props'
+type DemoType = 'sizes' | 'padding' | 'centering' | 'combinations' | 'props' | 'documentation'
 
 interface Tab {
   key: DemoType
@@ -22,7 +23,8 @@ export default function ContainerPage(_props: PageProps) {
     { key: 'padding', label: 'Padding' },
     { key: 'centering', label: 'Centering' },
     { key: 'combinations', label: 'Combinations' },
-    { key: 'props', label: 'Props' }
+    { key: 'props', label: 'Props' },
+    { key: 'documentation', label: 'Documentation' }
   ]
 
   return (
@@ -32,11 +34,11 @@ export default function ContainerPage(_props: PageProps) {
           title="Container Component"
           description="Layout container with configurable sizing, padding, and centering options."
         />
-        
+
         <DemoTabs
-          tabs={tabs} 
-          activeTab={activeDemo} 
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)} 
+          tabs={tabs}
+          activeTab={activeDemo}
+          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
         />
 
         <div className="mt-8">
@@ -45,6 +47,7 @@ export default function ContainerPage(_props: PageProps) {
           {activeDemo === 'centering' && <CenteringSection />}
           {activeDemo === 'combinations' && <CombinationsSection />}
           {activeDemo === 'props' && <PropsDocumentation />}
+          {activeDemo === 'documentation' && <DocumentationTab componentName="container" />}
         </div>
       </div>
     </div>

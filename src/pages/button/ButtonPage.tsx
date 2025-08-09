@@ -60,7 +60,7 @@ export function ButtonPage(_props: PageProps) {
           {activeDemo === 'icons' && <IconsSection onButtonClick={handleButtonClick} />}
           {activeDemo === 'combinations' && <CombinationsSection onButtonClick={handleButtonClick} />}
           {activeDemo === 'props' && <PropsDocumentation />}
-          {activeDemo === 'docs' && <DocumentationTab componentName="Button" />}
+          {activeDemo === 'docs' && <DocumentationTab componentName="button" />}
         </div>
       </div>
     </div>

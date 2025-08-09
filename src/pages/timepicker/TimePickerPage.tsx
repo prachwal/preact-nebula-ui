@@ -1,6 +1,7 @@
 import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
+import { DocumentationTab } from '../../components/DocumentationTab'
 import {
   BasicUsageSection,
   SizesSection,
@@ -13,13 +14,14 @@ interface PageProps {
   path?: string
 }
 
-export function TimePickerPage(_props: PageProps) {
+export function TimePickerPage(_props: Readonly<PageProps>) {
   const tabs = [
     { key: 'basic', label: 'Basic Usage' },
     { key: 'sizes', label: 'Sizes' },
     { key: 'states', label: 'States' },
     { key: 'configuration', label: 'Configuration' },
-    { key: 'props', label: 'Props' }
+    { key: 'props', label: 'Props' },
+    { key: 'documentation', label: 'Documentation' }
   ]
 
   const [activeTab, setActiveTab] = useState('basic')
@@ -36,6 +38,8 @@ export function TimePickerPage(_props: PageProps) {
         return <ConfigurationSection />
       case 'props':
         return <PropsDocumentation />
+      case 'documentation':
+        return <DocumentationTab componentName="timepicker" />
       default:
         return <BasicUsageSection />
     }

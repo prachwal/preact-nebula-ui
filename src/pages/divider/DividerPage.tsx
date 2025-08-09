@@ -1,9 +1,10 @@
 import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
+import { DocumentationTab } from '../../components/DocumentationTab'
 import { OrientationSection, VariantsSection, TextSection, PropsDocumentation } from './sections'
 
-type DemoType = 'orientation' | 'variants' | 'text' | 'props'
+type DemoType = 'orientation' | 'variants' | 'text' | 'props' | 'documentation'
 
 interface Tab {
   key: DemoType
@@ -21,7 +22,8 @@ export function DividerPage(_props: PageProps) {
     { key: 'orientation', label: 'Orientation' },
     { key: 'variants', label: 'Line Variants' },
     { key: 'text', label: 'With Text' },
-    { key: 'props', label: 'Props' }
+    { key: 'props', label: 'Props' },
+    { key: 'documentation', label: 'Documentation' }
   ]
 
   return (
@@ -31,11 +33,11 @@ export function DividerPage(_props: PageProps) {
           title="Divider Component"
           description="Visual separator with horizontal/vertical orientations and text support."
         />
-        
+
         <DemoTabs
-          tabs={tabs} 
-          activeTab={activeDemo} 
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)} 
+          tabs={tabs}
+          activeTab={activeDemo}
+          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
         />
 
         <div className="mt-8">
@@ -43,6 +45,7 @@ export function DividerPage(_props: PageProps) {
           {activeDemo === 'variants' && <VariantsSection />}
           {activeDemo === 'text' && <TextSection />}
           {activeDemo === 'props' && <PropsDocumentation />}
+          {activeDemo === 'documentation' && <DocumentationTab componentName="divider" />}
         </div>
       </div>
     </div>

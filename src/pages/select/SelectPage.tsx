@@ -1,9 +1,10 @@
 ﻿import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
+import { DocumentationTab } from '../../components/DocumentationTab'
 import { BasicUsageSection, VariantsSection, InteractiveSection, AccessibilitySection, PropsDocumentation } from './sections'
 
-type DemoType = 'basic' | 'variants' | 'interactive' | 'accessibility' | 'props'
+type DemoType = 'basic' | 'variants' | 'interactive' | 'accessibility' | 'props' | 'documentation'
 
 interface Tab {
   key: DemoType
@@ -14,7 +15,7 @@ interface PageProps {
   path?: string
 }
 
-export function SelectPage(_props: PageProps) {
+export function SelectPage(_props: Readonly<PageProps>) {
   const [activeDemo, setActiveDemo] = useState<DemoType>('basic')
 
   const tabs: Tab[] = [
@@ -22,7 +23,8 @@ export function SelectPage(_props: PageProps) {
     { key: 'variants', label: 'Variants' },
     { key: 'interactive', label: 'Interactive' },
     { key: 'accessibility', label: 'Accessibility' },
-    { key: 'props', label: 'Props' }
+    { key: 'props', label: 'Props' },
+    { key: 'documentation', label: 'Documentation' }
   ]
 
   return (
@@ -32,11 +34,11 @@ export function SelectPage(_props: PageProps) {
           title=" Select Component"
           description="Dropdown selection component with search and multi-select capabilities"
         />
-        
+
         <DemoTabs
-          tabs={tabs} 
-          activeTab={activeDemo} 
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)} 
+          tabs={tabs}
+          activeTab={activeDemo}
+          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
         />
 
         <div className="mt-8">
@@ -45,6 +47,7 @@ export function SelectPage(_props: PageProps) {
           {activeDemo === 'interactive' && <InteractiveSection />}
           {activeDemo === 'accessibility' && <AccessibilitySection />}
           {activeDemo === 'props' && <PropsDocumentation />}
+          {activeDemo === 'documentation' && <DocumentationTab componentName="select" />}
         </div>
       </div>
     </div>

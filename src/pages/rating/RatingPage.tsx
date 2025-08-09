@@ -1,6 +1,7 @@
 import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
+import { DocumentationTab } from '../../components/DocumentationTab'
 import {
   BasicUsageSection,
   SizesSection,
@@ -12,10 +13,10 @@ import {
 } from './sections'
 
 interface PageProps {
-  path?: string
+  readonly path?: string
 }
 
-export function RatingPage(_props: PageProps) {
+export function RatingPage(_props: Readonly<PageProps>) {
   const tabs = [
     { key: 'basic', label: 'Basic Usage' },
     { key: 'sizes', label: 'Sizes' },
@@ -23,7 +24,8 @@ export function RatingPage(_props: PageProps) {
     { key: 'custom-icons', label: 'Custom Icons' },
     { key: 'states', label: 'States' },
     { key: 'value-display', label: 'Value Display' },
-    { key: 'props', label: 'Props' }
+    { key: 'props', label: 'Props' },
+    { key: 'documentation', label: 'Documentation' }
   ]
 
   const [activeTab, setActiveTab] = useState('basic')
@@ -44,6 +46,8 @@ export function RatingPage(_props: PageProps) {
         return <ValueDisplaySection />
       case 'props':
         return <PropsDocumentation />
+      case 'documentation':
+        return <DocumentationTab componentName="rating" />
       default:
         return <BasicUsageSection />
     }
@@ -55,13 +59,13 @@ export function RatingPage(_props: PageProps) {
         title="Rating"
         description="A rating component that allows users to provide star ratings with support for half stars, custom icons, and various states."
       />
-      
+
       <DemoTabs
         tabs={tabs}
         activeTab={activeTab}
         onTabChange={setActiveTab}
       />
-      
+
       <div className="mt-6">
         {renderSection()}
       </div>

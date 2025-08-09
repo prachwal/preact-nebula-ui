@@ -1,6 +1,7 @@
 import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
+import { DocumentationTab } from '../../components/DocumentationTab'
 import { BasicUsageSection, SearchSection, SizesSection, AccessibilitySection } from './sections'
 
 interface PageProps {
@@ -11,10 +12,11 @@ const tabs = [
   { key: 'basic', label: 'Basic Usage' },
   { key: 'search', label: 'Search' },
   { key: 'sizes', label: 'Sizes' },
-  { key: 'accessibility', label: 'Accessibility' }
+  { key: 'accessibility', label: 'Accessibility' },
+  { key: 'documentation', label: 'Documentation' }
 ]
 
-export function TreeViewPage(_props: PageProps) {
+export function TreeViewPage(_props: Readonly<PageProps>) {
   const [activeTab, setActiveTab] = useState('basic')
 
   const renderContent = () => {
@@ -27,6 +29,8 @@ export function TreeViewPage(_props: PageProps) {
         return <SizesSection />
       case 'accessibility':
         return <AccessibilitySection />
+      case 'documentation':
+        return <DocumentationTab componentName="treeview" />
       default:
         return <BasicUsageSection />
     }
@@ -38,13 +42,13 @@ export function TreeViewPage(_props: PageProps) {
         title="TreeView"
         description="Hierarchical data display with expand/collapse, selection, and search capabilities. Perfect for file systems, navigation menus, and organizational structures."
       />
-      
+
       <DemoTabs
         tabs={tabs}
         activeTab={activeTab}
         onTabChange={setActiveTab}
       />
-      
+
       <div className="space-y-8">
         {renderContent()}
       </div>

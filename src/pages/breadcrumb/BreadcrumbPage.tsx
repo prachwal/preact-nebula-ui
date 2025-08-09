@@ -1,6 +1,7 @@
 ﻿import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
+import { DocumentationTab } from '../../components/DocumentationTab'
 import { getExampleData } from './ExampleData'
 import {
   BasicExample,
@@ -12,7 +13,7 @@ import {
   PropsDocumentation
 } from './sections'
 
-type DemoType = 'basic' | 'separators' | 'homeIcon' | 'responsive' | 'icons' | 'edgeCases' | 'props'
+type DemoType = 'basic' | 'separators' | 'homeIcon' | 'responsive' | 'icons' | 'edgeCases' | 'props' | 'documentation'
 
 interface Tab {
   key: DemoType
@@ -20,7 +21,7 @@ interface Tab {
 }
 
 interface PageProps {
-  path?: string
+  readonly path?: string
 }
 
 export function BreadcrumbPage(_props: PageProps) {
@@ -34,7 +35,8 @@ export function BreadcrumbPage(_props: PageProps) {
     { key: 'responsive', label: 'Responsive' },
     { key: 'icons', label: 'Icons' },
     { key: 'edgeCases', label: 'Edge Cases' },
-    { key: 'props', label: 'Props' }
+    { key: 'props', label: 'Props' },
+    { key: 'documentation', label: 'Documentation' }
   ]
 
   return (
@@ -44,11 +46,11 @@ export function BreadcrumbPage(_props: PageProps) {
           title=" Breadcrumb Component"
           description="Hierarchical navigation component showing the current page's location within the site structure."
         />
-        
+
         <DemoTabs
-          tabs={tabs} 
-          activeTab={activeDemo} 
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)} 
+          tabs={tabs}
+          activeTab={activeDemo}
+          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
         />
 
         <div className="mt-8">
@@ -59,6 +61,7 @@ export function BreadcrumbPage(_props: PageProps) {
           {activeDemo === 'icons' && <IconsExample items={itemsWithIcons} />}
           {activeDemo === 'edgeCases' && <EdgeCases />}
           {activeDemo === 'props' && <PropsDocumentation />}
+          {activeDemo === 'documentation' && <DocumentationTab componentName="breadcrumb" />}
         </div>
       </div>
     </div>

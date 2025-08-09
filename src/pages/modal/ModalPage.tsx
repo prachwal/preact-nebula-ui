@@ -1,6 +1,7 @@
 import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
+import { DocumentationTab } from '../../components/DocumentationTab'
 import {
   BasicUsageSection,
   SizeVariantsSection,
@@ -10,7 +11,7 @@ import {
   PropsDocumentation
 } from './sections'
 
-type DemoType = 'basic' | 'sizes' | 'backdrop' | 'position' | 'scrollable' | 'props'
+type DemoType = 'basic' | 'sizes' | 'backdrop' | 'position' | 'scrollable' | 'props' | 'docs'
 
 interface Tab {
   key: DemoType
@@ -18,7 +19,7 @@ interface Tab {
 }
 
 interface PageProps {
-  path?: string
+  readonly path?: string
 }
 
 export function ModalPage(_props: PageProps) {
@@ -30,7 +31,8 @@ export function ModalPage(_props: PageProps) {
     { key: 'backdrop', label: 'Backdrop Behavior' },
     { key: 'position', label: 'Position Variants' },
     { key: 'scrollable', label: 'Scrollable Content' },
-    { key: 'props', label: 'Props' }
+    { key: 'props', label: 'Props' },
+    { key: 'docs', label: 'Documentation' }
   ]
 
   return (
@@ -40,11 +42,11 @@ export function ModalPage(_props: PageProps) {
           title="🪟 Modal Component"
           description="Overlay dialogs for focused interactions, confirmations, and detailed content presentation."
         />
-        
+
         <DemoTabs
-          tabs={tabs} 
-          activeTab={activeDemo} 
-          onTabChange={(tab) => setActiveDemo(tab as DemoType)} 
+          tabs={tabs}
+          activeTab={activeDemo}
+          onTabChange={(tab) => setActiveDemo(tab as DemoType)}
         />
 
         <div className="mt-8">
@@ -54,6 +56,7 @@ export function ModalPage(_props: PageProps) {
           {activeDemo === 'position' && <PositionVariantsSection />}
           {activeDemo === 'scrollable' && <ScrollableContentSection />}
           {activeDemo === 'props' && <PropsDocumentation />}
+          {activeDemo === 'docs' && <DocumentationTab componentName="modal" />}
         </div>
       </div>
     </div>

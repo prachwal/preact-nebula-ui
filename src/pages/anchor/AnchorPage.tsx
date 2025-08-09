@@ -1,6 +1,7 @@
 import { useState } from 'preact/hooks'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { DemoTabs } from '../../components/layout/DemoTabs'
+import { DocumentationTab } from '../../components/DocumentationTab'
 import { BasicUsageSection } from './sections/BasicUsageSection'
 import { SizesSection } from './sections/SizesSection'
 import { PositioningSection } from './sections/PositioningSection'
@@ -19,7 +20,8 @@ export function AnchorPage(_props: PageProps) {
     { id: 'sizes', label: 'Sizes', key: 'sizes' },
     { id: 'positioning', label: 'Positioning', key: 'positioning' },
     { id: 'targets', label: 'Scroll Targets', key: 'targets' },
-    { id: 'props', label: 'Props', key: 'props' }
+    { id: 'props', label: 'Props', key: 'props' },
+    { id: 'documentation', label: 'Documentation', key: 'documentation' }
   ]
 
   const renderTabContent = () => {
@@ -34,6 +36,8 @@ export function AnchorPage(_props: PageProps) {
         return <ScrollTargetsSection />
       case 'props':
         return <PropsDocumentation />
+      case 'documentation':
+        return <DocumentationTab componentName="anchor" />
       default:
         return <BasicUsageSection />
     }
@@ -45,13 +49,13 @@ export function AnchorPage(_props: PageProps) {
         title="Anchor"
         description="Page anchor navigation with smooth scrolling and active link highlighting"
       />
-      
+
       <DemoTabs
         tabs={tabs}
         activeTab={activeTab}
         onTabChange={setActiveTab}
       />
-      
+
       <div className="tab-content">
         {renderTabContent()}
       </div>
