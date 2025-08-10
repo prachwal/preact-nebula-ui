@@ -1,7 +1,7 @@
 {
   "name": "preact-nebula-ui",
   "private": false,
-  "version": "1.3.0",
+  "version": "1.3.1",
   "type": "module",
   "description": "Modern React component library built with Preact and Tailwind CSS",
   "keywords": [
