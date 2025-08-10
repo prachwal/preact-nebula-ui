@@ -2,35 +2,44 @@
   "compilerOptions": {
     "target": "ES2020",
     "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "module": "ESNext",
     "skipLibCheck": true,
-
     /* Bundler mode */
     "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
+    "allowImportingTsExtensions": false,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+    "noEmit": false,
     "jsx": "react-jsx",
     "jsxImportSource": "preact",
-
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-
     /* Library specific */
     "declaration": true,
     "declarationMap": true,
     "outDir": "./dist",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./nebula/*"],
-      "@/components/*": ["./nebula/components/*"],
-      "@/types/*": ["./nebula/types/*"],
-      "@/utils/*": ["./nebula/utils/*"]
+      "@/*": [
+        "./nebula/*"
+      ],
+      "@/components/*": [
+        "./nebula/components/*"
+      ],
+      "@/types/*": [
+        "./nebula/types/*"
+      ],
+      "@/utils/*": [
+        "./nebula/utils/*"
+      ]
     }
   },
   "include": [

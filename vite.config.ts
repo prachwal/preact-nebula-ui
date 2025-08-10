@@ -15,7 +15,9 @@ export default defineConfig(({ mode }) => {
         dts({
           insertTypesEntry: true,
           include: ['nebula/**/*'],
-          exclude: ['nebula/**/*.test.*']
+          exclude: ['nebula/**/*.test.*', 'nebula/**/*.stories.*'],
+          entryRoot: 'nebula',
+          tsconfigPath: './tsconfig.lib.json'
         })
       ] : [])
     ],
