@@ -85,27 +85,33 @@ import 'preact-nebula-ui/styles'
 ### 3. Use Components
 
 ```tsx
-import { Button, Input, Card, Alert } from 'preact-nebula-ui'
+import { Button, Input, Card, Alert, Icon, Heading } from 'preact-nebula-ui'
 
 function App() {
   return (
     <div className="p-6 bg-white dark:bg-gray-900">
       <Card className="max-w-md mx-auto">
         <Card.Header>
-          <h2 className="text-xl font-semibold">Welcome to Nebula UI</h2>
+          <Heading level={2} className="flex items-center gap-2">
+            <Icon name="star" color="warning" />
+            Welcome to Nebula UI
+          </Heading>
         </Card.Header>
         <Card.Body className="space-y-4">
-          <Alert variant="info">
+          <Alert variant="info" className="flex items-center gap-2">
+            <Icon name="info" size="sm" />
             Get started with our comprehensive component library!
           </Alert>
           <Input 
             placeholder="Enter your name" 
             size="lg"
+            leftIcon={<Icon name="user" size="sm" />}
           />
           <Button 
             variant="primary" 
             size="lg" 
             fullWidth
+            leftIcon={<Icon name="check" size="sm" />}
           >
             Get Started
           </Button>
@@ -116,104 +122,13 @@ function App() {
 }
 ```
 
-## 📚 Complete Component Library (50+ Components)
+## 📚 Complete Component Library (52+ Components)
+
 Nebula UI provides a comprehensive set of accessible, customizable, and well-tested components organized by category. All documentation and demos are available online:
 
 **Live Demo & Docs:** [https://preact-nebula-ui.netlify.app/](https://preact-nebula-ui.netlify.app/)
 
-### 📝 Form Components (13 components)
-- **Button** – Action buttons with variants, sizes, loading states
-- **Input** – Text fields with validation, icons, and accessibility
-- **Label** – Accessible form labels with required indicators
-- **Textarea** – Multi-line text input with auto-resize and character count
-- **FieldError** – Accessible error message display with ARIA support
-- **Checkbox** – Tri-state checkboxes with validation and custom content
-- **Radio** – Single selection with group management and validation
-- **Switch** – Toggle controls with animations, sizes, and icons
-- **Select** – Dropdown with search, multi-select, and keyboard navigation
-- **Slider** – Range selector with dual handles, marks, and orientation support
-- **Rating** – Star rating component with half-star support
-- **DatePicker** – Calendar widget with locale support and date ranges
-- **TimePicker** – Time selection with format flexibility and validation
-- **Autocomplete** – Search input with async data and multi-select
-
-### 🏗️ Layout & Display (8 components)
-- **Card** – Composable content containers with header/body/footer
-- **Container** – Responsive containers with padding and max-width controls
-- **Stack** – Flexible vertical/horizontal layout with spacing and alignment
-- **Divider** – Visual separators with orientation and text support
-- **Grid** – CSS Grid layout system with responsive breakpoints
-- **Avatar** – User avatars with images, initials, groups, and badges
-- **Image** – Advanced image component with lazy loading and zoom
-- **Typography** – Text components with consistent styling and variants
-
-### 🎨 Feedback & Status (6 components)
-- **Alert** – Informational messages with variants and dismissal actions
-- **Badge** – Status indicators with dot mode and overflow handling
-- **Progress** – Linear/circular progress indicators with labels
-- **Skeleton** – Loading placeholders with animation and shape variants
-- **Spinner** – Loading indicators with size, color, and accessibility
-- **Empty** – Standardized empty state component with variants
-
-### 🧭 Navigation & Data (8 components)
-- **Breadcrumb** – Hierarchical navigation with responsive collapse
-- **Pagination** – Page navigation with sizes, quick jump, and accessibility
-- **Table** – Data tables with sorting, selection, and responsive design
-- **Tabs** – Horizontal/vertical tabs with keyboard navigation
-- **TreeView** – Hierarchical data display with expand/collapse
-- **Steps** – Process visualization and workflow guidance
-- **Anchor** – Smart navigation with scroll spy functionality
-- **BackTop** – Smooth scroll-to-top with progress indication
-
-### 🚀 Advanced Interactions (6 components)
-- **Modal** – Full-screen dialogs with focus management and portal rendering
-- **Tooltip** – Contextual information with intelligent positioning
-- **Drawer** – Sliding panels with gesture support and animations
-- **Popover** – Rich contextual content with flexible positioning
-- **Toast** – Notification system with auto-dismiss and positioning
-- **Affix** – Position-aware component that sticks during scroll
-
-### 📊 Data Display & Management (9 components)
-- **Transfer** – Dual-list component for item selection and movement
-- **Tags** – Dynamic tag management with creation and editing
-- **Collapse** – Collapsible content areas with nested support
-- **Carousel** – Content carousel with touch support and auto-play
-- **Upload** – File upload with drag-and-drop and progress tracking
-- **ConfigProvider** – Global configuration and theme provider
-- **Portal** – React portal for overlay components
-- **Layout** – Page layout utilities and responsive helpers
-- **Container** – Responsive, max-width, padding controls
-- **Stack** – Vertical/horizontal, spacing, alignment
-- **Divider** – Horizontal/vertical, text, style variants
-
-### 📢 Feedback Components
-
-- **Alert** – Info/success/warning/error, dismissible, actions
-- **Badge** – Status indicators, dot mode, overflow handling
-- **Progress** – Linear/circular, indeterminate, labels
-- **Skeleton** – Loading placeholders, shapes, animations
-
-### 🎨 Display Components
-
-- **Spinner** – Size, color, accessibility
-- **Avatar** – Images, initials, groups, badges
-
-### 🧭 Navigation
-
-- **Breadcrumb** – Hierarchical navigation, responsive collapse, custom separators
-- **Pagination** – Page navigation, sizes, quick jump, accessibility
-- **Table** – Data tables with sorting, selection, responsive design
-- **Tabs** – Horizontal/vertical, variants, keyboard navigation
-
-### 🚀 Advanced Interactions
-
-- **Modal** – Full-screen dialogs with focus management and portal rendering
-- **Tooltip** – Contextual information with intelligent positioning
-- **Slider** – Interactive range selector with single/dual handles, marks, orientation support
-
-- **Typography** – Text components with consistent styling
-
-All components are fully typed with TypeScript, accessible (WCAG 2.1 AA), and covered by comprehensive tests (1500+ test cases).
+For detailed component documentation with usage examples, see the [📚 Component Documentation](#-component-documentation-1) section below.
 
 ## 🎨 Customization & Theming
 
@@ -296,9 +211,46 @@ npm run lint
 # Build and publish (dry run)
 npm run publish:dry
 
-# Publish to NPM
+# Smart NPM publishing with version checking
+npm run publish:npm
+
+# Simple NPM publish (legacy)
+npm run publish:simple
+```
+
+### 🚀 Smart Publishing System
+
+Nebula UI includes an intelligent publishing system that:
+
+- ✅ **Auto-checks NPM registry** for version conflicts
+- ✅ **Suggests version bumps** (patch/minor/major) when needed  
+- ✅ **Prevents duplicate publishing** of same version
+- ✅ **Handles 2FA authentication seamlessly** 🔐
+- ✅ **Runs comprehensive pre-publish checks** (tests, build, validation)
+- ✅ **Handles git tagging and commits** automatically
+- ✅ **Interactive confirmations** for safe publishing
+
+```bash
+# Use the smart publishing script (recommended)
 npm run publish:npm
 ```
+
+**Example workflow:**
+1. Script detects local version equals NPM version
+2. Suggests version bump options (patch: 1.2.1 → 1.2.2)
+3. Updates package.json automatically
+4. Runs tests and builds library
+5. **Handles NPM 2FA authentication if required** 🔐
+6. Publishes to NPM with confirmations
+7. Creates git commit and tag
+
+**2FA Support:**
+- Automatically detects when NPM requires 2FA
+- Prompts for authenticator code when needed
+- Retries on invalid/expired codes
+- Clear troubleshooting guidance
+
+For detailed publishing guide, see **[Smart Publishing Guide](docs/SMART_PUBLISHING_GUIDE.md)**.
 
 ### 🚀 Deployment Scripts
 
@@ -315,8 +267,6 @@ npm run deploy:win
 # Windows dry run
 npm run deploy:win:dry
 ```
-
-For detailed deployment instructions, see **[Deployment Guide](docs/DEPLOYMENT_GUIDE.md)**.
 
 ### Windows PowerShell Scripts
 
@@ -429,7 +379,7 @@ componentname/
    <ComponentNamePage path="/componentname" />
    ```
 
-3. **Add to documentation** in relevant milestone docs
+3. **Add to documentation** by updating component lists and examples
 4. **Update test data** in `src/data/testResults.ts`:
 
    ```tsx
@@ -451,32 +401,16 @@ componentname/
    }
    ```
 
-6. **Update component count** in README.md and milestone status
+6. **Update component count** in README.md and component documentation
 
 This structure ensures consistency, maintainability, and comprehensive documentation across all components.
 
-## 📋 Project Milestones & Roadmap
+## 📋 Production Status & Roadmap
 
-### ✅ Completed Milestones (100% Complete)
-
-All 11 milestones have been successfully completed, delivering a comprehensive component library:
-
-1. **[Milestone 1: Forms Foundation](docs/milestone-1/)** - ✅ **COMPLETED** (5 components)
-2. **[Milestone 2: Layout System](docs/milestone-2/)** - ✅ **COMPLETED** (4 components)
-3. **[Milestone 3: Feedback Components](docs/milestone-3/)** - ✅ **COMPLETED** (4 components)
-4. **[Milestone 4: Advanced Form Controls](docs/milestone-4/)** - ✅ **COMPLETED** (4 components)
-5. **[Milestone 5: Navigation & Data](docs/milestone-5/)** - ✅ **COMPLETED** (3 components)
-6. **[Milestone 6: Advanced Interactions](docs/milestone-6/)** - ✅ **COMPLETED** (5 components)
-7. **[Milestone 7: Enhanced Form Controls](docs/milestone-7/)** - ✅ **COMPLETED** (5 components)
-8. **[Milestone 8: Data Display](docs/milestone-8/)** - ✅ **COMPLETED** (5 components)
-9. **[Milestone 9: Specialized Components](docs/milestone-9/)** - ✅ **COMPLETED** (4 components)
-10. **[Milestone 10: System Components](docs/milestone-10/)** - ✅ **COMPLETED** (4 components)
-11. **[Milestone 11: Additional Components](docs/milestone-11/)** - ✅ **COMPLETED** (7 components)
-
-### 🎉 Achievement Summary
+### 🎉 Project Complete - Production Ready
 
 **Nebula UI is now production-ready with:**
-- 🏆 **50+ Components** across 11 completed milestones
+- 🏆 **50+ Components** - Complete component ecosystem
 - 🧪 **1500+ Test Cases** with 100% coverage
 - ♿ **Full Accessibility** WCAG 2.1 AA compliance  
 - 📱 **Responsive Design** Mobile-first approach
@@ -493,18 +427,13 @@ The core library is complete and production-ready. Future enhancements may inclu
 - **Mobile Components** - Native mobile-specific interactions
 - **i18n Support** - Built-in internationalization
 
-## 📚 Documentation Structure
-Nebula UI uses a comprehensive milestone-based documentation system. For complete documentation including project status, implementation plans, and detailed component guides, visit:
-
-**Live Demo & Docs:** [https://preact-nebula-ui.netlify.app/](https://preact-nebula-ui.netlify.app/)
-
 ## 📚 Documentation & Examples
-### 🔍 Key Documentation Files
+
+### 🔍 Available Documentation
 - **Live Demo & Docs:** [https://preact-nebula-ui.netlify.app/](https://preact-nebula-ui.netlify.app/)
-- **[📊 Consolidated Project Documentation](docs/CONSOLIDATED_PROJECT_DOCUMENTATION.md)** - Complete project overview and component inventory
-- **[📋 Unified Checklist](docs/UNIFIED_CHECKLIST.md)** - Implementation status and completion tracking
-- **[📊 Component Coverage Report](docs/COMPONENT_COVERAGE_REPORT.md)** - Detailed component status tables
-- **[📚 Documentation Index](docs/README.md)** - Organized documentation by milestone
+- **Interactive Examples:** Each component page includes live examples you can interact with
+- **TypeScript Definitions:** Full IntelliSense support and type safety out of the box
+- **Usage Examples:** Comprehensive code examples for every component and use case
 
 ### 💡 Usage Examples
 
@@ -599,21 +528,71 @@ function InteractiveDemo() {
 }
 ```
 
-Each major milestone has its own folder in `docs/`, containing:
+## 📚 Component Documentation
 
-- `README.md` – Milestone overview, goals, and delivered components
-- `IMPLEMENTATION_CHECKLIST.md` – Detailed implementation checklist for each component
-- `TECHNICAL_OVERVIEW.md` – Technical architecture, design decisions, and patterns
+After installing the package, you can access comprehensive documentation for each component:
 
-**Milestone documentation folders:**
+### 📝 Form Components
+- **[Button](https://preact-nebula-ui.netlify.app/button)** – Action buttons with variants, sizes, loading states
+- **[Input](https://preact-nebula-ui.netlify.app/input)** – Text fields with validation, icons, and accessibility
+- **[Label](https://preact-nebula-ui.netlify.app/label)** – Accessible form labels with required indicators
+- **[Textarea](https://preact-nebula-ui.netlify.app/textarea)** – Multi-line text input with auto-resize and character count
+- **[FieldError](https://preact-nebula-ui.netlify.app/field-error)** – Accessible error message display with ARIA support
+- **[Checkbox](https://preact-nebula-ui.netlify.app/checkbox)** – Tri-state checkboxes with validation and custom content
+- **[Radio](https://preact-nebula-ui.netlify.app/radio)** – Single selection with group management and validation
+- **[Switch](https://preact-nebula-ui.netlify.app/switch)** – Toggle controls with animations, sizes, and icons
+- **[Select](https://preact-nebula-ui.netlify.app/select)** – Dropdown with search, multi-select, and keyboard navigation
+- **[Slider](https://preact-nebula-ui.netlify.app/slider)** – Range selector with dual handles, marks, and orientation support
+- **[Rating](https://preact-nebula-ui.netlify.app/rating)** – Star rating component with half-star support
+- **[DatePicker](https://preact-nebula-ui.netlify.app/datepicker)** – Calendar widget with locale support and date ranges
+- **[TimePicker](https://preact-nebula-ui.netlify.app/timepicker)** – Time selection with format flexibility and validation
+- **[Autocomplete](https://preact-nebula-ui.netlify.app/autocomplete)** – Search input with async data and multi-select
 
-- [Milestone 1: Forms Foundation](docs/milestone-1/) - ✅ **COMPLETED**
-- [Milestone 2: Layout System](docs/milestone-2/) - ✅ **COMPLETED**
-- [Milestone 3: Feedback Components](docs/milestone-3/) - ✅ **COMPLETED**
-- [Milestone 4: Advanced Form Controls](docs/milestone-4/) - ✅ **COMPLETED**
-- [Milestone 5: Navigation & Data](docs/milestone-5/) - ✅ **COMPLETED**
-- [Milestone 6: Advanced Interactions](docs/milestone-6/) - ✅ **COMPLETED**
-- [Milestone 7: Advanced Form Controls](docs/milestone-7/) - 🚧 **IN PROGRESS**
+### 🏗️ Layout & Display Components
+- **[Card](https://preact-nebula-ui.netlify.app/card)** – Composable content containers with header/body/footer
+- **[Container](https://preact-nebula-ui.netlify.app/container)** – Responsive containers with padding and max-width controls
+- **[Stack](https://preact-nebula-ui.netlify.app/stack)** – Flexible vertical/horizontal layout with spacing and alignment
+- **[Divider](https://preact-nebula-ui.netlify.app/divider)** – Visual separators with orientation and text support
+- **[Grid](https://preact-nebula-ui.netlify.app/grid)** – CSS Grid layout system with responsive breakpoints
+- **[Avatar](https://preact-nebula-ui.netlify.app/avatar)** – User avatars with images, initials, groups, and badges
+- **[Image](https://preact-nebula-ui.netlify.app/image)** – Advanced image component with lazy loading and zoom
+- **[Icon](https://preact-nebula-ui.netlify.app/icon)** – Universal SVG icon component with 50+ built-in icons and custom support
+
+### 🎨 Feedback & Status Components
+- **[Alert](https://preact-nebula-ui.netlify.app/alert)** – Informational messages with variants and dismissal actions
+- **[Badge](https://preact-nebula-ui.netlify.app/badge)** – Status indicators with dot mode and overflow handling
+- **[Progress](https://preact-nebula-ui.netlify.app/progress)** – Linear/circular progress indicators with labels
+- **[Skeleton](https://preact-nebula-ui.netlify.app/skeleton)** – Loading placeholders with animation and shape variants
+- **[Spinner](https://preact-nebula-ui.netlify.app/spinner)** – Loading indicators with size, color, and accessibility
+- **[Empty](https://preact-nebula-ui.netlify.app/empty)** – Standardized empty state component with variants
+
+### 🧭 Navigation & Data Components
+- **[Breadcrumb](https://preact-nebula-ui.netlify.app/breadcrumb)** – Hierarchical navigation with responsive collapse
+- **[Pagination](https://preact-nebula-ui.netlify.app/pagination)** – Page navigation with sizes, quick jump, and accessibility
+- **[Table](https://preact-nebula-ui.netlify.app/table)** – Data tables with sorting, selection, and responsive design
+- **[Tabs](https://preact-nebula-ui.netlify.app/tabs)** – Horizontal/vertical tabs with keyboard navigation
+- **[TreeView](https://preact-nebula-ui.netlify.app/treeview)** – Hierarchical data display with expand/collapse
+- **[Steps](https://preact-nebula-ui.netlify.app/steps)** – Process visualization and workflow guidance
+- **[Anchor](https://preact-nebula-ui.netlify.app/anchor)** – Smart navigation with scroll spy functionality
+- **[BackTop](https://preact-nebula-ui.netlify.app/backtop)** – Smooth scroll-to-top with progress indication
+
+### 🚀 Advanced Interaction Components
+- **[Modal](https://preact-nebula-ui.netlify.app/modal)** – Full-screen dialogs with focus management and portal rendering
+- **[Tooltip](https://preact-nebula-ui.netlify.app/tooltip)** – Contextual information with intelligent positioning
+- **[Drawer](https://preact-nebula-ui.netlify.app/drawer)** – Sliding panels with gesture support and animations
+- **[Popover](https://preact-nebula-ui.netlify.app/popover)** – Rich contextual content with flexible positioning
+- **[Toast](https://preact-nebula-ui.netlify.app/toast)** – Notification system with auto-dismiss and positioning
+- **[Affix](https://preact-nebula-ui.netlify.app/affix)** – Position-aware component that sticks during scroll
+
+### 📊 Data Display & Management Components
+- **[Transfer](https://preact-nebula-ui.netlify.app/transfer)** – Dual-list component for item selection and movement
+- **[Tags](https://preact-nebula-ui.netlify.app/tags)** – Dynamic tag management with creation and editing
+- **[Collapse](https://preact-nebula-ui.netlify.app/collapse)** – Collapsible content areas with nested support
+- **[Carousel](https://preact-nebula-ui.netlify.app/carousel)** – Content carousel with touch support and auto-play
+- **[Upload](https://preact-nebula-ui.netlify.app/upload)** – File upload with drag-and-drop and progress tracking
+- **[ConfigProvider](https://preact-nebula-ui.netlify.app/config-provider)** – Global configuration and theme provider
+
+All component documentation is available online at [https://preact-nebula-ui.netlify.app/](https://preact-nebula-ui.netlify.app/) with interactive examples and comprehensive usage guides.
 
 ## 🤝 Contributing
 

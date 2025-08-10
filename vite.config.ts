@@ -46,7 +46,8 @@ export default defineConfig(({ mode }) => {
               'preact/hooks': 'preactHooks',
               'preact/jsx-runtime': 'preactJsxRuntime',
               'preact/compat': 'preactCompat'
-            }
+            },
+            assetFileNames: 'styles.[ext]'
           }
         },
         sourcemap: true,

@@ -1,5 +1,6 @@
 import { forwardRef } from 'preact/compat'
 import { cn } from '../../utils/cn'
+import { Icon } from '../Icon'
 import type {
   TableProps,
   TableContainerProps,
@@ -21,27 +22,27 @@ const TableRoot = forwardRef<HTMLTableElement, TableProps>(
         className={cn(
           // Base styles
           'w-full border-collapse',
-          
+
           // Variant styles
           {
             'border-separate border-spacing-0': variant === 'outline',
             '[&_tr:nth-child(even)]:bg-muted/50': variant === 'striped',
           },
-          
+
           // Size styles
           {
             'text-xs': size === 'sm',
-            'text-sm': size === 'md', 
+            'text-sm': size === 'md',
             'text-base': size === 'lg',
           },
-          
+
           // Color scheme styles (applied via CSS variables)
           {
             '[--table-primary-color:theme(colors.gray.900)] dark:[--table-primary-color:theme(colors.gray.100)]': colorScheme === 'gray',
             '[--table-primary-color:theme(colors.blue.900)] dark:[--table-primary-color:theme(colors.blue.100)]': colorScheme === 'primary',
             '[--table-primary-color:theme(colors.purple.900)] dark:[--table-primary-color:theme(colors.purple.100)]': colorScheme === 'secondary',
           },
-          
+
           className
         )}
         {...props}
@@ -169,14 +170,14 @@ const TableHeaderCell = forwardRef<HTMLTableHeaderCellElement, TableHeaderCellPr
   ({ sortable = false, sortDirection = 'none', onSort, isNumeric = false, className, children, ...props }, ref) => {
     const handleSort = () => {
       if (!sortable || !onSort) return
-      
+
       const nextDirection = sortDirection === 'asc' ? 'desc' : 'asc'
       onSort(nextDirection)
     }
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (!sortable || !onSort) return
-      
+
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault()
         handleSort()
@@ -201,8 +202,8 @@ const TableHeaderCell = forwardRef<HTMLTableHeaderCellElement, TableHeaderCellPr
             ? sortDirection === 'asc'
               ? 'ascending'
               : sortDirection === 'desc'
-              ? 'descending'
-              : 'none'
+                ? 'descending'
+                : 'none'
             : undefined
         }
         onClick={sortable ? handleSort : undefined}
@@ -213,36 +214,22 @@ const TableHeaderCell = forwardRef<HTMLTableHeaderCellElement, TableHeaderCellPr
           {children}
           {sortable && (
             <div className="flex flex-col ml-1">
-              <svg
+              <Icon
+                name="chevron-up"
+                size="xs"
                 className={cn(
-                  'h-3 w-3 transition-colors',
+                  'transition-colors',
                   sortDirection === 'asc' ? 'text-foreground' : 'text-muted-foreground/50'
                 )}
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                aria-hidden="true"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M14.77 12.79a.75.75 0 01-1.06-.02L10 8.832 6.29 12.77a.75.75 0 11-1.08-1.04l4.25-4.5a.75.75 0 011.08 0l4.25 4.5a.75.75 0 01-.02 1.06z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <svg
+              />
+              <Icon
+                name="chevron-down"
+                size="xs"
                 className={cn(
-                  'h-3 w-3 transition-colors -mt-1',
+                  'transition-colors -mt-1',
                   sortDirection === 'desc' ? 'text-foreground' : 'text-muted-foreground/50'
                 )}
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                aria-hidden="true"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              />
             </div>
           )}
         </div>

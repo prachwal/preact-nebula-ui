@@ -1,0 +1,26 @@
+{
+    "component": "Icon",
+    "title": "Icon Component",
+    "description": "Flexible SVG icon system with 50+ built-in icons, custom SVG support, and animations",
+    "category": "Display",
+    "version": "1.0.0",
+    "status": "stable",
+    "features": [
+        "50+ built-in icons",
+        "Custom SVG content support",
+        "6 size variants (xs, sm, md, lg, xl, 2xl)",
+        "8 color variants with dark mode",
+        "Spin animation support",
+        "Filled and outlined variants",
+        "Custom stroke width",
+        "Custom viewBox support",
+        "Full accessibility",
+        "TypeScript support"
+    ],
+    "dependencies": [],
+    "related": [
+        "Button",
+        "Card",
+        "Navigation components"
+    ]
+}

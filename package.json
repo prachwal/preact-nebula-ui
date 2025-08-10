@@ -1,7 +1,7 @@
 {
   "name": "preact-nebula-ui",
   "private": false,
-  "version": "1.2.0",
+  "version": "1.3.0",
   "type": "module",
   "description": "Modern React component library built with Preact and Tailwind CSS",
   "keywords": [
@@ -31,7 +31,7 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./styles": "./dist/style.css"
+    "./styles": "./dist/styles.css"
   },
   "files": [
     "dist",
@@ -42,6 +42,7 @@
     "dev": "vite",
     "build": "npm run update-coverage && npm run build-docs && tsc -b && vite build && npm run copy-docs-to-dist",
     "build:lib": "npm run update-coverage && npm run build-docs && vite build --mode lib && npm run copy-docs-to-dist",
+    "build:lib:fast": "npm run build-docs && npx vite build --mode lib && npm run copy-docs-to-dist",
     "build-docs": "node scripts/build-docs-system.js",
     "copy-docs-to-dist": "node scripts/copy-docs-to-dist.js",
     "move-docs": "node scripts/move-documentation.js",
@@ -60,7 +61,11 @@
     "type-check": "tsc --noEmit",
     "prepublishOnly": "npm run build:lib && npm run test",
     "publish:dry": "npm publish --dry-run",
-    "publish:npm": "npm publish --access public",
+    "publish:npm": "node scripts/fast-npm-publish.cjs",
+    "publish:no-browser": "node scripts/npm-publish-no-browser.cjs",
+    "publish:simple": "npm publish --access public",
+    "publish:legacy": "node scripts/npm-publish-2fa.cjs",
+    "publish:2fa": "node scripts/smart-npm-publish-2fa.cjs",
     "deploy": "./scripts/deploy-npm.sh",
     "deploy:dry": "./scripts/deploy-npm.sh --dry-run",
     "deploy:win": "powershell -ExecutionPolicy Bypass -File ./scripts/deploy-npm.ps1",

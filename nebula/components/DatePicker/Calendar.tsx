@@ -1,5 +1,6 @@
 import type { CalendarProps } from './types'
 import { cn } from '../../utils/cn'
+import { Icon } from '../Icon'
 
 export function Calendar({
   currentMonth,
@@ -13,22 +14,22 @@ export function Calendar({
   showToday = true,
   size = 'md'
 }: CalendarProps) {
-  
+
   // Get calendar grid data
   const getCalendarDays = () => {
     const startOfMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1)
     const startOfCalendar = new Date(startOfMonth)
     startOfCalendar.setDate(startOfCalendar.getDate() - startOfMonth.getDay())
-    
+
     const days: Date[] = []
     const current = new Date(startOfCalendar)
-    
+
     // Generate 6 weeks (42 days) to ensure consistent calendar size
     for (let i = 0; i < 42; i++) {
       days.push(new Date(current))
       current.setDate(current.getDate() + 1)
     }
-    
+
     return days
   }
 
@@ -106,7 +107,7 @@ export function Calendar({
   }
 
   return (
-    <div 
+    <div
       role="dialog"
       aria-label="Choose date"
       className={cn('bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg', sizeClasses[size].container)}
@@ -119,24 +120,20 @@ export function Calendar({
           className="p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400"
           aria-label="Previous month"
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
+          <Icon name="chevron-left" size="sm" />
         </button>
-        
+
         <div className="font-semibold text-gray-900 dark:text-white">
           {monthNames[currentMonth.getMonth()]} {currentMonth.getFullYear()}
         </div>
-        
+
         <button
           type="button"
           onClick={goToNextMonth}
           className="p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400"
           aria-label="Next month"
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
+          <Icon name="chevron-right" size="sm" />
         </button>
       </div>
 
@@ -176,16 +173,16 @@ export function Calendar({
                   // Base styles
                   'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700': inCurrentMonth && !disabled && !selected,
                   'text-gray-400 dark:text-gray-600': !inCurrentMonth,
-                  
+
                   // Selected state
                   'bg-blue-500 text-white hover:bg-blue-600': selected && !disabled,
-                  
+
                   // Today highlight
                   'ring-2 ring-blue-500 ring-inset': todayClass && !selected,
-                  
+
                   // Disabled state
                   'cursor-not-allowed opacity-50 text-gray-400 dark:text-gray-600': disabled,
-                  
+
                   // Focus styles
                   'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800': !disabled
                 }

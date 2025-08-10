@@ -1,4 +1,5 @@
 import { MarkdownViewer } from './MarkdownViewer'
+import { useDocsMetadata } from '../hooks/useDocsMetadata'
 
 interface DocumentationTabProps {
     readonly componentName: string
@@ -11,72 +12,22 @@ export function DocumentationTab({
     customPath,
     title = 'Dokumentacja'
 }: DocumentationTabProps) {
+    const { metadata } = useDocsMetadata()
+
     // Ścieżki do różnych typów dokumentacji
     const getDocumentationPath = () => {
         if (customPath) return customPath
 
-        // Mapowanie nazw komponentów na odpowiednie pliki dokumentacji
-        const docPaths = {
-            input: 'INPUT_DOCUMENTATION.md',
-            button: 'BUTTON_DOCUMENTATION.md',
-            alert: 'ALERT_DOCUMENTATION.md',
-            badge: 'BADGE_DOCUMENTATION.md',
-            progress: 'PROGRESS_DOCUMENTATION.md',
-            skeleton: 'SKELETON_DOCUMENTATION.md',
-            spinner: 'SPINNER_DOCUMENTATION.md',
-            toast: 'TOAST_DOCUMENTATION.md',
-            modal: 'MODAL_DOCUMENTATION.md',
-            card: 'CARD_DOCUMENTATION.md',
-            tooltip: 'TOOLTIP_DOCUMENTATION.md',
-            textarea: 'TEXTAREA_DOCUMENTATION.md',
-            checkbox: 'CHECKBOX_DOCUMENTATION.md',
-            radio: 'RADIO_DOCUMENTATION.md',
-            switch: 'SWITCH_DOCUMENTATION.md',
-            select: 'SELECT_DOCUMENTATION.md',
-            datepicker: 'DATEPICKER_DOCUMENTATION.md',
-            upload: 'UPLOAD_DOCUMENTATION.md',
-            tags: 'TAGS_DOCUMENTATION.md',
-            breadcrumb: 'BREADCRUMB_DOCUMENTATION.md',
-            pagination: 'PAGINATION_DOCUMENTATION.md',
-            tabs: 'TABS_DOCUMENTATION.md',
-            steps: 'STEPS_DOCUMENTATION.md',
-            // Phase 6 - Display Components
-            avatar: 'AVATAR_DOCUMENTATION.md',
-            image: 'IMAGE_DOCUMENTATION.md',
-            empty: 'EMPTY_DOCUMENTATION.md',
-            // Phase 7 - Advanced Interactive Components
-            rating: 'RATING_DOCUMENTATION.md',
-            slider: 'SLIDER_DOCUMENTATION.md',
-            drawer: 'DRAWER_DOCUMENTATION.md',
-            popover: 'POPOVER_DOCUMENTATION.md',
-            // Phase 8 - Complex Data Components
-            carousel: 'CAROUSEL_DOCUMENTATION.md',
-            transfer: 'TRANSFER_DOCUMENTATION.md',
-            treeview: 'TREEVIEW_DOCUMENTATION.md',
-            autocomplete: 'AUTOCOMPLETE_DOCUMENTATION.md',
-            timepicker: 'TIMEPICKER_DOCUMENTATION.md',
-            // Additional Components
-            table: 'TABLE_DOCUMENTATION.md',
-            grid: 'GRID_DOCUMENTATION.md',
-            divider: 'DIVIDER_DOCUMENTATION.md',
-            container: 'CONTAINER_DOCUMENTATION.md',
-            collapse: 'COLLAPSE_DOCUMENTATION.md',
-            anchor: 'ANCHOR_DOCUMENTATION.md',
-            backtop: 'BACKTOP_DOCUMENTATION.md',
-            stack: 'STACK_DOCUMENTATION.md',
-            // Utility Components
-            affix: 'AFFIX_DOCUMENTATION.md',
-            configprovider: 'CONFIGPROVIDER_DOCUMENTATION.md',
-            fielderror: 'FIELDERROR_DOCUMENTATION.md',
-            label: 'LABEL_DOCUMENTATION.md',
-            // Infrastructure Components
-            pagelayout: 'PAGELAYOUT_DOCUMENTATION.md',
-            portal: 'PORTAL_DOCUMENTATION.md',
-            heading: 'TYPOGRAPHY_DOCUMENTATION.md',
-            text: 'TYPOGRAPHY_DOCUMENTATION.md',
-        } as const;        // Zwróć specificzną ścieżkę lub domyślną
-        return '/docs/' + (docPaths[componentName as keyof typeof docPaths] || `COMPONENT_COVERAGE_REPORT.md`)
+        // Wyszukaj komponent w metadanych
+        const component = metadata?.components.find(comp =>
+            comp.component?.toLowerCase() === componentName.toLowerCase() ||
+            comp.name?.toLowerCase() === componentName.toLowerCase()
+        )
+
+        return component?.path || null
     }
+
+    const documentationPath = getDocumentationPath()
 
     return (
         <div className="space-y-6">
@@ -90,10 +41,24 @@ export function DocumentationTab({
             </div>
 
             <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
-                <MarkdownViewer
-                    filePath={getDocumentationPath()}
-                    className="documentation-content"
-                />
+                {documentationPath ? (
+                    <MarkdownViewer
+                        filePath={documentationPath}
+                        className="documentation-content"
+                    />
+                ) : (
+                    <div className="text-center py-12">
+                        <div className="text-gray-500 dark:text-gray-400">
+                            <svg className="mx-auto h-12 w-12 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            <h3 className="text-lg font-medium mb-2">Dokumentacja niedostępna</h3>
+                            <p className="text-sm">
+                                Dokumentacja dla komponentu <span className="font-mono bg-gray-100 dark:bg-gray-800 px-1 rounded">{componentName}</span> nie została jeszcze utworzona.
+                            </p>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     )

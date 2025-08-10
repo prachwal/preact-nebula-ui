@@ -6,12 +6,12 @@ export type { SpinnerProps } from './Spinner/Spinner.types'
 
 // System Configuration
 export { ConfigProvider, useConfig, useTheme, useLocale, useComponentDefaults } from './ConfigProvider'
-export type { 
-  ConfigProviderProps, 
-  ThemeConfig, 
-  GlobalToken, 
-  LocaleConfig, 
-  ComponentDefaultsConfig 
+export type {
+  ConfigProviderProps,
+  ThemeConfig,
+  GlobalToken,
+  LocaleConfig,
+  ComponentDefaultsConfig
 } from './ConfigProvider'
 
 // UI Components
@@ -141,13 +141,13 @@ export { Popover } from './Popover'
 export type { PopoverProps, PopoverPosition, PopoverTrigger, PopoverState, PopoverContext } from './Popover/Popover.types'
 
 export { Toast, ToastManager, ToastContainer, toast, ToastProvider, useToast, createToast, createSuccessToast, createWarningToast, createErrorToast, createInfoToast } from './Toast'
-export type { 
-  ToastProps, 
-  ToastManagerProps, 
-  ToastData, 
-  ToastContextValue, 
-  ToastPosition, 
-  ToastVariant, 
+export type {
+  ToastProps,
+  ToastManagerProps,
+  ToastData,
+  ToastContextValue,
+  ToastPosition,
+  ToastVariant,
   ToastSize,
   CreateToastOptions,
   CreateSuccessToastOptions,
@@ -162,18 +162,18 @@ export type { PortalProps } from './Portal'
 
 // Data Display & Navigation Components
 export { TreeView, TreeNode } from './TreeView'
-export type { 
-  TreeViewProps, 
-  TreeNodeProps, 
+export type {
+  TreeViewProps,
+  TreeNodeProps,
   TreeNode as TreeNodeType,
   UseTreeViewOptions,
   UseTreeViewReturn
 } from './TreeView'
 
 export { Transfer, TransferList } from './Transfer'
-export type { 
-  TransferProps, 
-  TransferListProps, 
+export type {
+  TransferProps,
+  TransferListProps,
   TransferItem,
   UseTransferOptions,
   UseTransferReturn
@@ -257,3 +257,19 @@ export type { BackTopProps } from './BackTop'
 
 export { Grid, GridItem } from './Grid'
 export type { GridProps, GridItemProps, GridBreakpoint, GridSpan } from './Grid'
+
+// Typography Components (Milestone 12 - Missing Exports Fix)
+export { Heading, Text } from './Typography'
+export type {
+  HeadingProps,
+  TextProps,
+  HeadingLevel,
+  HeadingSize,
+  HeadingWeight,
+  TextSize,
+  TextWeight
+} from './Typography'
+
+// Icon Component (Milestone 12 - New Implementation)
+export { Icon } from './Icon'
+export type { IconProps, IconSize, IconColor } from './Icon'

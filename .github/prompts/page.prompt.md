@@ -184,6 +184,8 @@ nebula/components/[ComponentName]/
 
 ### Step 3: Create Documentation Page
 
+**IMPORTANT**: Use the modern page pattern with `usePathTabPage` hook for all new component pages.
+
 1. **Create page structure**:
    ```bash
    mkdir src/pages/[component-name]
@@ -192,10 +194,11 @@ nebula/components/[ComponentName]/
 
 2. **Main page** (`src/pages/[component-name]/[ComponentName]Page.tsx`):
    ```typescript
-   import { useState } from 'preact/hooks'
    import { PageHeader } from '../../components/layout/PageHeader'
    import { DemoTabs } from '../../components/layout/DemoTabs'
-   import { 
+   import { DocumentationTab } from '../../components/DocumentationTab'
+   import { usePathTabPage, PathTabPageConfigs } from '../../hooks'
+   import {
      BasicUsageSection,
      SizesSection,
      VariantsSection,
@@ -203,22 +206,37 @@ nebula/components/[ComponentName]/
      PropsDocumentation
    } from './sections'
 
-   type DemoType = 'basic' | 'sizes' | 'variants' | 'states' | 'props'
-
    interface PageProps {
-     path?: string
+     readonly path?: string
    }
 
    export function [ComponentName]Page(_props: PageProps) {
-     const [activeTab, setActiveTab] = useState<DemoType>('basic')
+     const { activeTab, setActiveTab, tabs } = usePathTabPage(
+       PathTabPageConfigs.withDocumentation('/[component-name]', [
+         { key: 'sizes', label: 'Sizes' },
+         { key: 'variants', label: 'Variants' },
+         { key: 'states', label: 'States' }
+       ])
+     )
 
-     const tabs = [
-       { key: 'basic', label: 'Basic Usage' },
-       { key: 'sizes', label: 'Sizes' },
-       { key: 'variants', label: 'Variants' },
-       { key: 'states', label: 'States' },
-       { key: 'props', label: 'Props' }
-     ]
+     const renderSection = () => {
+       switch (activeTab) {
+         case 'basic':
+           return <BasicUsageSection />
+         case 'sizes':
+           return <SizesSection />
+         case 'variants':
+           return <VariantsSection />
+         case 'states':
+           return <StatesSection />
+         case 'props':
+           return <PropsDocumentation />
+         case 'documentation':
+           return <DocumentationTab componentName="[component-name]" />
+         default:
+           return <BasicUsageSection />
+       }
+     }
 
      return (
        <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -231,15 +249,11 @@ nebula/components/[ComponentName]/
            <DemoTabs
              tabs={tabs}
              activeTab={activeTab}
-             onTabChange={(tab) => setActiveTab(tab as DemoType)}
+             onTabChange={setActiveTab}
            />
 
            <div className="mt-8">
-             {activeTab === 'basic' && <BasicUsageSection />}
-             {activeTab === 'sizes' && <SizesSection />}
-             {activeTab === 'variants' && <VariantsSection />}
-             {activeTab === 'states' && <StatesSection />}
-             {activeTab === 'props' && <PropsDocumentation />}
+             {renderSection()}
            </div>
          </div>
        </div>
@@ -247,7 +261,60 @@ nebula/components/[ComponentName]/
    }
    ```
 
-3. **Demo sections** (`src/pages/[component-name]/sections/BasicUsageSection.tsx`):
+3. **Page metadata** (`src/pages/[component-name]/metadata.json`):
+   ```json
+   {
+     "title": "[ComponentName] Component",
+     "description": "Brief description of the component's purpose and functionality",
+     "category": "Category (Forms/Display/Navigation/Feedback/etc.)",
+     "version": "1.0.0",
+     "status": "stable",
+     "features": [
+       "Feature 1",
+       "Feature 2",
+       "Feature 3"
+     ],
+     "dependencies": [],
+     "related": [
+       "RelatedComponent1",
+       "RelatedComponent2"
+     ]
+   }
+   ```
+
+4. **Documentation README** (`src/pages/[component-name]/README.md`):
+   ```markdown
+   # [ComponentName] Component
+   
+   Brief description of the component and its primary use cases.
+   
+   ## Key Features
+   
+   ### 🎨 Feature Category 1
+   - **Feature**: Description
+   - **Another Feature**: Description
+   
+   ### 🔧 Feature Category 2  
+   - **Flexibility**: Description
+   - **Customization**: Description
+   
+   ## Use Cases
+   
+   ### Primary Use Case
+   Description of when and how to use this component.
+   
+   ## Technical Implementation
+   
+   ### Performance
+   - Performance considerations
+   - Bundle impact
+   - Optimization notes
+   
+   ### Browser Support
+   List of supported browsers and versions.
+   ```
+
+5. **Demo sections** (`src/pages/[component-name]/sections/BasicUsageSection.tsx`):
    ```typescript
    import { [ComponentName] } from '../../../../nebula/components'
 
@@ -280,7 +347,71 @@ nebula/components/[ComponentName]/
    }
    ```
 
-4. **Section exports** (`src/pages/[component-name]/sections/index.ts`):
+6. **Section exports** (`src/pages/[component-name]/sections/index.ts`):
+   ```typescript
+   export { BasicUsageSection } from './BasicUsageSection'
+   export { SizesSection } from './SizesSection'
+   export { VariantsSection } from './VariantsSection'
+   export { StatesSection } from './StatesSection'
+   export { PropsDocumentation } from './PropsDocumentation'
+   ```
+
+7. **Page exports** (`src/pages/[component-name]/index.ts`):
+   ```typescript
+   export { [ComponentName]Page } from './[ComponentName]Page'
+   ```
+
+## 🆕 Modern Page Pattern Guidelines
+
+### Required Page Structure
+All new component pages MUST follow this modern pattern:
+
+1. **Use `usePathTabPage` hook** instead of manual state management
+2. **Include Documentation tab** with `PathTabPageConfigs.withDocumentation()`
+3. **Add metadata.json** for component information
+4. **Create README.md** with comprehensive documentation
+5. **Use `renderSection()` function** with switch statement for tab content
+
+### Path Tab Configuration
+```typescript
+// For pages with documentation tab
+const { activeTab, setActiveTab, tabs } = usePathTabPage(
+  PathTabPageConfigs.withDocumentation('/component-name', [
+    { key: 'sizes', label: 'Sizes' },
+    { key: 'variants', label: 'Variants' },
+    { key: 'advanced', label: 'Advanced' }
+  ])
+)
+
+// For pages without documentation tab (legacy/special cases only)
+const { activeTab, setActiveTab, tabs } = usePathTabPage(
+  PathTabPageConfigs.standard('/component-name', [
+    { key: 'basic', label: 'Basic Usage' },
+    { key: 'sizes', label: 'Sizes' }
+  ])
+)
+```
+
+### Tab URL Integration
+The modern pattern automatically handles URL-based tab switching:
+- `/component/basic` - Shows basic usage
+- `/component/sizes` - Shows sizes section  
+- `/component/props` - Shows props documentation
+- `/component/documentation` - Shows generated documentation
+
+### Required Files Structure
+```
+src/pages/[component-name]/
+├── [ComponentName]Page.tsx    # Main page with usePathTabPage hook
+├── metadata.json              # Component metadata
+├── README.md                  # Comprehensive documentation
+├── index.ts                   # Page exports
+└── sections/                  # Demo sections
+    ├── BasicUsageSection.tsx
+    ├── [Other]Section.tsx
+    ├── PropsDocumentation.tsx
+    └── index.ts
+```
    ```typescript
    export { BasicUsageSection } from './BasicUsageSection'
    export { SizesSection } from './SizesSection'

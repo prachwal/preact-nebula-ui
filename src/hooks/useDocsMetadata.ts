@@ -2,10 +2,12 @@ import { useState, useEffect } from 'preact/hooks'
 
 export interface DocFile {
     name: string
+    component?: string
     path: string
-    category: 'Components' | 'Milestones' | 'Project' | 'Reports'
+    category: string
     description: string
-    size: 'small' | 'medium' | 'large'
+    status?: string
+    size?: 'small' | 'medium' | 'large'
     tags: string[]
     hasTests?: boolean
     hasStories?: boolean
